@@ -1,5 +1,7 @@
 use crate::aggregation::Aggregator;
+use crate::compliance::{ObligationStatus, OmnibusValidator};
 use crate::db::{create_run, insert_ledger_row, insert_quarantine_row, update_run_status, DbPool};
+use crate::finance::risk_analytics::{CarbonRiskMetrics, PortfolioAsset};
 use crate::gemini_client::GeminiClient;
 use crate::ingest::{IngestionEngine, RawRow};
 use crate::ledger::{LedgerProcessor, ProcessResult};
@@ -74,6 +76,9 @@ pub async fn run_handler(
         state_guard.jurisdiction = Some(payload.jurisdiction);
         state_guard.language = Some(payload.language.clone());
         state_guard.industry = Some(payload.industry.clone());
+        state_guard.deep_mode = payload.deep_mode;
+        state_guard.employee_count = payload.employee_count;
+        state_guard.revenue_eur = payload.revenue_eur;
         state_guard.progress_message = Some("Initializing pipeline...".to_string());
     }
     
@@ -81,6 +86,7 @@ pub async fn run_handler(
     let state_clone = state.clone();
     let db_clone = db_pool.clone();
     let run_id_clone = run_id.clone();
+    let deep_mode = payload.deep_mode;
     
     tokio::spawn(async move {
         if let Err(e) = process_pipeline(
@@ -90,6 +96,7 @@ pub async fn run_handler(
             payload.jurisdiction,
             payload.language,
             payload.industry,
+            deep_mode,
         )
         .await
         {
@@ -113,6 +120,7 @@ async fn process_pipeline(
     jurisdiction: Jurisdiction,
     language: String,
     industry: String,
+    _deep_mode: bool,
 ) -> Result<()> {
     // Step 1: Initialize database run
     {
@@ -128,7 +136,8 @@ async fn process_pipeline(
     }
     
     let mut triage_engine = TriageEngine::new();
-    triage_engine.load_from_json(EMBEDDED_DICTIONARY)?;
+    let dict_content = std::fs::read_to_string("data/dictionary.json")?;
+    triage_engine.load_from_json(&dict_content)?;
     
     let ingestion_engine = IngestionEngine::new();
     let mut ledger_processor = LedgerProcessor::new();
@@ -213,6 +222,10 @@ async fn process_pipeline(
     
     // Step 8: Generate ZIP package
     let output_factory = OutputFactory::new();
+    let (emp_count, rev_eur) = {
+        let state_guard = state.lock().await;
+        (state_guard.employee_count, state_guard.revenue_eur)
+    };
     let zip_data = output_factory
         .generate_fritz_package(
             &run_id,
@@ -223,6 +236,8 @@ async fn process_pipeline(
             &narrative,
             &format!("{:?}", jurisdiction),
             &language,
+            emp_count,
+            rev_eur,
         )
         .await?;
     
@@ -312,6 +327,35 @@ pub async fn results_handler(
     
     let csrd_completeness_pct = (state_guard.scope3_breakdown.len() as f32 / 15.0) * 100.0;
     
+    // Compliance Check
+    let validator = OmnibusValidator::new(state_guard.employee_count, state_guard.revenue_eur, None);
+    let obligation = validator.is_csrd_obligated();
+    let has_financial = state_guard.ledger.iter().any(|r| r.scope3_extension.as_ref().map(|e| e.category_id) == Some(15));
+    let reporting_scope = validator.get_reporting_scope(has_financial);
+    
+    let compliance = Some(crate::models::ComplianceInfo {
+        obligation_status: format!("{:?}", obligation),
+        reporting_scope: format!("{:?}", reporting_scope),
+        employee_count: state_guard.employee_count,
+        revenue_eur: state_guard.revenue_eur,
+        threshold_met: matches!(obligation, ObligationStatus::Obligated),
+    });
+    
+    let mut risk_metrics = None;
+    if state_guard.industry.as_deref() == Some("Financial") {
+        let assets: Vec<PortfolioAsset> = state_guard.ledger.iter()
+            .filter(|r| r.ghg_scope == crate::models::GhgScope::SCOPE3 && r.scope3_extension.as_ref().map(|e| e.category_id) == Some(15))
+            .map(|r| PortfolioAsset {
+                investment_amount: r.raw_value,
+                emissions_tco2e: r.tco2e,
+                revenue_meur: r.raw_value / 10.0,
+            })
+            .collect();
+        
+        let total_value: f64 = assets.iter().map(|a| a.investment_amount).sum();
+        risk_metrics = Some(CarbonRiskMetrics::calculate(&assets, total_value));
+    }
+
     Ok(Json(ResultsResponse {
         run_id: state_guard.run_id.clone().unwrap_or_default(),
         total_tco2e: state_guard.total_tco2e.unwrap_or(0.0),
@@ -323,6 +367,8 @@ pub async fn results_handler(
         data_quality_tier_breakdown: dq_breakdown,
         quarantine_count: state_guard.quarantine.len(),
         csrd_completeness_pct,
+        risk_metrics,
+        compliance,
     }))
 }
 

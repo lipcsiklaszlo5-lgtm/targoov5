@@ -416,6 +416,11 @@
                     <option value="Logistics">Logistics</option>
                     <option value="Financial">Financial Services</option>
                 </select>
+                <div class="flex items-center gap-2" style="background: #EEE; padding: 0.5rem 1rem; border-radius: 12px;">
+                    <label style="font-size: 0.8rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="deep-mode-toggle"> Deep Financial Mode
+                    </label>
+                </div>
                 <button id="run-btn" class="btn btn-primary" disabled>Run Pipeline →</button>
             </div>
         </div>
@@ -487,6 +492,29 @@
                     <span class="badge badge-success" id="cat-coverage">0/15 covered</span>
                 </div>
                 <div id="cat-grid" class="cat-grid"></div>
+            </div>
+
+            <!-- Climate Risk Analytics (Deep Mode Only) -->
+            <div id="climate-risk-card" class="card mt-4 hidden" style="background: #F0F7FF; border-left: 4px solid #007AFF;">
+                <h2 style="margin-bottom: 1rem;">Climate Risk Analytics</h2>
+                <div class="scope-grid" style="margin: 1rem 0;">
+                    <div class="scope-card" style="border-top: 4px solid #007AFF;">
+                        <p style="color: #888; text-transform: uppercase; font-size: 0.75rem;">WACI</p>
+                        <div class="scope-value" style="font-size: 1.5rem;"><span id="waci-value">0.00</span></div>
+                        <p style="color: #666; font-size: 0.75rem;">tCO2e / M€ revenue</p>
+                    </div>
+                    <div class="scope-card" style="border-top: 4px solid #007AFF;">
+                        <p style="color: #888; text-transform: uppercase; font-size: 0.75rem;">Carbon Footprint</p>
+                        <div class="scope-value" style="font-size: 1.5rem;"><span id="footprint-value">0.00</span></div>
+                        <p style="color: #666; font-size: 0.75rem;">tCO2e / M€ invested</p>
+                    </div>
+                    <div class="scope-card" style="border-top: 4px solid #007AFF;">
+                        <p style="color: #888; text-transform: uppercase; font-size: 0.75rem;">High-Carbon Exp.</p>
+                        <div class="scope-value" style="font-size: 1.5rem;"><span id="exposure-value">0.00</span>%</div>
+                        <p style="color: #666; font-size: 0.75rem;">Portfolio percentage</p>
+                    </div>
+                </div>
+                <p style="font-size: 0.8rem; color: #555;">📊 <i>Detailed scenario analysis and physical risk scores included in 07_Climate_Risk_Report.xlsx</i></p>
             </div>
             
             <!-- Quarantine Alert -->

@@ -136,6 +136,11 @@ pub struct Scope3Extension {
     // Quality Metrics
     pub data_quality_tier: DataQualityTier,
     pub ghg_protocol_dq_score: u8, // 1-5
+
+    // PCAF 2025 fields
+    pub pcaf_asset_class: Option<String>,
+    pub pcaf_attribution_factor: Option<f64>,
+    pub pcaf_data_quality_score: Option<u8>,
 }
 
 /// Core Ledger Row (Immutable, Auditable)
@@ -202,6 +207,9 @@ pub struct AppState {
     pub jurisdiction: Option<Jurisdiction>,
     pub language: Option<String>,
     pub industry: Option<String>,
+    pub deep_mode: bool,
+    pub employee_count: Option<u32>,
+    pub revenue_eur: Option<f64>,
     
     pub ledger: Vec<LedgerRow>,
     pub quarantine: Vec<QuarantineRow>,
@@ -234,6 +242,9 @@ impl Default for AppState {
             jurisdiction: None,
             language: None,
             industry: None,
+            deep_mode: false,
+            employee_count: None,
+            revenue_eur: None,
             ledger: Vec::new(),
             quarantine: Vec::new(),
             staged_files: Vec::new(),
@@ -251,6 +262,10 @@ pub struct RunRequest {
     pub jurisdiction: Jurisdiction,
     pub language: String,
     pub industry: String,
+    #[serde(default)]
+    pub deep_mode: bool,
+    pub employee_count: Option<u32>,
+    pub revenue_eur: Option<f64>,
 }
 
 #[derive(Debug, Serialize)]
@@ -279,4 +294,15 @@ pub struct ResultsResponse {
     pub data_quality_tier_breakdown: HashMap<String, usize>,
     pub quarantine_count: usize,
     pub csrd_completeness_pct: f32, // Categories covered / 15
+    pub risk_metrics: Option<crate::finance::risk_analytics::CarbonRiskMetrics>,
+    pub compliance: Option<ComplianceInfo>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct ComplianceInfo {
+    pub obligation_status: String,
+    pub reporting_scope: String,
+    pub employee_count: Option<u32>,
+    pub revenue_eur: Option<f64>,
+    pub threshold_met: bool,
 }

@@ -1,4 +1,10 @@
 use crate::aggregation::AggregationResult;
+use crate::compliance::{ObligationStatus, OmnibusValidator};
+use crate::eidas::EidasSigner;
+use crate::finance::risk_analytics::{
+    CarbonRiskMetrics, PhysicalRiskScorer, PortfolioAsset, ScenarioAnalyzer,
+};
+use crate::ixbrl::IxbrlGenerator;
 use crate::models::{GhgScope, LedgerRow, QuarantineRow, Scope3CategorySummary};
 use anyhow::Result;
 use chrono::Utc;
@@ -27,6 +33,8 @@ impl OutputFactory {
         narrative_text: &str,
         jurisdiction: &str,
         _language: &str,
+        employee_count: Option<u32>,
+        revenue_eur: Option<f64>,
     ) -> Result<Vec<u8>> {
         let manifest = self.generate_manifest(
             run_id,
@@ -42,6 +50,11 @@ impl OutputFactory {
         let quarantine_xlsx = self.generate_quarantine_xlsx(quarantine)?;
         let ef_reference_xlsx = self.generate_ef_reference_xlsx(jurisdiction)?;
         let narrative_docx = self.generate_narrative_docx(narrative_text, _language)?;
+        let methodology_md = self.generate_methodology_md(ledger)?;
+        let ixbrl_report = IxbrlGenerator::generate_xhtml(aggregation)?;
+        let manifest_signature = EidasSigner::sign_manifest(&manifest)?;
+        let climate_risk_xlsx = self.generate_climate_risk_xlsx(ledger, aggregation, jurisdiction)?;
+        let compliance_xlsx = self.generate_compliance_xlsx(employee_count, revenue_eur, ledger)?;
 
         // Create ZIP archive in memory
         let mut zip_buffer = Cursor::new(Vec::new());
@@ -53,6 +66,9 @@ impl OutputFactory {
 
             zip.start_file("00_Manifest.json", options)?;
             zip.write_all(manifest.as_bytes())?;
+
+            zip.start_file("TargooV2_Manifest.sig", options)?;
+            zip.write_all(manifest_signature.as_bytes())?;
 
             zip.start_file("01_GHG_Inventar_Zusammenfassung.xlsx", options)?;
             zip.write_all(&summary_xlsx)?;
@@ -71,6 +87,18 @@ impl OutputFactory {
 
             zip.start_file("06_Narrative_Bericht.docx", options)?;
             zip.write_all(&narrative_docx)?;
+
+            zip.start_file("TargooV2_ESEF_Report.xhtml", options)?;
+            zip.write_all(ixbrl_report.as_bytes())?;
+
+            zip.start_file("METHODOLOGY.md", options)?;
+            zip.write_all(methodology_md.as_bytes())?;
+
+            zip.start_file("07_Climate_Risk_Report.xlsx", options)?;
+            zip.write_all(&climate_risk_xlsx)?;
+
+            zip.start_file("08_Compliance_Check.xlsx", options)?;
+            zip.write_all(&compliance_xlsx)?;
 
             zip.finish()?;
         }
@@ -363,7 +391,7 @@ impl OutputFactory {
         ws.write_with_format(0, 4, "Raw Value", &red_header)?;
         ws.write_with_format(0, 5, "Error Reason", &red_header)?;
         ws.write_with_format(0, 6, "Suggested Fix", &red_header)?;
-        ws.write_with_format(0, 7, "KORREKTUR", &yellow_bg)?;
+        ws.write_with_format(0, 7, "Korrektúra", &yellow_bg)?;
 
         for (idx, r) in quarantine.iter().enumerate() {
             let row_num = (idx + 1) as u32;
@@ -433,6 +461,193 @@ impl OutputFactory {
             text
         );
         Ok(wrapped.into_bytes())
+    }
+
+    fn generate_methodology_md(&self, ledger: &[LedgerRow]) -> Result<String> {
+        let mut md = String::from("# Methodology Report - Used Emission Factors\n\n");
+        md.push_str("| Scope | Activity | EF Value | EF Unit | Source | Jurisdiction | GWP |\n");
+        md.push_str("|-------|----------|----------|---------|--------|--------------|-----|\n");
+
+        let mut seen_factors = std::collections::HashSet::new();
+
+        for r in ledger {
+            let key = format!(
+                "{:?}|{}|{}|{}|{}|{:?}|{}",
+                r.ghg_scope,
+                r.ghg_subcategory,
+                r.emission_factor,
+                r.converted_unit,
+                r.ef_source,
+                r.ef_jurisdiction,
+                r.gwp_applied
+            );
+
+            if !seen_factors.contains(&key) {
+                md.push_str(&format!(
+                    "| {:?} | {} | {} | {} | {} | {:?} | {} |\n",
+                    r.ghg_scope,
+                    r.ghg_subcategory,
+                    r.emission_factor,
+                    r.converted_unit,
+                    r.ef_source,
+                    r.ef_jurisdiction,
+                    r.gwp_applied
+                ));
+                seen_factors.insert(key);
+            }
+        }
+
+        Ok(md)
+    }
+
+    fn generate_climate_risk_xlsx(
+        &self,
+        ledger: &[LedgerRow],
+        aggregation: &AggregationResult,
+        jurisdiction: &str,
+    ) -> Result<Vec<u8>> {
+        let mut workbook = Workbook::new();
+        let bold = Format::new().set_bold();
+
+        // 1. Carbon Risk Metrics
+        let ws1 = workbook.add_worksheet();
+        ws1.set_name("Carbon Risk Metrics")?;
+        
+        let assets: Vec<PortfolioAsset> = ledger.iter()
+            .filter(|r| r.ghg_scope == GhgScope::SCOPE3 && r.scope3_extension.as_ref().map(|e| e.category_id) == Some(15))
+            .map(|r| PortfolioAsset {
+                investment_amount: r.raw_value,
+                emissions_tco2e: r.tco2e,
+                revenue_meur: r.raw_value / 10.0, // Placeholder revenue
+            })
+            .collect();
+
+        let total_value: f64 = assets.iter().map(|a| a.investment_amount).sum();
+        let metrics = CarbonRiskMetrics::calculate(&assets, total_value);
+
+        ws1.write_with_format(0, 0, "Metric", &bold)?;
+        ws1.write_with_format(0, 1, "Value", &bold)?;
+        
+        ws1.write(1, 0, "WACI (tCO2e / M€ revenue)")?;
+        ws1.write(1, 1, metrics.waci)?;
+        
+        ws1.write(2, 0, "Carbon Footprint (tCO2e / M€ invested)")?;
+        ws1.write(2, 1, metrics.carbon_footprint)?;
+        
+        ws1.write(3, 0, "High-Carbon Exposure (%)")?;
+        ws1.write(3, 1, metrics.high_carbon_exposure)?;
+
+        // 2. Scenario Analysis
+        let ws2 = workbook.add_worksheet();
+        ws2.set_name("Scenario Analysis")?;
+        
+        let scenarios = ScenarioAnalyzer::analyze(aggregation.scope3_tco2e, total_value);
+        
+        ws2.write_with_format(0, 0, "Scenario", &bold)?;
+        ws2.write_with_format(0, 1, "CO2 Price (2030)", &bold)?;
+        ws2.write_with_format(0, 2, "Annual Carbon Cost", &bold)?;
+        ws2.write_with_format(0, 3, "Impact on Value (%)", &bold)?;
+
+        for (i, s) in scenarios.iter().enumerate() {
+            let row = (i + 1) as u32;
+            ws2.write(row, 0, &s.scenario_name)?;
+            ws2.write(row, 1, s.co2_price_2030)?;
+            ws2.write(row, 2, s.annual_carbon_cost)?;
+            ws2.write(row, 3, s.impact_on_portfolio_value_pct)?;
+        }
+
+        // 3. Physical Risk
+        let ws3 = workbook.add_worksheet();
+        ws3.set_name("Physical Risk Scores")?;
+        
+        let jur = match jurisdiction {
+            "US" => crate::models::Jurisdiction::US,
+            "UK" => crate::models::Jurisdiction::UK,
+            "EU" => crate::models::Jurisdiction::EU,
+            _ => crate::models::Jurisdiction::GLOBAL,
+        };
+        let p_risk = PhysicalRiskScorer::score_by_jurisdiction(jur);
+
+        ws3.write_with_format(0, 0, "Risk Category", &bold)?;
+        ws3.write_with_format(0, 1, "Score (1-5)", &bold)?;
+        
+        ws3.write(1, 0, "Water Stress")?;
+        ws3.write(1, 1, p_risk.water_stress_score as f64)?;
+        
+        ws3.write(2, 0, "Flood Risk")?;
+        ws3.write(2, 1, p_risk.flood_risk_score as f64)?;
+        
+        ws3.write(3, 0, "Heatwave Risk")?;
+        ws3.write(3, 1, p_risk.heatwave_risk_score as f64)?;
+        
+        ws3.write(4, 0, "COMBINED RISK")?;
+        ws3.write(4, 1, p_risk.combined_risk_score as f64)?;
+
+        let buf = workbook.save_to_buffer()?;
+        Ok(buf.to_vec())
+    }
+
+    fn generate_compliance_xlsx(
+        &self,
+        employee_count: Option<u32>,
+        revenue_eur: Option<f64>,
+        ledger: &[LedgerRow],
+    ) -> Result<Vec<u8>> {
+        let mut workbook = Workbook::new();
+        let bold = Format::new().set_bold();
+        let green_bg = Format::new().set_background_color("#C6EFCE").set_font_color("#006100");
+        let red_bg = Format::new().set_background_color("#FFC7CE").set_font_color("#9C0006");
+
+        // 1. Omnibus Validation
+        let ws1 = workbook.add_worksheet();
+        ws1.set_name("Omnibus-Validierung")?;
+
+        let validator = OmnibusValidator::new(employee_count, revenue_eur, None);
+        let obligation = validator.is_csrd_obligated();
+        let has_financial = ledger.iter().any(|r| r.scope3_extension.as_ref().map(|e| e.category_id) == Some(15));
+        let scope = validator.get_reporting_scope(has_financial);
+
+        ws1.write_with_format(0, 0, "Kriterium", &bold)?;
+        ws1.write_with_format(0, 1, "Wert", &bold)?;
+        ws1.write_with_format(0, 2, "Status", &bold)?;
+
+        ws1.write(1, 0, "Anzahl der Mitarbeiter")?;
+        ws1.write(1, 1, employee_count.map(|c| c as f64).unwrap_or(0.0))?;
+        if employee_count.unwrap_or(0) > 1000 {
+            ws1.write_with_format(1, 2, "Überschritten", &red_bg)?;
+        } else {
+            ws1.write_with_format(1, 2, "OK", &green_bg)?;
+        }
+
+        ws1.write(2, 0, "Umsatzerlöse (EUR)")?;
+        ws1.write(2, 1, revenue_eur.unwrap_or(0.0))?;
+        if revenue_eur.unwrap_or(0.0) > 450_000_000.0 {
+            ws1.write_with_format(2, 2, "Überschritten", &red_bg)?;
+        } else {
+            ws1.write_with_format(2, 2, "OK", &green_bg)?;
+        }
+
+        ws1.write(4, 0, "CSRD OBLIGATION STATUS")?;
+        ws1.write_with_format(4, 1, format!("{:?}", obligation), &bold)?;
+
+        ws1.write(5, 0, "PROPOSED REPORTING SCOPE")?;
+        ws1.write_with_format(5, 1, format!("{:?}", scope), &bold)?;
+
+        // 2. Regulatory References
+        let ws2 = workbook.add_worksheet();
+        ws2.set_name("Rechtliche-Hinweise")?;
+        ws2.write_with_format(0, 0, "Regulierung", &bold)?;
+        ws2.write_with_format(0, 1, "Beschreibung", &bold)?;
+
+        ws2.write(1, 0, "Omnibus I (2026)")?;
+        ws2.write(1, 1, "EU-Richtlinie zur Harmonisierung von Schwellenwerten für die CSRD-Berichterstattung.")?;
+        ws2.write(2, 0, "CSRD")?;
+        ws2.write(2, 1, "Corporate Sustainability Reporting Directive (2022/2464/EU).")?;
+        ws2.write(3, 0, "ESRS")?;
+        ws2.write(3, 1, "European Sustainability Reporting Standards (EFRAG).")?;
+
+        let buf = workbook.save_to_buffer()?;
+        Ok(buf.to_vec())
     }
 }
 

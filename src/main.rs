@@ -1,10 +1,14 @@
 mod aggregation;
 mod ai_client;
 mod api;
+mod compliance;
 mod db;
 mod eeio_engine;
+mod eidas;
+mod finance;
 mod gemini_client;
 mod ingest;
+mod ixbrl;
 mod ledger;
 mod models;
 mod output_factory;
