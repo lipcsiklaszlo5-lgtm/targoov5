@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Targoo V2 · ESG Data Refinery</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #F8F8F8;
+            color: #1A1A1A;
+            line-height: 1.5;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Grain texture overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.04"/></svg>');
+            background-repeat: repeat;
+            z-index: 9999;
+            opacity: 0.3;
+        }
+        
+        /* Blur topbar */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1rem 2rem;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'DM Serif Display', serif;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .teal-accent {
+            color: #00C9B1;
+        }
+        
+        /* Cards */
+        .card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+        
+        /* Upload zone */
+        .upload-zone {
+            border: 2px dashed #E0E0E0;
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #FAFAFA;
+        }
+        
+        .upload-zone:hover {
+            border-color: #00C9B1;
+            background: #F5FFFD;
+        }
+        
+        .upload-zone.dragover {
+            border-color: #00C9B1;
+            background: #E6FFFA;
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background: #00C9B1;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #00B09C;
+            transform: translateY(-1px);
+        }
+        
+        .btn-primary:disabled {
+            background: #D0D0D0;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background: #F0F0F0;
+            color: #1A1A1A;
+        }
+        
+        .btn-secondary:hover {
+            background: #E5E5E5;
+        }
+        
+        /* Progress stepper */
+        .progress-stepper {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: #E0E0E0;
+            z-index: 0;
+        }
+        
+        .step.completed:not(:last-child)::after {
+            background: #00C9B1;
+        }
+        
+        .step-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #E0E0E0;
+            margin: 0 auto 0.5rem;
+            position: relative; z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .step.completed .step-indicator {
+            background: #00C9B1;
+            border-color: #00C9B1;
+            color: white;
+        }
+        
+        .step.active .step-indicator {
+            border-color: #00C9B1;
+            color: #00C9B1;
+            border-width: 3px;
+        }
+        
+        .step-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #888;
+        }
+        
+        .step.completed .step-label,
+        .step.active .step-label {
+            color: #1A1A1A;
+        }
+        
+        /* Progress bar */
+        .progress-bar-container {
+            background: #F0F0F0;
+            border-radius: 100px;
+            height: 8px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-bar-fill {
+            background: #00C9B1;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 100px;
+        }
+        
+        /* Scope cards grid */
+        .scope-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .scope-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .scope-card.scope1 { border-top: 4px solid #FF6B6B; }
+        .scope-card.scope2 { border-top: 4px solid #4ECDC4; }
+        .scope-card.scope3 { border-top: 4px solid #FFB347; }
+        
+        .scope-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+        }
+        
+        /* Scope 3 category grid */
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .cat-chip {
+            background: #F8F8F8;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            cursor: default;
+        }
+        
+        .cat-chip.has-data {
+            background: #E6FFFA;
+            border-color: #00C9B1;
+        }
+        
+        .cat-id {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+        }
+        
+        .cat-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin: 0.25rem 0;
+        }
+        
+        .cat-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.25rem;
+            color: #00C9B1;
+        }
+        
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        
+        .badge-success {
+            background: #D4F5F0;
+            color: #008770;
+        }
+        
+        .badge-warning {
+            background: #FFF3D4;
+            color: #B07D00;
+        }
+        
+        .badge-error {
+            background: #FFE6E6;
+            color: #C00000;
+        }
+        
+        /* Live counters */
+        .live-counters {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .counter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .counter-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        .counter-dot.green { background: #00A86B; }
+        .counter-dot.yellow { background: #FFB347; }
+        .counter-dot.red { background: #C00000; }
+        
+        /* Utility */
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 2rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 1rem; }
+        .hidden { display: none !important; }
+        
+        .total-card {
+            background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+            color: white;
+            border-radius: 24px;
+            padding: 2rem;
+        }
+        
+        .total-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4rem;
+            line-height: 1;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="flex items-center justify-between" style="max-width: 1400px; margin: 0 auto;">
+            <div class="flex items-center gap-2">
+                <span style="font-family: 'DM Serif Display', serif; font-size: 1.5rem;">Targoo <span class="teal-accent">V2</span></span>
+                <span class="badge badge-success">CSRD/ESRS E1 Ready</span>
+            </div>
+            <div id="connection-status" class="badge badge-warning">● Connecting...</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Upload Section -->
+        <div id="upload-section" class="card">
+            <h2 style="margin-bottom: 1rem;">Upload ESG Data</h2>
+            <p style="color: #666; margin-bottom: 1.5rem;">CSV or XLSX files. Mixed languages, units, and formats supported.</p>
+            
+            <div id="dropzone" class="upload-zone">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📤</div>
+                <p style="font-weight: 500; margin-bottom: 0.5rem;">Drag & drop files here</p>
+                <p style="color: #888; font-size: 0.875rem;">or click to browse</p>
+                <input type="file" id="file-input" multiple accept=".csv,.xlsx,.xls" style="display: none;">
+            </div>
+            
+            <div id="file-list" class="mt-4" style="display: none;">
+                <p style="font-weight: 600; margin-bottom: 0.5rem;">Staged files:</p>
+                <div id="staged-files"></div>
+            </div>
+            
+            <div class="flex gap-2 mt-4">
+                <select id="jurisdiction-select" class="btn btn-secondary">
+                    <option value="US">🇺🇸 United States</option>
+                    <option value="EU" selected>🇪🇺 European Union</option>
+                    <option value="UK">🇬🇧 United Kingdom</option>
+                </select>
+                <select id="language-select" class="btn btn-secondary">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="hu">Magyar</option>
+                </select>
+                <select id="industry-select" class="btn btn-secondary">
+                    <option value="General">General</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Logistics">Logistics</option>
+                    <option value="Financial">Financial Services</option>
+                </select>
+                <button id="run-btn" class="btn btn-primary" disabled>Run Pipeline →</button>
+            </div>
+        </div>
+        
+        <!-- Progress Section -->
+        <div id="progress-section" class="card hidden">
+            <div class="flex items-center justify-between">
+                <h2>Processing Pipeline</h2>
+                <span id="progress-message" class="badge badge-warning">Initializing...</span>
+            </div>
+            
+            <div class="progress-stepper">
+                <div class="step" id="step-1"><div class="step-indicator">1</div><div class="step-label">Upload</div></div>
+                <div class="step" id="step-2"><div class="step-indicator">2</div><div class="step-label">Dictionary</div></div>
+                <div class="step" id="step-3"><div class="step-indicator">3</div><div class="step-label">Ingestion</div></div>
+                <div class="step" id="step-4"><div class="step-indicator">4</div><div class="step-label">Processing</div></div>
+                <div class="step" id="step-5"><div class="step-indicator">5</div><div class="step-label">Database</div></div>
+                <div class="step" id="step-6"><div class="step-indicator">6</div><div class="step-label">Package</div></div>
+            </div>
+            
+            <div class="progress-bar-container">
+                <div id="progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+            </div>
+            
+            <div class="live-counters">
+                <div class="counter"><span class="counter-dot green"></span> <span id="green-count">0</span> Green</div>
+                <div class="counter"><span class="counter-dot yellow"></span> <span id="yellow-count">0</span> Yellow</div>
+                <div class="counter"><span class="counter-dot red"></span> <span id="red-count">0</span> Red</div>
+                <div class="counter"><span style="color: #00C9B1;">●</span> <span id="scope3-covered">0</span>/15 Scope 3</div>
+            </div>
+        </div>
+        
+        <!-- Results Section -->
+        <div id="results-section" class="hidden">
+            <!-- Total card -->
+            <div class="total-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p style="color: #AAA; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Total Carbon Footprint</p>
+                        <div class="total-value"><span id="total-tco2e">0.00</span> tCO₂e</div>
+                    </div>
+                    <div id="csrd-badge" class="badge badge-success" style="font-size: 1rem;">● CSRD Complete</div>
+                </div>
+            </div>
+            
+            <!-- Scope cards -->
+            <div class="scope-grid">
+                <div class="scope-card scope1">
+                    <p style="color: #888; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em;">Scope 1</p>
+                    <div class="scope-value"><span id="scope1-value">0.00</span> <span style="font-size: 1rem;">tCO₂e</span></div>
+                    <p style="color: #666; font-size: 0.875rem;">Direct emissions</p>
+                </div>
+                <div class="scope-card scope2">
+                    <p style="color: #888; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em;">Scope 2 (Location-Based)</p>
+                    <div class="scope-value"><span id="scope2-lb-value">0.00</span> <span style="font-size: 1rem;">tCO₂e</span></div>
+                    <p style="color: #666; font-size: 0.875rem;">Purchased electricity</p>
+                </div>
+                <div class="scope-card scope3">
+                    <p style="color: #888; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em;">Scope 3</p>
+                    <div class="scope-value"><span id="scope3-value">0.00</span> <span style="font-size: 1rem;">tCO₂e</span></div>
+                    <p style="color: #666; font-size: 0.875rem;">Value chain emissions</p>
+                </div>
+            </div>
+            
+            <!-- Scope 3 Category Breakdown -->
+            <div class="card mt-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h2>Scope 3 Category Breakdown</h2>
+                    <span class="badge badge-success" id="cat-coverage">0/15 covered</span>
+                </div>
+                <div id="cat-grid" class="cat-grid"></div>
+            </div>
+            
+            <!-- Quarantine Alert -->
+            <div id="quarantine-alert" class="card mt-4 hidden" style="background: #FFF5F5; border-left: 4px solid #C00000;">
+                <div class="flex items-center gap-2">
+                    <span style="font-size: 1.5rem;">⚠️</span>
+                    <div>
+                        <p style="font-weight: 600;"><span id="quarantine-count">0</span> rows quarantined</p>
+                        <p style="color: #666; font-size: 0.875rem;">Review 04_Quarantaene_Log.xlsx in the downloaded package.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Download Button -->
+            <div class="text-center mt-4">
+                <button id="download-btn" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.125rem;">⬇ Download Fritz Package (ZIP)</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Szuper-robusztus API URL felismerés Codespaces-hez
+        function getApiBase() {
+            const origin = window.location.origin;
+            const hostname = window.location.hostname;
+            
+            // Ha localhost-on vagyunk
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return 'http://localhost:8080';
+            }
+            
+            // Ha Codespaces URL-t használunk (pl. github.dev vagy preview.app.github.dev)
+            if (origin.includes('-3000.')) {
+                return origin.replace('-3000.', '-8080.');
+            }
+            
+            // Gitpod vagy egyéb port-alapú URL
+            return origin.replace(':3000', ':8080');
+        }
+        
+        const API_BASE = getApiBase();
+        console.log('Backend API címe:', API_BASE);
+        
+        let pollInterval = null;
+        let stagedFiles = [];
+        
+        // DOM Elements
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('file-input');
+        const fileList = document.getElementById('file-list');
+        const stagedDiv = document.getElementById('staged-files');
+        const runBtn = document.getElementById('run-btn');
+        const uploadSection = document.getElementById('upload-section');
+        const progressSection = document.getElementById('progress-section');
+        const resultsSection = document.getElementById('results-section');
+        const connectionStatus = document.getElementById('connection-status');
+        
+        // Check backend health
+        async function checkHealth() {
+            try {
+                const res = await fetch(`${API_BASE}/health`);
+                if (res.ok) {
+                    connectionStatus.textContent = '● Connected';
+                    connectionStatus.className = 'badge badge-success';
+                }
+            } catch (e) {
+                connectionStatus.textContent = '● Offline';
+                connectionStatus.className = 'badge badge-error';
+            }
+        }
+        checkHealth();
+        setInterval(checkHealth, 5000);
+        
+        // Drag & Drop
+        dropzone.addEventListener('click', () => fileInput.click());
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+        dropzone.addEventListener('drop', async (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+            await handleFiles(e.dataTransfer.files);
+        });
+        fileInput.addEventListener('change', async (e) => handleFiles(e.target.files));
+        
+        async function handleFiles(files) {
+            const formData = new FormData();
+            for (const file of files) {
+                formData.append('files', file);
+            }
+            
+            try {
+                const res = await fetch(`${API_BASE}/upload`, { method: 'POST', body: formData });
+                const data = await res.json();
+                stagedFiles = data.files;
+                updateFileList();
+                runBtn.disabled = stagedFiles.length === 0;
+            } catch (e) {
+                alert('Upload failed: ' + e.message);
+            }
+        }
+        
+        function updateFileList() {
+            if (stagedFiles.length === 0) {
+                fileList.style.display = 'none';
+                return;
+            }
+            fileList.style.display = 'block';
+            stagedDiv.innerHTML = stagedFiles.map(f => `<div class="badge badge-success" style="margin: 0.25rem;">📄 ${f}</div>`).join('');
+        }
+        
+        // Run pipeline
+        runBtn.addEventListener('click', async () => {
+            const jurisdiction = document.getElementById('jurisdiction-select').value;
+            const language = document.getElementById('language-select').value;
+            const industry = document.getElementById('industry-select').value;
+            
+            try {
+                const res = await fetch(`${API_BASE}/run`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ jurisdiction, language, industry })
+                });
+                const data = await res.json();
+                
+                uploadSection.classList.add('hidden');
+                progressSection.classList.remove('hidden');
+                
+                startPolling();
+            } catch (e) {
+                alert('Failed to start pipeline: ' + e.message);
+            }
+        });
+        
+        function startPolling() {
+            if (pollInterval) clearInterval(pollInterval);
+            pollInterval = setInterval(pollStatus, 1500);
+            pollStatus();
+        }
+        
+        async function pollStatus() {
+            try {
+                const res = await fetch(`${API_BASE}/status`);
+                const data = await res.json();
+                
+                updateProgress(data);
+                
+                if (data.status === 'finished') {
+                    clearInterval(pollInterval);
+                    pollInterval = null;
+                    await loadResults();
+                    progressSection.classList.add('hidden');
+                    resultsSection.classList.remove('hidden');
+                } else if (data.status === 'error') {
+                    clearInterval(pollInterval);
+                    alert('Pipeline error: ' + (data.message || 'Unknown error'));
+                }
+            } catch (e) {
+                console.error('Polling error:', e);
+            }
+        }
+        
+        function updateProgress(data) {
+            const step = data.current_step || 1;
+            for (let i = 1; i <= 6; i++) {
+                const el = document.getElementById(`step-${i}`);
+                el.classList.remove('active', 'completed');
+                if (i < step) el.classList.add('completed');
+                if (i === step) el.classList.add('active');
+            }
+            
+            const progressFill = document.getElementById('progress-fill');
+            progressFill.style.width = `${data.progress * 100}%`;
+            
+            document.getElementById('progress-message').textContent = data.message || 'Processing...';
+            document.getElementById('green-count').textContent = data.green_rows || 0;
+            document.getElementById('yellow-count').textContent = data.yellow_rows || 0;
+            document.getElementById('red-count').textContent = data.red_rows || 0;
+            document.getElementById('scope3-covered').textContent = data.scope3_categories_covered || 0;
+        }
+        
+        async function loadResults() {
+            try {
+                const res = await fetch(`${API_BASE}/results`);
+                const data = await res.json();
+                
+                document.getElementById('total-tco2e').textContent = data.total_tco2e.toFixed(2);
+                document.getElementById('scope1-value').textContent = data.scope1_tco2e.toFixed(2);
+                document.getElementById('scope2-lb-value').textContent = data.scope2_lb_tco2e.toFixed(2);
+                document.getElementById('scope3-value').textContent = data.scope3_tco2e.toFixed(2);
+                
+                // CSRD badge
+                const badge = document.getElementById('csrd-badge');
+                const completeness = data.csrd_completeness_pct || 0;
+                if (completeness >= 90) {
+                    badge.textContent = '● CSRD Complete';
+                    badge.className = 'badge badge-success';
+                } else {
+                    badge.textContent = `◐ CSRD ${Math.round(completeness)}%`;
+                    badge.className = 'badge badge-warning';
+                }
+                
+                // Scope 3 category grid
+                const catGrid = document.getElementById('cat-grid');
+                catGrid.innerHTML = '';
+                const categories = data.scope3_breakdown || [];
+                const catMap = new Map(categories.map(c => [c.cat_id, c]));
+                
+                let covered = 0;
+                for (let i = 1; i <= 15; i++) {
+                    const cat = catMap.get(i);
+                    const chip = document.createElement('div');
+                    chip.className = 'cat-chip' + (cat ? ' has-data' : '');
+                    
+                    if (cat) {
+                        covered++;
+                        chip.innerHTML = `
+                            <div class="cat-id">Cat ${i}</div>
+                            <div class="cat-name">${cat.cat_name}</div>
+                            <div class="cat-value">${cat.tco2e.toFixed(2)} t</div>
+                            <div style="font-size: 0.7rem; color: #888;">${cat.rows} rows · ${cat.dominant_calc_path || 'Activity'}</div>
+                        `;
+                    } else {
+                        chip.innerHTML = `
+                            <div class="cat-id">Cat ${i}</div>
+                            <div class="cat-name" style="color: #AAA;">Not identified</div>
+                            <div class="cat-value" style="color: #CCC;">—</div>
+                        `;
+                    }
+                    catGrid.appendChild(chip);
+                }
+                
+                document.getElementById('cat-coverage').textContent = `${covered}/15 covered`;
+                
+                // Quarantine alert
+                const quarantineCount = data.quarantine_count || 0;
+                if (quarantineCount > 0) {
+                    document.getElementById('quarantine-alert').classList.remove('hidden');
+                    document.getElementById('quarantine-count').textContent = quarantineCount;
+                }
+                
+            } catch (e) {
+                console.error('Failed to load results:', e);
+            }
+        }
+        
+        // Download
+        document.getElementById('download-btn').addEventListener('click', async () => {
+            try {
+                const res = await fetch(`${API_BASE}/download`);
+                const blob = await res.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'TargooV2_Fritz_Package.zip';
+                a.click();
+                window.URL.revokeObjectURL(url);
+            } catch (e) {
+                alert('Download failed: ' + e.message);
+            }
+        });
+    </script>
+</body>
+</html>
