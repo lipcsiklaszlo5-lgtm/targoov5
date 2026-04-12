@@ -22,7 +22,7 @@ impl GeminiClient {
         Self {
             client,
             api_key,
-            model: "gemini-1.5-flash".to_string(),
+            model: "gemini-2.5-flash".to_string(),
         }
     }
 
