@@ -296,6 +296,17 @@ pub struct ResultsResponse {
     pub csrd_completeness_pct: f32, // Categories covered / 15
     pub risk_metrics: Option<crate::finance::risk_analytics::CarbonRiskMetrics>,
     pub compliance: Option<ComplianceInfo>,
+    pub benchmarking: Option<BenchmarkingInfo>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct BenchmarkingInfo {
+    pub sector: String,
+    pub client_intensity: f64,
+    pub industry_average: f64,
+    pub percentile: u8,
+    pub performance_tier: String,
+    pub narrative: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]

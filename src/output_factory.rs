@@ -1,8 +1,10 @@
 use crate::aggregation::AggregationResult;
+use crate::benchmarking::{IndustryBenchmark, PeerComparison};
 use crate::compliance::{ObligationStatus, OmnibusValidator};
 use crate::eidas::EidasSigner;
-use crate::finance::risk_analytics::{
-    CarbonRiskMetrics, PhysicalRiskScorer, PortfolioAsset, ScenarioAnalyzer,
+use crate::finance::{
+    self, AttributionMethod, CarbonRiskMetrics, ChangeDriver, FluctuationAnalysis,
+    PhysicalRiskScorer, PortfolioAsset, ScenarioAnalyzer,
 };
 use crate::ixbrl::IxbrlGenerator;
 use crate::models::{GhgScope, LedgerRow, QuarantineRow, Scope3CategorySummary};
@@ -582,6 +584,80 @@ impl OutputFactory {
         
         ws3.write(4, 0, "COMBINED RISK")?;
         ws3.write(4, 1, p_risk.combined_risk_score as f64)?;
+
+        // 4. Attribution Justification (Follow the Money)
+        let ws4 = workbook.add_worksheet();
+        ws4.set_name("Attribution Justification")?;
+        ws4.write_with_format(0, 0, "Asset", &bold)?;
+        ws4.write_with_format(0, 1, "Asset Class", &bold)?;
+        ws4.write_with_format(0, 2, "Outstanding (€)", &bold)?;
+        ws4.write_with_format(0, 3, "Total Value (€)", &bold)?;
+        ws4.write_with_format(0, 4, "Factor", &bold)?;
+        ws4.write_with_format(0, 5, "Justification", &bold)?;
+
+        let cat15_rows: Vec<&LedgerRow> = ledger.iter()
+            .filter(|r| r.ghg_scope == GhgScope::SCOPE3 && r.scope3_extension.as_ref().map(|e| e.category_id) == Some(15))
+            .collect();
+
+        for (i, r) in cat15_rows.iter().enumerate() {
+            let row = (i + 1) as u32;
+            let ext = r.scope3_extension.as_ref().unwrap();
+            ws4.write(row, 0, &r.ghg_subcategory)?;
+            ws4.write(row, 1, ext.pcaf_asset_class.as_deref().unwrap_or("Unknown"))?;
+            ws4.write(row, 2, r.raw_value)?;
+            ws4.write(row, 3, r.raw_value / ext.pcaf_attribution_factor.unwrap_or(1.0))?;
+            ws4.write(row, 4, ext.pcaf_attribution_factor.unwrap_or(0.0))?;
+            ws4.write(row, 5, "PCAF 2025 Standard Attribution")?;
+        }
+
+        // 5. Fluctuation Analysis
+        let ws5 = workbook.add_worksheet();
+        ws5.set_name("Fluctuation Analysis")?;
+        
+        // Mock previous emissions for demonstration (current * 0.9)
+        let current_s3 = aggregation.scope3_tco2e;
+        let prev_s3 = current_s3 * 0.9;
+        let fluc = FluctuationAnalysis::new(
+            current_s3,
+            prev_s3,
+            vec![ChangeDriver::NewLoans, ChangeDriver::PortfolioRebalancing]
+        );
+
+        ws5.write_with_format(0, 0, "Period", &bold)?;
+        ws5.write_with_format(0, 1, "Financed Emissions (tCO2e)", &bold)?;
+        
+        ws5.write(1, 0, "Current Period")?;
+        ws5.write(1, 1, fluc.current_emissions)?;
+        
+        ws5.write(2, 0, "Previous Period")?;
+        ws5.write(2, 1, fluc.previous_emissions)?;
+        
+        ws5.write(4, 0, "Change Analysis")?;
+        ws5.write(4, 1, fluc.generate_narrative())?;
+
+        // 6. Peer Benchmarking
+        let ws6 = workbook.add_worksheet();
+        ws6.set_name("Peer Benchmarking")?;
+        
+        let benchmark = IndustryBenchmark::get_for_sector(jurisdiction); // Heuristic
+        let client_revenue = 10_000_000.0; // Placeholder or passed revenue
+        let client_intensity = aggregation.total_tco2e / (client_revenue / 1_000_000.0);
+        let comparison = PeerComparison::new(client_intensity, benchmark.avg_carbon_intensity);
+
+        ws6.write_with_format(0, 0, "Category", &bold)?;
+        ws6.write_with_format(0, 1, "Value", &bold)?;
+        
+        ws6.write(1, 0, "Client Carbon Intensity (tCO2e/M€)")?;
+        ws6.write(1, 1, client_intensity)?;
+        
+        ws6.write(2, 0, "Industry Average Intensity")?;
+        ws6.write(2, 1, benchmark.avg_carbon_intensity)?;
+        
+        ws6.write(3, 0, "Performance Tier")?;
+        ws6.write(3, 1, format!("{:?}", comparison.performance_tier))?;
+        
+        ws6.write(5, 0, "Narrative Analysis")?;
+        ws6.write(5, 1, comparison.generate_narrative())?;
 
         let buf = workbook.save_to_buffer()?;
         Ok(buf.to_vec())

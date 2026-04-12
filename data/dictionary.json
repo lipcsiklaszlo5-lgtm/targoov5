@@ -1,11 +1,16 @@
 [
   {
     "keyword": "Construction Aggregates 7",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 7.75127,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -14,11 +19,16 @@
   },
   {
     "keyword": "Average construction 74",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 74.88652,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -27,11 +37,16 @@
   },
   {
     "keyword": "Asbestos 27",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 27.0,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -40,11 +55,16 @@
   },
   {
     "keyword": "Asphalt 39",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 39.21249,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -53,11 +73,16 @@
   },
   {
     "keyword": "Bricks 241",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 241.75127,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -66,11 +91,16 @@
   },
   {
     "keyword": "Concrete 118",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 118.75127,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -79,11 +109,16 @@
   },
   {
     "keyword": "Insulation 1861",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 1861.75127,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -92,11 +127,16 @@
   },
   {
     "keyword": "Metals 3815",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3815.78473,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -105,11 +145,16 @@
   },
   {
     "keyword": "Soils",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -118,11 +163,16 @@
   },
   {
     "keyword": "Mineral oil 1401",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 1401.0,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -131,11 +181,16 @@
   },
   {
     "keyword": "Plasterboard 12005",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 120.05,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -144,11 +199,16 @@
   },
   {
     "keyword": "Tyres 33355719",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3335.5719,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -157,11 +217,16 @@
   },
   {
     "keyword": "Wood 269",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 269.50416,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -170,11 +235,16 @@
   },
   {
     "keyword": "Other Books",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -183,11 +253,16 @@
   },
   {
     "keyword": "Glass 1402",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 1402.76667,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -196,11 +271,16 @@
   },
   {
     "keyword": "Clothing",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 22310.0,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -209,11 +289,16 @@
   },
   {
     "keyword": "Food and drink 3701",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3701.40359,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -222,11 +307,16 @@
   },
   {
     "keyword": "Organic Compost derived from garden waste 112",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 112.01684,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -235,11 +325,16 @@
   },
   {
     "keyword": "Compost derived from food and garden waste 114",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 114.83347,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -248,11 +343,16 @@
   },
   {
     "keyword": "Electrical items Electrical items - fridges and freezers 4363",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 4363.33333,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -261,11 +361,16 @@
   },
   {
     "keyword": "Electrical items - large 3267",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3267.0,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -274,11 +379,16 @@
   },
   {
     "keyword": "Electrical items - IT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 24865.47556,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -287,11 +397,16 @@
   },
   {
     "keyword": "Electrical items - small 5647",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 5647.94563,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -300,11 +415,16 @@
   },
   {
     "keyword": "Batteries - Alkaline 4633",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 4633.47826,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -313,11 +433,16 @@
   },
   {
     "keyword": "Batteries - Li ion 6308",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 6308.0,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -326,11 +451,16 @@
   },
   {
     "keyword": "Batteries - NiMh",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 28380.0,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -339,11 +469,16 @@
   },
   {
     "keyword": "Metal Metal aluminium cans and foil 9106",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 9106.91851,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -352,11 +487,16 @@
   },
   {
     "keyword": "Metal mixed cans 5105",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 5105.63851,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -365,11 +505,16 @@
   },
   {
     "keyword": "Metal scrap metal 3464",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3464.56448,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -378,11 +523,16 @@
   },
   {
     "keyword": "Metal steel cans 2854",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 2854.91851,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -391,11 +541,16 @@
   },
   {
     "keyword": "Plastic Plastics average plastics 3164",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3164.78049,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -404,11 +559,16 @@
   },
   {
     "keyword": "Plastics average plastic film 2910",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 2910.46529,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -417,11 +577,16 @@
   },
   {
     "keyword": "Plastics average plastic rigid 3345",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3345.30837,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -430,11 +595,16 @@
   },
   {
     "keyword": "Plastics HDPE 3086",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3086.39038,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -443,11 +613,16 @@
   },
   {
     "keyword": "Plastics LDPE and LLDPE 2959",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 2959.31834,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -456,11 +631,16 @@
   },
   {
     "keyword": "Plastics PET 3854",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3854.91851,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -469,11 +649,16 @@
   },
   {
     "keyword": "Plastics PP 2568",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 2568.58892,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -482,11 +667,16 @@
   },
   {
     "keyword": "Plastics PS 4367",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 4367.44048,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -495,11 +685,16 @@
   },
   {
     "keyword": "Plastics PVC 2935",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 2935.77335,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -508,11 +703,16 @@
   },
   {
     "keyword": "Paper Paper and board board 1193",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 1193.96586,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -521,11 +721,16 @@
   },
   {
     "keyword": "Paper and board mixed 1282",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 1282.74402,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -534,11 +739,16 @@
   },
   {
     "keyword": "Paper and board paper 1339",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 1339.31834,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -547,11 +757,16 @@
   },
   {
     "keyword": "FAQs",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "nan",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -560,11 +775,16 @@
   },
   {
     "keyword": "Can I use these factor for my waste",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "nan",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -573,11 +793,16 @@
   },
   {
     "keyword": "No these factors are not appropriate For specific end-of-life figures please see the Waste disposal tab",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "nan",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -586,11 +811,16 @@
   },
   {
     "keyword": "For information about how the conversion factors have been derived please refer to the Methodology paper that accompanies the conversion factors",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "nan",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -599,11 +829,16 @@
   },
   {
     "keyword": "Hotel stay UK 104",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 10.4,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -612,11 +847,16 @@
   },
   {
     "keyword": "UK 115",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 11.5,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -625,11 +865,16 @@
   },
   {
     "keyword": "Hotel stay Argentina",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -638,11 +883,16 @@
   },
   {
     "keyword": "Australia 35",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 35.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -651,11 +901,16 @@
   },
   {
     "keyword": "Austria",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -664,11 +919,16 @@
   },
   {
     "keyword": "Belgium 122",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 12.2,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -677,11 +937,16 @@
   },
   {
     "keyword": "Brazil 87",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 8.7,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -690,11 +955,16 @@
   },
   {
     "keyword": "Canada 74",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 7.4,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -703,11 +973,16 @@
   },
   {
     "keyword": "Chile 276",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 27.6,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -716,11 +991,16 @@
   },
   {
     "keyword": "China 535",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 53.5,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -729,11 +1009,16 @@
   },
   {
     "keyword": "Colombia 147",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 14.7,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -742,11 +1027,16 @@
   },
   {
     "keyword": "Costa Rica 47",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 4.7,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -755,11 +1045,16 @@
   },
   {
     "keyword": "Czech Republic",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -768,11 +1063,16 @@
   },
   {
     "keyword": "Egypt 442",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 44.2,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -781,11 +1081,16 @@
   },
   {
     "keyword": "Fiji",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -794,11 +1099,16 @@
   },
   {
     "keyword": "Finland",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -807,11 +1117,16 @@
   },
   {
     "keyword": "France 67",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 6.7,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -820,11 +1135,16 @@
   },
   {
     "keyword": "Germany 132",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 13.2,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -833,11 +1153,16 @@
   },
   {
     "keyword": "Greece",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -846,11 +1171,16 @@
   },
   {
     "keyword": "Hong Kong China 515",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 51.5,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -859,11 +1189,16 @@
   },
   {
     "keyword": "India 589",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 58.9,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -872,11 +1207,16 @@
   },
   {
     "keyword": "Indonesia 627",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 62.7,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -885,11 +1225,16 @@
   },
   {
     "keyword": "Ireland",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -898,11 +1243,16 @@
   },
   {
     "keyword": "Israel",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -911,11 +1261,16 @@
   },
   {
     "keyword": "Italy 143",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 14.3,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -924,11 +1279,16 @@
   },
   {
     "keyword": "Japan 39",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 39.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -937,11 +1297,16 @@
   },
   {
     "keyword": "Jordan 689",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 68.9,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -950,11 +1315,16 @@
   },
   {
     "keyword": "Kazakhstan",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -963,11 +1333,16 @@
   },
   {
     "keyword": "Korea 558",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 55.8,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -976,11 +1351,16 @@
   },
   {
     "keyword": "Macau China",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -989,11 +1369,16 @@
   },
   {
     "keyword": "Malaysia 615",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 61.5,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1002,11 +1387,16 @@
   },
   {
     "keyword": "Maldives 1522",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 152.2,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1015,11 +1405,16 @@
   },
   {
     "keyword": "Mexico 193",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 19.3,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1028,11 +1423,16 @@
   },
   {
     "keyword": "Netherlands 148",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 14.8,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1041,11 +1441,16 @@
   },
   {
     "keyword": "New Zealand",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1054,11 +1459,16 @@
   },
   {
     "keyword": "Oman 903",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 90.3,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1067,11 +1477,16 @@
   },
   {
     "keyword": "Panama",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1080,11 +1495,16 @@
   },
   {
     "keyword": "Peru",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1093,11 +1513,16 @@
   },
   {
     "keyword": "Philippines 543",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 54.3,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1106,11 +1531,16 @@
   },
   {
     "keyword": "Poland",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1119,11 +1549,16 @@
   },
   {
     "keyword": "Portugal 19",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 19.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1132,11 +1567,16 @@
   },
   {
     "keyword": "Qatar 862",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 86.2,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1145,11 +1585,16 @@
   },
   {
     "keyword": "Romania",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1158,11 +1603,16 @@
   },
   {
     "keyword": "Russian Federation 242",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 24.2,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1171,11 +1621,16 @@
   },
   {
     "keyword": "Saudi Arabia 1064",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 106.4,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1184,11 +1639,16 @@
   },
   {
     "keyword": "Singapore 245",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 24.5,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1197,11 +1657,16 @@
   },
   {
     "keyword": "South Africa 514",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 51.4,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1210,11 +1675,16 @@
   },
   {
     "keyword": "Spain 7",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 7.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1223,11 +1693,16 @@
   },
   {
     "keyword": "Switzerland 66",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 6.6,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1236,11 +1711,16 @@
   },
   {
     "keyword": "Taiwan China",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1249,11 +1729,16 @@
   },
   {
     "keyword": "Thailand 434",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 43.4,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1262,11 +1747,16 @@
   },
   {
     "keyword": "Turkey 321",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 32.1,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1275,11 +1765,16 @@
   },
   {
     "keyword": "United Arab Emirates 638",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 63.8,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1288,11 +1783,16 @@
   },
   {
     "keyword": "United States 161",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 16.1,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1301,11 +1801,16 @@
   },
   {
     "keyword": "Vietnam 385",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "room per night",
     "ef_value": 38.5,
     "ef_unit": "kg CO2e / Room per night",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1314,11 +1819,16 @@
   },
   {
     "keyword": "How are the hotel stay conversion factors derived",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "nan",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1327,11 +1837,16 @@
   },
   {
     "keyword": "The hotel stay conversion factors are taken from the Hotel Footprinting Tool produced by the International Tourism Partnership and Greenview which have been derived from the Cornell Hotel Sustainability Benchmarking Index that uses annual data from international hotel companies and a standardized industry methodology",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "nan",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1340,11 +1855,16 @@
   },
   {
     "keyword": "For more information about how they have been derived please visit wwwhotelfootprintsorg where more granular data is available by city and segment",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "nan",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1353,11 +1873,16 @@
   },
   {
     "keyword": "Why cant I find a conversion factor for the country Im interested in",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "nan",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1366,11 +1891,16 @@
   },
   {
     "keyword": "The provision of conversion factors is limited by the availability of data in different parts of the world If the hotel stay conversion factor for a certain country is not available in the current set users may continue to use factors from the last available set or visit https//wwwhotelfootprintsorg where more granular data is available by city and segment",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 6,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "nan",
     "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1379,11 +1909,16 @@
   },
   {
     "keyword": "Water supply Water supply 0",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "cubic metres",
     "ef_value": 0.15311,
     "ef_unit": "kg CO2e / cubic metres",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1392,11 +1927,16 @@
   },
   {
     "keyword": "153",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "million litres",
     "ef_value": 153.10865,
     "ef_unit": "kg CO2e / million litres",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1405,11 +1945,16 @@
   },
   {
     "keyword": "Water treatment Water treatment 0",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "cubic metres",
     "ef_value": 0.18574,
     "ef_unit": "kg CO2e / cubic metres",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1418,11 +1963,16 @@
   },
   {
     "keyword": "1857412",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "million litres",
     "ef_value": 185.7412,
     "ef_unit": "kg CO2e / million litres",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1431,11 +1981,16 @@
   },
   {
     "keyword": "Average construction 75",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 75.00675,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1444,11 +1999,16 @@
   },
   {
     "keyword": "Metals 3824",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3824.09335,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1457,11 +2017,16 @@
   },
   {
     "keyword": "Metal Metal aluminium cans and foil 9115",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 9115.90131,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1470,11 +2035,16 @@
   },
   {
     "keyword": "Metal mixed cans 5114",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 5114.62131,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1483,11 +2053,16 @@
   },
   {
     "keyword": "Metal scrap metal 3473",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3473.11953,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1496,11 +2071,16 @@
   },
   {
     "keyword": "Metal steel cans 2863",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 2863.90131,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1509,11 +2089,16 @@
   },
   {
     "keyword": "Plastic Plastics average plastics 3172",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3172.49932,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1522,11 +2107,16 @@
   },
   {
     "keyword": "Plastics average plastic film 2916",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 2916.50513,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1535,11 +2125,16 @@
   },
   {
     "keyword": "Plastics average plastic rigid 3354",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3354.28062,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1548,11 +2143,16 @@
   },
   {
     "keyword": "Plastics HDPE 3095",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3095.15524,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1561,11 +2161,16 @@
   },
   {
     "keyword": "Plastics LDPE and LLDPE 29650779",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 2965.0779,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1574,11 +2179,16 @@
   },
   {
     "keyword": "Plastics PET 3863",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 3863.90131,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1587,11 +2197,16 @@
   },
   {
     "keyword": "Plastics PP 2577",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 2577.57172,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1600,11 +2215,16 @@
   },
   {
     "keyword": "Plastics PS 4376",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 4376.80391,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1613,11 +2233,16 @@
   },
   {
     "keyword": "Plastics PVC 2944",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 2944.75615,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1626,11 +2251,16 @@
   },
   {
     "keyword": "Paper Paper and board board 1199",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 1199.72542,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1639,11 +2269,16 @@
   },
   {
     "keyword": "Paper and board mixed 1288",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 1288.50358,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1652,11 +2287,16 @@
   },
   {
     "keyword": "Paper and board paper 13450779",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "tonnes",
     "ef_value": 1345.0779,
     "ef_unit": "kg CO2e / tonnes",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1665,11 +2305,16 @@
   },
   {
     "keyword": "Water supply Water supply 01913",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "cubic metres",
     "ef_value": 0.1913,
     "ef_unit": "kg CO2e / cubic metres",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1678,11 +2323,16 @@
   },
   {
     "keyword": "191",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "million litres",
     "ef_value": 191.30156,
     "ef_unit": "kg CO2e / million litres",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1691,11 +2341,16 @@
   },
   {
     "keyword": "170",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
+    "calc_path": null,
     "canonical_unit": "million litres",
     "ef_value": 170.87549,
     "ef_unit": "kg CO2e / million litres",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1704,12 +2359,16 @@
   },
   {
     "keyword": "CodeTxt",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1718,12 +2377,16 @@
   },
   {
     "keyword": "CPARI",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 180.08035579300002,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1732,12 +2395,16 @@
   },
   {
     "keyword": "CWHEA",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 187.41838088699998,
+    "ef_value": 187.418380887,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1746,12 +2413,16 @@
   },
   {
     "keyword": "COCER",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 108.64638907,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1760,12 +2431,16 @@
   },
   {
     "keyword": "CFVEG",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 44.055999419100004,
+    "ef_value": 44.0559994191,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1774,12 +2449,16 @@
   },
   {
     "keyword": "COILS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 14.606559255899999,
+    "ef_value": 14.6065592559,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1788,12 +2467,16 @@
   },
   {
     "keyword": "CSUGB",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0130722790715,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1802,12 +2485,16 @@
   },
   {
     "keyword": "CFIBR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 23.9333983002,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1816,12 +2503,16 @@
   },
   {
     "keyword": "COTCR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 95.907185463,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1830,12 +2521,16 @@
   },
   {
     "keyword": "CCATL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 66.4705597887,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1844,12 +2539,16 @@
   },
   {
     "keyword": "CPIGS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 49.537326075,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1858,12 +2557,16 @@
   },
   {
     "keyword": "CPLTR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 13.7409145539,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1872,12 +2575,16 @@
   },
   {
     "keyword": "COMEA",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 12.9751354445,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1886,12 +2593,16 @@
   },
   {
     "keyword": "COANP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 95.9905183544,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1900,12 +2611,16 @@
   },
   {
     "keyword": "CMILK",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.00306327148242,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1914,12 +2629,16 @@
   },
   {
     "keyword": "CWOOL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1928,12 +2647,16 @@
   },
   {
     "keyword": "CMANC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1942,12 +2665,16 @@
   },
   {
     "keyword": "CMANB",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 142.7346089,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1956,12 +2683,16 @@
   },
   {
     "keyword": "CFORE",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.17495904903200002,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1970,12 +2701,16 @@
   },
   {
     "keyword": "CFISH",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1984,12 +2719,16 @@
   },
   {
     "keyword": "CANTH",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.000453297150214,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -1998,12 +2737,16 @@
   },
   {
     "keyword": "CCOKC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.000452695075157,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2012,12 +2755,16 @@
   },
   {
     "keyword": "COTBC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 0.0013942963877800001,
+    "ef_value": 0.00139429638778,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2026,12 +2773,16 @@
   },
   {
     "keyword": "CSUBC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.000438803137301,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2040,12 +2791,16 @@
   },
   {
     "keyword": "CPATF",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.000375660803259,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2054,12 +2809,16 @@
   },
   {
     "keyword": "CLIBC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.000131997339277,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2068,12 +2827,16 @@
   },
   {
     "keyword": "CBKBP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.677378243926,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2082,12 +2845,16 @@
   },
   {
     "keyword": "CPEAT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 156.905497749,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2096,12 +2863,16 @@
   },
   {
     "keyword": "CCOIL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 851.3853911670001,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2110,12 +2881,16 @@
   },
   {
     "keyword": "CGASE",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 48.1672273602,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2124,12 +2899,16 @@
   },
   {
     "keyword": "CGASL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2138,12 +2917,16 @@
   },
   {
     "keyword": "COGPL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2152,12 +2935,16 @@
   },
   {
     "keyword": "CORAN",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 19.7179393598,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2166,12 +2953,16 @@
   },
   {
     "keyword": "CIRON",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.146486526369,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2180,12 +2971,16 @@
   },
   {
     "keyword": "CCOPO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2194,12 +2989,16 @@
   },
   {
     "keyword": "CNIKO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2208,12 +3007,16 @@
   },
   {
     "keyword": "CALUO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 0.11644381545100001,
+    "ef_value": 0.116443815451,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2222,12 +3025,16 @@
   },
   {
     "keyword": "CPREO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.035281262417,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2236,12 +3043,16 @@
   },
   {
     "keyword": "CLZTO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 15.484746769,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2250,12 +3061,16 @@
   },
   {
     "keyword": "CONFO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 8.76126526978,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2264,12 +3079,16 @@
   },
   {
     "keyword": "CSTON",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 59.1439080405,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2278,12 +3097,16 @@
   },
   {
     "keyword": "CSDCL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 6.51703919482,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2292,12 +3115,16 @@
   },
   {
     "keyword": "CCHMF",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 34.387535307499995,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2306,12 +3133,16 @@
   },
   {
     "keyword": "CPCAT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 40.9682408659,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2320,12 +3151,16 @@
   },
   {
     "keyword": "CPPIG",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 24.034648566799998,
+    "ef_value": 24.0346485668,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2334,12 +3169,16 @@
   },
   {
     "keyword": "CPPLT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 43.791906194,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2348,12 +3187,16 @@
   },
   {
     "keyword": "CPOME",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 17.7060770209,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2362,12 +3205,16 @@
   },
   {
     "keyword": "CVOIL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 163.162120496,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2376,12 +3223,16 @@
   },
   {
     "keyword": "CDAIR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 2.28515077174,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2390,12 +3241,16 @@
   },
   {
     "keyword": "CRICE",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 9.23625434461,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2404,12 +3259,16 @@
   },
   {
     "keyword": "CSUGR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 401.143100342,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2418,12 +3277,16 @@
   },
   {
     "keyword": "COFOD",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 234.167992589,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2432,12 +3295,16 @@
   },
   {
     "keyword": "CBEVR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 12.1557745077,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2446,12 +3313,16 @@
   },
   {
     "keyword": "CFSHP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 27.3018520165,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2460,12 +3331,16 @@
   },
   {
     "keyword": "CTOBC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 80.8060515301,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2474,12 +3349,16 @@
   },
   {
     "keyword": "CTEXT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 35.5696472751,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2488,12 +3367,16 @@
   },
   {
     "keyword": "CGARM",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 4.34791698126,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2502,12 +3385,16 @@
   },
   {
     "keyword": "CLETH",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 483.599436348,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2516,12 +3403,16 @@
   },
   {
     "keyword": "CWOOD",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2530,12 +3421,16 @@
   },
   {
     "keyword": "CWOOW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 331.30839564499996,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2544,12 +3439,16 @@
   },
   {
     "keyword": "CPULP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2558,12 +3457,16 @@
   },
   {
     "keyword": "CPAPR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 323.68612097100004,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2572,12 +3475,16 @@
   },
   {
     "keyword": "CPAPE",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1094.88314248,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2586,12 +3493,16 @@
   },
   {
     "keyword": "CMDIA",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 412.281479839,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2600,12 +3511,16 @@
   },
   {
     "keyword": "CCOKE",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2614,12 +3529,16 @@
   },
   {
     "keyword": "CGCOK",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 185.651904192,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2628,12 +3547,16 @@
   },
   {
     "keyword": "CCOTA",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1111.21263458,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2642,12 +3565,16 @@
   },
   {
     "keyword": "CMGSL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 3.41571793022e-05,
+    "ef_value": 0.0000341571793022,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2656,12 +3583,16 @@
   },
   {
     "keyword": "CAGSL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 4.24758535628,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2670,12 +3601,16 @@
   },
   {
     "keyword": "CGJET",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 70.2393117424,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2684,12 +3619,16 @@
   },
   {
     "keyword": "CKJET",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.000188705589043,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2698,12 +3637,16 @@
   },
   {
     "keyword": "CKERO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 645.855454076,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2712,12 +3655,16 @@
   },
   {
     "keyword": "CDOIL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 107.54708706999999,
+    "ef_value": 107.54708707,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2726,12 +3673,16 @@
   },
   {
     "keyword": "CFOIL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 2.1751145525099997,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2740,12 +3691,16 @@
   },
   {
     "keyword": "CRGAS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 84.1973398786,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2754,12 +3709,16 @@
   },
   {
     "keyword": "CLPGA",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 7.75195187131,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2768,12 +3727,16 @@
   },
   {
     "keyword": "CREFF",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 3.24765190457e-05,
+    "ef_value": 0.0000324765190457,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2782,12 +3745,16 @@
   },
   {
     "keyword": "CETHA",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 43.3865922506,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2796,12 +3763,16 @@
   },
   {
     "keyword": "CNAPT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 100.334814084,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2810,12 +3781,16 @@
   },
   {
     "keyword": "CWHSP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 11.063801609899999,
+    "ef_value": 11.0638016099,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2824,12 +3799,16 @@
   },
   {
     "keyword": "CLUBR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 19.655990870900002,
+    "ef_value": 19.6559908709,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2838,12 +3817,16 @@
   },
   {
     "keyword": "CBITU",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 3.5876181320999997e-05,
+    "ef_value": 0.000035876181320999997,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2852,12 +3835,16 @@
   },
   {
     "keyword": "CPARW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1.72752571797,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2866,12 +3853,16 @@
   },
   {
     "keyword": "CPETC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 4.5813594142500005,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2880,12 +3871,16 @@
   },
   {
     "keyword": "CNSPP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 30.940178480500002,
+    "ef_value": 30.9401784805,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2894,12 +3889,16 @@
   },
   {
     "keyword": "CNUCF",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 824.848915419,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2908,12 +3907,16 @@
   },
   {
     "keyword": "CPLAS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2922,12 +3925,16 @@
   },
   {
     "keyword": "CPLAW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 19.108844000999998,
+    "ef_value": 19.108844001,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2936,12 +3943,16 @@
   },
   {
     "keyword": "CNFER",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 47.249205433,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2950,12 +3961,16 @@
   },
   {
     "keyword": "CPFER",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 512.554566278,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2964,12 +3979,16 @@
   },
   {
     "keyword": "CCHEM",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.13990502384099998,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2978,12 +3997,16 @@
   },
   {
     "keyword": "CCHAR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 0.38552428366900005,
+    "ef_value": 0.3855242836690001,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -2992,12 +4015,16 @@
   },
   {
     "keyword": "CADDC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 12.119313123,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3006,12 +4033,16 @@
   },
   {
     "keyword": "CBIOG",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1.3294067446600002,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3020,12 +4051,16 @@
   },
   {
     "keyword": "CBIOD",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 5.06899420332,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3034,12 +4069,16 @@
   },
   {
     "keyword": "COBIO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 84.7560845651,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3048,12 +4087,16 @@
   },
   {
     "keyword": "CRUBP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 98.25367455050001,
+    "ef_value": 98.2536745505,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3062,12 +4105,16 @@
   },
   {
     "keyword": "CGLAS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3076,12 +4123,16 @@
   },
   {
     "keyword": "CGLAW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 161.447392616,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3090,12 +4141,16 @@
   },
   {
     "keyword": "CCRMC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 107.074755071,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3104,12 +4159,16 @@
   },
   {
     "keyword": "CBRIK",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1266.08046121,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3118,12 +4177,16 @@
   },
   {
     "keyword": "CCMNT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3132,12 +4195,16 @@
   },
   {
     "keyword": "CASHW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 706.406123668,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3146,12 +4213,16 @@
   },
   {
     "keyword": "CONMM",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1241.94024943,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3160,12 +4231,16 @@
   },
   {
     "keyword": "CSTEL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3174,12 +4249,16 @@
   },
   {
     "keyword": "CSTEW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 18.0998817821,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3188,12 +4267,16 @@
   },
   {
     "keyword": "CPREM",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3202,12 +4285,16 @@
   },
   {
     "keyword": "CPREW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 134.747505282,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3216,12 +4303,16 @@
   },
   {
     "keyword": "CALUM",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3230,12 +4321,16 @@
   },
   {
     "keyword": "CALUW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 5.42122923218,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3244,12 +4339,16 @@
   },
   {
     "keyword": "CLZTP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3258,12 +4357,16 @@
   },
   {
     "keyword": "CLZTW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 93.2932507192,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3272,12 +4375,16 @@
   },
   {
     "keyword": "CCOPP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3286,12 +4393,16 @@
   },
   {
     "keyword": "CCOPW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 69.12994772139999,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3300,12 +4411,16 @@
   },
   {
     "keyword": "CONFM",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3314,12 +4429,16 @@
   },
   {
     "keyword": "CONFW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 768.667206704,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3328,12 +4447,16 @@
   },
   {
     "keyword": "CMETC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 321.085382198,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3342,12 +4465,16 @@
   },
   {
     "keyword": "CFABM",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 328.871580014,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3356,12 +4483,16 @@
   },
   {
     "keyword": "CMACH",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 15.7660847117,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3370,12 +4501,16 @@
   },
   {
     "keyword": "COFMA",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 450.994413852,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3384,12 +4519,16 @@
   },
   {
     "keyword": "CELMA",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 94.4755284905,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3398,12 +4537,16 @@
   },
   {
     "keyword": "CRATV",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 398.337134702,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3412,12 +4555,16 @@
   },
   {
     "keyword": "CMEIN",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 90.162578043,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3426,12 +4573,16 @@
   },
   {
     "keyword": "CMOTO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 25.8539443143,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3440,12 +4591,16 @@
   },
   {
     "keyword": "COTRE",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 270.50352624,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3454,12 +4609,16 @@
   },
   {
     "keyword": "CFURN",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 56.5742188092,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3468,12 +4627,16 @@
   },
   {
     "keyword": "CRYMS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3482,12 +4645,16 @@
   },
   {
     "keyword": "CBOTW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 2226.9748567399997,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3496,12 +4663,16 @@
   },
   {
     "keyword": "CPOWC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 862.8681919869999,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3510,12 +4681,16 @@
   },
   {
     "keyword": "CPOWG",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0464601326446,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3524,12 +4699,16 @@
   },
   {
     "keyword": "CPOWN",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 56.3011999824,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3538,12 +4717,16 @@
   },
   {
     "keyword": "CPOWH",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 44.9425533649,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3552,12 +4735,16 @@
   },
   {
     "keyword": "CPOWW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 111.663790567,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3566,12 +4753,16 @@
   },
   {
     "keyword": "CPOWP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 448.100491036,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3580,12 +4771,16 @@
   },
   {
     "keyword": "CPOWB",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 8.08968734303,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3594,12 +4789,16 @@
   },
   {
     "keyword": "CPOWS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3608,12 +4807,16 @@
   },
   {
     "keyword": "CPOWE",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3622,12 +4825,16 @@
   },
   {
     "keyword": "CPOWO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0108134311809,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3636,12 +4843,16 @@
   },
   {
     "keyword": "CPOWM",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1.53044158849,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3650,12 +4861,16 @@
   },
   {
     "keyword": "CPOWZ",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 135.018094417,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3664,12 +4879,16 @@
   },
   {
     "keyword": "CPOWT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 67.5501622429,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3678,12 +4897,16 @@
   },
   {
     "keyword": "CPOWD",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 190.948747548,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3692,12 +4915,16 @@
   },
   {
     "keyword": "CCOOG",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 818.9691667669999,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3706,12 +4933,16 @@
   },
   {
     "keyword": "CMBFG",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.00025178888312,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3720,12 +4951,16 @@
   },
   {
     "keyword": "CMOSG",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.000215178353646,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3734,12 +4969,16 @@
   },
   {
     "keyword": "CMGWG",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 254.592929106,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3748,12 +4987,16 @@
   },
   {
     "keyword": "CMBIO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 8361.59015609,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3762,12 +5005,16 @@
   },
   {
     "keyword": "CGASD",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 3592.47200719,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3776,12 +5023,16 @@
   },
   {
     "keyword": "CHWAT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 77.6356580905,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3790,12 +5041,16 @@
   },
   {
     "keyword": "CWATR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1890.18437084,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3804,12 +5059,16 @@
   },
   {
     "keyword": "CCONS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3818,12 +5077,16 @@
   },
   {
     "keyword": "CCONW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 103.531530176,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3832,12 +5095,16 @@
   },
   {
     "keyword": "CTDMO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 76.2668859824,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3846,12 +5113,16 @@
   },
   {
     "keyword": "CTDFU",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 741.435086199,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3860,12 +5131,16 @@
   },
   {
     "keyword": "CTDWH",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 323.61293841,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3874,12 +5149,16 @@
   },
   {
     "keyword": "CTDRT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 476.21224050700005,
+    "ef_value": 476.2122405070001,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3888,12 +5167,16 @@
   },
   {
     "keyword": "CHORE",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 667.8807495269999,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3902,12 +5185,16 @@
   },
   {
     "keyword": "CTRAI",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 316.682332921,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3916,12 +5203,16 @@
   },
   {
     "keyword": "CTLND",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 405.651237231,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3930,12 +5221,16 @@
   },
   {
     "keyword": "CTPIP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 350.48290891100004,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3944,12 +5239,16 @@
   },
   {
     "keyword": "CTWAS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 41.8468252124,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3958,12 +5257,16 @@
   },
   {
     "keyword": "CTWAI",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 5074.30390578,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3972,12 +5275,16 @@
   },
   {
     "keyword": "CTAIR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 297.469430922,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -3986,12 +5293,16 @@
   },
   {
     "keyword": "CTAUX",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 52.148458098800006,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4000,12 +5311,16 @@
   },
   {
     "keyword": "CPTEL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 62.8482192751,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4014,12 +5329,16 @@
   },
   {
     "keyword": "CFINT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 27.9648134392,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4028,12 +5347,16 @@
   },
   {
     "keyword": "CFINS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 13.4303935432,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4042,12 +5365,16 @@
   },
   {
     "keyword": "CFAUX",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 586.012176627,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4056,12 +5383,16 @@
   },
   {
     "keyword": "CREAL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 420.293525807,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4070,12 +5401,16 @@
   },
   {
     "keyword": "CMARE",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 347.020092446,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4084,12 +5419,16 @@
   },
   {
     "keyword": "CCOMP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 95.9452463696,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4098,12 +5437,16 @@
   },
   {
     "keyword": "CRESD",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1726.40890528,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4112,12 +5455,16 @@
   },
   {
     "keyword": "COBUS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 176.28101249099998,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4126,12 +5473,16 @@
   },
   {
     "keyword": "CPADF",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 329.802668544,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4140,12 +5491,16 @@
   },
   {
     "keyword": "CEDUC",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 548.5521025529999,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4154,12 +5509,16 @@
   },
   {
     "keyword": "CHEAL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 4.78278369264,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4168,12 +5527,16 @@
   },
   {
     "keyword": "CINCF",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 6.89356618031,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4182,12 +5545,16 @@
   },
   {
     "keyword": "CINCP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 280.24132736,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4196,12 +5563,16 @@
   },
   {
     "keyword": "CINCL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 819.516128694,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4210,12 +5581,16 @@
   },
   {
     "keyword": "CINCM",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 26.5687498236,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4224,12 +5599,16 @@
   },
   {
     "keyword": "CINCT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 1.8875782427399999,
+    "ef_value": 1.88757824274,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4238,12 +5617,16 @@
   },
   {
     "keyword": "CINCW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 76.6412689366,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4252,12 +5635,16 @@
   },
   {
     "keyword": "CINCO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.721311073032,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4266,12 +5653,16 @@
   },
   {
     "keyword": "CBIOF",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0684514148057,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4280,12 +5671,16 @@
   },
   {
     "keyword": "CBIOP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.657315713513,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4294,12 +5689,16 @@
   },
   {
     "keyword": "CBIOS",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 39.3533839789,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4308,12 +5707,16 @@
   },
   {
     "keyword": "CCOMF",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.015736710815,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4322,12 +5725,16 @@
   },
   {
     "keyword": "CCOMW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 3.16437586284,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4336,12 +5743,16 @@
   },
   {
     "keyword": "CWASF",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 6.107935390960001,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4350,12 +5761,16 @@
   },
   {
     "keyword": "CWASO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1.2533799054,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4364,12 +5779,16 @@
   },
   {
     "keyword": "CLANF",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 1.16804074887,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4378,12 +5797,16 @@
   },
   {
     "keyword": "CLANP",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.31524063007299996,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4392,12 +5815,16 @@
   },
   {
     "keyword": "CLANL",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 2.43915246104,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4406,12 +5833,16 @@
   },
   {
     "keyword": "CLANI",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.136079720178,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4420,12 +5851,16 @@
   },
   {
     "keyword": "CLANT",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.454345856424,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4434,12 +5869,16 @@
   },
   {
     "keyword": "CLANW",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 110.083603874,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4448,12 +5887,16 @@
   },
   {
     "keyword": "CORGA",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 64.0378765112,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4462,12 +5905,16 @@
   },
   {
     "keyword": "CRECR",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 54.973620963600005,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4476,12 +5923,16 @@
   },
   {
     "keyword": "COSER",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 0.43798022640699996,
+    "ef_value": 0.437980226407,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4490,12 +5941,16 @@
   },
   {
     "keyword": "CPRHH",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
     "ef_value": 0.0,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
@@ -4504,16 +5959,416 @@
   },
   {
     "keyword": "CEXTO",
+    "language": "EN",
     "ghg_category": "Scope3",
     "scope3_id": 1,
+    "scope3_name": null,
     "calc_path": "SpendBased",
     "canonical_unit": "eur",
-    "ef_value": 9.54140172747e-05,
+    "ef_value": 0.0000954140172747,
     "ef_unit": "kg CO2 / EUR",
+    "ef_source": "",
+    "ef_jurisdiction": null,
     "industry": "General",
     "languages": [
       "en"
     ],
     "confidence_default": 0.7
+  },
+  {
+    "keyword": "Industrial Machinery",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 2,
+    "scope3_name": "Capital Goods",
+    "calc_path": "SpendBased",
+    "canonical_unit": "eur",
+    "ef_value": 0.45,
+    "ef_unit": "kgCO2e/eur",
+    "ef_source": "EXIOBASE",
+    "ef_jurisdiction": "EU",
+    "industry": "Manufacturing",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.8
+  },
+  {
+    "keyword": "IT Hardware",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 2,
+    "scope3_name": "Capital Goods",
+    "calc_path": "SpendBased",
+    "canonical_unit": "eur",
+    "ef_value": 0.38,
+    "ef_unit": "kgCO2e/eur",
+    "ef_source": "EXIOBASE",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "General",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.8
+  },
+  {
+    "keyword": "Electricity T&D Losses",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 3,
+    "scope3_name": "Fuel & Energy Activities",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "kwh",
+    "ef_value": 0.02,
+    "ef_unit": "kgCO2e/kwh",
+    "ef_source": "DEFRA 2025",
+    "ef_jurisdiction": "UK",
+    "industry": "General",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 1.0
+  },
+  {
+    "keyword": "Well-to-tank (WTT) Fuel",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 3,
+    "scope3_name": "Fuel & Energy Activities",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "liter",
+    "ef_value": 0.58,
+    "ef_unit": "kgCO2e/liter",
+    "ef_source": "DEFRA 2025",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "General",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 1.0
+  },
+  {
+    "keyword": "Sea Freight Container",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 4,
+    "scope3_name": "Upstream Transport",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "tkm",
+    "ef_value": 0.012,
+    "ef_unit": "kgCO2e/tkm",
+    "ef_source": "DEFRA 2025",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "Logistics",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.9
+  },
+  {
+    "keyword": "Road Freight Heavy Truck",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 4,
+    "scope3_name": "Upstream Transport",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "tkm",
+    "ef_value": 0.105,
+    "ef_unit": "kgCO2e/tkm",
+    "ef_source": "DEFRA 2025",
+    "ef_jurisdiction": "EU",
+    "industry": "Logistics",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.9
+  },
+  {
+    "keyword": "Landfill Mixed Waste",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 5,
+    "scope3_name": "Waste Generated",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "tonnes",
+    "ef_value": 450.0,
+    "ef_unit": "kgCO2e/ton",
+    "ef_source": "DEFRA 2025",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "General",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 1.0
+  },
+  {
+    "keyword": "Recycling Plastic",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 5,
+    "scope3_name": "Waste Generated",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "tonnes",
+    "ef_value": 21.0,
+    "ef_unit": "kgCO2e/ton",
+    "ef_source": "DEFRA 2025",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "General",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 1.0
+  },
+  {
+    "keyword": "Employee Commute Bus",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 7,
+    "scope3_name": "Employee Commuting",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "pkm",
+    "ef_value": 0.1,
+    "ef_unit": "kgCO2e/pkm",
+    "ef_source": "DEFRA 2025",
+    "ef_jurisdiction": "UK",
+    "industry": "General",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.9
+  },
+  {
+    "keyword": "Work From Home (WFH) Office",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 7,
+    "scope3_name": "Employee Commuting",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "hours",
+    "ef_value": 0.05,
+    "ef_unit": "kgCO2e/hour",
+    "ef_source": "DEFRA 2025",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "General",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.8
+  },
+  {
+    "keyword": "Leased Office Space",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 8,
+    "scope3_name": "Upstream Leased Assets",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "m2",
+    "ef_value": 15.0,
+    "ef_unit": "kgCO2e/m2",
+    "ef_source": "Generic",
+    "ef_jurisdiction": "EU",
+    "industry": "Real Estate",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.7
+  },
+  {
+    "keyword": "Outbound Delivery Van",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 9,
+    "scope3_name": "Downstream Transport",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "km",
+    "ef_value": 0.25,
+    "ef_unit": "kgCO2e/km",
+    "ef_source": "DEFRA 2025",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "Logistics",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.9
+  },
+  {
+    "keyword": "Downstream Industrial Processing",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 10,
+    "scope3_name": "Processing of Sold Products",
+    "calc_path": "SpendBased",
+    "canonical_unit": "eur",
+    "ef_value": 0.12,
+    "ef_unit": "kgCO2e/eur",
+    "ef_source": "EXIOBASE",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "Manufacturing",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.6
+  },
+  {
+    "keyword": "Product Energy Consumption",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 11,
+    "scope3_name": "Use of Sold Products",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "kwh",
+    "ef_value": 0.42,
+    "ef_unit": "kgCO2e/kwh",
+    "ef_source": "IEA",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "Electronics",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.8
+  },
+  {
+    "keyword": "Product Disposal WEEE",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 12,
+    "scope3_name": "End-of-Life Treatment",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "tonnes",
+    "ef_value": 120.0,
+    "ef_unit": "kgCO2e/ton",
+    "ef_source": "Generic",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "General",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.7
+  },
+  {
+    "keyword": "Tenant Electricity Consumption",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 13,
+    "scope3_name": "Downstream Leased Assets",
+    "calc_path": "ActivityBased",
+    "canonical_unit": "kwh",
+    "ef_value": 0.35,
+    "ef_unit": "kgCO2e/kwh",
+    "ef_source": "Generic",
+    "ef_jurisdiction": "EU",
+    "industry": "Real Estate",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.8
+  },
+  {
+    "keyword": "Franchise Operational Emissions",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 14,
+    "scope3_name": "Franchises",
+    "calc_path": "SpendBased",
+    "canonical_unit": "eur",
+    "ef_value": 0.08,
+    "ef_unit": "kgCO2e/eur",
+    "ef_source": "Generic",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "Retail",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.6
+  },
+  {
+    "keyword": "Financed Emissions Portfolio",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 15,
+    "scope3_name": "Investments",
+    "calc_path": "Pcaf",
+    "canonical_unit": "eur",
+    "ef_value": 0.005,
+    "ef_unit": "kgCO2e/eur",
+    "ef_source": "PCAF",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "Finance",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 0.9
+  },
+  {
+    "keyword": "investment portfolio",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 15,
+    "scope3_name": "Investments",
+    "calc_path": "Pcaf",
+    "canonical_unit": "usd",
+    "ef_value": 0.005,
+    "ef_unit": "kgCO2e/usd",
+    "ef_source": "PCAF",
+    "ef_jurisdiction": null,
+    "industry": "Finance",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 1.0
+  },
+  {
+    "keyword": "business loan",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 15,
+    "scope3_name": "Investments",
+    "calc_path": "Pcaf",
+    "canonical_unit": "usd",
+    "ef_value": 0.008,
+    "ef_unit": "kgCO2e/usd",
+    "ef_source": "PCAF",
+    "ef_jurisdiction": null,
+    "industry": "Finance",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 1.0
+  },
+  {
+    "keyword": "commercial real estate",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 15,
+    "scope3_name": "Investments",
+    "calc_path": "Pcaf",
+    "canonical_unit": "usd",
+    "ef_value": 0.012,
+    "ef_unit": "kgCO2e/usd",
+    "ef_source": "PCAF",
+    "ef_jurisdiction": null,
+    "industry": "Finance",
+    "languages": [
+      "en"
+    ],
+    "confidence_default": 1.0
+  },
+  {
+    "keyword": "industrial electricity consumption",
+    "language": "EN",
+    "ghg_category": "Scope3",
+    "scope3_id": 13,
+    "scope3_name": null,
+    "calc_path": "ActivityBased",
+    "canonical_unit": "kwh",
+    "ef_value": 0.35,
+    "ef_unit": "kgCO2e/kwh",
+    "ef_source": "AI-Generated",
+    "ef_jurisdiction": "GLOBAL",
+    "industry": "General",
+    "languages": [
+      "EN"
+    ],
+    "confidence_default": 0.6418
   }
 ]

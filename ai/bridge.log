@@ -1,0 +1,61 @@
+/workspaces/targoov5/ai/venv/lib/python3.12/site-packages/pydantic/_internal/_fields.py:149: UserWarning: Field "model_name" has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [147746]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:9000 (Press CTRL+C to quit)
+Checking Ollama at http://localhost:11434...
+✅ Ollama connected, model 'all-minilm:l12-v2' available
+Loaded 0 keyword vectors
+Loaded 350 Scope 3 vectors
+INFO:     127.0.0.1:34652 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34656 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34656 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34656 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51482 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54736 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60550 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35972 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43086 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43086 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43086 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39118 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59344 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59346 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46402 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54154 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32832 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32832 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32832 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32832 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32832 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32832 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32832 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32832 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32832 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53036 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47606 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47622 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57182 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57182 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57182 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37252 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37260 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57498 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57498 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46732 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46746 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46750 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57256 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57256 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54626 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54630 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54626 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54630 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54626 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54630 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33178 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37670 - "POST /classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37676 - "POST /classify HTTP/1.1" 200 OK

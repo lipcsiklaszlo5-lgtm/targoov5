@@ -1,4 +1,5 @@
 use crate::aggregation::Aggregator;
+use crate::benchmarking::{IndustryBenchmark, PeerComparison};
 use crate::compliance::{ObligationStatus, OmnibusValidator};
 use crate::db::{create_run, insert_ledger_row, insert_quarantine_row, update_run_status, DbPool};
 use crate::finance::risk_analytics::{CarbonRiskMetrics, PortfolioAsset};
@@ -356,6 +357,24 @@ pub async fn results_handler(
         risk_metrics = Some(CarbonRiskMetrics::calculate(&assets, total_value));
     }
 
+    // Benchmarking
+    let industry_str = state_guard.industry.as_deref().unwrap_or("General");
+    let benchmark = IndustryBenchmark::get_for_sector(industry_str);
+    
+    let client_revenue = state_guard.revenue_eur.unwrap_or(10_000_000.0);
+    let client_intensity = state_guard.total_tco2e.unwrap_or(0.0) / (client_revenue / 1_000_000.0);
+    
+    let comparison = PeerComparison::new(client_intensity, benchmark.avg_carbon_intensity);
+    
+    let benchmarking = Some(crate::models::BenchmarkingInfo {
+        sector: industry_str.to_string(),
+        client_intensity,
+        industry_average: benchmark.avg_carbon_intensity,
+        percentile: comparison.percentile.unwrap_or(50),
+        performance_tier: format!("{:?}", comparison.performance_tier),
+        narrative: comparison.generate_narrative(),
+    });
+
     Ok(Json(ResultsResponse {
         run_id: state_guard.run_id.clone().unwrap_or_default(),
         total_tco2e: state_guard.total_tco2e.unwrap_or(0.0),
@@ -369,6 +388,7 @@ pub async fn results_handler(
         csrd_completeness_pct,
         risk_metrics,
         compliance,
+        benchmarking,
     }))
 }
 

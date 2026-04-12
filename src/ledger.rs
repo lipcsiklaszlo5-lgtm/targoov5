@@ -1,3 +1,4 @@
+use crate::finance;
 use crate::ingest::{parse_numeric_cell, RawRow};
 use crate::models::{
     CalcPath, DataQualityTier, GhgScope, Jurisdiction, LedgerRow, MatchMethod, QuarantineReason,
@@ -17,6 +18,7 @@ pub struct LedgerProcessor {
     ef_cache: HashMap<String, f64>,
     // Previous hash for SHA-256 chain
     prev_hash: String,
+    ai_resolver: finance::AiAssetResolver,
 }
 
 impl LedgerProcessor {
@@ -25,6 +27,7 @@ impl LedgerProcessor {
             unit_converter: UnitConverter::new(),
             ef_cache: HashMap::new(),
             prev_hash: String::new(),
+            ai_resolver: finance::AiAssetResolver::new(),
         }
     }
 
@@ -157,8 +160,12 @@ impl LedgerProcessor {
         };
 
         // 6. Determine GWP and Emission Factor
-        let gwp_applied = self.get_gwp_for_category(&triage_result.ghg_category);
-        let ef_value = self.get_emission_factor(&triage_result, jurisdiction);
+        let mut gwp_applied = self.get_gwp_for_category(&triage_result.ghg_category);
+        let mut ef_value = self.get_emission_factor(&triage_result, jurisdiction);
+        let mut tco2e = 0.0;
+        let mut pcaf_factor = None;
+        let mut pcaf_asset_class = None;
+        let mut pcaf_dq_score = None;
 
         // 7. Handle SpendBased / PCAF specific calculations
         let (spend_usd, eeio_ef, attribution_factor, borrower_tco2e) =
@@ -166,17 +173,56 @@ impl LedgerProcessor {
 
         let is_spend_based = matches!(triage_result.calc_path, Some(CalcPath::SpendBased));
 
-        // 8. Calculate tCO2e
-        let tco2e = tco2e_calculator(
-            converted_value,
-            ef_value,
-            gwp_applied,
-            is_spend_based,
-            spend_usd,
-            eeio_ef,
-            attribution_factor,
-            borrower_tco2e,
-        );
+        // PCAF 2025 Integration for Cat 15
+        if let Some(15) = triage_result.scope3_id {
+            // 1. AI-val detektáltasd az eszközosztályt
+            let asset_class = self.ai_resolver
+                .detect_asset_class(&raw_header)
+                .await
+                .unwrap_or(finance::AssetClass::ListedEquity);
+            
+            pcaf_asset_class = Some(format!("{:?}", asset_class));
+            
+            // 2. PCAF attribúció számítása
+            let attribution = finance::PcafAttribution::new(
+                asset_class,
+                raw_value,  // outstanding amount
+                None,       // total_value - placeholder handles default
+                finance::AttributionMethod::DirectEvic, // Default method
+                "Automated AI Detection".to_string(),   // Default source
+            );
+            
+            // 3. Financed emissions
+            let pcaf_result = attribution.calculate_financed_emissions(
+                jurisdiction,
+            );
+            
+            pcaf_factor = Some(pcaf_result.attribution_factor);
+            tco2e = pcaf_result.financed_emissions_tco2e;
+            
+            // 4. Data Quality Score
+            let dq = finance::PcafDataQuality::from_confidence(
+                triage_result.confidence,
+                asset_class,
+            );
+            pcaf_dq_score = Some(dq.as_int());
+            
+            // Override EF values for audit trail
+            ef_value = 0.0; 
+            gwp_applied = 1.0;
+        } else {
+            // 8. Calculate tCO2e (Legacy/Standard paths)
+            tco2e = tco2e_calculator(
+                converted_value,
+                ef_value,
+                gwp_applied,
+                is_spend_based,
+                spend_usd,
+                eeio_ef,
+                attribution_factor,
+                borrower_tco2e,
+            );
+        }
 
         // 9. Scope 3 Extension construction
         let scope3_extension = if triage_result.ghg_scope == GhgScope::SCOPE3 {
@@ -185,7 +231,7 @@ impl LedgerProcessor {
                     .scope3_name
                     .clone()
                     .unwrap_or_else(|| format!("Category {}", cat_id));
-                let calc_path = triage_result.calc_path.unwrap_or(CalcPath::ActivityBased);
+                let calc_path = if cat_id == 15 { CalcPath::Pcaf } else { triage_result.calc_path.unwrap_or(CalcPath::ActivityBased) };
                 let data_quality_tier = if triage_result.confidence >= 0.9 {
                     DataQualityTier::Primary
                 } else if triage_result.confidence >= 0.6 {
@@ -210,7 +256,10 @@ impl LedgerProcessor {
                     },
                     physical_unit: Some(triage_result.canonical_unit.clone()),
                     data_quality_tier,
-                    ghg_protocol_dq_score: self.calculate_dq_score(&triage_result, spend_usd.is_some()),
+                    ghg_protocol_dq_score: pcaf_dq_score.unwrap_or_else(|| self.calculate_dq_score(&triage_result, spend_usd.is_some())),
+                    pcaf_asset_class,
+                    pcaf_attribution_factor: pcaf_factor,
+                    pcaf_data_quality_score: pcaf_dq_score,
                 }
             })
         } else {

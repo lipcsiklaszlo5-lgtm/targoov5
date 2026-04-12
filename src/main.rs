@@ -1,6 +1,7 @@
 mod aggregation;
 mod ai_client;
 mod api;
+mod benchmarking;
 mod compliance;
 mod db;
 mod eeio_engine;
