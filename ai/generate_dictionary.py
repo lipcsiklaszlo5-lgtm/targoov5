@@ -102,6 +102,7 @@ def process_defra():
                         if not kw: continue
 
                         val = float(row[factor_col])
+                        if pd.isna(val): val = 0.0
                         unit = str(row[unit_col]) if unit_col else "unit"
                         
                         entries.append({

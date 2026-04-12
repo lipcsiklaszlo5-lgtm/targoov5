@@ -108,7 +108,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 1,
     "canonical_unit": "tonnes",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / tonnes",
     "industry": "General",
     "languages": [
@@ -173,7 +173,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 1,
     "canonical_unit": "tonnes",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / tonnes",
     "industry": "General",
     "languages": [
@@ -550,7 +550,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 1,
     "canonical_unit": "nan",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
     "industry": "General",
     "languages": [
@@ -563,7 +563,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 1,
     "canonical_unit": "nan",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
     "industry": "General",
     "languages": [
@@ -576,7 +576,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 1,
     "canonical_unit": "nan",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
     "industry": "General",
     "languages": [
@@ -589,7 +589,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 1,
     "canonical_unit": "nan",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
     "industry": "General",
     "languages": [
@@ -628,7 +628,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -654,7 +654,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -758,7 +758,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -784,7 +784,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -797,7 +797,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -836,7 +836,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -888,7 +888,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -901,7 +901,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -953,7 +953,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -979,7 +979,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -1044,7 +1044,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -1070,7 +1070,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -1083,7 +1083,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -1109,7 +1109,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -1148,7 +1148,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -1239,7 +1239,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "room per night",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / Room per night",
     "industry": "General",
     "languages": [
@@ -1317,7 +1317,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "nan",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
     "industry": "General",
     "languages": [
@@ -1330,7 +1330,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "nan",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
     "industry": "General",
     "languages": [
@@ -1343,7 +1343,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "nan",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
     "industry": "General",
     "languages": [
@@ -1356,7 +1356,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "nan",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
     "industry": "General",
     "languages": [
@@ -1369,7 +1369,7 @@
     "ghg_category": "Scope3",
     "scope3_id": 6,
     "canonical_unit": "nan",
-    "ef_value": NaN,
+    "ef_value": 0.0,
     "ef_unit": "kg CO2e / nan",
     "industry": "General",
     "languages": [
