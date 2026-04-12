@@ -111,6 +111,7 @@ pub enum MatchMethod {
     Exact,
     Fuzzy,
     Inferred,
+    Semantic,
 }
 
 /// Scope 3 Extension Data (Appended to LedgerRow for all Scope 3 entries)

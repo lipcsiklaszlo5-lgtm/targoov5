@@ -1,7 +1,10 @@
+use crate::ai_client::AiBridgeClient;
 use crate::models::{CalcPath, GhgScope, Jurisdiction, MatchMethod, Scope3Category};
 use anyhow::{anyhow, Result};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+use std::fs::OpenOptions;
+use std::io::Write;
 use strsim::normalized_levenshtein;
 
 pub const FUZZY_THRESHOLD: f64 = 0.85;
@@ -10,6 +13,7 @@ pub const FUZZY_THRESHOLD: f64 = 0.85;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DictionaryEntry {
     pub keyword: String,
+    pub language: String,    // ✅ ÚJ! "EN", "DE", "HU"
     pub ghg_category: String, // "Scope1", "Scope2", "Scope3"
     #[serde(default)]
     pub scope3_id: Option<u8>, // 1-15 if Scope3
@@ -21,10 +25,27 @@ pub struct DictionaryEntry {
     pub ef_value: f64,
     pub ef_unit: String,
     #[serde(default)]
+    pub ef_source: String,
+    #[serde(default)]
     pub ef_jurisdiction: Option<String>, // "US", "UK", "EU", "GLOBAL"
     pub industry: String,
     pub languages: Vec<String>,
     pub confidence_default: f32,
+}
+
+fn detect_language(keyword: &str) -> String {
+    // Egyszerű heurisztika:
+    // - Ha tartalmaz német specifikus karaktereket (ä, ö, ü, ß) -> "DE"
+    // - Ha tartalmaz magyar ékezeteket (á, é, í, ó, ö, ő, ú, ü, ű) -> "HU"
+    // - Egyébként -> "EN"
+    let k = keyword.to_lowercase();
+    if k.contains('ä') || k.contains('ö') || k.contains('ü') || k.contains('ß') {
+        "DE".to_string()
+    } else if k.contains('á') || k.contains('é') || k.contains('í') || k.contains('ó') || k.contains('ő') || k.contains('ú') || k.contains('ű') {
+        "HU".to_string()
+    } else {
+        "EN".to_string()
+    }
 }
 
 #[derive(Debug, Clone)]
@@ -49,6 +70,7 @@ pub struct TriageEngine {
     // Priority buckets for iterative lookup
     scope1_2_entries: Vec<DictionaryEntry>,
     scope3_entries: Vec<DictionaryEntry>,
+    ai_client: AiBridgeClient,
 }
 
 impl TriageEngine {
@@ -58,6 +80,7 @@ impl TriageEngine {
             exact_index: HashMap::new(),
             scope1_2_entries: Vec::new(),
             scope3_entries: Vec::new(),
+            ai_client: AiBridgeClient::new(),
         }
     }
 
@@ -65,8 +88,15 @@ impl TriageEngine {
     pub fn load_from_json(&mut self, json_str: &str) -> Result<()> {
         let entries: Vec<DictionaryEntry> = serde_json::from_str(json_str)?;
         self.entries = entries;
+        self.rebuild_indexes();
+        Ok(())
+    }
 
-        // Build indexes
+    fn rebuild_indexes(&mut self) {
+        self.exact_index.clear();
+        self.scope1_2_entries.clear();
+        self.scope3_entries.clear();
+
         for entry in &self.entries {
             let key = entry.keyword.to_lowercase();
             self.exact_index.insert(key, entry.clone());
@@ -78,13 +108,10 @@ impl TriageEngine {
             }
         }
 
-        // Sort by priority: longer keywords first to prioritize specificity
         self.scope1_2_entries
             .sort_by(|a, b| b.keyword.len().cmp(&a.keyword.len()));
         self.scope3_entries
             .sort_by(|a, b| b.keyword.len().cmp(&a.keyword.len()));
-
-        Ok(())
     }
 
     /// Normalizes a raw header string for matching
@@ -99,7 +126,7 @@ impl TriageEngine {
     }
 
     /// Main triage logic for a single header string
-    pub fn triage_header(&self, raw_header: &str) -> Option<TriageResult> {
+    pub async fn triage_header(&mut self, raw_header: &str) -> Option<TriageResult> {
         let normalized = Self::normalize_header(raw_header);
         if normalized.is_empty() {
             return None;
@@ -125,7 +152,7 @@ impl TriageEngine {
             }
         }
 
-        // 3. Scope 1/2 Fuzzy Match (Prioritized to prevent Scope 3 misclassification)
+        // 3. Scope 1/2 Fuzzy Match
         let best_scope1_2 = self.fuzzy_match(&self.scope1_2_entries, &normalized);
         if let Some((entry, score)) = best_scope1_2 {
             if score >= FUZZY_THRESHOLD {
@@ -151,9 +178,41 @@ impl TriageEngine {
             }
         }
 
-        // 5. Currency Heuristic Fallback (SpendBased Cat 1)
+        // 5. AI Bridge Fallback (LIVING DICTIONARY)
+        if let Ok(ai_resp) = self.ai_client.classify(raw_header).await {
+            if ai_resp.matched && ai_resp.confidence > 0.8 {
+                let ghg_category = ai_resp.ghg_category.unwrap_or_else(|| "Scope3".to_string());
+                let lang = detect_language(raw_header);
+                let entry = DictionaryEntry {
+                    keyword: raw_header.to_string(),
+                    language: lang.clone(),
+                    ghg_category: ghg_category.clone(),
+                    scope3_id: ai_resp.scope3_id,
+                    scope3_name: ai_resp.scope3_name.clone(),
+                    calc_path: ai_resp.calc_path.clone(),
+                    canonical_unit: ai_resp.canonical_unit.clone().unwrap_or_else(|| "unit".to_string()),
+                    ef_value: ai_resp.ef_value.unwrap_or(0.0),
+                    ef_unit: format!("kgCO2e/{}", ai_resp.canonical_unit.unwrap_or_else(|| "unit".to_string())),
+                    ef_source: "AI-Generated".to_string(),
+                    ef_jurisdiction: Some("GLOBAL".to_string()),
+                    industry: "General".to_string(),
+                    languages: vec![lang],
+                    confidence_default: ai_resp.confidence,
+                };
+
+                // a) Save to disk (append to dictionary.json)
+                let _ = self.save_entry_to_dictionary(&entry);
+
+                // b) Update in-memory
+                self.entries.push(entry.clone());
+                self.rebuild_indexes();
+
+                return Some(self.build_result(&entry, raw_header, ai_resp.confidence, MatchMethod::Semantic));
+            }
+        }
+
+        // 6. Currency Heuristic Fallback
         if self.is_currency_header(&normalized) {
-            // Find the fallback entry for Cat 1 SpendBased USD
             let fallback_entry = self
                 .scope3_entries
                 .iter()
@@ -164,13 +223,28 @@ impl TriageEngine {
                 return Some(self.build_result(
                     &entry,
                     &entry.keyword,
-                    0.5, // Low confidence
+                    0.5,
                     MatchMethod::Inferred,
                 ));
             }
         }
 
         None
+    }
+
+    fn save_entry_to_dictionary(&self, entry: &DictionaryEntry) -> Result<()> {
+        let path = "data/dictionary.json";
+        let mut all_entries: Vec<DictionaryEntry> = if std::path::Path::new(path).exists() {
+            let content = std::fs::read_to_string(path)?;
+            serde_json::from_str(&content).unwrap_or_default()
+        } else {
+            Vec::new()
+        };
+
+        all_entries.push(entry.clone());
+        let json = serde_json::to_string_pretty(&all_entries)?;
+        std::fs::write(path, json)?;
+        Ok(())
     }
 
     fn fuzzy_match<'a>(
@@ -212,7 +286,7 @@ impl TriageEngine {
             "Scope1" => GhgScope::SCOPE1,
             "Scope2" => GhgScope::SCOPE2_LB,
             "Scope3" => GhgScope::SCOPE3,
-            _ => GhgScope::SCOPE3, // Fallback, should not happen with valid dict
+            _ => GhgScope::SCOPE3,
         };
 
         let calc_path = entry.calc_path.as_ref().and_then(|cp| match cp.as_str() {

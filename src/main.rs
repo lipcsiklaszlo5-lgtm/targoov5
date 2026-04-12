@@ -1,4 +1,5 @@
 mod aggregation;
+mod ai_client;
 mod api;
 mod db;
 mod eeio_engine;

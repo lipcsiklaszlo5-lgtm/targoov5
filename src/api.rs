@@ -158,7 +158,7 @@ async fn process_pipeline(
     let mut quarantine_rows = Vec::new();
     
     for raw_row in all_raw_rows {
-        if let Some(result) = ledger_processor.process_row(&run_id, &raw_row, &triage_engine, jurisdiction)? {
+        if let Some(result) = ledger_processor.process_row(&run_id, &raw_row, &mut triage_engine, jurisdiction).await? {
             match result {
                 ProcessResult::Ledger(row) => {
                     ledger_rows.push(row);

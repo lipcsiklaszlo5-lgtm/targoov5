@@ -29,11 +29,11 @@ impl LedgerProcessor {
     }
 
     /// Processes a single raw row into either a LedgerRow, a QuarantineRow, or skips it
-    pub fn process_row(
+    pub async fn process_row(
         &mut self,
         _run_id: &str,
         row: &RawRow,
-        triage_engine: &TriageEngine,
+        triage_engine: &mut TriageEngine,
         jurisdiction: Jurisdiction,
     ) -> Result<Option<ProcessResult>> {
         // 1. Find the numeric value column
@@ -68,7 +68,7 @@ impl LedgerProcessor {
         };
 
         // 3. Triage the header to determine Scope and EF
-        let mut triage_result = triage_engine.triage_header(&raw_header);
+        let mut triage_result = triage_engine.triage_header(&raw_header).await;
 
         // Fallback: try all other column VALUES if the value column header didn't match
         if triage_result.is_none() {
@@ -76,7 +76,7 @@ impl LedgerProcessor {
                 if idx == value_col_idx {
                     continue;
                 }
-                if let Some(t) = triage_engine.triage_header(value) {
+                if let Some(t) = triage_engine.triage_header(value).await {
                     triage_result = Some(t);
                     break;
                 }
@@ -257,7 +257,7 @@ impl LedgerProcessor {
             assumed_unit,
             ghg_scope: triage_result.ghg_scope,
             ghg_category: triage_result.ghg_category,
-            ghg_subcategory: "Default".to_string(),
+            ghg_subcategory: triage_result.matched_keyword,
             emission_factor: ef_value,
             ef_source: "Targoo Built-in Dictionary".to_string(),
             ef_jurisdiction: jurisdiction,
