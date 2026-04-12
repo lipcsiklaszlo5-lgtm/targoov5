@@ -12,6 +12,7 @@ use sha2::{Digest, Sha256};
 use std::collections::HashMap;
 use uuid::Uuid;
 
+#[derive(Clone)]
 pub struct LedgerProcessor {
     pub unit_converter: UnitConverter,
     // Cached emission factors for performance
@@ -71,7 +72,7 @@ impl LedgerProcessor {
         };
 
         // 3. Triage the header to determine Scope and EF
-        let mut triage_result = triage_engine.triage_header(&raw_header).await;
+        let mut triage_result = triage_engine.triage_header(&raw_header, Some(row)).await;
 
         // Fallback: try all other column VALUES if the value column header didn't match
         if triage_result.is_none() {
@@ -79,7 +80,7 @@ impl LedgerProcessor {
                 if idx == value_col_idx {
                     continue;
                 }
-                if let Some(t) = triage_engine.triage_header(value).await {
+                if let Some(t) = triage_engine.triage_header(value, Some(row)).await {
                     triage_result = Some(t);
                     break;
                 }
@@ -315,6 +316,7 @@ impl LedgerProcessor {
             confidence: triage_result.confidence,
             scope3_extension,
             sha256_hash,
+            issa_5000: Some(crate::audit::issa_5000::Issa5000Metadata::new_automated(triage_result.confidence >= 0.9)),
             created_at: Utc::now(),
         };
 

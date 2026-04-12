@@ -10,6 +10,7 @@ pub struct RawRow {
     pub row_index: usize, // 0-based index in the sheet/csv
     pub headers: Vec<String>, // Normalized headers from the first row
     pub values: Vec<String>, // String values corresponding to headers
+    pub other_columns: Vec<String>, // Non-numeric values for context
     pub raw_line: String, // For debugging/quarantine
 }
 
@@ -80,15 +81,23 @@ impl IngestionEngine {
             padded_values.resize(headers.len(), String::new());
 
             // EXTRA PROTECTION: Skip rows that are metadata-only
-            if Self::find_value_column_index_only(&headers, &padded_values).is_none() {
+            let value_col_idx = Self::find_value_column_index_only(&headers, &padded_values);
+            if value_col_idx.is_none() {
                 continue;
             }
+
+            let other_columns = padded_values.iter().enumerate()
+                .filter(|(i, _)| Some(*i) != value_col_idx)
+                .map(|(_, v)| v.clone())
+                .filter(|v| !v.trim().is_empty() && v.len() > 2)
+                .collect();
 
             rows.push(RawRow {
                 source_file: file_name.clone(),
                 row_index: idx,
                 headers: headers.clone(),
                 values: padded_values,
+                other_columns,
                 raw_line: record.iter().collect::<Vec<&str>>().join(","),
             });
         }
@@ -152,15 +161,23 @@ impl IngestionEngine {
             padded_values.resize(headers.len(), String::new());
 
             // EXTRA PROTECTION: Skip rows that are metadata-only
-            if Self::find_value_column_index_only(&headers, &padded_values).is_none() {
+            let value_col_idx = Self::find_value_column_index_only(&headers, &padded_values);
+            if value_col_idx.is_none() {
                 continue;
             }
+
+            let other_columns = padded_values.iter().enumerate()
+                .filter(|(i, _)| Some(*i) != value_col_idx)
+                .map(|(_, v)| v.clone())
+                .filter(|v| !v.trim().is_empty() && v.len() > 2)
+                .collect();
 
             rows.push(RawRow {
                 source_file: file_name.clone(),
                 row_index: row_idx - 1, // 0-based data index (excluding header)
                 headers: headers.clone(),
                 values: padded_values,
+                other_columns,
                 raw_line: format!("Row {} (Excel)", row_idx),
             });
         }

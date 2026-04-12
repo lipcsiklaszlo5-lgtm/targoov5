@@ -167,6 +167,7 @@ pub struct LedgerRow {
     pub confidence: f32, // 1.0 = Green, 0.8 = Yellow
     pub scope3_extension: Option<Scope3Extension>,
     pub sha256_hash: String,
+    pub issa_5000: Option<crate::audit::issa_5000::Issa5000Metadata>,
     pub created_at: DateTime<Utc>,
 }
 

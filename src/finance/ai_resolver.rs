@@ -1,6 +1,7 @@
 use crate::ai_client::AiBridgeClient;
 use super::pcaf_attribution::AssetClass;
 
+#[derive(Clone)]
 pub struct AiAssetResolver {
     client: AiBridgeClient,
 }

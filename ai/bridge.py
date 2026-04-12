@@ -170,6 +170,66 @@ async def health():
         model_name=OLLAMA_MODEL if ollama_available else "unavailable"
     )
 
+@app.post("/classify_batch")
+async def classify_batch(headers: List[str]):
+    if not ollama_available:
+        return [{"matched": False, "confidence": 0.0, "method": "ollama_unavailable"} for _ in headers]
+    
+    results = []
+    for header in headers:
+        query = header.strip().lower()
+        if not query:
+            results.append({"matched": False, "confidence": 0.0, "method": "ollama"})
+            continue
+            
+        embedding = await get_embedding(query)
+        if embedding is None:
+            results.append({"matched": False, "confidence": 0.0, "method": "ollama_error"})
+            continue
+            
+        query_embedding = np.array(embedding, dtype=np.float32)
+        best_score = 0.0
+        best_meta = None
+        
+        # Search general ESG index
+        if keyword_vectors.shape[0] > 0:
+            similarities = cosine_similarity(query_embedding, keyword_vectors)
+            top_idx = int(np.argmax(similarities))
+            score = float(similarities[top_idx])
+            if score > best_score:
+                best_score = score
+                best_meta = keyword_metadata[top_idx].copy()
+        
+        # Search Scope 3 index
+        if scope3_vectors.shape[0] > 0:
+            similarities = cosine_similarity(query_embedding, scope3_vectors)
+            top_idx = int(np.argmax(similarities))
+            score = float(similarities[top_idx])
+            if score > best_score:
+                best_score = score
+                best_meta = scope3_metadata[top_idx].copy()
+        
+        CONFIDENCE_THRESHOLD = 0.35
+        if best_score >= CONFIDENCE_THRESHOLD and best_meta is not None:
+            results.append({
+                "matched": True,
+                "ghg_category": best_meta.get("ghg_category"),
+                "scope3_id": best_meta.get("scope3_id"),
+                "canonical_unit": best_meta.get("canonical_unit"),
+                "ef_value": best_meta.get("ef_value"),
+                "calc_path": best_meta.get("calc_path"),
+                "confidence": round(best_score, 4),
+                "matched_keyword": best_meta.get("keyword"),
+                "method": "ollama"
+            })
+        else:
+            results.append({
+                "matched": False,
+                "confidence": round(best_score, 4),
+                "method": "ollama"
+            })
+    return results
+
 @app.post("/classify", response_model=ClassifyResponse)
 async def classify(request: ClassifyRequest):
     if not ollama_available:

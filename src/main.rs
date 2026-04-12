@@ -1,12 +1,14 @@
 mod aggregation;
 mod ai_client;
 mod api;
+mod audit;
 mod benchmarking;
 mod compliance;
 mod db;
 mod eeio_engine;
 mod eidas;
 mod finance;
+mod flags;
 mod gemini_client;
 mod ingest;
 mod ixbrl;
@@ -17,7 +19,9 @@ mod physics;
 mod scope3_classifier;
 mod scope3_hybrid;
 mod scope3_range;
+mod taxonomy;
 mod triage;
+mod triage_context;
 
 use crate::api::{download_handler, results_handler, run_handler, status_handler, upload_handler, SharedState};
 use crate::db::{init_db, DbPool};
@@ -34,10 +38,13 @@ use tokio::sync::Mutex;
 use tower_http::cors::{Any, CorsLayer};
 use tower_http::trace::TraceLayer;
 
+use crate::ai_client::AiBridgeClient;
+
 #[derive(Clone)]
 pub struct CombinedState {
     pub app_state: SharedState,
     pub db_pool: DbPool,
+    pub ai_client: Arc<AiBridgeClient>,
 }
 
 impl FromRef<CombinedState> for SharedState {
@@ -49,6 +56,12 @@ impl FromRef<CombinedState> for SharedState {
 impl FromRef<CombinedState> for DbPool {
     fn from_ref(state: &CombinedState) -> Self {
         state.db_pool.clone()
+    }
+}
+
+impl FromRef<CombinedState> for Arc<AiBridgeClient> {
+    fn from_ref(state: &CombinedState) -> Self {
+        state.ai_client.clone()
     }
 }
 
@@ -71,10 +84,12 @@ async fn main() {
     
     // Initialize shared application state
     let app_state = Arc::new(Mutex::new(AppState::default()));
+    let ai_client = Arc::new(AiBridgeClient::new());
 
     let combined_state = CombinedState {
         app_state,
         db_pool,
+        ai_client,
     };
     
     // Configure CORS for frontend and allow all methods

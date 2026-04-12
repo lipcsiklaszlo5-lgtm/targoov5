@@ -63,6 +63,9 @@ pub struct TriageResult {
     pub matched_keyword: String,
 }
 
+use std::sync::Arc;
+
+#[derive(Clone)]
 pub struct TriageEngine {
     entries: Vec<DictionaryEntry>,
     // Optimization: Pre-computed lowercased keywords for exact matching
@@ -70,7 +73,7 @@ pub struct TriageEngine {
     // Priority buckets for iterative lookup
     scope1_2_entries: Vec<DictionaryEntry>,
     scope3_entries: Vec<DictionaryEntry>,
-    ai_client: AiBridgeClient,
+    ai_client: Arc<AiBridgeClient>,
 }
 
 impl TriageEngine {
@@ -80,7 +83,17 @@ impl TriageEngine {
             exact_index: HashMap::new(),
             scope1_2_entries: Vec::new(),
             scope3_entries: Vec::new(),
-            ai_client: AiBridgeClient::new(),
+            ai_client: Arc::new(AiBridgeClient::new()),
+        }
+    }
+
+    pub fn with_client(ai_client: Arc<AiBridgeClient>) -> Self {
+        Self {
+            entries: Vec::new(),
+            exact_index: HashMap::new(),
+            scope1_2_entries: Vec::new(),
+            scope3_entries: Vec::new(),
+            ai_client,
         }
     }
 
@@ -126,7 +139,7 @@ impl TriageEngine {
     }
 
     /// Main triage logic for a single header string
-    pub async fn triage_header(&mut self, raw_header: &str) -> Option<TriageResult> {
+    pub async fn triage_header(&mut self, raw_header: &str, raw_row: Option<&crate::ingest::RawRow>) -> Option<TriageResult> {
         let normalized = Self::normalize_header(raw_header);
         if normalized.is_empty() {
             return None;
@@ -180,9 +193,20 @@ impl TriageEngine {
 
         // 5. AI Bridge Fallback (LIVING DICTIONARY)
         if let Ok(ai_resp) = self.ai_client.classify(raw_header).await {
-            if ai_resp.matched && ai_resp.confidence > 0.8 {
+            const AI_CONFIDENCE_HIGH: f32 = 0.75;
+            const AI_CONFIDENCE_MEDIUM: f32 = 0.4;
+
+            if ai_resp.matched && ai_resp.confidence >= AI_CONFIDENCE_MEDIUM {
                 let ghg_category = ai_resp.ghg_category.unwrap_or_else(|| "Scope3".to_string());
                 let lang = detect_language(raw_header);
+                
+                // Adjust confidence for Medium tier
+                let final_confidence = if ai_resp.confidence >= AI_CONFIDENCE_HIGH {
+                    ai_resp.confidence
+                } else {
+                    ai_resp.confidence * 0.9 // Slightly penalized for estimated tier
+                };
+
                 let entry = DictionaryEntry {
                     keyword: raw_header.to_string(),
                     language: lang.clone(),
@@ -197,21 +221,37 @@ impl TriageEngine {
                     ef_jurisdiction: Some("GLOBAL".to_string()),
                     industry: "General".to_string(),
                     languages: vec![lang],
-                    confidence_default: ai_resp.confidence,
+                    confidence_default: final_confidence,
                 };
 
-                // a) Save to disk (append to dictionary.json)
-                let _ = self.save_entry_to_dictionary(&entry);
+                // a) Save to disk (append to dictionary.json) - Only for High confidence
+                if ai_resp.confidence >= AI_CONFIDENCE_HIGH {
+                    let _ = self.save_entry_to_dictionary(&entry);
+                }
 
                 // b) Update in-memory
                 self.entries.push(entry.clone());
                 self.rebuild_indexes();
 
-                return Some(self.build_result(&entry, raw_header, ai_resp.confidence, MatchMethod::Semantic));
+                return Some(self.build_result(&entry, raw_header, final_confidence, MatchMethod::Semantic));
             }
         }
 
-        // 6. Currency Heuristic Fallback
+        // 6. CONTEXT-AWARE FALLBACK (Infer from other columns)
+        if let Some(row) = raw_row {
+            if let Some((activity, confidence)) = crate::triage_context::infer_activity_from_row(row, &self.ai_client).await {
+                // Now that we have a potential activity string, we re-run triage but without the row context
+                // to avoid infinite recursion and use our regular Exact/Fuzzy/AI logic.
+                if let Some(result) = Box::pin(self.triage_header(&activity, None)).await {
+                    let mut final_result = result;
+                    final_result.confidence = confidence * 0.8; // Heavily penalize inference
+                    final_result.match_method = MatchMethod::Inferred;
+                    return Some(final_result);
+                }
+            }
+        }
+
+        // 7. Currency Heuristic Fallback
         if self.is_currency_header(&normalized) {
             let fallback_entry = self
                 .scope3_entries

@@ -11,11 +11,13 @@ pub type DbPool = Arc<Mutex<Connection>>;
 pub fn init_db() -> Result<DbPool> {
     let conn = Connection::open("./targoo_v2.db")?;
     
-    // Enable foreign keys and WAL mode for better concurrency
+    // Enable foreign keys and optimize performance for SSD
     conn.execute_batch(
         "PRAGMA foreign_keys = ON;
          PRAGMA journal_mode = WAL;
-         PRAGMA synchronous = NORMAL;",
+         PRAGMA synchronous = NORMAL;
+         PRAGMA cache_size = -65536;
+         PRAGMA temp_store = MEMORY;",
     )?;
 
     // Create runs table (metadata for each processing run)
@@ -117,6 +119,90 @@ pub fn init_db() -> Result<DbPool> {
     )?;
 
     Ok(Arc::new(Mutex::new(conn)))
+}
+
+/// Inserts multiple LedgerRows into the database within a single transaction
+pub fn bulk_insert_ledger(conn: &mut Connection, run_id: &str, rows: &[LedgerRow]) -> Result<()> {
+    let tx = conn.transaction()?;
+    
+    {
+        let mut stmt = tx.prepare_cached(
+            "INSERT INTO ledger (
+                row_id, run_id, source_file, raw_row_index, raw_header,
+                raw_value, raw_unit, converted_value, converted_unit,
+                assumed_unit, ghg_scope, ghg_category, ghg_subcategory,
+                emission_factor, ef_source, ef_jurisdiction, gwp_applied,
+                tco2e, confidence, scope3_extension, sha256_hash, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        )?;
+
+        for row in rows {
+            let scope3_json = if let Some(ext) = &row.scope3_extension {
+                serde_json::to_string(ext)?
+            } else {
+                "null".to_string()
+            };
+
+            stmt.execute(params![
+                row.row_id.to_string(),
+                run_id,
+                row.source_file,
+                row.raw_row_index,
+                row.raw_header,
+                row.raw_value,
+                row.raw_unit,
+                row.converted_value,
+                row.converted_unit,
+                row.assumed_unit,
+                format!("{:?}", row.ghg_scope),
+                row.ghg_category,
+                row.ghg_subcategory,
+                row.emission_factor,
+                row.ef_source,
+                format!("{:?}", row.ef_jurisdiction),
+                row.gwp_applied,
+                row.tco2e,
+                row.confidence,
+                scope3_json,
+                row.sha256_hash,
+                row.created_at.to_rfc3339(),
+            ])?;
+        }
+    }
+
+    tx.commit()?;
+    Ok(())
+}
+
+/// Inserts multiple QuarantineRows into the database within a single transaction
+pub fn bulk_insert_quarantine(conn: &mut Connection, run_id: &str, rows: &[QuarantineRow]) -> Result<()> {
+    let tx = conn.transaction()?;
+
+    {
+        let mut stmt = tx.prepare_cached(
+            "INSERT INTO quarantine (
+                row_id, run_id, source_file, raw_row_index, raw_header,
+                raw_value, error_reason, suggested_fix, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        )?;
+
+        for row in rows {
+            stmt.execute(params![
+                row.row_id.to_string(),
+                run_id,
+                row.source_file,
+                row.raw_row_index,
+                row.raw_header,
+                row.raw_value,
+                format!("{:?}", row.error_reason),
+                row.suggested_fix,
+                row.created_at.to_rfc3339(),
+            ])?;
+        }
+    }
+
+    tx.commit()?;
+    Ok(())
 }
 
 /// Inserts a LedgerRow into the database within a transaction

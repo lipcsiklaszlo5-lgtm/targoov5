@@ -22,19 +22,21 @@ pub struct ClassifyResponse {
     pub method: String,
 }
 
+#[derive(Clone)]
 pub struct AiBridgeClient {
     client: Client,
-    endpoint: String,
+    base_url: String,
 }
 
 impl AiBridgeClient {
     pub fn new() -> Self {
         Self {
             client: Client::builder()
-                .timeout(Duration::from_secs(30))
+                .pool_max_idle_per_host(16)
+                .timeout(Duration::from_secs(60))
                 .build()
                 .expect("Failed to build AI client"),
-            endpoint: "http://localhost:9000/classify".to_string(),
+            base_url: "http://localhost:9000".to_string(),
         }
     }
 
@@ -44,11 +46,23 @@ impl AiBridgeClient {
         };
 
         let resp = self.client
-            .post(&self.endpoint)
+            .post(&format!("{}/classify", self.base_url))
             .json(&req)
             .send()
             .await?
             .json::<ClassifyResponse>()
+            .await?;
+
+        Ok(resp)
+    }
+
+    pub async fn classify_batch(&self, headers: &[String]) -> Result<Vec<ClassifyResponse>> {
+        let resp = self.client
+            .post(&format!("{}/classify_batch", self.base_url))
+            .json(headers)
+            .send()
+            .await?
+            .json::<Vec<ClassifyResponse>>()
             .await?;
 
         Ok(resp)

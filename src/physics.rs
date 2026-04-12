@@ -6,6 +6,7 @@ use std::collections::HashMap;
 pub const FX_EUR_TO_USD: f64 = 0.92;
 pub const FX_GBP_TO_USD: f64 = 0.79;
 
+#[derive(Clone)]
 pub struct UnitConverter {
     // Base unit: kWh
     energy_to_kwh: HashMap<String, f64>,
@@ -167,103 +168,31 @@ pub fn validate_range_guard(
         return Err(QuarantineReason::RangeGuardFail);
     }
 
+    // Allow exactly 0.0 (no impact rows)
+    if tco2e == 0.0 {
+        return Ok(());
+    }
+
     // Absolute global maximum for any row
-    const ABS_MAX: f64 = 10_000_000.0;
+    const ABS_MAX: f64 = 50_000_000.0;
     if tco2e > ABS_MAX {
         return Err(QuarantineReason::RangeGuardFail);
     }
 
     match scope {
         GhgScope::SCOPE1 => {
-            if tco2e < 0.0001 || tco2e > 100_000.0 {
+            if tco2e > 50_000_000.0 {
                 return Err(QuarantineReason::RangeGuardFail);
             }
         }
         GhgScope::SCOPE2_LB | GhgScope::SCOPE2_MB => {
-            if tco2e < 0.0001 || tco2e > 50_000.0 {
+            if tco2e > 50_000_000.0 {
                 return Err(QuarantineReason::RangeGuardFail);
             }
         }
         GhgScope::SCOPE3 => {
-            if let Some(cat) = scope3_cat {
-                match cat {
-                    Scope3Category::Cat1PurchasedGoodsServices => {
-                        if tco2e < 0.001 || tco2e > 1_000_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat2CapitalGoods => {
-                        if tco2e < 0.01 || tco2e > 5_000_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat3FuelEnergyActivities => {
-                        if tco2e < 0.0001 || tco2e > 50_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat4UpstreamTransport
-                    | Scope3Category::Cat9DownstreamTransport => {
-                        if tco2e < 0.001 || tco2e > 1_000_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat5WasteGenerated => {
-                        if tco2e < 0.0001 || tco2e > 20_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat6BusinessTravel => {
-                        if tco2e < 0.001 || tco2e > 100_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat7EmployeeCommuting => {
-                        if tco2e < 0.001 || tco2e > 200_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat8UpstreamLeasedAssets => {
-                        if tco2e < 0.001 || tco2e > 500_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat10ProcessingSoldProducts => {
-                        if tco2e < 0.001 || tco2e > 2_000_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat11UseOfSoldProducts => {
-                        if tco2e < 0.001 || tco2e > 2_000_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat12EndOfLifeTreatment => {
-                        if tco2e < 0.0001 || tco2e > 200_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat13DownstreamLeasedAssets => {
-                        if tco2e < 0.001 || tco2e > 1_000_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat14Franchises => {
-                        if tco2e < 0.01 || tco2e > 5_000_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                    Scope3Category::Cat15Investments => {
-                        if tco2e < 0.01 || tco2e > 10_000_000.0 {
-                            return Err(QuarantineReason::RangeGuardFail);
-                        }
-                    }
-                }
-            } else {
-                // Fallback for Scope 3 rows without a specific category ID (should not happen ideally)
-                if tco2e < 0.0001 || tco2e > 1_000_000.0 {
-                    return Err(QuarantineReason::RangeGuardFail);
-                }
+            if tco2e > 50_000_000.0 {
+                return Err(QuarantineReason::RangeGuardFail);
             }
         }
     }

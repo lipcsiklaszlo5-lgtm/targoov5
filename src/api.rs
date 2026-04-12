@@ -1,7 +1,9 @@
 use crate::aggregation::Aggregator;
 use crate::benchmarking::{IndustryBenchmark, PeerComparison};
 use crate::compliance::{ObligationStatus, OmnibusValidator};
-use crate::db::{create_run, insert_ledger_row, insert_quarantine_row, update_run_status, DbPool};
+use crate::db::{
+    bulk_insert_ledger, bulk_insert_quarantine, create_run, update_run_status, DbPool,
+};
 use crate::finance::risk_analytics::{CarbonRiskMetrics, PortfolioAsset};
 use crate::gemini_client::GeminiClient;
 use crate::ingest::{IngestionEngine, RawRow};
@@ -16,6 +18,7 @@ use axum::{
     response::{IntoResponse, Response},
     Json,
 };
+use futures::stream::{self, StreamExt};
 use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::Mutex;
@@ -64,6 +67,7 @@ pub async fn upload_handler(
 pub async fn run_handler(
     State(state): State<SharedState>,
     State(db_pool): State<DbPool>,
+    State(ai_client): State<Arc<crate::ai_client::AiBridgeClient>>,
     Json(payload): Json<RunRequest>,
 ) -> Result<impl IntoResponse, AppError> {
     let run_id = Uuid::new_v4().to_string();
@@ -88,11 +92,13 @@ pub async fn run_handler(
     let db_clone = db_pool.clone();
     let run_id_clone = run_id.clone();
     let deep_mode = payload.deep_mode;
+    let ai_client_clone = ai_client.clone();
     
     tokio::spawn(async move {
         if let Err(e) = process_pipeline(
             state_clone.clone(),
             db_clone,
+            ai_client_clone,
             run_id_clone,
             payload.jurisdiction,
             payload.language,
@@ -117,6 +123,7 @@ pub async fn run_handler(
 async fn process_pipeline(
     state: SharedState,
     db_pool: DbPool,
+    ai_client: Arc<crate::ai_client::AiBridgeClient>,
     run_id: String,
     jurisdiction: Jurisdiction,
     language: String,
@@ -136,7 +143,7 @@ async fn process_pipeline(
         state_guard.progress_message = Some("Loading emission factor dictionary...".to_string());
     }
     
-    let mut triage_engine = TriageEngine::new();
+    let mut triage_engine = TriageEngine::with_client(ai_client);
     let dict_content = std::fs::read_to_string("data/dictionary.json")?;
     triage_engine.load_from_json(&dict_content)?;
     
@@ -163,22 +170,77 @@ async fn process_pipeline(
         state_guard.progress_message = Some(format!("Processing {} rows...", all_raw_rows.len()));
     }
     
-    // Step 4: Process rows into ledger/quarantine
+    // Step 4: Process rows into ledger/quarantine (Parallel)
+    const CONCURRENT_TASKS: usize = 16;
+    
+    let process_results: Vec<ProcessResult> = stream::iter(all_raw_rows)
+        .map(|raw_row| {
+            let mut lp = ledger_processor.clone();
+            let mut te = triage_engine.clone();
+            let rid = run_id.clone();
+            async move {
+                // Wrap in tokio::spawn to offload to the multithreaded runtime
+                tokio::spawn(async move {
+                    lp.process_row(&rid, &raw_row, &mut te, jurisdiction).await
+                })
+                .await
+                .unwrap_or_else(|e| {
+                    Ok(Some(ProcessResult::Quarantine(crate::models::QuarantineRow {
+                        row_id: Uuid::new_v4(),
+                        source_file: "Panic".to_string(),
+                        raw_row_index: 0,
+                        raw_header: "N/A".to_string(),
+                        raw_value: "N/A".to_string(),
+                        error_reason: crate::models::QuarantineReason::ParseError,
+                        suggested_fix: Some(format!("Worker Panic: {:?}", e)),
+                        created_at: chrono::Utc::now(),
+                    })))
+                })
+            }
+        })
+        .buffer_unordered(CONCURRENT_TASKS)
+        .filter_map(|res| async {
+            match res {
+                Ok(Some(pr)) => Some(pr),
+                _ => None,
+            }
+        })
+        .collect()
+        .await;
+
     let mut ledger_rows = Vec::new();
     let mut quarantine_rows = Vec::new();
     
-    for raw_row in all_raw_rows {
-        if let Some(result) = ledger_processor.process_row(&run_id, &raw_row, &mut triage_engine, jurisdiction).await? {
-            match result {
-                ProcessResult::Ledger(row) => {
-                    ledger_rows.push(row);
-                }
-                ProcessResult::Quarantine(row) => {
-                    eprintln!("Row quarantined: {} - Reason: {:?} - Fix: {:?}", row.raw_header, row.error_reason, row.suggested_fix);
-                    quarantine_rows.push(row);
-                }
+    for result in process_results {
+        match result {
+            ProcessResult::Ledger(row) => ledger_rows.push(row),
+            ProcessResult::Quarantine(row) => {
+                quarantine_rows.push(row);
             }
         }
+    }
+
+    // Step 4.5: Re-calculate SHA-256 chain (Sequential)
+    // Sort rows by raw_row_index to maintain deterministic chain
+    ledger_rows.sort_by_key(|r| r.raw_row_index);
+    
+    let mut prev_hash = String::new();
+    for row in &mut ledger_rows {
+        let hash_input = format!(
+            "{}{}{}{}{:.8}{:?}{:.4}",
+            prev_hash,
+            row.raw_row_index,
+            row.raw_header,
+            row.raw_value,
+            row.tco2e,
+            row.scope3_extension.as_ref().map(|e| e.category_id).unwrap_or(0),
+            row.confidence
+        );
+        use sha2::Digest;
+        let mut hasher = sha2::Sha256::new();
+        hasher.update(hash_input.as_bytes());
+        row.sha256_hash = hex::encode(hasher.finalize());
+        prev_hash = row.sha256_hash.clone();
     }
     
     {
@@ -190,12 +252,8 @@ async fn process_pipeline(
     // Step 5: Write to database
     {
         let mut conn = db_pool.lock().unwrap();
-        for row in &ledger_rows {
-            insert_ledger_row(&mut conn, &run_id, row)?;
-        }
-        for row in &quarantine_rows {
-            insert_quarantine_row(&mut conn, &run_id, row)?;
-        }
+        bulk_insert_ledger(&mut conn, &run_id, &ledger_rows)?;
+        bulk_insert_quarantine(&mut conn, &run_id, &quarantine_rows)?;
         update_run_status(&mut conn, &run_id, "completed")?;
     }
     
