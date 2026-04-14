@@ -1,31 +1,7 @@
-mod aggregation;
-mod ai_client;
-mod api;
-mod audit;
-mod benchmarking;
-mod compliance;
-mod db;
-mod eeio_engine;
-mod eidas;
-mod finance;
-mod flags;
-mod gemini_client;
-mod ingest;
-mod ixbrl;
-mod ledger;
-mod models;
-mod output_factory;
-mod physics;
-mod scope3_classifier;
-mod scope3_hybrid;
-mod scope3_range;
-mod taxonomy;
-mod triage;
-mod triage_context;
-
-use crate::api::{download_handler, results_handler, run_handler, status_handler, upload_handler, SharedState};
-use crate::db::{init_db, DbPool};
-use crate::models::AppState;
+use targoo_v2::api::{download_handler, results_handler, run_handler, status_handler, upload_handler, SharedState};
+use targoo_v2::db::{init_db, DbPool};
+use targoo_v2::models::AppState;
+use targoo_v2::ai_client::AiBridgeClient;
 use axum::{
     extract::FromRef,
     routing::{get, post},
@@ -37,8 +13,6 @@ use std::sync::Arc;
 use tokio::sync::Mutex;
 use tower_http::cors::{Any, CorsLayer};
 use tower_http::trace::TraceLayer;
-
-use crate::ai_client::AiBridgeClient;
 
 #[derive(Clone)]
 pub struct CombinedState {

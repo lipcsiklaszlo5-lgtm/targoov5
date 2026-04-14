@@ -1,0 +1,1001 @@
+Verbrauch,Menge,Einheit,Kosten (EUR),Lieferant,Datum,Kommentar,Scope,Emissionsfaktor,N/A,,Áramfogyasztás, ,Company ID
+Strom,"6.336,84",kWh,3168.42,Supplier 3,2024-04-08,geschätzt,Scope 2,0.808,N/A,,Ja, ,COMP-2995
+Gewerbeimmobilien,6332.15,EUR,,Supplier 1,2024-10-20,,Scope 3 Cat 15,1.287,N/A,,Nein, ,COMP-8744
+Flug,9523.17,night,4761.59,Supplier 18,2024-09-16,Rechnung,Scope 3 Cat 6,0.607,N/A,,Nein, ,COMP-7842
+Fernwärme,7137.16,kWh,3568.58,Supplier 20,2024-07-25,,Scope 2,1.958,N/A,,Nein, ,COMP-8836
+Homeoffice,"5.232,62",hour,2616.31,Supplier 13,2024-10-10,geschätzt,Scope 3 Cat 7,0.712,N/A,,Nein, ,COMP-6005
+Einkauf,1272.44,USD,,Supplier 5,2024-08-15,genau,Scope 3 Cat 1,2.027,N/A,,Nein, ,COMP-5658
+Strom,8647.35,kWh,4323.68,Supplier 10,2024-06-21,genau,Scope 2,2.297,N/A,,Ja, ,COMP-5610
+Diesel,6370.99,kg,3185.49,Supplier 16,2024-12-15,,Scope 1,0.957,N/A,,Nein, ,COMP-5002
+Einkauf,2196.07,EUR,,Supplier 1,2024-07-21,Rechnung,Scope 3 Cat 1,1.970,N/A,,Nein, ,COMP-4881
+Homeoffice,3548.21,km,1774.11,Supplier 10,2024-02-26,Rechnung,Scope 3 Cat 7,2.056,N/A,,Nein, ,COMP-3199
+Ökostrom,8778.66,kWh,4389.33,Supplier 3,2024-01-02,,Scope 2,2.484,N/A,,Nein, ,COMP-1672
+Fernwärme,4130.68,MWh,2065.34,Supplier 9,2024-10-08,geschätzt,Scope 2,1.946,N/A,,Nein, ,COMP-3937
+Vorgelagerte Energie,"7.683,96",L,3841.98,Supplier 18,2024-11-03,geschätzt,Scope 3 Cat 3,1.474,N/A,,Nein, ,COMP-1614
+Hotel,ca. 3456.2,night,1728.08,Supplier 5,2024-05-13,Rechnung,Scope 3 Cat 6,0.756,N/A,,Nein, ,COMP-9041
+Gewerbeimmobilien,1220.88,USD,,Supplier 3,2024-03-06,Rechnung,Scope 3 Cat 15,0.761,N/A,,Nein, ,COMP-5685
+Ökostrom,3614.61,kWh,1807.30,Supplier 13,2024-03-27,,Scope 2,1.703,N/A,,Nein, ,COMP-1326
+Fernwärme,3563.65,kWh,1781.83,Supplier 17,2024-02-21,genau,Scope 2,1.019,N/A,,Nein, ,COMP-8738
+Fernwärme,6094.21,kWh,3047.10,Supplier 16,2024-01-18,geschätzt,Scope 2,1.066,N/A,,Nein, ,COMP-3843
+Well-to-Tank,ca. 6343.3,kWh,3171.63,Supplier 5,2024-08-25,geschätzt,Scope 3 Cat 3,0.859,N/A,,Nein, ,COMP-9108
+Lieferant A,4515.71,EUR,,Supplier 17,2024-04-19,,Scope 3 Cat 1,2.448,N/A,,Nein, ,COMP-7380
+Strom,8875.73,kWh,4437.87,Supplier 11,2024-08-10,,Scope 2,1.865,N/A,,Ja, ,COMP-1922
+Strom,5264.48,MWh,2632.24,Supplier 14,2024-04-16,geschätzt,Scope 2,1.438,N/A,,Ja, ,COMP-7100
+Diesel,7282.07,L,3641.04,Supplier 3,2024-04-03,geschätzt,Scope 1,2.091,N/A,,Nein, ,COMP-7556
+Ökostrom,"2.332,99",MWh,1166.50,Supplier 17,2024-06-20,geschätzt,Scope 2,2.299,N/A,,Nein, ,COMP-5496
+Fernwärme,3090.66,kWh,1545.33,Supplier 8,2024-09-15,geschätzt,Scope 2,1.991,N/A,,Nein, ,COMP-9621
+Supplier C,ca. 2911.5,EUR,,Supplier 5,2024-09-18,,Scope 3 Cat 1,1.463,N/A,,Nein, ,COMP-2045
+Bahn,2178.16,night,1089.08,Supplier 1,2024-11-23,geschätzt,Scope 3 Cat 6,0.197,N/A,,Nein, ,COMP-3039
+Erdgas,ca. 956.6,kWh,478.28,Supplier 18,2024-12-14,geschätzt,Scope 1,0.233,N/A,,Nein, ,COMP-1877
+Diesel,8251.91,L,4125.96,Supplier 14,2024-04-18,,Scope 1,1.045,N/A,,Nein, ,COMP-2770
+Diesel,3814.84,kg,1907.42,Supplier 3,2024-07-01,genau,Scope 1,1.419,N/A,,Nein, ,COMP-4797
+Heizöl,1353.20,L,676.60,Supplier 7,2024-11-03,,Scope 1,1.314,N/A,,Nein, ,COMP-4584
+Heizöl,195.91,m3,97.96,Supplier 18,2024-04-26,geschätzt,Scope 1,1.708,N/A,,Nein, ,COMP-2961
+,,,,,,,,,,,,,
+Flug,9357.55,km,4678.77,Supplier 9,2024-09-19,,Scope 3 Cat 6,0.690,N/A,,Nein, ,COMP-7032
+Ökostrom,9005.61,MWh,4502.80,Supplier 8,2024-10-27,genau,Scope 2,0.348,N/A,,Nein, ,COMP-4465
+Erdgas,476.14,m3,238.07,Supplier 13,2024-12-05,,Scope 1,1.693,N/A,,Nein, ,COMP-8178
+Biomasse,962.44,kg,481.22,Supplier 6,2024-07-06,,Scope 1,1.966,N/A,,Nein, ,COMP-9343
+Ökostrom,2280.04,MWh,1140.02,Supplier 13,2024-12-01,,Scope 2,1.318,N/A,,Nein, ,COMP-5971
+Diesel,5231.43,L,2615.72,Supplier 14,2024-11-13,,Scope 1,2.417,N/A,,Nein, ,COMP-7732
+,,,,,,,,,,,,,
+Diesel,"3.017,82",L,1508.91,Supplier 1,2024-04-30,,Scope 1,1.171,N/A,,Nein, ,COMP-6860
+Lieferant A,"5.094,07",USD,,Supplier 20,2024-01-30,Rechnung,Scope 3 Cat 1,2.360,N/A,,Nein, ,COMP-2893
+Bahn,5272.61,pkm,2636.31,Supplier 5,2024-02-02,,Scope 3 Cat 6,0.100,N/A,,Nein, ,COMP-1451
+Fernwärme,1434.21,MWh,717.10,Supplier 8,2024-08-11,Rechnung,Scope 2,2.330,N/A,,Nein, ,COMP-3546
+Beschaffung,ca. 6088.2,USD,,Supplier 9,2024-03-31,genau,Scope 3 Cat 1,2.053,N/A,,Nein, ,COMP-3260
+Biomasse,3702.17,L,1851.09,Supplier 15,2024-04-28,,Scope 1,0.703,N/A,,Nein, ,COMP-3286
+Strom,6107.94,kWh,3053.97,Supplier 11,2024-01-08,Rechnung,Scope 2,2.391,N/A,,Ja, ,COMP-6585
+Heizöl,601.76,L,300.88,Supplier 7,2024-11-07,,Scope 1,2.266,N/A,,Nein, ,COMP-4319
+Flug,1262.93,night,631.46,Supplier 3,2024-04-21,,Scope 3 Cat 6,2.081,N/A,,Nein, ,COMP-8540
+Lieferant A,"8.092,09",EUR,,Supplier 7,2024-10-30,,Scope 3 Cat 1,1.730,N/A,,Nein, ,COMP-1804
+Biomasse,7681.43,L,3840.72,Supplier 17,2024-05-28,genau,Scope 1,0.654,N/A,,Nein, ,COMP-1024
+Unternehmenskredite,"7.933,15",USD,,Supplier 10,2024-03-13,,Scope 3 Cat 15,1.891,N/A,,Nein, ,COMP-8061
+Ökostrom,504.76,kWh,252.38,Supplier 7,2024-10-09,geschätzt,Scope 2,2.348,N/A,,Nein, ,COMP-8083
+Homeoffice,ca. 1320.5,km,660.26,Supplier 18,2024-09-11,,Scope 3 Cat 7,0.706,N/A,,Nein, ,COMP-5550
+Eingangsfracht,2418.92,km,1209.46,Supplier 7,2024-11-08,Rechnung,Scope 3 Cat 4,0.774,N/A,,Nein, ,COMP-2312
+Fernwärme,9040.53,kWh,4520.27,Supplier 17,2024-12-02,Rechnung,Scope 2,1.617,N/A,,Nein, ,COMP-7082
+Strom,3881.62,MWh,1940.81,Supplier 15,2024-04-27,,Scope 2,2.424,N/A,,Ja, ,COMP-1076
+Hotel,628.51,night,314.25,Supplier 14,2024-05-31,geschätzt,Scope 3 Cat 6,0.349,N/A,,Nein, ,COMP-3783
+Lieferant B,5083.86,EUR,,Supplier 10,2024-02-12,,Scope 3 Cat 1,1.902,N/A,,Nein, ,COMP-6659
+Lieferant B,"320,77",USD,,Supplier 6,2024-10-02,,Scope 3 Cat 1,1.564,N/A,,Nein, ,COMP-3422
+LKW-Transport,4561.69,km,2280.84,Supplier 13,2024-11-28,,Scope 3 Cat 4,1.531,N/A,,Nein, ,COMP-8677
+Lieferant B,71.85,EUR,,Supplier 9,2024-01-16,genau,Scope 3 Cat 1,1.156,N/A,,Nein, ,COMP-3325
+Rohmaterial,8627.45,USD,,Supplier 3,2024-12-23,,Scope 3 Cat 1,2.267,N/A,,Nein, ,COMP-2347
+Strom,4473.83,MWh,2236.91,Supplier 9,2024-04-10,genau,Scope 2,0.494,N/A,,Ja, ,COMP-1884
+Kohle,2304.16,L,1152.08,Supplier 14,2024-09-19,,Scope 1,1.997,N/A,,Nein, ,COMP-1699
+Kohle,6914.89,m3,3457.45,Supplier 2,2024-11-19,,Scope 1,2.494,N/A,,Nein, ,COMP-7425
+Strom,"5.674,16",kWh,2837.08,Supplier 16,2024-11-21,,Scope 2,0.322,N/A,,Ja, ,COMP-9388
+Seefracht,6282.63,tkm,3141.31,Supplier 20,2024-09-27,,Scope 3 Cat 4,1.957,N/A,,Nein, ,COMP-8657
+Ökostrom,4599.87,MWh,2299.94,Supplier 3,2024-07-20,geschätzt,Scope 2,1.594,N/A,,Nein, ,COMP-7844
+Lieferant B,"2.754,46",USD,,Supplier 19,2024-07-06,Rechnung,Scope 3 Cat 1,0.112,N/A,,Nein, ,COMP-6227
+Vorgelagerte Energie,2858.16,kWh,1429.08,Supplier 17,2024-08-12,genau,Scope 3 Cat 3,2.363,N/A,,Nein, ,COMP-6630
+Fernwärme,181.95,MWh,90.97,Supplier 19,2024-03-17,,Scope 2,1.173,N/A,,Nein, ,COMP-4146
+Fernwärme,9473.04,MWh,4736.52,Supplier 4,2024-11-08,,Scope 2,2.087,N/A,,Nein, ,COMP-7671
+Diesel,4329.30,L,2164.65,Supplier 15,2024-03-02,,Scope 1,1.242,N/A,,Nein, ,COMP-1272
+Erdgas,8864.95,m3,4432.47,Supplier 6,2024-12-29,Rechnung,Scope 1,1.990,N/A,,Nein, ,COMP-8966
+Lieferant A,ca. 2905.0,EUR,,Supplier 12,2024-06-10,,Scope 3 Cat 1,2.229,N/A,,Nein, ,COMP-7974
+Ökostrom,2760.16,MWh,1380.08,Supplier 9,2024-08-20,geschätzt,Scope 2,1.035,N/A,,Nein, ,COMP-8790
+Hotel,9476.36,night,4738.18,Supplier 14,2024-10-24,geschätzt,Scope 3 Cat 6,0.907,N/A,,Nein, ,COMP-5282
+Biomasse,3897.42,kg,1948.71,Supplier 6,2024-05-06,,Scope 1,0.188,N/A,,Nein, ,COMP-8791
+Eingangsfracht,463.96,km,231.98,Supplier 20,2024-08-04,,Scope 3 Cat 4,1.776,N/A,,Nein, ,COMP-2613
+Fernwärme,1184.40,kWh,592.20,Supplier 12,2024-02-05,genau,Scope 2,0.902,N/A,,Nein, ,COMP-7181
+Biomasse,2869.89,kg,1434.94,Supplier 14,2024-05-22,geschätzt,Scope 1,2.487,N/A,,Nein, ,COMP-6936
+Strom,353.06,kWh,176.53,Supplier 13,2024-11-07,,Scope 2,1.039,N/A,,Ja, ,COMP-9799
+Fernwärme,6688.99,kWh,3344.49,Supplier 20,2024-04-19,,Scope 2,2.307,N/A,,Nein, ,COMP-5196
+Ökostrom,2496.82,kWh,1248.41,Supplier 7,2024-08-10,,Scope 2,1.718,N/A,,Nein, ,COMP-8541
+Diesel,984.06,kWh,492.03,Supplier 13,2024-11-30,,Scope 1,2.261,N/A,,Nein, ,COMP-5412
+Lieferant A,9574.25,EUR,,Supplier 9,2024-11-01,geschätzt,Scope 3 Cat 1,1.218,N/A,,Nein, ,COMP-7376
+Bahn,2651.67,pkm,1325.83,Supplier 20,2024-11-30,genau,Scope 3 Cat 6,0.465,N/A,,Nein, ,COMP-7377
+Erdgas,8564.69,m3,4282.34,Supplier 15,2024-12-30,,Scope 1,0.412,N/A,,Nein, ,COMP-4871
+Diesel,"5.227,22",kg,2613.61,Supplier 7,2024-07-07,,Scope 1,0.436,N/A,,Nein, ,COMP-4740
+Strom,4669.30,MWh,2334.65,Supplier 9,2024-08-08,,Scope 2,0.372,N/A,,Ja, ,COMP-1434
+Kohle,8991.46,kWh,4495.73,Supplier 10,2024-11-07,genau,Scope 1,1.756,N/A,,Nein, ,COMP-6377
+Fernwärme,1432.85,kWh,716.43,Supplier 7,2024-12-15,Rechnung,Scope 2,2.087,N/A,,Nein, ,COMP-2780
+Einkauf,3842.69,USD,,Supplier 6,2024-07-16,genau,Scope 3 Cat 1,0.423,N/A,,Nein, ,COMP-5434
+Heizöl,1312.59,L,656.30,Supplier 15,2024-09-08,,Scope 1,2.091,N/A,,Nein, ,COMP-7154
+Ökostrom,"6.361,42",kWh,3180.71,Supplier 16,2024-11-15,genau,Scope 2,1.458,N/A,,Nein, ,COMP-9329
+Einkauf,6797.42,EUR,,Supplier 9,2024-07-28,genau,Scope 3 Cat 1,2.390,N/A,,Nein, ,COMP-3564
+Gewerbeimmobilien,279.59,EUR,,Supplier 15,2024-09-06,,Scope 3 Cat 15,0.490,N/A,,Nein, ,COMP-3711
+Ökostrom,7496.22,MWh,3748.11,Supplier 7,2024-03-18,Rechnung,Scope 2,2.219,N/A,,Nein, ,COMP-3641
+Fernwärme,2418.65,MWh,1209.33,Supplier 15,2024-01-26,genau,Scope 2,1.087,N/A,,Nein, ,COMP-9357
+Ökostrom,3013.99,kWh,1506.99,Supplier 14,2024-09-05,Rechnung,Scope 2,0.830,N/A,,Nein, ,COMP-8497
+Benzin,159.20,L,79.60,Supplier 4,2024-10-11,Rechnung,Scope 1,1.244,N/A,,Nein, ,COMP-2022
+Vorgelagerte Energie,5604.44,kWh,2802.22,Supplier 11,2024-11-11,genau,Scope 3 Cat 3,0.303,N/A,,Nein, ,COMP-9824
+Fernwärme,2524.73,kWh,1262.36,Supplier 11,2024-11-14,,Scope 2,1.917,N/A,,Nein, ,COMP-1954
+Beschaffung,8987.22,USD,,Supplier 4,2024-08-25,geschätzt,Scope 3 Cat 1,1.131,N/A,,Nein, ,COMP-1555
+Einkauf,7397.62,EUR,,Supplier 7,2024-04-04,,Scope 3 Cat 1,1.434,N/A,,Nein, ,COMP-9037
+Well-to-Tank,8728.97,L,4364.49,Supplier 1,2024-10-24,,Scope 3 Cat 3,0.935,N/A,,Nein, ,COMP-5077
+Ökostrom,2211.78,MWh,1105.89,Supplier 7,2024-09-24,Rechnung,Scope 2,2.215,N/A,,Nein, ,COMP-9737
+Dienstreise,9160.48,night,4580.24,Supplier 7,2024-01-28,Rechnung,Scope 3 Cat 6,1.800,N/A,,Nein, ,COMP-3010
+Fernwärme,4781.28,MWh,2390.64,Supplier 15,2024-06-10,,Scope 2,1.730,N/A,,Nein, ,COMP-7944
+Hotel,ca. 4575.1,night,2287.56,Supplier 15,2024-07-02,,Scope 3 Cat 6,0.872,N/A,,Nein, ,COMP-3445
+Strom,6389.83,kWh,3194.91,Supplier 11,2024-06-29,genau,Scope 2,0.506,N/A,,Ja, ,COMP-3186
+Pendeln,2846.71,hour,1423.35,Supplier 1,2024-02-08,,Scope 3 Cat 7,2.337,N/A,,Nein, ,COMP-3387
+Supplier C,600.80,USD,,Supplier 19,2024-03-30,Rechnung,Scope 3 Cat 1,0.517,N/A,,Nein, ,COMP-2078
+Flug,"5.453,05",km,2726.53,Supplier 9,2024-02-28,Rechnung,Scope 3 Cat 6,0.729,N/A,,Nein, ,COMP-4892
+Well-to-Tank,6612.18,kWh,3306.09,Supplier 3,2024-02-02,genau,Scope 3 Cat 3,1.469,N/A,,Nein, ,COMP-6142
+Strom,8307.47,kWh,4153.73,Supplier 13,2024-04-02,,Scope 2,2.282,N/A,,Ja, ,COMP-6856
+Strom,5639.79,MWh,2819.89,Supplier 11,2024-10-05,genau,Scope 2,1.699,N/A,,Ja, ,COMP-1702
+Flug,4576.49,pkm,2288.24,Supplier 7,2024-01-14,geschätzt,Scope 3 Cat 6,1.848,N/A,,Nein, ,COMP-9193
+Erdgas,1121.88,m3,560.94,Supplier 13,2024-03-26,,Scope 1,2.109,N/A,,Nein, ,COMP-9614
+Lieferant B,136.70,USD,,Supplier 18,2024-07-10,genau,Scope 3 Cat 1,0.736,N/A,,Nein, ,COMP-8461
+Diesel,565.32,m3,282.66,Supplier 13,2024-07-24,genau,Scope 1,1.366,N/A,,Nein, ,COMP-1043
+Homeoffice,8925.95,hour,4462.98,Supplier 20,2024-11-26,,Scope 3 Cat 7,0.692,N/A,,Nein, ,COMP-8235
+Unternehmenskredite,7836.60,USD,,Supplier 2,2024-03-31,,Scope 3 Cat 15,0.671,N/A,,Nein, ,COMP-2878
+Lieferant A,1488.74,EUR,,Supplier 8,2024-08-10,Rechnung,Scope 3 Cat 1,2.077,N/A,,Nein, ,COMP-1646
+Lieferant A,ca. 2246.7,EUR,,Supplier 8,2024-06-05,genau,Scope 3 Cat 1,1.939,N/A,,Nein, ,COMP-3293
+Strom,8598.45,MWh,4299.22,Supplier 16,2024-10-16,genau,Scope 2,1.339,N/A,,Ja, ,COMP-1653
+Ökostrom,1423.58,MWh,711.79,Supplier 2,2024-10-06,,Scope 2,0.728,N/A,,Nein, ,COMP-2958
+Rohmaterial,5318.11,EUR,,Supplier 14,2024-05-20,,Scope 3 Cat 1,2.427,N/A,,Nein, ,COMP-2670
+Erdgas,7376.84,kWh,3688.42,Supplier 15,2024-02-05,,Scope 1,1.585,N/A,,Nein, ,COMP-7375
+Lieferant B,9878.84,EUR,,Supplier 19,2024-04-02,,Scope 3 Cat 1,1.027,N/A,,Nein, ,COMP-4130
+Einkauf,8574.62,USD,,Supplier 8,2024-04-28,,Scope 3 Cat 1,1.831,N/A,,Nein, ,COMP-8148
+Kohle,4653.39,kg,2326.69,Supplier 14,2024-09-15,,Scope 1,1.707,N/A,,Nein, ,COMP-7763
+Benzin,5729.14,L,2864.57,Supplier 15,2024-07-17,,Scope 1,0.306,N/A,,Nein, ,COMP-4480
+Ökostrom,4278.60,kWh,2139.30,Supplier 11,2024-03-04,,Scope 2,2.067,N/A,,Nein, ,COMP-7533
+Fernwärme,5750.21,kWh,2875.10,Supplier 1,2024-08-05,,Scope 2,0.455,N/A,,Nein, ,COMP-7889
+Diesel,8644.69,kg,4322.35,Supplier 20,2024-10-23,,Scope 1,1.435,N/A,,Nein, ,COMP-7116
+Fernwärme,ca. 2697.6,MWh,1348.78,Supplier 4,2024-03-27,genau,Scope 2,1.096,N/A,,Nein, ,COMP-1436
+Benzin,"3.446,77",L,1723.38,Supplier 1,2024-08-18,geschätzt,Scope 1,0.897,N/A,,Nein, ,COMP-2893
+Lieferant A,3299.83,EUR,,Supplier 12,2024-01-21,genau,Scope 3 Cat 1,1.272,N/A,,Nein, ,COMP-8496
+Bahn,8106.50,pkm,4053.25,Supplier 8,2024-05-05,,Scope 3 Cat 6,2.298,N/A,,Nein, ,COMP-2150
+Vorgelagerte Energie,5111.45,L,2555.72,Supplier 16,2024-07-17,Rechnung,Scope 3 Cat 3,0.683,N/A,,Nein, ,COMP-7094
+Lieferant A,9986.98,EUR,,Supplier 19,2024-06-11,geschätzt,Scope 3 Cat 1,1.061,N/A,,Nein, ,COMP-6432
+Vorgelagerte Energie,ca. 2129.5,L,1064.74,Supplier 17,2024-12-06,,Scope 3 Cat 3,1.067,N/A,,Nein, ,COMP-9105
+Einkauf,6046.90,USD,,Supplier 4,2024-05-01,geschätzt,Scope 3 Cat 1,0.550,N/A,,Nein, ,COMP-5092
+Supplier C,"5.798,17",USD,,Supplier 9,2024-03-16,geschätzt,Scope 3 Cat 1,2.030,N/A,,Nein, ,COMP-2639
+Fernwärme,5359.80,kWh,2679.90,Supplier 12,2024-06-22,,Scope 2,0.924,N/A,,Nein, ,COMP-5692
+Supplier C,9272.57,USD,,Supplier 19,2024-12-05,Rechnung,Scope 3 Cat 1,0.237,N/A,,Nein, ,COMP-7537
+Kohle,9536.11,L,4768.06,Supplier 6,2024-12-20,,Scope 1,1.872,N/A,,Nein, ,COMP-6313
+Heizöl,2111.61,L,1055.81,Supplier 3,2024-12-05,geschätzt,Scope 1,1.707,N/A,,Nein, ,COMP-6117
+Strom,1940.23,MWh,970.11,Supplier 9,2024-10-20,genau,Scope 2,2.211,N/A,,Ja, ,COMP-1927
+Fernwärme,3059.91,kWh,1529.96,Supplier 8,2024-10-04,geschätzt,Scope 2,0.187,N/A,,Nein, ,COMP-6098
+Strom,9831.28,MWh,4915.64,Supplier 3,2024-01-26,,Scope 2,1.076,N/A,,Ja, ,COMP-6965
+Gewerbeimmobilien,8448.78,EUR,,Supplier 10,2024-09-30,,Scope 3 Cat 15,0.873,N/A,,Nein, ,COMP-5680
+Lieferant B,2222.45,USD,,Supplier 15,2024-10-06,genau,Scope 3 Cat 1,2.031,N/A,,Nein, ,COMP-5682
+Beschaffung,3542.48,EUR,,Supplier 5,2024-08-31,Rechnung,Scope 3 Cat 1,1.789,N/A,,Nein, ,COMP-1194
+Lieferant B,9360.76,USD,,Supplier 7,2024-05-06,Rechnung,Scope 3 Cat 1,0.160,N/A,,Nein, ,COMP-6936
+Diesel,6926.73,kWh,3463.36,Supplier 6,2024-09-13,geschätzt,Scope 1,1.874,N/A,,Nein, ,COMP-7226
+Kohle,1672.86,kg,836.43,Supplier 14,2024-10-18,geschätzt,Scope 1,0.595,N/A,,Nein, ,COMP-3252
+Homeoffice,3068.82,km,1534.41,Supplier 4,2024-08-09,geschätzt,Scope 3 Cat 7,0.519,N/A,,Nein, ,COMP-9463
+Strom,4452.43,kWh,2226.21,Supplier 10,2024-08-16,,Scope 2,1.050,N/A,,Ja, ,COMP-7772
+,,,,,,,,,,,,,
+Benzin,ca. 6184.6,m3,3092.29,Supplier 3,2024-08-15,geschätzt,Scope 1,0.871,N/A,,Nein, ,COMP-6355
+Erdgas,4817.55,m3,2408.78,Supplier 2,2024-10-10,genau,Scope 1,1.865,N/A,,Nein, ,COMP-1144
+Benzin,7076.79,kg,3538.40,Supplier 6,2024-03-12,genau,Scope 1,0.471,N/A,,Nein, ,COMP-7661
+Strom,1188.86,MWh,594.43,Supplier 6,2024-03-10,Rechnung,Scope 2,1.527,N/A,,Ja, ,COMP-6420
+Fernwärme,9170.71,MWh,4585.35,Supplier 13,2024-11-25,genau,Scope 2,0.413,N/A,,Nein, ,COMP-7549
+Unternehmenskredite,92.74,USD,,Supplier 18,2024-07-10,,Scope 3 Cat 15,2.473,N/A,,Nein, ,COMP-6876
+Bahn,9295.09,km,4647.55,Supplier 13,2024-06-10,,Scope 3 Cat 6,0.182,N/A,,Nein, ,COMP-3540
+Fernwärme,8569.21,kWh,4284.61,Supplier 18,2024-11-20,genau,Scope 2,0.820,N/A,,Nein, ,COMP-2159
+Eingangsfracht,998.46,km,499.23,Supplier 9,2024-12-08,Rechnung,Scope 3 Cat 4,1.440,N/A,,Nein, ,COMP-3344
+Fernwärme,ca. 5765.2,kWh,2882.61,Supplier 15,2024-10-09,genau,Scope 2,0.894,N/A,,Nein, ,COMP-3773
+Pendeln,648.68,km,324.34,Supplier 15,2024-02-24,,Scope 3 Cat 7,2.182,N/A,,Nein, ,COMP-2655
+Lieferant B,9295.35,USD,,Supplier 6,2024-05-07,,Scope 3 Cat 1,1.177,N/A,,Nein, ,COMP-3354
+Benzin,"4.608,01",L,2304.00,Supplier 9,2024-04-05,,Scope 1,1.920,N/A,,Nein, ,COMP-6625
+Strom,3341.77,MWh,1670.89,Supplier 7,2024-02-05,,Scope 2,1.456,N/A,,Ja, ,COMP-7510
+Einkauf,7971.38,EUR,,Supplier 1,2024-05-15,geschätzt,Scope 3 Cat 1,1.983,N/A,,Nein, ,COMP-4917
+Unternehmenskredite,3569.68,USD,,Supplier 17,2024-06-05,Rechnung,Scope 3 Cat 15,0.428,N/A,,Nein, ,COMP-4008
+Benzin,"593,13",kWh,296.57,Supplier 1,2024-11-13,,Scope 1,1.972,N/A,,Nein, ,COMP-8538
+LKW-Transport,1457.77,tkm,728.89,Supplier 6,2024-05-25,geschätzt,Scope 3 Cat 4,2.128,N/A,,Nein, ,COMP-5594
+Benzin,1088.18,m3,544.09,Supplier 9,2024-04-30,genau,Scope 1,1.166,N/A,,Nein, ,COMP-6946
+Strom,6603.21,MWh,3301.61,Supplier 9,2024-08-09,,Scope 2,1.408,N/A,,Ja, ,COMP-1278
+Lieferant A,2032.23,USD,,Supplier 11,2024-04-20,genau,Scope 3 Cat 1,0.958,N/A,,Nein, ,COMP-8191
+Fernwärme,5718.85,kWh,2859.43,Supplier 12,2024-07-06,geschätzt,Scope 2,0.120,N/A,,Nein, ,COMP-7436
+Well-to-Tank,ca. 5986.0,L,2993.00,Supplier 2,2024-01-02,genau,Scope 3 Cat 3,0.423,N/A,,Nein, ,COMP-1559
+Flug,944.03,km,472.02,Supplier 19,2024-10-25,genau,Scope 3 Cat 6,1.233,N/A,,Nein, ,COMP-5335
+Erdgas,5844.58,L,2922.29,Supplier 18,2024-03-21,geschätzt,Scope 1,0.712,N/A,,Nein, ,COMP-5733
+Fernwärme,6273.84,MWh,3136.92,Supplier 10,2024-07-28,Rechnung,Scope 2,0.663,N/A,,Nein, ,COMP-3105
+Fernwärme,ca. 2321.1,MWh,1160.57,Supplier 4,2024-07-12,Rechnung,Scope 2,0.937,N/A,,Nein, ,COMP-7303
+Ökostrom,7755.69,MWh,3877.84,Supplier 10,2024-02-17,genau,Scope 2,1.626,N/A,,Nein, ,COMP-8540
+Diesel,8883.20,kg,4441.60,Supplier 15,2024-09-12,,Scope 1,0.213,N/A,,Nein, ,COMP-1061
+Fernwärme,3880.22,kWh,1940.11,Supplier 20,2024-04-16,,Scope 2,2.186,N/A,,Nein, ,COMP-9997
+Diesel,2500.26,kWh,1250.13,Supplier 7,2024-09-30,genau,Scope 1,0.250,N/A,,Nein, ,COMP-4099
+Flug,4709.49,km,2354.74,Supplier 3,2024-05-21,geschätzt,Scope 3 Cat 6,0.352,N/A,,Nein, ,COMP-4041
+Lieferant B,7175.56,USD,,Supplier 8,2024-10-03,genau,Scope 3 Cat 1,1.834,N/A,,Nein, ,COMP-7141
+Beteiligungen,5663.54,EUR,,Supplier 2,2024-11-15,genau,Scope 3 Cat 15,1.407,N/A,,Nein, ,COMP-8702
+Diesel,6802.15,kWh,3401.07,Supplier 5,2024-06-05,geschätzt,Scope 1,1.134,N/A,,Nein, ,COMP-4463
+Benzin,2222.20,L,1111.10,Supplier 20,2024-08-29,genau,Scope 1,0.716,N/A,,Nein, ,COMP-2080
+Vorgelagerte Energie,729.58,kWh,364.79,Supplier 2,2024-05-30,,Scope 3 Cat 3,2.225,N/A,,Nein, ,COMP-3083
+Vorgelagerte Energie,"7.386,64",L,3693.32,Supplier 9,2024-03-30,geschätzt,Scope 3 Cat 3,1.269,N/A,,Nein, ,COMP-4384
+Benzin,4311.95,kWh,2155.97,Supplier 8,2024-04-27,geschätzt,Scope 1,0.815,N/A,,Nein, ,COMP-7072
+Benzin,"1.693,91",kWh,846.95,Supplier 19,2024-11-21,geschätzt,Scope 1,0.351,N/A,,Nein, ,COMP-3541
+Fernwärme,1248.93,MWh,624.47,Supplier 20,2024-04-12,Rechnung,Scope 2,2.420,N/A,,Nein, ,COMP-1271
+,,,,,,,,,,,,,
+Homeoffice,8986.06,km,4493.03,Supplier 7,2024-03-21,geschätzt,Scope 3 Cat 7,0.463,N/A,,Nein, ,COMP-4125
+Strom,491.79,kWh,245.90,Supplier 11,2024-08-05,,Scope 2,0.853,N/A,,Ja, ,COMP-8949
+Homeoffice,5898.13,hour,2949.07,Supplier 14,2024-06-18,,Scope 3 Cat 7,0.780,N/A,,Nein, ,COMP-6249
+Dienstreise,6900.70,km,3450.35,Supplier 17,2024-12-11,,Scope 3 Cat 6,0.796,N/A,,Nein, ,COMP-1748
+,,,,,,,,,,,,,
+Ökostrom,5220.33,kWh,2610.16,Supplier 12,2024-05-15,geschätzt,Scope 2,1.597,N/A,,Nein, ,COMP-5962
+Lieferant B,7748.78,EUR,,Supplier 7,2024-11-10,Rechnung,Scope 3 Cat 1,0.182,N/A,,Nein, ,COMP-4772
+Vorgelagerte Energie,7830.10,kWh,3915.05,Supplier 6,2024-10-30,,Scope 3 Cat 3,1.227,N/A,,Nein, ,COMP-4917
+Strom,2732.98,kWh,1366.49,Supplier 11,2024-10-02,genau,Scope 2,1.201,N/A,,Ja, ,COMP-2303
+Vorgelagerte Energie,3428.93,L,1714.46,Supplier 9,2024-11-06,,Scope 3 Cat 3,2.025,N/A,,Nein, ,COMP-3665
+Fernwärme,2287.94,kWh,1143.97,Supplier 5,2024-05-08,genau,Scope 2,0.649,N/A,,Nein, ,COMP-9578
+Supplier C,2740.89,USD,,Supplier 6,2024-07-06,Rechnung,Scope 3 Cat 1,2.114,N/A,,Nein, ,COMP-7879
+Ökostrom,7818.32,MWh,3909.16,Supplier 5,2024-11-25,genau,Scope 2,1.896,N/A,,Nein, ,COMP-4108
+Lieferant A,2052.03,USD,,Supplier 7,2024-08-07,genau,Scope 3 Cat 1,2.267,N/A,,Nein, ,COMP-8327
+Rohmaterial,339.12,EUR,,Supplier 6,2024-11-08,Rechnung,Scope 3 Cat 1,1.332,N/A,,Nein, ,COMP-1072
+Eingangsfracht,3373.57,tkm,1686.78,Supplier 7,2024-10-21,Rechnung,Scope 3 Cat 4,0.160,N/A,,Nein, ,COMP-3006
+Benzin,1019.90,kg,509.95,Supplier 20,2024-01-11,genau,Scope 1,2.057,N/A,,Nein, ,COMP-2510
+Seefracht,9468.72,km,4734.36,Supplier 16,2024-06-21,,Scope 3 Cat 4,1.390,N/A,,Nein, ,COMP-6182
+Biomasse,9390.08,m3,4695.04,Supplier 13,2024-12-11,Rechnung,Scope 1,1.929,N/A,,Nein, ,COMP-4809
+Heizöl,2104.38,L,1052.19,Supplier 16,2024-08-23,geschätzt,Scope 1,2.211,N/A,,Nein, ,COMP-1110
+Homeoffice,"9.948,23",hour,4974.12,Supplier 17,2024-01-16,genau,Scope 3 Cat 7,1.997,N/A,,Nein, ,COMP-7670
+Heizöl,"6.657,61",m3,3328.80,Supplier 18,2024-06-21,genau,Scope 1,2.193,N/A,,Nein, ,COMP-2570
+Homeoffice,5596.11,hour,2798.06,Supplier 19,2024-04-18,Rechnung,Scope 3 Cat 7,1.067,N/A,,Nein, ,COMP-2439
+Einkauf,2328.06,EUR,,Supplier 15,2024-05-17,,Scope 3 Cat 1,2.079,N/A,,Nein, ,COMP-6621
+Vorgelagerte Energie,1439.54,L,719.77,Supplier 11,2024-04-06,,Scope 3 Cat 3,2.271,N/A,,Nein, ,COMP-6483
+Biomasse,"3.865,37",m3,1932.68,Supplier 1,2024-11-11,,Scope 1,0.779,N/A,,Nein, ,COMP-8619
+Bahn,9818.14,night,4909.07,Supplier 7,2024-01-02,,Scope 3 Cat 6,2.015,N/A,,Nein, ,COMP-7014
+Homeoffice,3784.99,km,1892.50,Supplier 12,2024-10-25,geschätzt,Scope 3 Cat 7,0.922,N/A,,Nein, ,COMP-9381
+Strom,812.72,kWh,406.36,Supplier 3,2024-08-07,genau,Scope 2,0.614,N/A,,Ja, ,COMP-1901
+Beteiligungen,"3.613,57",USD,,Supplier 20,2024-09-24,Rechnung,Scope 3 Cat 15,2.491,N/A,,Nein, ,COMP-4441
+Heizöl,9673.77,L,4836.89,Supplier 11,2024-12-21,geschätzt,Scope 1,2.176,N/A,,Nein, ,COMP-9892
+Heizöl,5885.37,L,2942.68,Supplier 12,2024-07-28,Rechnung,Scope 1,1.976,N/A,,Nein, ,COMP-3471
+Rohmaterial,2493.93,USD,,Supplier 17,2024-04-26,Rechnung,Scope 3 Cat 1,0.741,N/A,,Nein, ,COMP-9001
+Fernwärme,391.06,kWh,195.53,Supplier 9,2024-02-12,Rechnung,Scope 2,1.270,N/A,,Nein, ,COMP-4122
+Fernwärme,4028.77,MWh,2014.38,Supplier 7,2024-09-19,genau,Scope 2,1.303,N/A,,Nein, ,COMP-9018
+Lieferant A,8358.10,USD,,Supplier 19,2024-04-10,geschätzt,Scope 3 Cat 1,1.819,N/A,,Nein, ,COMP-3256
+Beschaffung,7531.39,EUR,,Supplier 5,2024-02-25,,Scope 3 Cat 1,0.603,N/A,,Nein, ,COMP-3177
+Homeoffice,1504.16,km,752.08,Supplier 4,2024-04-02,,Scope 3 Cat 7,1.340,N/A,,Nein, ,COMP-2884
+Gewerbeimmobilien,9970.38,USD,,Supplier 10,2024-11-03,,Scope 3 Cat 15,1.063,N/A,,Nein, ,COMP-7352
+Benzin,5534.42,m3,2767.21,Supplier 11,2024-04-13,Rechnung,Scope 1,1.326,N/A,,Nein, ,COMP-2882
+Fernwärme,4304.56,kWh,2152.28,Supplier 19,2024-06-21,,Scope 2,1.468,N/A,,Nein, ,COMP-9111
+Vorgelagerte Energie,924.96,L,462.48,Supplier 3,2024-10-10,geschätzt,Scope 3 Cat 3,2.043,N/A,,Nein, ,COMP-1214
+Dienstreise,8944.14,pkm,4472.07,Supplier 5,2024-12-12,,Scope 3 Cat 6,0.972,N/A,,Nein, ,COMP-6144
+Supplier C,"7.246,69",USD,,Supplier 4,2024-09-13,genau,Scope 3 Cat 1,1.744,N/A,,Nein, ,COMP-2226
+,,,,,,,,,,,,,
+Fernwärme,ca. 7612.9,kWh,3806.43,Supplier 13,2024-01-30,geschätzt,Scope 2,1.807,N/A,,Nein, ,COMP-8653
+Einkauf,9951.29,USD,,Supplier 17,2024-02-15,geschätzt,Scope 3 Cat 1,1.723,N/A,,Nein, ,COMP-1421
+Benzin,8833.71,L,4416.86,Supplier 12,2024-05-01,,Scope 1,0.527,N/A,,Nein, ,COMP-7558
+Vorgelagerte Energie,7614.66,L,3807.33,Supplier 12,2024-09-14,genau,Scope 3 Cat 3,0.446,N/A,,Nein, ,COMP-5953
+Lieferant A,1532.25,EUR,,Supplier 19,2024-07-07,,Scope 3 Cat 1,1.575,N/A,,Nein, ,COMP-6737
+Rohmaterial,6919.38,USD,,Supplier 8,2024-06-03,geschätzt,Scope 3 Cat 1,0.587,N/A,,Nein, ,COMP-9799
+Strom,"6.138,11",MWh,3069.05,Supplier 8,2024-08-24,Rechnung,Scope 2,0.927,N/A,,Ja, ,COMP-3787
+Erdgas,2632.30,kWh,1316.15,Supplier 13,2024-03-17,,Scope 1,2.441,N/A,,Nein, ,COMP-8949
+Homeoffice,3405.22,hour,1702.61,Supplier 4,2024-04-04,Rechnung,Scope 3 Cat 7,0.873,N/A,,Nein, ,COMP-6773
+Strom,"7.639,43",kWh,3819.72,Supplier 20,2024-09-24,Rechnung,Scope 2,0.503,N/A,,Ja, ,COMP-3896
+Strom,532.27,MWh,266.13,Supplier 2,2024-02-01,,Scope 2,1.707,N/A,,Ja, ,COMP-9620
+Gewerbeimmobilien,ca. 2081.5,EUR,,Supplier 4,2024-06-26,Rechnung,Scope 3 Cat 15,1.869,N/A,,Nein, ,COMP-6133
+Vorgelagerte Energie,5388.33,L,2694.17,Supplier 17,2024-06-21,genau,Scope 3 Cat 3,1.685,N/A,,Nein, ,COMP-7004
+Erdgas,ca. 7888.5,L,3944.23,Supplier 12,2024-07-23,,Scope 1,0.243,N/A,,Nein, ,COMP-4005
+Vorgelagerte Energie,9934.30,kWh,4967.15,Supplier 7,2024-10-12,,Scope 3 Cat 3,1.281,N/A,,Nein, ,COMP-7597
+Rohmaterial,261.02,USD,,Supplier 12,2024-10-09,,Scope 3 Cat 1,2.015,N/A,,Nein, ,COMP-8757
+Kohle,4780.62,kg,2390.31,Supplier 13,2024-07-31,,Scope 1,1.436,N/A,,Nein, ,COMP-8822
+Rohmaterial,8846.67,EUR,,Supplier 9,2024-08-13,Rechnung,Scope 3 Cat 1,0.352,N/A,,Nein, ,COMP-5759
+Supplier C,2141.87,USD,,Supplier 10,2024-09-22,,Scope 3 Cat 1,2.016,N/A,,Nein, ,COMP-8921
+Hotel,2445.66,km,1222.83,Supplier 6,2024-01-21,,Scope 3 Cat 6,1.039,N/A,,Nein, ,COMP-5605
+Ökostrom,7760.32,MWh,3880.16,Supplier 19,2024-04-02,genau,Scope 2,0.491,N/A,,Nein, ,COMP-2100
+Flug,6580.52,night,3290.26,Supplier 8,2024-11-11,,Scope 3 Cat 6,1.627,N/A,,Nein, ,COMP-2026
+Lieferant A,"5.004,94",USD,,Supplier 7,2024-04-13,,Scope 3 Cat 1,1.709,N/A,,Nein, ,COMP-3450
+Ökostrom,3051.70,kWh,1525.85,Supplier 12,2024-09-08,,Scope 2,1.069,N/A,,Nein, ,COMP-2564
+Fernwärme,ca. 492.1,kWh,246.03,Supplier 6,2024-04-24,genau,Scope 2,0.547,N/A,,Nein, ,COMP-5138
+Eingangsfracht,6471.98,tkm,3235.99,Supplier 3,2024-02-08,,Scope 3 Cat 4,1.077,N/A,,Nein, ,COMP-8897
+Ökostrom,5937.11,kWh,2968.56,Supplier 19,2024-02-23,,Scope 2,0.312,N/A,,Nein, ,COMP-8996
+Fernwärme,"1.072,45",MWh,536.23,Supplier 1,2024-09-29,,Scope 2,1.257,N/A,,Nein, ,COMP-1040
+Unternehmenskredite,7860.19,USD,,Supplier 4,2024-04-12,,Scope 3 Cat 15,1.959,N/A,,Nein, ,COMP-6311
+Homeoffice,9691.82,hour,4845.91,Supplier 4,2024-11-15,Rechnung,Scope 3 Cat 7,1.644,N/A,,Nein, ,COMP-2962
+Kohle,1083.18,kg,541.59,Supplier 6,2024-10-18,genau,Scope 1,1.467,N/A,,Nein, ,COMP-6782
+Unternehmenskredite,4076.75,EUR,,Supplier 9,2024-10-29,geschätzt,Scope 3 Cat 15,2.410,N/A,,Nein, ,COMP-7769
+Beschaffung,4797.47,EUR,,Supplier 19,2024-03-23,,Scope 3 Cat 1,0.319,N/A,,Nein, ,COMP-3241
+Unternehmenskredite,4077.21,USD,,Supplier 11,2024-10-05,genau,Scope 3 Cat 15,0.162,N/A,,Nein, ,COMP-4200
+Seefracht,1396.65,km,698.32,Supplier 10,2024-09-22,,Scope 3 Cat 4,0.388,N/A,,Nein, ,COMP-2737
+Gewerbeimmobilien,6221.66,EUR,,Supplier 13,2024-03-20,,Scope 3 Cat 15,2.381,N/A,,Nein, ,COMP-5118
+Diesel,8300.65,kg,4150.33,Supplier 3,2024-04-18,Rechnung,Scope 1,2.350,N/A,,Nein, ,COMP-2785
+Lieferant B,2224.18,USD,,Supplier 10,2024-10-04,geschätzt,Scope 3 Cat 1,1.899,N/A,,Nein, ,COMP-1838
+Strom,7026.88,kWh,3513.44,Supplier 14,2024-12-11,geschätzt,Scope 2,2.356,N/A,,Ja, ,COMP-1862
+Heizöl,5047.27,L,2523.64,Supplier 16,2024-01-12,genau,Scope 1,1.269,N/A,,Nein, ,COMP-4901
+Lieferant B,"5.854,00",USD,,Supplier 18,2024-03-15,,Scope 3 Cat 1,1.436,N/A,,Nein, ,COMP-2095
+Biomasse,ca. 7155.4,kg,3577.72,Supplier 15,2024-11-23,,Scope 1,1.899,N/A,,Nein, ,COMP-3130
+Heizöl,"4.806,19",m3,2403.10,Supplier 1,2024-09-19,genau,Scope 1,1.050,N/A,,Nein, ,COMP-2034
+Flug,9178.68,pkm,4589.34,Supplier 2,2024-09-15,geschätzt,Scope 3 Cat 6,1.776,N/A,,Nein, ,COMP-3175
+Biomasse,7087.72,kg,3543.86,Supplier 4,2024-04-19,geschätzt,Scope 1,2.015,N/A,,Nein, ,COMP-3338
+Strom,1321.97,MWh,660.99,Supplier 11,2024-12-18,,Scope 2,1.183,N/A,,Ja, ,COMP-9946
+Lieferant B,"8.152,02",USD,,Supplier 8,2024-04-05,geschätzt,Scope 3 Cat 1,0.147,N/A,,Nein, ,COMP-1226
+Rohmaterial,5570.10,USD,,Supplier 3,2024-12-05,Rechnung,Scope 3 Cat 1,1.507,N/A,,Nein, ,COMP-1045
+Supplier C,2602.62,EUR,,Supplier 8,2024-09-02,geschätzt,Scope 3 Cat 1,1.783,N/A,,Nein, ,COMP-1059
+Erdgas,ca. 9244.9,L,4622.46,Supplier 10,2024-03-01,,Scope 1,2.492,N/A,,Nein, ,COMP-7833
+Benzin,4291.74,kWh,2145.87,Supplier 7,2024-06-30,Rechnung,Scope 1,0.335,N/A,,Nein, ,COMP-8419
+Benzin,5660.48,kWh,2830.24,Supplier 2,2024-08-16,genau,Scope 1,0.719,N/A,,Nein, ,COMP-4221
+Strom,"7.653,40",MWh,3826.70,Supplier 10,2024-04-21,geschätzt,Scope 2,0.594,N/A,,Ja, ,COMP-8889
+Gewerbeimmobilien,6220.98,USD,,Supplier 7,2024-02-15,,Scope 3 Cat 15,1.432,N/A,,Nein, ,COMP-4775
+Diesel,4186.00,m3,2093.00,Supplier 5,2024-01-29,,Scope 1,0.650,N/A,,Nein, ,COMP-9171
+Bahn,5465.93,night,2732.96,Supplier 9,2024-06-06,Rechnung,Scope 3 Cat 6,1.713,N/A,,Nein, ,COMP-6388
+Beschaffung,5344.46,EUR,,Supplier 9,2024-03-28,genau,Scope 3 Cat 1,1.836,N/A,,Nein, ,COMP-7953
+Bahn,8426.91,km,4213.45,Supplier 4,2024-02-27,Rechnung,Scope 3 Cat 6,1.365,N/A,,Nein, ,COMP-5895
+Einkauf,3630.36,USD,,Supplier 5,2024-03-29,geschätzt,Scope 3 Cat 1,1.952,N/A,,Nein, ,COMP-4766
+Kohle,7780.87,m3,3890.44,Supplier 2,2024-03-05,,Scope 1,1.366,N/A,,Nein, ,COMP-6093
+Heizöl,3319.04,kWh,1659.52,Supplier 13,2024-07-25,genau,Scope 1,1.448,N/A,,Nein, ,COMP-6918
+Strom,ca. 5458.8,MWh,2729.40,Supplier 8,2024-04-01,genau,Scope 2,0.383,N/A,,Ja, ,COMP-1635
+Ökostrom,9392.14,MWh,4696.07,Supplier 3,2024-07-25,Rechnung,Scope 2,1.942,N/A,,Nein, ,COMP-8320
+Lieferant A,6151.74,EUR,,Supplier 17,2024-06-13,geschätzt,Scope 3 Cat 1,0.825,N/A,,Nein, ,COMP-6850
+Lieferant A,3689.37,EUR,,Supplier 5,2024-01-07,,Scope 3 Cat 1,2.322,N/A,,Nein, ,COMP-4309
+Rohmaterial,6092.04,EUR,,Supplier 8,2024-12-03,Rechnung,Scope 3 Cat 1,1.739,N/A,,Nein, ,COMP-7356
+Beschaffung,6433.68,EUR,,Supplier 2,2024-09-25,geschätzt,Scope 3 Cat 1,0.112,N/A,,Nein, ,COMP-5169
+Benzin,1789.09,L,894.54,Supplier 1,2024-06-05,geschätzt,Scope 1,1.302,N/A,,Nein, ,COMP-5307
+Biomasse,2280.75,m3,1140.37,Supplier 17,2024-08-12,,Scope 1,2.316,N/A,,Nein, ,COMP-6904
+Vorgelagerte Energie,6385.37,kWh,3192.69,Supplier 7,2024-12-28,,Scope 3 Cat 3,0.748,N/A,,Nein, ,COMP-6281
+Diesel,4680.12,L,2340.06,Supplier 6,2024-09-27,,Scope 1,1.368,N/A,,Nein, ,COMP-4817
+Lieferant B,3843.27,EUR,,Supplier 7,2024-08-19,geschätzt,Scope 3 Cat 1,0.193,N/A,,Nein, ,COMP-3914
+Ökostrom,ca. 6847.4,kWh,3423.69,Supplier 7,2024-11-08,,Scope 2,0.786,N/A,,Nein, ,COMP-7063
+Dienstreise,744.47,pkm,372.23,Supplier 15,2024-02-03,genau,Scope 3 Cat 6,1.937,N/A,,Nein, ,COMP-2972
+Strom,2957.62,kWh,1478.81,Supplier 5,2024-03-28,,Scope 2,1.907,N/A,,Ja, ,COMP-2721
+LKW-Transport,2875.44,tkm,1437.72,Supplier 17,2024-07-24,,Scope 3 Cat 4,0.854,N/A,,Nein, ,COMP-4397
+Strom,6719.10,kWh,3359.55,Supplier 10,2024-01-13,,Scope 2,0.406,N/A,,Ja, ,COMP-4901
+Bahn,3208.08,night,1604.04,Supplier 14,2024-05-23,geschätzt,Scope 3 Cat 6,0.427,N/A,,Nein, ,COMP-7952
+Homeoffice,"7.417,63",km,3708.82,Supplier 15,2024-09-15,,Scope 3 Cat 7,1.059,N/A,,Nein, ,COMP-2916
+Vorgelagerte Energie,3693.33,L,1846.67,Supplier 17,2024-09-30,,Scope 3 Cat 3,1.222,N/A,,Nein, ,COMP-1088
+Kohle,2092.53,kg,1046.26,Supplier 10,2024-02-02,Rechnung,Scope 1,1.384,N/A,,Nein, ,COMP-9636
+Well-to-Tank,5222.93,kWh,2611.46,Supplier 4,2024-09-01,geschätzt,Scope 3 Cat 3,1.522,N/A,,Nein, ,COMP-7734
+Strom,5099.74,kWh,2549.87,Supplier 1,2024-11-15,,Scope 2,2.087,N/A,,Ja, ,COMP-7828
+Well-to-Tank,9996.74,L,4998.37,Supplier 8,2024-04-14,genau,Scope 3 Cat 3,0.839,N/A,,Nein, ,COMP-6001
+Diesel,9208.36,kWh,4604.18,Supplier 12,2024-12-02,genau,Scope 1,2.128,N/A,,Nein, ,COMP-8016
+Lieferant B,"8.531,72",USD,,Supplier 5,2024-10-05,,Scope 3 Cat 1,1.201,N/A,,Nein, ,COMP-2383
+Lieferant B,8606.95,USD,,Supplier 16,2024-07-03,,Scope 3 Cat 1,0.792,N/A,,Nein, ,COMP-3858
+Well-to-Tank,2612.29,kWh,1306.14,Supplier 11,2024-09-01,,Scope 3 Cat 3,2.141,N/A,,Nein, ,COMP-9374
+Dienstreise,6367.37,pkm,3183.69,Supplier 12,2024-02-03,Rechnung,Scope 3 Cat 6,0.778,N/A,,Nein, ,COMP-7924
+Rohmaterial,7264.74,EUR,,Supplier 16,2024-11-24,genau,Scope 3 Cat 1,1.123,N/A,,Nein, ,COMP-2526
+Eingangsfracht,9682.89,km,4841.44,Supplier 16,2024-07-22,,Scope 3 Cat 4,1.034,N/A,,Nein, ,COMP-9739
+Erdgas,2619.34,m3,1309.67,Supplier 9,2024-07-03,geschätzt,Scope 1,2.127,N/A,,Nein, ,COMP-9042
+Dienstreise,5223.20,km,2611.60,Supplier 4,2024-08-23,Rechnung,Scope 3 Cat 6,0.407,N/A,,Nein, ,COMP-7287
+Diesel,"7.294,34",L,3647.17,Supplier 5,2024-06-22,geschätzt,Scope 1,1.952,N/A,,Nein, ,COMP-1791
+Ökostrom,9660.07,MWh,4830.04,Supplier 18,2024-08-09,geschätzt,Scope 2,0.234,N/A,,Nein, ,COMP-2776
+Flug,3699.37,night,1849.68,Supplier 1,2024-07-11,Rechnung,Scope 3 Cat 6,1.679,N/A,,Nein, ,COMP-6626
+Ökostrom,9940.41,MWh,4970.21,Supplier 20,2024-03-30,,Scope 2,2.174,N/A,,Nein, ,COMP-1247
+Strom,4933.64,kWh,2466.82,Supplier 11,2024-02-11,Rechnung,Scope 2,0.276,N/A,,Ja, ,COMP-2018
+Strom,8153.24,MWh,4076.62,Supplier 15,2024-05-21,geschätzt,Scope 2,0.544,N/A,,Ja, ,COMP-5010
+Seefracht,8852.61,km,4426.30,Supplier 13,2024-06-10,genau,Scope 3 Cat 4,1.747,N/A,,Nein, ,COMP-4212
+Fernwärme,"3.602,91",kWh,1801.45,Supplier 6,2024-11-13,,Scope 2,1.451,N/A,,Nein, ,COMP-3222
+Bahn,28.69,km,14.35,Supplier 5,2024-08-30,geschätzt,Scope 3 Cat 6,2.132,N/A,,Nein, ,COMP-1219
+Erdgas,6604.14,m3,3302.07,Supplier 14,2024-05-05,genau,Scope 1,2.220,N/A,,Nein, ,COMP-4770
+Flug,6744.14,km,3372.07,Supplier 18,2024-09-08,Rechnung,Scope 3 Cat 6,0.625,N/A,,Nein, ,COMP-1426
+Ökostrom,5328.93,MWh,2664.46,Supplier 11,2024-08-30,Rechnung,Scope 2,1.104,N/A,,Nein, ,COMP-2660
+,,,,,,,,,,,,,
+Lieferant A,9234.13,USD,,Supplier 6,2024-10-05,,Scope 3 Cat 1,0.691,N/A,,Nein, ,COMP-3458
+Ökostrom,2543.29,MWh,1271.65,Supplier 15,2024-08-16,genau,Scope 2,1.220,N/A,,Nein, ,COMP-9637
+Lieferant B,"9.396,40",USD,,Supplier 6,2024-07-22,genau,Scope 3 Cat 1,1.767,N/A,,Nein, ,COMP-9652
+Rohmaterial,6761.01,EUR,,Supplier 20,2024-06-28,geschätzt,Scope 3 Cat 1,0.338,N/A,,Nein, ,COMP-6184
+Erdgas,"1.461,04",kWh,730.52,Supplier 13,2024-01-28,,Scope 1,0.666,N/A,,Nein, ,COMP-1234
+Flug,5578.86,km,2789.43,Supplier 19,2024-01-15,,Scope 3 Cat 6,0.651,N/A,,Nein, ,COMP-3819
+Seefracht,6189.81,km,3094.90,Supplier 2,2024-04-23,Rechnung,Scope 3 Cat 4,2.365,N/A,,Nein, ,COMP-1477
+Strom,"2.128,61",MWh,1064.30,Supplier 16,2024-05-23,geschätzt,Scope 2,0.760,N/A,,Ja, ,COMP-6596
+Hotel,2762.04,night,1381.02,Supplier 8,2024-02-27,,Scope 3 Cat 6,1.830,N/A,,Nein, ,COMP-9680
+Seefracht,8601.56,km,4300.78,Supplier 13,2024-08-18,Rechnung,Scope 3 Cat 4,2.459,N/A,,Nein, ,COMP-9921
+Erdgas,8397.71,kg,4198.85,Supplier 11,2024-10-20,geschätzt,Scope 1,0.493,N/A,,Nein, ,COMP-3969
+Einkauf,4239.73,USD,,Supplier 11,2024-02-18,,Scope 3 Cat 1,0.301,N/A,,Nein, ,COMP-6492
+Biomasse,6102.36,kWh,3051.18,Supplier 15,2024-02-22,genau,Scope 1,2.327,N/A,,Nein, ,COMP-2827
+Einkauf,9663.17,USD,,Supplier 15,2024-01-07,Rechnung,Scope 3 Cat 1,1.647,N/A,,Nein, ,COMP-1111
+Erdgas,7673.13,m3,3836.57,Supplier 3,2024-10-18,,Scope 1,0.766,N/A,,Nein, ,COMP-3969
+Supplier C,ca. 1780.8,EUR,,Supplier 5,2024-08-29,,Scope 3 Cat 1,1.647,N/A,,Nein, ,COMP-5251
+Lieferant B,1067.35,EUR,,Supplier 4,2024-02-24,Rechnung,Scope 3 Cat 1,1.434,N/A,,Nein, ,COMP-2641
+Rohmaterial,8774.86,EUR,,Supplier 18,2024-03-08,,Scope 3 Cat 1,2.124,N/A,,Nein, ,COMP-5337
+Biomasse,2962.18,kWh,1481.09,Supplier 19,2024-04-12,geschätzt,Scope 1,0.506,N/A,,Nein, ,COMP-4747
+Homeoffice,1395.31,km,697.65,Supplier 6,2024-05-30,,Scope 3 Cat 7,0.958,N/A,,Nein, ,COMP-1139
+Well-to-Tank,"1.094,65",kWh,547.33,Supplier 16,2024-03-11,Rechnung,Scope 3 Cat 3,1.248,N/A,,Nein, ,COMP-4050
+Biomasse,3427.40,kWh,1713.70,Supplier 20,2024-04-22,Rechnung,Scope 1,1.739,N/A,,Nein, ,COMP-4307
+Strom,6358.92,kWh,3179.46,Supplier 19,2024-06-18,,Scope 2,0.363,N/A,,Ja, ,COMP-3303
+Dienstreise,"1.224,25",km,612.12,Supplier 8,2024-03-29,geschätzt,Scope 3 Cat 6,1.129,N/A,,Nein, ,COMP-1879
+Ökostrom,7984.89,kWh,3992.45,Supplier 18,2024-05-26,geschätzt,Scope 2,2.315,N/A,,Nein, ,COMP-6839
+Fernwärme,6494.06,MWh,3247.03,Supplier 15,2024-01-08,genau,Scope 2,1.007,N/A,,Nein, ,COMP-1678
+Well-to-Tank,6002.43,kWh,3001.21,Supplier 3,2024-01-29,,Scope 3 Cat 3,2.016,N/A,,Nein, ,COMP-4056
+,,,,,,,,,,,,,
+Fernwärme,188.60,kWh,94.30,Supplier 6,2024-08-27,,Scope 2,1.886,N/A,,Nein, ,COMP-7834
+Well-to-Tank,3897.87,kWh,1948.94,Supplier 3,2024-12-08,geschätzt,Scope 3 Cat 3,1.744,N/A,,Nein, ,COMP-6614
+Vorgelagerte Energie,161.77,L,80.88,Supplier 14,2024-04-19,,Scope 3 Cat 3,0.373,N/A,,Nein, ,COMP-3167
+Vorgelagerte Energie,6778.94,L,3389.47,Supplier 7,2024-01-09,Rechnung,Scope 3 Cat 3,1.498,N/A,,Nein, ,COMP-3357
+Benzin,663.69,kWh,331.85,Supplier 20,2024-05-06,geschätzt,Scope 1,1.855,N/A,,Nein, ,COMP-8413
+Dienstreise,"7.692,61",km,3846.30,Supplier 10,2024-10-17,geschätzt,Scope 3 Cat 6,2.392,N/A,,Nein, ,COMP-4827
+Ökostrom,3952.26,kWh,1976.13,Supplier 20,2024-10-09,,Scope 2,1.563,N/A,,Nein, ,COMP-3045
+Eingangsfracht,324.58,tkm,162.29,Supplier 8,2024-05-17,Rechnung,Scope 3 Cat 4,1.890,N/A,,Nein, ,COMP-3378
+Strom,9843.08,MWh,4921.54,Supplier 16,2024-09-25,Rechnung,Scope 2,0.712,N/A,,Ja, ,COMP-3866
+Bahn,7885.69,km,3942.84,Supplier 10,2024-05-14,genau,Scope 3 Cat 6,0.298,N/A,,Nein, ,COMP-7922
+Hotel,3146.17,km,1573.09,Supplier 18,2024-03-15,,Scope 3 Cat 6,1.311,N/A,,Nein, ,COMP-8873
+Biomasse,5180.12,kWh,2590.06,Supplier 5,2024-04-28,,Scope 1,0.583,N/A,,Nein, ,COMP-9227
+Bahn,2694.48,pkm,1347.24,Supplier 5,2024-01-18,genau,Scope 3 Cat 6,1.518,N/A,,Nein, ,COMP-2234
+Einkauf,"2.907,61",USD,,Supplier 7,2024-08-28,geschätzt,Scope 3 Cat 1,0.759,N/A,,Nein, ,COMP-2841
+Kohle,4336.99,kWh,2168.50,Supplier 4,2024-01-16,genau,Scope 1,1.197,N/A,,Nein, ,COMP-8039
+Lieferant A,"816,82",EUR,,Supplier 6,2024-11-30,Rechnung,Scope 3 Cat 1,2.155,N/A,,Nein, ,COMP-9810
+Rohmaterial,268.13,USD,,Supplier 13,2024-11-19,Rechnung,Scope 3 Cat 1,0.650,N/A,,Nein, ,COMP-2000
+Strom,6976.06,MWh,3488.03,Supplier 8,2024-10-01,Rechnung,Scope 2,0.302,N/A,,Ja, ,COMP-3432
+Biomasse,9794.28,L,4897.14,Supplier 10,2024-02-01,genau,Scope 1,0.575,N/A,,Nein, ,COMP-4675
+Ökostrom,4099.68,kWh,2049.84,Supplier 7,2024-10-26,geschätzt,Scope 2,2.407,N/A,,Nein, ,COMP-8788
+Gewerbeimmobilien,5124.88,USD,,Supplier 7,2024-05-31,Rechnung,Scope 3 Cat 15,0.360,N/A,,Nein, ,COMP-8397
+Homeoffice,6234.10,hour,3117.05,Supplier 19,2024-01-17,,Scope 3 Cat 7,1.835,N/A,,Nein, ,COMP-4815
+Benzin,8878.37,L,4439.18,Supplier 5,2024-07-07,,Scope 1,2.122,N/A,,Nein, ,COMP-4664
+Kohle,7265.83,m3,3632.91,Supplier 5,2024-05-01,geschätzt,Scope 1,1.175,N/A,,Nein, ,COMP-5278
+Benzin,2472.03,kg,1236.01,Supplier 5,2024-12-14,Rechnung,Scope 1,2.043,N/A,,Nein, ,COMP-6154
+Flug,5239.68,km,2619.84,Supplier 9,2024-01-05,geschätzt,Scope 3 Cat 6,0.462,N/A,,Nein, ,COMP-1088
+Pendeln,4850.08,km,2425.04,Supplier 13,2024-08-17,geschätzt,Scope 3 Cat 7,2.099,N/A,,Nein, ,COMP-2072
+Benzin,4534.91,m3,2267.45,Supplier 7,2024-06-25,,Scope 1,2.203,N/A,,Nein, ,COMP-1901
+Strom,1840.29,MWh,920.15,Supplier 16,2024-11-16,genau,Scope 2,2.329,N/A,,Ja, ,COMP-2660
+Strom,9208.90,kWh,4604.45,Supplier 12,2024-07-24,Rechnung,Scope 2,1.115,N/A,,Ja, ,COMP-6211
+Kohle,7684.51,L,3842.26,Supplier 16,2024-01-19,geschätzt,Scope 1,2.434,N/A,,Nein, ,COMP-4860
+Ökostrom,"9.705,79",MWh,4852.90,Supplier 13,2024-03-14,geschätzt,Scope 2,0.268,N/A,,Nein, ,COMP-4054
+Seefracht,"9.029,60",tkm,4514.80,Supplier 11,2024-11-26,,Scope 3 Cat 4,2.191,N/A,,Nein, ,COMP-7485
+Lieferant B,5623.17,USD,,Supplier 1,2024-01-02,Rechnung,Scope 3 Cat 1,2.038,N/A,,Nein, ,COMP-7752
+Einkauf,7237.42,EUR,,Supplier 15,2024-09-05,geschätzt,Scope 3 Cat 1,0.942,N/A,,Nein, ,COMP-4390
+LKW-Transport,8277.15,km,4138.58,Supplier 9,2024-03-22,Rechnung,Scope 3 Cat 4,1.467,N/A,,Nein, ,COMP-3551
+Beschaffung,5534.97,EUR,,Supplier 5,2024-08-25,genau,Scope 3 Cat 1,2.318,N/A,,Nein, ,COMP-1992
+Lieferant A,1283.37,USD,,Supplier 20,2024-10-16,,Scope 3 Cat 1,1.715,N/A,,Nein, ,COMP-2081
+Ökostrom,9574.19,kWh,4787.09,Supplier 15,2024-08-29,genau,Scope 2,1.957,N/A,,Nein, ,COMP-2409
+Benzin,9696.68,kWh,4848.34,Supplier 20,2024-11-27,,Scope 1,0.318,N/A,,Nein, ,COMP-8191
+Pendeln,"3.618,23",km,1809.11,Supplier 1,2024-06-26,,Scope 3 Cat 7,0.139,N/A,,Nein, ,COMP-2995
+Einkauf,5587.47,EUR,,Supplier 19,2024-09-25,Rechnung,Scope 3 Cat 1,1.870,N/A,,Nein, ,COMP-3308
+Bahn,3203.91,km,1601.95,Supplier 3,2024-09-09,genau,Scope 3 Cat 6,2.021,N/A,,Nein, ,COMP-5869
+Well-to-Tank,4501.10,kWh,2250.55,Supplier 7,2024-07-02,genau,Scope 3 Cat 3,0.849,N/A,,Nein, ,COMP-6860
+Ökostrom,5456.68,kWh,2728.34,Supplier 3,2024-10-10,Rechnung,Scope 2,1.428,N/A,,Nein, ,COMP-2205
+Heizöl,ca. 4955.8,kWh,2477.91,Supplier 13,2024-01-22,genau,Scope 1,1.465,N/A,,Nein, ,COMP-8389
+Kohle,"803,72",kWh,401.86,Supplier 15,2024-05-04,Rechnung,Scope 1,0.623,N/A,,Nein, ,COMP-2210
+Diesel,7475.80,L,3737.90,Supplier 13,2024-02-13,Rechnung,Scope 1,0.669,N/A,,Nein, ,COMP-2264
+Diesel,3527.24,kg,1763.62,Supplier 11,2024-11-13,genau,Scope 1,1.426,N/A,,Nein, ,COMP-9317
+Ökostrom,1077.50,MWh,538.75,Supplier 3,2024-09-28,,Scope 2,2.363,N/A,,Nein, ,COMP-1473
+Supplier C,9535.05,EUR,,Supplier 4,2024-01-25,,Scope 3 Cat 1,1.027,N/A,,Nein, ,COMP-3111
+Biomasse,3515.53,kg,1757.77,Supplier 20,2024-07-26,,Scope 1,1.696,N/A,,Nein, ,COMP-2590
+Dienstreise,ca. 8615.1,km,4307.55,Supplier 4,2024-09-07,Rechnung,Scope 3 Cat 6,2.259,N/A,,Nein, ,COMP-1421
+Biomasse,7414.97,m3,3707.49,Supplier 17,2024-08-06,,Scope 1,2.148,N/A,,Nein, ,COMP-9827
+Einkauf,6248.00,USD,,Supplier 13,2024-09-15,genau,Scope 3 Cat 1,0.355,N/A,,Nein, ,COMP-4075
+Pendeln,2676.48,km,1338.24,Supplier 15,2024-03-10,,Scope 3 Cat 7,1.534,N/A,,Nein, ,COMP-4310
+LKW-Transport,5153.37,km,2576.68,Supplier 18,2024-09-15,,Scope 3 Cat 4,1.455,N/A,,Nein, ,COMP-3269
+Erdgas,3339.82,m3,1669.91,Supplier 17,2024-09-06,geschätzt,Scope 1,0.611,N/A,,Nein, ,COMP-9556
+Supplier C,3313.51,EUR,,Supplier 18,2024-09-12,genau,Scope 3 Cat 1,1.674,N/A,,Nein, ,COMP-7856
+Flug,3807.46,night,1903.73,Supplier 17,2024-07-01,geschätzt,Scope 3 Cat 6,0.675,N/A,,Nein, ,COMP-7933
+Erdgas,5924.14,kg,2962.07,Supplier 15,2024-10-31,genau,Scope 1,2.342,N/A,,Nein, ,COMP-3383
+Benzin,2689.74,kg,1344.87,Supplier 9,2024-09-15,geschätzt,Scope 1,1.532,N/A,,Nein, ,COMP-2471
+,,,,,,,,,,,,,
+Hotel,540.72,night,270.36,Supplier 1,2024-02-05,,Scope 3 Cat 6,0.275,N/A,,Nein, ,COMP-4425
+,,,,,,,,,,,,,
+Vorgelagerte Energie,3980.28,L,1990.14,Supplier 6,2024-09-24,,Scope 3 Cat 3,1.515,N/A,,Nein, ,COMP-7203
+Supplier C,5555.32,USD,,Supplier 10,2024-11-19,,Scope 3 Cat 1,1.471,N/A,,Nein, ,COMP-2647
+Heizöl,5524.99,kg,2762.49,Supplier 14,2024-05-08,,Scope 1,1.786,N/A,,Nein, ,COMP-2432
+Beschaffung,5065.99,USD,,Supplier 10,2024-07-29,,Scope 3 Cat 1,2.419,N/A,,Nein, ,COMP-8619
+Fernwärme,6842.95,kWh,3421.47,Supplier 2,2024-11-19,Rechnung,Scope 2,0.549,N/A,,Nein, ,COMP-5419
+Gewerbeimmobilien,3687.99,USD,,Supplier 17,2024-08-18,genau,Scope 3 Cat 15,1.012,N/A,,Nein, ,COMP-6933
+Fernwärme,3429.82,MWh,1714.91,Supplier 1,2024-10-05,Rechnung,Scope 2,0.644,N/A,,Nein, ,COMP-3280
+Strom,1990.67,MWh,995.33,Supplier 19,2024-11-01,,Scope 2,0.507,N/A,,Ja, ,COMP-3783
+Strom,2526.56,kWh,1263.28,Supplier 17,2024-12-07,Rechnung,Scope 2,1.588,N/A,,Ja, ,COMP-1145
+Eingangsfracht,9768.26,km,4884.13,Supplier 17,2024-02-22,genau,Scope 3 Cat 4,0.524,N/A,,Nein, ,COMP-1042
+Fernwärme,7434.60,kWh,3717.30,Supplier 1,2024-07-09,,Scope 2,0.839,N/A,,Nein, ,COMP-7318
+Erdgas,309.81,kg,154.91,Supplier 9,2024-01-22,,Scope 1,0.681,N/A,,Nein, ,COMP-1643
+Kohle,5109.10,kWh,2554.55,Supplier 15,2024-02-23,genau,Scope 1,0.592,N/A,,Nein, ,COMP-5887
+Homeoffice,4531.68,km,2265.84,Supplier 11,2024-10-26,genau,Scope 3 Cat 7,2.280,N/A,,Nein, ,COMP-7149
+Kohle,272.14,kWh,136.07,Supplier 4,2024-12-10,,Scope 1,1.551,N/A,,Nein, ,COMP-3481
+,,,,,,,,,,,,,
+Strom,253.38,kWh,126.69,Supplier 19,2024-10-30,geschätzt,Scope 2,2.143,N/A,,Ja, ,COMP-7013
+Dienstreise,5089.07,km,2544.54,Supplier 14,2024-12-02,geschätzt,Scope 3 Cat 6,0.535,N/A,,Nein, ,COMP-9119
+Fernwärme,8927.68,MWh,4463.84,Supplier 12,2024-09-16,Rechnung,Scope 2,1.141,N/A,,Nein, ,COMP-5580
+Strom,3185.78,kWh,1592.89,Supplier 12,2024-09-30,genau,Scope 2,1.057,N/A,,Ja, ,COMP-5975
+Ökostrom,8705.03,MWh,4352.52,Supplier 5,2024-04-19,geschätzt,Scope 2,2.101,N/A,,Nein, ,COMP-7601
+Pendeln,3345.75,km,1672.88,Supplier 7,2024-08-21,,Scope 3 Cat 7,0.485,N/A,,Nein, ,COMP-8342
+Fernwärme,ca. 3255.1,kWh,1627.54,Supplier 11,2024-06-19,,Scope 2,2.131,N/A,,Nein, ,COMP-5171
+Einkauf,9304.72,USD,,Supplier 16,2024-12-16,geschätzt,Scope 3 Cat 1,1.073,N/A,,Nein, ,COMP-5845
+Supplier C,"2.977,82",EUR,,Supplier 11,2024-09-03,geschätzt,Scope 3 Cat 1,1.161,N/A,,Nein, ,COMP-3200
+Homeoffice,3406.19,km,1703.09,Supplier 8,2024-07-10,,Scope 3 Cat 7,0.277,N/A,,Nein, ,COMP-7506
+Beschaffung,4342.44,EUR,,Supplier 17,2024-10-20,,Scope 3 Cat 1,0.801,N/A,,Nein, ,COMP-7920
+Strom,4501.06,kWh,2250.53,Supplier 7,2024-02-25,genau,Scope 2,1.338,N/A,,Ja, ,COMP-5351
+Strom,8076.87,kWh,4038.44,Supplier 16,2024-11-17,geschätzt,Scope 2,0.254,N/A,,Ja, ,COMP-4956
+Biomasse,6293.13,kWh,3146.57,Supplier 19,2024-02-20,genau,Scope 1,0.404,N/A,,Nein, ,COMP-6783
+Lieferant A,9886.71,EUR,,Supplier 5,2024-05-18,genau,Scope 3 Cat 1,2.098,N/A,,Nein, ,COMP-9812
+Supplier C,1412.02,USD,,Supplier 19,2024-01-26,geschätzt,Scope 3 Cat 1,2.117,N/A,,Nein, ,COMP-7870
+Fernwärme,ca. 7983.9,MWh,3991.93,Supplier 10,2024-01-19,genau,Scope 2,0.294,N/A,,Nein, ,COMP-1403
+Biomasse,6716.98,L,3358.49,Supplier 2,2024-10-11,geschätzt,Scope 1,2.488,N/A,,Nein, ,COMP-8752
+Lieferant A,313.77,EUR,,Supplier 9,2024-07-28,,Scope 3 Cat 1,2.436,N/A,,Nein, ,COMP-8352
+Beteiligungen,8711.93,EUR,,Supplier 10,2024-12-06,,Scope 3 Cat 15,2.125,N/A,,Nein, ,COMP-9530
+Fernwärme,4529.93,MWh,2264.97,Supplier 12,2024-05-02,,Scope 2,1.728,N/A,,Nein, ,COMP-9971
+Diesel,7434.95,L,3717.48,Supplier 19,2024-04-11,geschätzt,Scope 1,1.782,N/A,,Nein, ,COMP-8467
+Strom,946.61,MWh,473.31,Supplier 20,2024-03-20,Rechnung,Scope 2,1.203,N/A,,Ja, ,COMP-2688
+Erdgas,5708.39,L,2854.19,Supplier 7,2024-10-10,,Scope 1,1.847,N/A,,Nein, ,COMP-9585
+Pendeln,9489.89,km,4744.94,Supplier 3,2024-10-31,genau,Scope 3 Cat 7,1.606,N/A,,Nein, ,COMP-6081
+Fernwärme,9754.89,MWh,4877.44,Supplier 8,2024-11-13,geschätzt,Scope 2,1.083,N/A,,Nein, ,COMP-8527
+Flug,4159.73,pkm,2079.86,Supplier 20,2024-01-28,,Scope 3 Cat 6,0.527,N/A,,Nein, ,COMP-9869
+Homeoffice,8186.00,hour,4093.00,Supplier 9,2024-02-05,genau,Scope 3 Cat 7,2.315,N/A,,Nein, ,COMP-8368
+Biomasse,2985.68,L,1492.84,Supplier 17,2024-12-13,,Scope 1,1.897,N/A,,Nein, ,COMP-3115
+Beschaffung,7370.26,EUR,,Supplier 2,2024-04-15,geschätzt,Scope 3 Cat 1,0.537,N/A,,Nein, ,COMP-2848
+Pendeln,8607.70,km,4303.85,Supplier 15,2024-08-24,geschätzt,Scope 3 Cat 7,0.497,N/A,,Nein, ,COMP-4320
+Homeoffice,9861.25,km,4930.62,Supplier 20,2024-04-30,geschätzt,Scope 3 Cat 7,1.240,N/A,,Nein, ,COMP-1416
+Erdgas,5618.17,kg,2809.08,Supplier 15,2024-11-17,geschätzt,Scope 1,2.085,N/A,,Nein, ,COMP-6607
+Flug,3309.76,night,1654.88,Supplier 17,2024-07-10,Rechnung,Scope 3 Cat 6,0.385,N/A,,Nein, ,COMP-2348
+Strom,958.71,kWh,479.35,Supplier 2,2024-11-10,genau,Scope 2,0.891,N/A,,Ja, ,COMP-5301
+Erdgas,9951.89,kg,4975.95,Supplier 1,2024-11-08,Rechnung,Scope 1,1.677,N/A,,Nein, ,COMP-7910
+Eingangsfracht,7169.26,km,3584.63,Supplier 5,2024-06-24,genau,Scope 3 Cat 4,0.670,N/A,,Nein, ,COMP-4272
+Bahn,9626.53,km,4813.26,Supplier 18,2024-07-30,,Scope 3 Cat 6,2.035,N/A,,Nein, ,COMP-2671
+Beteiligungen,3252.56,EUR,,Supplier 19,2024-10-06,,Scope 3 Cat 15,0.131,N/A,,Nein, ,COMP-8633
+Rohmaterial,"4.484,61",EUR,,Supplier 14,2024-05-24,,Scope 3 Cat 1,1.413,N/A,,Nein, ,COMP-6859
+Kohle,9685.79,kg,4842.89,Supplier 8,2024-11-25,,Scope 1,1.108,N/A,,Nein, ,COMP-8177
+Fernwärme,ca. 7356.5,kWh,3678.26,Supplier 8,2024-12-23,,Scope 2,1.699,N/A,,Nein, ,COMP-6625
+Bahn,1508.64,night,754.32,Supplier 18,2024-11-24,,Scope 3 Cat 6,1.931,N/A,,Nein, ,COMP-4829
+Diesel,9748.93,L,4874.46,Supplier 10,2024-09-22,Rechnung,Scope 1,0.874,N/A,,Nein, ,COMP-7541
+Flug,"6.924,11",km,3462.05,Supplier 2,2024-09-01,genau,Scope 3 Cat 6,1.924,N/A,,Nein, ,COMP-5196
+Flug,8203.82,km,4101.91,Supplier 13,2024-04-14,,Scope 3 Cat 6,0.721,N/A,,Nein, ,COMP-8873
+Vorgelagerte Energie,"6.209,01",L,3104.50,Supplier 6,2024-06-30,geschätzt,Scope 3 Cat 3,0.896,N/A,,Nein, ,COMP-8747
+Heizöl,8298.78,m3,4149.39,Supplier 16,2024-09-26,Rechnung,Scope 1,0.253,N/A,,Nein, ,COMP-1949
+Homeoffice,3548.27,km,1774.14,Supplier 13,2024-07-17,geschätzt,Scope 3 Cat 7,1.229,N/A,,Nein, ,COMP-3366
+Diesel,8162.22,m3,4081.11,Supplier 12,2024-03-25,,Scope 1,1.707,N/A,,Nein, ,COMP-3745
+Benzin,3153.30,kg,1576.65,Supplier 7,2024-12-24,,Scope 1,0.697,N/A,,Nein, ,COMP-5428
+Biomasse,1184.16,kg,592.08,Supplier 19,2024-02-07,,Scope 1,0.855,N/A,,Nein, ,COMP-6441
+Ökostrom,9141.21,MWh,4570.61,Supplier 9,2024-05-26,,Scope 2,1.263,N/A,,Nein, ,COMP-2895
+Flug,6206.38,pkm,3103.19,Supplier 10,2024-02-24,geschätzt,Scope 3 Cat 6,1.133,N/A,,Nein, ,COMP-6646
+Dienstreise,1539.29,pkm,769.65,Supplier 5,2024-04-29,Rechnung,Scope 3 Cat 6,0.587,N/A,,Nein, ,COMP-8072
+Lieferant A,2332.05,EUR,,Supplier 5,2024-01-23,,Scope 3 Cat 1,2.484,N/A,,Nein, ,COMP-4436
+Flug,5942.23,night,2971.11,Supplier 2,2024-07-08,Rechnung,Scope 3 Cat 6,1.082,N/A,,Nein, ,COMP-1283
+Fernwärme,2471.45,kWh,1235.72,Supplier 5,2024-11-22,,Scope 2,1.435,N/A,,Nein, ,COMP-7430
+Ökostrom,4917.80,kWh,2458.90,Supplier 12,2024-10-30,,Scope 2,0.866,N/A,,Nein, ,COMP-4704
+Einkauf,6853.16,EUR,,Supplier 13,2024-05-09,Rechnung,Scope 3 Cat 1,1.464,N/A,,Nein, ,COMP-8610
+Biomasse,1239.81,L,619.91,Supplier 15,2024-01-30,,Scope 1,0.150,N/A,,Nein, ,COMP-1422
+Beschaffung,"9.755,84",EUR,,Supplier 5,2024-09-02,,Scope 3 Cat 1,2.461,N/A,,Nein, ,COMP-6883
+Strom,9555.43,kWh,4777.71,Supplier 4,2024-11-25,geschätzt,Scope 2,2.204,N/A,,Ja, ,COMP-5072
+Well-to-Tank,8909.96,L,4454.98,Supplier 20,2024-03-13,,Scope 3 Cat 3,0.506,N/A,,Nein, ,COMP-5762
+LKW-Transport,2336.08,km,1168.04,Supplier 4,2024-12-27,,Scope 3 Cat 4,2.205,N/A,,Nein, ,COMP-7056
+Biomasse,2416.03,kWh,1208.01,Supplier 16,2024-06-10,genau,Scope 1,2.186,N/A,,Nein, ,COMP-8005
+LKW-Transport,3567.46,km,1783.73,Supplier 14,2024-03-24,,Scope 3 Cat 4,1.838,N/A,,Nein, ,COMP-7840
+Einkauf,8819.44,EUR,,Supplier 19,2024-07-10,,Scope 3 Cat 1,1.489,N/A,,Nein, ,COMP-8180
+Diesel,9349.36,m3,4674.68,Supplier 16,2024-10-10,,Scope 1,2.201,N/A,,Nein, ,COMP-9325
+Benzin,2641.96,kg,1320.98,Supplier 10,2024-02-19,,Scope 1,1.079,N/A,,Nein, ,COMP-3447
+Pendeln,ca. 3993.0,km,1996.52,Supplier 19,2024-03-19,,Scope 3 Cat 7,1.621,N/A,,Nein, ,COMP-4901
+Kohle,738.24,L,369.12,Supplier 8,2024-01-11,,Scope 1,1.798,N/A,,Nein, ,COMP-8273
+Diesel,9395.70,kWh,4697.85,Supplier 14,2024-08-13,Rechnung,Scope 1,0.289,N/A,,Nein, ,COMP-3246
+Ökostrom,3745.47,MWh,1872.74,Supplier 20,2024-10-29,geschätzt,Scope 2,0.506,N/A,,Nein, ,COMP-2448
+Homeoffice,4904.40,hour,2452.20,Supplier 6,2024-07-12,,Scope 3 Cat 7,0.362,N/A,,Nein, ,COMP-6918
+Benzin,806.99,kWh,403.49,Supplier 4,2024-06-18,genau,Scope 1,2.363,N/A,,Nein, ,COMP-8160
+Kohle,8028.66,kWh,4014.33,Supplier 19,2024-06-06,genau,Scope 1,0.948,N/A,,Nein, ,COMP-4279
+Diesel,"7.924,21",kg,3962.11,Supplier 17,2024-05-07,genau,Scope 1,2.054,N/A,,Nein, ,COMP-6345
+Diesel,3904.52,m3,1952.26,Supplier 6,2024-05-04,Rechnung,Scope 1,0.437,N/A,,Nein, ,COMP-4996
+Hotel,8131.49,pkm,4065.75,Supplier 20,2024-11-06,Rechnung,Scope 3 Cat 6,1.526,N/A,,Nein, ,COMP-4186
+Well-to-Tank,3596.96,kWh,1798.48,Supplier 19,2024-05-20,,Scope 3 Cat 3,0.713,N/A,,Nein, ,COMP-4291
+Lieferant B,"9.965,41",USD,,Supplier 15,2024-06-12,geschätzt,Scope 3 Cat 1,2.038,N/A,,Nein, ,COMP-9184
+Fernwärme,ca. 9472.6,MWh,4736.32,Supplier 14,2024-04-22,geschätzt,Scope 2,0.311,N/A,,Nein, ,COMP-7278
+Strom,5225.90,MWh,2612.95,Supplier 20,2024-02-17,,Scope 2,0.529,N/A,,Ja, ,COMP-9946
+Strom,1313.71,kWh,656.86,Supplier 10,2024-11-08,Rechnung,Scope 2,1.354,N/A,,Ja, ,COMP-8240
+Seefracht,2701.31,km,1350.65,Supplier 20,2024-12-27,Rechnung,Scope 3 Cat 4,1.730,N/A,,Nein, ,COMP-7724
+Diesel,3982.29,kWh,1991.14,Supplier 14,2024-03-09,,Scope 1,0.849,N/A,,Nein, ,COMP-4860
+Strom,"2.142,56",kWh,1071.28,Supplier 11,2024-04-05,,Scope 2,1.467,N/A,,Ja, ,COMP-8331
+Heizöl,1643.77,m3,821.88,Supplier 20,2024-03-15,Rechnung,Scope 1,1.010,N/A,,Nein, ,COMP-7519
+,,,,,,,,,,,,,
+Beschaffung,9573.38,USD,,Supplier 1,2024-11-09,genau,Scope 3 Cat 1,1.006,N/A,,Nein, ,COMP-8555
+Lieferant A,1338.58,USD,,Supplier 6,2024-03-14,,Scope 3 Cat 1,2.031,N/A,,Nein, ,COMP-5907
+Lieferant B,1635.84,USD,,Supplier 13,2024-10-16,Rechnung,Scope 3 Cat 1,1.619,N/A,,Nein, ,COMP-4153
+Seefracht,3680.46,tkm,1840.23,Supplier 2,2024-12-04,Rechnung,Scope 3 Cat 4,2.336,N/A,,Nein, ,COMP-4748
+Rohmaterial,8771.77,EUR,,Supplier 12,2024-08-03,genau,Scope 3 Cat 1,1.236,N/A,,Nein, ,COMP-6654
+Supplier C,5405.55,USD,,Supplier 6,2024-02-06,,Scope 3 Cat 1,1.175,N/A,,Nein, ,COMP-2211
+Heizöl,872.88,kg,436.44,Supplier 4,2024-07-13,,Scope 1,0.294,N/A,,Nein, ,COMP-8908
+Pendeln,"7.858,65",km,3929.33,Supplier 15,2024-04-14,Rechnung,Scope 3 Cat 7,2.456,N/A,,Nein, ,COMP-9450
+Ökostrom,8984.60,MWh,4492.30,Supplier 20,2024-05-23,Rechnung,Scope 2,1.849,N/A,,Nein, ,COMP-7398
+Unternehmenskredite,6676.98,EUR,,Supplier 1,2024-06-09,geschätzt,Scope 3 Cat 15,1.114,N/A,,Nein, ,COMP-3778
+Lieferant B,4370.02,USD,,Supplier 20,2024-11-22,,Scope 3 Cat 1,1.446,N/A,,Nein, ,COMP-4049
+Bahn,2827.59,pkm,1413.79,Supplier 2,2024-06-26,,Scope 3 Cat 6,0.866,N/A,,Nein, ,COMP-5314
+Beteiligungen,7882.84,USD,,Supplier 9,2024-06-07,genau,Scope 3 Cat 15,1.935,N/A,,Nein, ,COMP-9195
+Unternehmenskredite,6846.99,EUR,,Supplier 3,2024-04-23,,Scope 3 Cat 15,1.105,N/A,,Nein, ,COMP-3632
+Pendeln,5426.38,km,2713.19,Supplier 14,2024-07-17,genau,Scope 3 Cat 7,1.113,N/A,,Nein, ,COMP-5869
+Erdgas,2667.35,m3,1333.67,Supplier 3,2024-11-06,,Scope 1,1.090,N/A,,Nein, ,COMP-9748
+Fernwärme,6256.06,MWh,3128.03,Supplier 14,2024-08-16,genau,Scope 2,0.171,N/A,,Nein, ,COMP-1445
+Kohle,1818.65,kWh,909.33,Supplier 17,2024-03-23,Rechnung,Scope 1,0.131,N/A,,Nein, ,COMP-1333
+Erdgas,388.50,kg,194.25,Supplier 2,2024-04-21,genau,Scope 1,2.405,N/A,,Nein, ,COMP-6657
+Fernwärme,"1.623,88",MWh,811.94,Supplier 20,2024-12-12,Rechnung,Scope 2,2.380,N/A,,Nein, ,COMP-9616
+Unternehmenskredite,8665.03,EUR,,Supplier 8,2024-02-06,Rechnung,Scope 3 Cat 15,0.361,N/A,,Nein, ,COMP-7199
+,,,,,,,,,,,,,
+Beschaffung,4042.52,USD,,Supplier 7,2024-07-26,,Scope 3 Cat 1,1.489,N/A,,Nein, ,COMP-9798
+Vorgelagerte Energie,8503.09,L,4251.55,Supplier 15,2024-01-07,,Scope 3 Cat 3,0.535,N/A,,Nein, ,COMP-8543
+Dienstreise,9148.48,pkm,4574.24,Supplier 19,2024-08-29,geschätzt,Scope 3 Cat 6,0.456,N/A,,Nein, ,COMP-4513
+Bahn,"3.017,74",km,1508.87,Supplier 13,2024-01-11,Rechnung,Scope 3 Cat 6,0.406,N/A,,Nein, ,COMP-9428
+Dienstreise,4721.80,night,2360.90,Supplier 4,2024-05-26,genau,Scope 3 Cat 6,1.972,N/A,,Nein, ,COMP-6020
+Benzin,1268.82,m3,634.41,Supplier 20,2024-10-30,,Scope 1,2.362,N/A,,Nein, ,COMP-7941
+Erdgas,8835.17,kWh,4417.58,Supplier 17,2024-08-19,geschätzt,Scope 1,0.616,N/A,,Nein, ,COMP-4742
+Unternehmenskredite,4771.83,EUR,,Supplier 15,2024-04-29,,Scope 3 Cat 15,0.985,N/A,,Nein, ,COMP-5737
+Benzin,2179.74,L,1089.87,Supplier 16,2024-09-06,genau,Scope 1,0.623,N/A,,Nein, ,COMP-8463
+Flug,8960.37,pkm,4480.19,Supplier 3,2024-02-03,,Scope 3 Cat 6,0.312,N/A,,Nein, ,COMP-8026
+Strom,6934.34,MWh,3467.17,Supplier 10,2024-07-31,Rechnung,Scope 2,0.310,N/A,,Ja, ,COMP-9281
+Strom,79.71,kWh,39.85,Supplier 15,2024-10-21,,Scope 2,0.601,N/A,,Ja, ,COMP-6145
+Lieferant A,4486.32,EUR,,Supplier 3,2024-03-25,genau,Scope 3 Cat 1,0.505,N/A,,Nein, ,COMP-1477
+Ökostrom,4603.24,kWh,2301.62,Supplier 15,2024-03-04,Rechnung,Scope 2,0.786,N/A,,Nein, ,COMP-2851
+Biomasse,"3.488,14",kWh,1744.07,Supplier 7,2024-03-18,,Scope 1,0.643,N/A,,Nein, ,COMP-4993
+Rohmaterial,4548.46,USD,,Supplier 11,2024-04-15,,Scope 3 Cat 1,0.227,N/A,,Nein, ,COMP-4836
+Strom,2499.78,kWh,1249.89,Supplier 5,2024-05-19,,Scope 2,1.182,N/A,,Ja, ,COMP-3920
+Gewerbeimmobilien,1949.43,USD,,Supplier 9,2024-07-05,,Scope 3 Cat 15,0.894,N/A,,Nein, ,COMP-8286
+Erdgas,6563.42,kWh,3281.71,Supplier 4,2024-06-05,,Scope 1,1.680,N/A,,Nein, ,COMP-6180
+Ökostrom,6200.12,MWh,3100.06,Supplier 19,2024-02-29,,Scope 2,0.833,N/A,,Nein, ,COMP-6913
+Hotel,1485.38,night,742.69,Supplier 3,2024-06-30,Rechnung,Scope 3 Cat 6,1.199,N/A,,Nein, ,COMP-9092
+Strom,6460.78,kWh,3230.39,Supplier 1,2024-11-16,,Scope 2,1.315,N/A,,Ja, ,COMP-3913
+Ökostrom,659.33,MWh,329.67,Supplier 14,2024-07-31,Rechnung,Scope 2,2.399,N/A,,Nein, ,COMP-9374
+LKW-Transport,8469.68,tkm,4234.84,Supplier 8,2024-08-28,Rechnung,Scope 3 Cat 4,1.994,N/A,,Nein, ,COMP-3368
+Hotel,3108.88,km,1554.44,Supplier 15,2024-05-14,geschätzt,Scope 3 Cat 6,0.919,N/A,,Nein, ,COMP-3155
+,,,,,,,,,,,,,
+Biomasse,2578.89,L,1289.45,Supplier 10,2024-07-18,,Scope 1,2.247,N/A,,Nein, ,COMP-2324
+Beschaffung,ca. 3124.0,USD,,Supplier 14,2024-03-26,Rechnung,Scope 3 Cat 1,1.494,N/A,,Nein, ,COMP-7929
+Bahn,5575.34,km,2787.67,Supplier 5,2024-01-22,Rechnung,Scope 3 Cat 6,1.297,N/A,,Nein, ,COMP-5200
+Diesel,6480.47,m3,3240.23,Supplier 3,2024-09-28,,Scope 1,1.821,N/A,,Nein, ,COMP-4712
+Beschaffung,5135.07,USD,,Supplier 4,2024-01-25,geschätzt,Scope 3 Cat 1,2.046,N/A,,Nein, ,COMP-3219
+Dienstreise,7785.42,night,3892.71,Supplier 17,2024-06-04,Rechnung,Scope 3 Cat 6,2.382,N/A,,Nein, ,COMP-4037
+Supplier C,1230.62,EUR,,Supplier 15,2024-02-03,genau,Scope 3 Cat 1,1.975,N/A,,Nein, ,COMP-4094
+Erdgas,7240.33,L,3620.16,Supplier 20,2024-06-30,Rechnung,Scope 1,0.376,N/A,,Nein, ,COMP-6286
+Gewerbeimmobilien,9085.48,USD,,Supplier 2,2024-11-10,,Scope 3 Cat 15,0.157,N/A,,Nein, ,COMP-1613
+Benzin,9439.36,kWh,4719.68,Supplier 12,2024-12-04,genau,Scope 1,0.600,N/A,,Nein, ,COMP-7245
+Beschaffung,ca. 8548.3,EUR,,Supplier 19,2024-02-24,genau,Scope 3 Cat 1,0.799,N/A,,Nein, ,COMP-7087
+Gewerbeimmobilien,8444.38,USD,,Supplier 7,2024-12-13,Rechnung,Scope 3 Cat 15,2.487,N/A,,Nein, ,COMP-2081
+Beschaffung,6643.23,USD,,Supplier 12,2024-02-18,Rechnung,Scope 3 Cat 1,1.653,N/A,,Nein, ,COMP-5337
+Ökostrom,1533.94,kWh,766.97,Supplier 14,2024-02-08,geschätzt,Scope 2,0.775,N/A,,Nein, ,COMP-3947
+Strom,1967.66,MWh,983.83,Supplier 14,2024-10-30,Rechnung,Scope 2,0.867,N/A,,Ja, ,COMP-1345
+Strom,8391.35,kWh,4195.67,Supplier 18,2024-06-28,genau,Scope 2,0.261,N/A,,Ja, ,COMP-3119
+Biomasse,4209.83,m3,2104.91,Supplier 18,2024-09-08,geschätzt,Scope 1,1.412,N/A,,Nein, ,COMP-2688
+Fernwärme,5874.58,kWh,2937.29,Supplier 1,2024-02-28,,Scope 2,0.553,N/A,,Nein, ,COMP-4799
+Bahn,"2.806,52",km,1403.26,Supplier 18,2024-04-24,,Scope 3 Cat 6,2.238,N/A,,Nein, ,COMP-1661
+Heizöl,793.24,m3,396.62,Supplier 9,2024-02-01,,Scope 1,1.561,N/A,,Nein, ,COMP-7269
+Fernwärme,6104.89,kWh,3052.45,Supplier 11,2024-11-01,Rechnung,Scope 2,2.029,N/A,,Nein, ,COMP-3301
+Kohle,2424.78,L,1212.39,Supplier 17,2024-06-30,geschätzt,Scope 1,0.225,N/A,,Nein, ,COMP-8903
+Biomasse,"9.801,03",kWh,4900.52,Supplier 4,2024-08-12,,Scope 1,0.571,N/A,,Nein, ,COMP-5629
+Eingangsfracht,283.96,km,141.98,Supplier 5,2024-10-06,,Scope 3 Cat 4,0.661,N/A,,Nein, ,COMP-6277
+Rohmaterial,2882.10,USD,,Supplier 14,2024-08-03,genau,Scope 3 Cat 1,0.581,N/A,,Nein, ,COMP-9459
+LKW-Transport,4394.45,km,2197.23,Supplier 2,2024-08-22,genau,Scope 3 Cat 4,2.027,N/A,,Nein, ,COMP-6645
+Ökostrom,497.05,MWh,248.52,Supplier 20,2024-03-18,geschätzt,Scope 2,0.584,N/A,,Nein, ,COMP-6370
+Strom,9072.04,MWh,4536.02,Supplier 9,2024-04-23,,Scope 2,0.336,N/A,,Ja, ,COMP-3780
+Benzin,8932.32,kWh,4466.16,Supplier 16,2024-06-05,genau,Scope 1,0.124,N/A,,Nein, ,COMP-1055
+Fernwärme,8069.39,kWh,4034.69,Supplier 2,2024-04-10,genau,Scope 2,1.128,N/A,,Nein, ,COMP-8952
+Strom,7873.07,MWh,3936.54,Supplier 8,2024-12-11,genau,Scope 2,2.461,N/A,,Ja, ,COMP-7447
+Bahn,544.53,night,272.27,Supplier 3,2024-10-17,,Scope 3 Cat 6,0.492,N/A,,Nein, ,COMP-8170
+Biomasse,5602.11,m3,2801.05,Supplier 4,2024-06-28,,Scope 1,1.283,N/A,,Nein, ,COMP-2748
+Strom,ca. 663.0,MWh,331.49,Supplier 5,2024-10-18,geschätzt,Scope 2,0.560,N/A,,Ja, ,COMP-9385
+Biomasse,2445.37,kg,1222.69,Supplier 13,2024-05-08,Rechnung,Scope 1,2.225,N/A,,Nein, ,COMP-9277
+Vorgelagerte Energie,"1.104,47",kWh,552.23,Supplier 1,2024-08-28,,Scope 3 Cat 3,2.153,N/A,,Nein, ,COMP-7335
+Fernwärme,9932.89,MWh,4966.45,Supplier 17,2024-12-15,Rechnung,Scope 2,1.086,N/A,,Nein, ,COMP-2784
+Bahn,2789.01,night,1394.50,Supplier 16,2024-08-27,Rechnung,Scope 3 Cat 6,0.773,N/A,,Nein, ,COMP-3183
+Rohmaterial,7449.78,USD,,Supplier 15,2024-01-01,,Scope 3 Cat 1,2.286,N/A,,Nein, ,COMP-7409
+Biomasse,8110.01,m3,4055.01,Supplier 13,2024-08-09,,Scope 1,2.137,N/A,,Nein, ,COMP-8463
+Fernwärme,8818.38,kWh,4409.19,Supplier 10,2024-04-18,,Scope 2,1.458,N/A,,Nein, ,COMP-4168
+Ökostrom,6577.38,MWh,3288.69,Supplier 7,2024-04-20,,Scope 2,1.738,N/A,,Nein, ,COMP-4286
+Benzin,1677.69,kWh,838.84,Supplier 1,2024-05-03,geschätzt,Scope 1,0.443,N/A,,Nein, ,COMP-1289
+Rohmaterial,3504.91,EUR,,Supplier 17,2024-01-22,Rechnung,Scope 3 Cat 1,1.607,N/A,,Nein, ,COMP-2648
+Benzin,"6.740,48",L,3370.24,Supplier 13,2024-03-22,,Scope 1,1.267,N/A,,Nein, ,COMP-9098
+Ökostrom,2729.63,MWh,1364.82,Supplier 3,2024-07-11,geschätzt,Scope 2,1.977,N/A,,Nein, ,COMP-2956
+Ökostrom,4008.41,kWh,2004.21,Supplier 4,2024-08-05,,Scope 2,2.455,N/A,,Nein, ,COMP-1694
+Unternehmenskredite,381.18,EUR,,Supplier 19,2024-12-14,genau,Scope 3 Cat 15,1.942,N/A,,Nein, ,COMP-8893
+Gewerbeimmobilien,"2.572,17",USD,,Supplier 7,2024-07-23,Rechnung,Scope 3 Cat 15,1.940,N/A,,Nein, ,COMP-4209
+Biomasse,256.50,kg,128.25,Supplier 4,2024-10-23,Rechnung,Scope 1,1.325,N/A,,Nein, ,COMP-6821
+Beteiligungen,9310.30,EUR,,Supplier 20,2024-07-07,,Scope 3 Cat 15,0.368,N/A,,Nein, ,COMP-1847
+Einkauf,1207.59,USD,,Supplier 11,2024-04-16,Rechnung,Scope 3 Cat 1,0.293,N/A,,Nein, ,COMP-3423
+Fernwärme,3570.37,kWh,1785.19,Supplier 6,2024-06-18,,Scope 2,0.493,N/A,,Nein, ,COMP-1311
+Benzin,7703.72,kWh,3851.86,Supplier 19,2024-07-26,,Scope 1,1.032,N/A,,Nein, ,COMP-1735
+Vorgelagerte Energie,"1.198,15",kWh,599.07,Supplier 13,2024-09-15,genau,Scope 3 Cat 3,0.187,N/A,,Nein, ,COMP-4443
+Erdgas,8949.65,L,4474.83,Supplier 2,2024-06-07,geschätzt,Scope 1,2.381,N/A,,Nein, ,COMP-5861
+Diesel,2215.19,kg,1107.60,Supplier 6,2024-09-08,,Scope 1,1.248,N/A,,Nein, ,COMP-3401
+Fernwärme,3473.95,MWh,1736.97,Supplier 3,2024-05-26,,Scope 2,1.436,N/A,,Nein, ,COMP-3401
+Beschaffung,4462.32,USD,,Supplier 1,2024-10-03,geschätzt,Scope 3 Cat 1,0.806,N/A,,Nein, ,COMP-5259
+Heizöl,6887.63,kWh,3443.82,Supplier 9,2024-06-25,Rechnung,Scope 1,0.272,N/A,,Nein, ,COMP-8763
+Diesel,4598.68,m3,2299.34,Supplier 1,2024-12-17,geschätzt,Scope 1,0.956,N/A,,Nein, ,COMP-6126
+Strom,7385.63,MWh,3692.82,Supplier 12,2024-05-17,genau,Scope 2,1.420,N/A,,Ja, ,COMP-9124
+Ökostrom,7613.31,kWh,3806.65,Supplier 9,2024-04-20,genau,Scope 2,1.482,N/A,,Nein, ,COMP-3958
+Heizöl,165.30,m3,82.65,Supplier 7,2024-11-21,,Scope 1,1.634,N/A,,Nein, ,COMP-6504
+Supplier C,ca. 2338.7,EUR,,Supplier 20,2024-02-27,genau,Scope 3 Cat 1,1.352,N/A,,Nein, ,COMP-4353
+Lieferant A,212.61,EUR,,Supplier 6,2024-11-06,geschätzt,Scope 3 Cat 1,2.230,N/A,,Nein, ,COMP-2844
+Diesel,7454.99,kg,3727.49,Supplier 11,2024-08-01,,Scope 1,0.297,N/A,,Nein, ,COMP-8557
+Strom,410.45,MWh,205.23,Supplier 14,2024-08-10,genau,Scope 2,0.760,N/A,,Ja, ,COMP-5282
+Benzin,4777.30,kg,2388.65,Supplier 5,2024-01-18,Rechnung,Scope 1,0.207,N/A,,Nein, ,COMP-9790
+Rohmaterial,2083.44,USD,,Supplier 17,2024-09-07,,Scope 3 Cat 1,1.168,N/A,,Nein, ,COMP-7942
+Strom,1092.42,kWh,546.21,Supplier 12,2024-03-26,,Scope 2,0.654,N/A,,Ja, ,COMP-7473
+Unternehmenskredite,1421.01,USD,,Supplier 17,2024-06-19,Rechnung,Scope 3 Cat 15,1.283,N/A,,Nein, ,COMP-7573
+Lieferant B,9102.95,USD,,Supplier 11,2024-08-11,,Scope 3 Cat 1,2.215,N/A,,Nein, ,COMP-1063
+Erdgas,2342.10,L,1171.05,Supplier 19,2024-02-20,genau,Scope 1,0.583,N/A,,Nein, ,COMP-7682
+Fernwärme,3699.78,kWh,1849.89,Supplier 4,2024-08-21,,Scope 2,1.481,N/A,,Nein, ,COMP-6576
+LKW-Transport,1370.69,tkm,685.35,Supplier 11,2024-02-15,geschätzt,Scope 3 Cat 4,1.056,N/A,,Nein, ,COMP-1313
+Benzin,5944.98,kWh,2972.49,Supplier 3,2024-03-13,Rechnung,Scope 1,1.607,N/A,,Nein, ,COMP-6051
+Homeoffice,4037.29,hour,2018.65,Supplier 4,2024-11-09,genau,Scope 3 Cat 7,1.638,N/A,,Nein, ,COMP-5861
+Flug,8711.67,night,4355.84,Supplier 16,2024-07-24,Rechnung,Scope 3 Cat 6,1.900,N/A,,Nein, ,COMP-2208
+Lieferant B,7636.21,EUR,,Supplier 5,2024-11-07,geschätzt,Scope 3 Cat 1,0.884,N/A,,Nein, ,COMP-8970
+Flug,1020.35,pkm,510.18,Supplier 2,2024-09-27,genau,Scope 3 Cat 6,0.390,N/A,,Nein, ,COMP-2763
+Eingangsfracht,7532.43,km,3766.21,Supplier 5,2024-12-01,genau,Scope 3 Cat 4,2.063,N/A,,Nein, ,COMP-4588
+Beschaffung,8241.93,EUR,,Supplier 8,2024-01-06,geschätzt,Scope 3 Cat 1,2.155,N/A,,Nein, ,COMP-1015
+Diesel,"8.397,66",L,4198.83,Supplier 10,2024-12-11,,Scope 1,1.076,N/A,,Nein, ,COMP-9739
+Erdgas,8116.24,kg,4058.12,Supplier 8,2024-01-07,geschätzt,Scope 1,1.848,N/A,,Nein, ,COMP-6007
+Heizöl,3575.30,kg,1787.65,Supplier 12,2024-11-05,,Scope 1,0.530,N/A,,Nein, ,COMP-7588
+Heizöl,6727.06,kWh,3363.53,Supplier 18,2024-01-14,geschätzt,Scope 1,0.324,N/A,,Nein, ,COMP-6790
+Seefracht,2933.75,tkm,1466.88,Supplier 15,2024-08-09,,Scope 3 Cat 4,2.224,N/A,,Nein, ,COMP-6629
+Well-to-Tank,4630.26,kWh,2315.13,Supplier 12,2024-10-16,Rechnung,Scope 3 Cat 3,0.238,N/A,,Nein, ,COMP-9137
+Beteiligungen,1208.68,EUR,,Supplier 10,2024-09-23,Rechnung,Scope 3 Cat 15,0.475,N/A,,Nein, ,COMP-2594
+Fernwärme,1719.05,kWh,859.52,Supplier 4,2024-06-01,,Scope 2,1.920,N/A,,Nein, ,COMP-8171
+Eingangsfracht,5081.09,km,2540.55,Supplier 9,2024-10-12,geschätzt,Scope 3 Cat 4,1.396,N/A,,Nein, ,COMP-3074
+Seefracht,2408.50,km,1204.25,Supplier 9,2024-01-16,,Scope 3 Cat 4,0.703,N/A,,Nein, ,COMP-9131
+Fernwärme,540.60,kWh,270.30,Supplier 8,2024-03-27,geschätzt,Scope 2,1.724,N/A,,Nein, ,COMP-7186
+Lieferant A,5633.61,USD,,Supplier 9,2024-09-13,Rechnung,Scope 3 Cat 1,0.448,N/A,,Nein, ,COMP-4101
+Supplier C,ca. 1900.9,EUR,,Supplier 12,2024-09-27,genau,Scope 3 Cat 1,2.041,N/A,,Nein, ,COMP-8570
+Unternehmenskredite,812.06,EUR,,Supplier 5,2024-06-12,Rechnung,Scope 3 Cat 15,1.117,N/A,,Nein, ,COMP-2919
+Rohmaterial,"1.857,30",EUR,,Supplier 9,2024-11-29,genau,Scope 3 Cat 1,1.540,N/A,,Nein, ,COMP-6112
+Diesel,3095.03,L,1547.52,Supplier 4,2024-10-30,geschätzt,Scope 1,1.932,N/A,,Nein, ,COMP-1496
+Erdgas,4122.41,kWh,2061.20,Supplier 11,2024-02-08,Rechnung,Scope 1,0.951,N/A,,Nein, ,COMP-7768
+Supplier C,4142.91,USD,,Supplier 9,2024-02-18,geschätzt,Scope 3 Cat 1,0.980,N/A,,Nein, ,COMP-9863
+Benzin,4859.38,kWh,2429.69,Supplier 13,2024-01-30,Rechnung,Scope 1,1.673,N/A,,Nein, ,COMP-7631
+Strom,2075.66,kWh,1037.83,Supplier 12,2024-03-20,,Scope 2,0.126,N/A,,Ja, ,COMP-5455
+Dienstreise,8770.03,pkm,4385.02,Supplier 9,2024-08-25,Rechnung,Scope 3 Cat 6,1.066,N/A,,Nein, ,COMP-9022
+Homeoffice,815.72,km,407.86,Supplier 18,2024-09-05,,Scope 3 Cat 7,1.482,N/A,,Nein, ,COMP-5248
+Strom,7426.50,kWh,3713.25,Supplier 6,2024-04-17,Rechnung,Scope 2,0.810,N/A,,Ja, ,COMP-5876
+Heizöl,107.24,L,53.62,Supplier 20,2024-11-12,,Scope 1,1.544,N/A,,Nein, ,COMP-7125
+Lieferant B,9163.02,USD,,Supplier 1,2024-11-23,,Scope 3 Cat 1,1.703,N/A,,Nein, ,COMP-1967
+Kohle,6427.02,kWh,3213.51,Supplier 3,2024-12-20,,Scope 1,0.775,N/A,,Nein, ,COMP-4617
+Fernwärme,2680.19,kWh,1340.09,Supplier 9,2024-07-03,geschätzt,Scope 2,1.716,N/A,,Nein, ,COMP-7816
+Diesel,1339.33,kWh,669.66,Supplier 4,2024-04-26,genau,Scope 1,0.196,N/A,,Nein, ,COMP-9835
+Erdgas,6353.88,kWh,3176.94,Supplier 13,2024-07-05,geschätzt,Scope 1,2.168,N/A,,Nein, ,COMP-9609
+Bahn,8533.24,km,4266.62,Supplier 5,2024-02-01,,Scope 3 Cat 6,0.696,N/A,,Nein, ,COMP-6512
+Strom,"8.638,65",kWh,4319.33,Supplier 1,2024-03-10,geschätzt,Scope 2,0.427,N/A,,Ja, ,COMP-4169
+Ökostrom,8582.26,kWh,4291.13,Supplier 11,2024-07-31,Rechnung,Scope 2,1.863,N/A,,Nein, ,COMP-1803
+Strom,902.42,MWh,451.21,Supplier 4,2024-08-03,geschätzt,Scope 2,0.836,N/A,,Ja, ,COMP-6543
+Well-to-Tank,870.07,kWh,435.03,Supplier 16,2024-01-23,genau,Scope 3 Cat 3,1.878,N/A,,Nein, ,COMP-8932
+Homeoffice,2543.30,hour,1271.65,Supplier 8,2024-07-05,geschätzt,Scope 3 Cat 7,0.632,N/A,,Nein, ,COMP-1932
+Einkauf,5323.39,EUR,,Supplier 8,2024-11-03,,Scope 3 Cat 1,1.791,N/A,,Nein, ,COMP-4235
+Hotel,7047.63,night,3523.81,Supplier 19,2024-11-20,geschätzt,Scope 3 Cat 6,2.284,N/A,,Nein, ,COMP-3914
+Erdgas,2100.97,L,1050.48,Supplier 10,2024-04-24,geschätzt,Scope 1,1.993,N/A,,Nein, ,COMP-6130
+Beschaffung,9700.89,USD,,Supplier 12,2024-05-29,,Scope 3 Cat 1,1.773,N/A,,Nein, ,COMP-1285
+Unternehmenskredite,5938.92,EUR,,Supplier 19,2024-05-27,genau,Scope 3 Cat 15,1.320,N/A,,Nein, ,COMP-5064
+Erdgas,3743.88,kWh,1871.94,Supplier 1,2024-12-16,,Scope 1,0.699,N/A,,Nein, ,COMP-3328
+Ökostrom,"7.516,58",MWh,3758.29,Supplier 4,2024-06-06,Rechnung,Scope 2,1.159,N/A,,Nein, ,COMP-3050
+Einkauf,541.81,USD,,Supplier 13,2024-07-20,,Scope 3 Cat 1,0.127,N/A,,Nein, ,COMP-6936
+Dienstreise,ca. 5293.8,night,2646.89,Supplier 15,2024-06-02,genau,Scope 3 Cat 6,2.349,N/A,,Nein, ,COMP-2255
+Einkauf,ca. 4131.5,USD,,Supplier 2,2024-08-30,Rechnung,Scope 3 Cat 1,1.080,N/A,,Nein, ,COMP-6367
+Well-to-Tank,8980.28,kWh,4490.14,Supplier 2,2024-08-23,geschätzt,Scope 3 Cat 3,0.681,N/A,,Nein, ,COMP-6746
+Strom,969.61,kWh,484.81,Supplier 15,2024-12-10,geschätzt,Scope 2,0.801,N/A,,Ja, ,COMP-8630
+Strom,9793.73,kWh,4896.86,Supplier 8,2024-11-23,,Scope 2,1.154,N/A,,Ja, ,COMP-2566
+Heizöl,4189.66,kg,2094.83,Supplier 7,2024-04-08,genau,Scope 1,1.457,N/A,,Nein, ,COMP-2994
+Benzin,4421.61,kg,2210.80,Supplier 17,2024-04-12,,Scope 1,2.059,N/A,,Nein, ,COMP-2209
+Diesel,4320.21,kg,2160.11,Supplier 4,2024-07-22,,Scope 1,0.552,N/A,,Nein, ,COMP-2064
+Ökostrom,6915.31,kWh,3457.66,Supplier 7,2024-02-13,,Scope 2,2.051,N/A,,Nein, ,COMP-5330
+Heizöl,7941.62,L,3970.81,Supplier 14,2024-03-27,,Scope 1,0.143,N/A,,Nein, ,COMP-9451
+Ökostrom,1934.15,MWh,967.07,Supplier 12,2024-05-28,,Scope 2,0.355,N/A,,Nein, ,COMP-7715
+Einkauf,9323.73,EUR,,Supplier 10,2024-07-26,geschätzt,Scope 3 Cat 1,0.428,N/A,,Nein, ,COMP-3738
+Pendeln,"4.409,79",km,2204.89,Supplier 2,2024-03-29,,Scope 3 Cat 7,0.807,N/A,,Nein, ,COMP-3795
+Ökostrom,ca. 2755.6,kWh,1377.79,Supplier 9,2024-11-23,,Scope 2,2.381,N/A,,Nein, ,COMP-3458
+Ökostrom,141.04,MWh,70.52,Supplier 19,2024-04-11,genau,Scope 2,0.520,N/A,,Nein, ,COMP-1974
+Strom,1100.25,MWh,550.12,Supplier 17,2024-05-14,,Scope 2,1.966,N/A,,Ja, ,COMP-6728
+Lieferant A,ca. 6627.2,EUR,,Supplier 17,2024-06-21,geschätzt,Scope 3 Cat 1,2.450,N/A,,Nein, ,COMP-1283
+Kohle,5128.34,m3,2564.17,Supplier 12,2024-06-15,geschätzt,Scope 1,0.311,N/A,,Nein, ,COMP-9018
+Bahn,5146.22,pkm,2573.11,Supplier 13,2024-07-18,geschätzt,Scope 3 Cat 6,1.617,N/A,,Nein, ,COMP-7549
+Lieferant B,556.99,USD,,Supplier 8,2024-03-16,geschätzt,Scope 3 Cat 1,2.151,N/A,,Nein, ,COMP-2242
+Flug,8019.97,pkm,4009.98,Supplier 19,2024-07-16,,Scope 3 Cat 6,1.275,N/A,,Nein, ,COMP-7640
+Supplier C,8517.50,EUR,,Supplier 20,2024-04-08,genau,Scope 3 Cat 1,2.407,N/A,,Nein, ,COMP-2859
+Heizöl,4659.72,L,2329.86,Supplier 19,2024-11-06,,Scope 1,2.299,N/A,,Nein, ,COMP-5641
+Ökostrom,6401.74,MWh,3200.87,Supplier 15,2024-08-15,geschätzt,Scope 2,1.894,N/A,,Nein, ,COMP-8646
+LKW-Transport,1353.11,km,676.56,Supplier 17,2024-08-03,Rechnung,Scope 3 Cat 4,0.790,N/A,,Nein, ,COMP-5231
+Supplier C,"6.417,43",USD,,Supplier 4,2024-08-06,Rechnung,Scope 3 Cat 1,1.805,N/A,,Nein, ,COMP-4534
+Lieferant A,"8.581,88",USD,,Supplier 10,2024-01-19,,Scope 3 Cat 1,2.462,N/A,,Nein, ,COMP-1472
+Lieferant B,1536.69,USD,,Supplier 20,2024-12-03,,Scope 3 Cat 1,0.362,N/A,,Nein, ,COMP-5421
+Supplier C,3267.20,EUR,,Supplier 9,2024-05-19,genau,Scope 3 Cat 1,1.979,N/A,,Nein, ,COMP-1489
+Lieferant B,2809.99,EUR,,Supplier 3,2024-06-01,Rechnung,Scope 3 Cat 1,0.296,N/A,,Nein, ,COMP-1861
+Pendeln,2250.50,hour,1125.25,Supplier 1,2024-06-29,Rechnung,Scope 3 Cat 7,0.722,N/A,,Nein, ,COMP-6650
+Strom,"2.435,53",kWh,1217.76,Supplier 6,2024-04-21,geschätzt,Scope 2,2.038,N/A,,Ja, ,COMP-9072
+,,,,,,,,,,,,,
+Lieferant A,"115,68",EUR,,Supplier 10,2024-12-21,,Scope 3 Cat 1,1.640,N/A,,Nein, ,COMP-6552
+Benzin,ca. 2997.9,L,1498.95,Supplier 5,2024-08-17,geschätzt,Scope 1,2.447,N/A,,Nein, ,COMP-8908
+Strom,1216.76,kWh,608.38,Supplier 7,2024-12-20,,Scope 2,2.212,N/A,,Ja, ,COMP-7179
+Heizöl,5945.49,m3,2972.74,Supplier 18,2024-01-22,,Scope 1,2.273,N/A,,Nein, ,COMP-2669
+Lieferant A,ca. 9904.1,EUR,,Supplier 6,2024-01-20,Rechnung,Scope 3 Cat 1,1.322,N/A,,Nein, ,COMP-7664
+Lieferant B,2750.44,USD,,Supplier 8,2024-11-13,Rechnung,Scope 3 Cat 1,0.277,N/A,,Nein, ,COMP-3327
+Beteiligungen,ca. 7402.3,USD,,Supplier 20,2024-02-24,,Scope 3 Cat 15,1.252,N/A,,Nein, ,COMP-7862
+Strom,1084.10,kWh,542.05,Supplier 13,2024-11-27,,Scope 2,1.562,N/A,,Ja, ,COMP-9058
+Flug,3353.41,pkm,1676.71,Supplier 16,2024-10-18,geschätzt,Scope 3 Cat 6,1.609,N/A,,Nein, ,COMP-1729
+Heizöl,51.42,kg,25.71,Supplier 19,2024-10-26,genau,Scope 1,1.913,N/A,,Nein, ,COMP-8906
+Strom,9653.12,MWh,4826.56,Supplier 2,2024-10-17,,Scope 2,2.412,N/A,,Ja, ,COMP-7048
+Unternehmenskredite,4770.85,USD,,Supplier 10,2024-05-08,,Scope 3 Cat 15,2.470,N/A,,Nein, ,COMP-8479
+Pendeln,2004.93,km,1002.46,Supplier 6,2024-12-07,geschätzt,Scope 3 Cat 7,1.030,N/A,,Nein, ,COMP-6420
+Einkauf,4526.80,USD,,Supplier 15,2024-06-20,Rechnung,Scope 3 Cat 1,1.612,N/A,,Nein, ,COMP-9333
+Biomasse,5816.80,kWh,2908.40,Supplier 20,2024-06-16,geschätzt,Scope 1,1.617,N/A,,Nein, ,COMP-6036
+Bahn,6498.33,pkm,3249.16,Supplier 7,2024-10-28,Rechnung,Scope 3 Cat 6,1.168,N/A,,Nein, ,COMP-6529
+Strom,6339.72,MWh,3169.86,Supplier 13,2024-07-16,geschätzt,Scope 2,1.173,N/A,,Ja, ,COMP-7894
+Kohle,767.48,kg,383.74,Supplier 16,2024-11-28,genau,Scope 1,1.905,N/A,,Nein, ,COMP-2433
+Fernwärme,"4.648,77",kWh,2324.38,Supplier 10,2024-09-30,genau,Scope 2,0.107,N/A,,Nein, ,COMP-2703
+Strom,970.01,kWh,485.01,Supplier 5,2024-04-04,,Scope 2,2.047,N/A,,Ja, ,COMP-6731
+Hotel,1811.51,night,905.75,Supplier 9,2024-02-11,genau,Scope 3 Cat 6,0.455,N/A,,Nein, ,COMP-2098
+Lieferant B,9726.18,EUR,,Supplier 10,2024-06-21,geschätzt,Scope 3 Cat 1,2.151,N/A,,Nein, ,COMP-9839
+Strom,7933.92,MWh,3966.96,Supplier 15,2024-07-12,Rechnung,Scope 2,1.510,N/A,,Ja, ,COMP-8675
+Einkauf,2256.45,EUR,,Supplier 20,2024-05-21,geschätzt,Scope 3 Cat 1,2.256,N/A,,Nein, ,COMP-8947
+Supplier C,7493.19,USD,,Supplier 18,2024-01-30,,Scope 3 Cat 1,0.531,N/A,,Nein, ,COMP-9066
+Seefracht,8253.38,km,4126.69,Supplier 6,2024-07-09,,Scope 3 Cat 4,1.952,N/A,,Nein, ,COMP-7490
+Lieferant A,591.16,USD,,Supplier 3,2024-02-02,Rechnung,Scope 3 Cat 1,2.255,N/A,,Nein, ,COMP-4353
+Strom,7961.78,MWh,3980.89,Supplier 5,2024-04-25,,Scope 2,1.682,N/A,,Ja, ,COMP-1191
+,,,,,,,,,,,,,
+Fernwärme,1829.14,kWh,914.57,Supplier 3,2024-04-10,,Scope 2,0.499,N/A,,Nein, ,COMP-9204
+Supplier C,"770,27",EUR,,Supplier 14,2024-10-22,geschätzt,Scope 3 Cat 1,0.599,N/A,,Nein, ,COMP-2147
+Lieferant B,8926.82,EUR,,Supplier 12,2024-08-07,,Scope 3 Cat 1,1.680,N/A,,Nein, ,COMP-7833
+Supplier C,9957.52,USD,,Supplier 4,2024-02-18,,Scope 3 Cat 1,1.033,N/A,,Nein, ,COMP-8300
+Gewerbeimmobilien,110.47,USD,,Supplier 15,2024-02-20,geschätzt,Scope 3 Cat 15,1.691,N/A,,Nein, ,COMP-7241
+Vorgelagerte Energie,7911.16,kWh,3955.58,Supplier 15,2024-10-20,geschätzt,Scope 3 Cat 3,0.944,N/A,,Nein, ,COMP-7764
+Diesel,9796.04,L,4898.02,Supplier 4,2024-04-18,Rechnung,Scope 1,2.101,N/A,,Nein, ,COMP-8489
+Strom,"2.544,46",kWh,1272.23,Supplier 3,2024-10-19,geschätzt,Scope 2,2.224,N/A,,Ja, ,COMP-8558
+Strom,2234.42,MWh,1117.21,Supplier 18,2024-11-11,Rechnung,Scope 2,1.486,N/A,,Ja, ,COMP-8424
+Well-to-Tank,7529.06,kWh,3764.53,Supplier 11,2024-03-02,Rechnung,Scope 3 Cat 3,1.890,N/A,,Nein, ,COMP-2036
+Supplier C,5061.91,USD,,Supplier 1,2024-12-21,,Scope 3 Cat 1,0.521,N/A,,Nein, ,COMP-2807
+Bahn,106.98,km,53.49,Supplier 20,2024-02-22,,Scope 3 Cat 6,1.627,N/A,,Nein, ,COMP-2282
+Strom,6921.23,MWh,3460.62,Supplier 7,2024-06-26,geschätzt,Scope 2,1.470,N/A,,Ja, ,COMP-3098
+Vorgelagerte Energie,5218.53,L,2609.27,Supplier 14,2024-11-04,,Scope 3 Cat 3,1.127,N/A,,Nein, ,COMP-3422
+Lieferant B,4524.62,USD,,Supplier 12,2024-04-14,,Scope 3 Cat 1,0.726,N/A,,Nein, ,COMP-3916
+Ökostrom,7180.82,MWh,3590.41,Supplier 12,2024-11-11,Rechnung,Scope 2,2.188,N/A,,Nein, ,COMP-6921
+Biomasse,7980.68,L,3990.34,Supplier 3,2024-04-17,,Scope 1,1.004,N/A,,Nein, ,COMP-5110
+Strom,"3.283,06",MWh,1641.53,Supplier 11,2024-02-28,geschätzt,Scope 2,1.374,N/A,,Ja, ,COMP-8242
+Benzin,3109.09,kWh,1554.55,Supplier 16,2024-08-25,geschätzt,Scope 1,0.965,N/A,,Nein, ,COMP-6211
+Hotel,"7.473,53",pkm,3736.77,Supplier 8,2024-06-18,Rechnung,Scope 3 Cat 6,2.202,N/A,,Nein, ,COMP-7015
+Strom,"4.847,22",kWh,2423.61,Supplier 18,2024-10-28,geschätzt,Scope 2,0.964,N/A,,Ja, ,COMP-8640
+Diesel,ca. 296.3,L,148.13,Supplier 20,2024-11-08,Rechnung,Scope 1,0.243,N/A,,Nein, ,COMP-6504
+Erdgas,ca. 8485.4,m3,4242.72,Supplier 2,2024-11-14,genau,Scope 1,0.446,N/A,,Nein, ,COMP-8449
+Eingangsfracht,4204.89,tkm,2102.45,Supplier 18,2024-07-21,genau,Scope 3 Cat 4,1.706,N/A,,Nein, ,COMP-2993
+Ökostrom,239.41,MWh,119.70,Supplier 16,2024-03-07,Rechnung,Scope 2,2.127,N/A,,Nein, ,COMP-3540
+Erdgas,"3.251,27",L,1625.64,Supplier 7,2024-11-05,geschätzt,Scope 1,0.908,N/A,,Nein, ,COMP-6983
+Kohle,7661.86,kg,3830.93,Supplier 19,2024-04-19,,Scope 1,0.193,N/A,,Nein, ,COMP-7302
+Lieferant B,ca. 3512.8,USD,,Supplier 6,2024-03-23,geschätzt,Scope 3 Cat 1,1.121,N/A,,Nein, ,COMP-6903
+Supplier C,9113.98,EUR,,Supplier 4,2024-12-30,,Scope 3 Cat 1,0.164,N/A,,Nein, ,COMP-4555
+Biomasse,5197.00,L,2598.50,Supplier 14,2024-12-26,geschätzt,Scope 1,1.250,N/A,,Nein, ,COMP-8523
+Hotel,"4.855,31",pkm,2427.65,Supplier 2,2024-11-29,Rechnung,Scope 3 Cat 6,0.387,N/A,,Nein, ,COMP-6754
+Pendeln,7471.50,km,3735.75,Supplier 7,2024-09-15,Rechnung,Scope 3 Cat 7,1.311,N/A,,Nein, ,COMP-9372
+Strom,"4.672,88",MWh,2336.44,Supplier 12,2024-06-01,geschätzt,Scope 2,2.307,N/A,,Ja, ,COMP-5778
+Biomasse,3275.87,kg,1637.93,Supplier 2,2024-12-20,,Scope 1,2.063,N/A,,Nein, ,COMP-9837
+Lieferant B,4222.55,USD,,Supplier 4,2024-02-17,genau,Scope 3 Cat 1,1.667,N/A,,Nein, ,COMP-7361
+Fernwärme,1305.86,kWh,652.93,Supplier 2,2024-06-10,Rechnung,Scope 2,2.444,N/A,,Nein, ,COMP-5874
+Beteiligungen,3662.45,EUR,,Supplier 8,2024-09-18,,Scope 3 Cat 15,0.634,N/A,,Nein, ,COMP-7304
+Heizöl,1589.56,m3,794.78,Supplier 20,2024-03-24,,Scope 1,1.345,N/A,,Nein, ,COMP-9519
+Ökostrom,5536.05,MWh,2768.03,Supplier 13,2024-10-08,Rechnung,Scope 2,2.372,N/A,,Nein, ,COMP-2633
+Strom,6644.83,MWh,3322.41,Supplier 3,2024-12-23,geschätzt,Scope 2,0.400,N/A,,Ja, ,COMP-5267
+Strom,9239.71,kWh,4619.86,Supplier 14,2024-07-12,,Scope 2,2.040,N/A,,Ja, ,COMP-6355
+Erdgas,1409.17,kWh,704.58,Supplier 16,2024-03-08,geschätzt,Scope 1,0.545,N/A,,Nein, ,COMP-8070
+Flug,ca. 885.7,pkm,442.85,Supplier 19,2024-11-25,genau,Scope 3 Cat 6,0.269,N/A,,Nein, ,COMP-7948
+Unternehmenskredite,"2.210,08",USD,,Supplier 9,2024-06-20,geschätzt,Scope 3 Cat 15,1.397,N/A,,Nein, ,COMP-1946
+LKW-Transport,5623.45,km,2811.72,Supplier 10,2024-03-11,Rechnung,Scope 3 Cat 4,1.696,N/A,,Nein, ,COMP-5168
+Beschaffung,5067.10,EUR,,Supplier 14,2024-12-16,geschätzt,Scope 3 Cat 1,0.402,N/A,,Nein, ,COMP-2498
+Kohle,148.40,kWh,74.20,Supplier 18,2024-06-08,geschätzt,Scope 1,1.974,N/A,,Nein, ,COMP-2996
+Biomasse,2301.04,m3,1150.52,Supplier 18,2024-07-04,genau,Scope 1,2.354,N/A,,Nein, ,COMP-6303
+Dienstreise,451.66,night,225.83,Supplier 15,2024-06-22,,Scope 3 Cat 6,0.406,N/A,,Nein, ,COMP-4308
+Beschaffung,1315.63,EUR,,Supplier 18,2024-09-12,genau,Scope 3 Cat 1,0.337,N/A,,Nein, ,COMP-1340
+Seefracht,8032.63,tkm,4016.31,Supplier 9,2024-03-17,geschätzt,Scope 3 Cat 4,2.132,N/A,,Nein, ,COMP-9968
+Diesel,446.18,kWh,223.09,Supplier 8,2024-09-11,genau,Scope 1,2.029,N/A,,Nein, ,COMP-7578
+Lieferant B,"1.005,19",EUR,,Supplier 20,2024-12-09,,Scope 3 Cat 1,1.207,N/A,,Nein, ,COMP-1858
+Benzin,"1.782,56",kWh,891.28,Supplier 2,2024-09-21,genau,Scope 1,0.761,N/A,,Nein, ,COMP-3704
+Unternehmenskredite,ca. 7274.8,USD,,Supplier 4,2024-04-01,,Scope 3 Cat 15,0.346,N/A,,Nein, ,COMP-7160
+Ökostrom,3100.55,kWh,1550.28,Supplier 1,2024-03-08,Rechnung,Scope 2,2.038,N/A,,Nein, ,COMP-3429
+Beschaffung,"9.383,13",USD,,Supplier 17,2024-03-03,genau,Scope 3 Cat 1,0.170,N/A,,Nein, ,COMP-3106
+Fernwärme,"6.069,79",MWh,3034.89,Supplier 17,2024-08-25,,Scope 2,2.179,N/A,,Nein, ,COMP-2906
+Erdgas,8955.67,L,4477.84,Supplier 5,2024-07-17,geschätzt,Scope 1,0.719,N/A,,Nein, ,COMP-3134
+Fernwärme,3361.67,MWh,1680.83,Supplier 18,2024-02-27,genau,Scope 2,0.244,N/A,,Nein, ,COMP-9149
+Heizöl,8820.96,L,4410.48,Supplier 15,2024-02-11,geschätzt,Scope 1,2.219,N/A,,Nein, ,COMP-4018
+Ökostrom,3469.34,MWh,1734.67,Supplier 5,2024-08-13,,Scope 2,0.585,N/A,,Nein, ,COMP-5346
+Lieferant A,3972.54,EUR,,Supplier 17,2024-05-14,genau,Scope 3 Cat 1,1.907,N/A,,Nein, ,COMP-3605
+Rohmaterial,3220.01,EUR,,Supplier 15,2024-10-11,,Scope 3 Cat 1,0.932,N/A,,Nein, ,COMP-2340
+Einkauf,4446.15,USD,,Supplier 5,2024-01-05,Rechnung,Scope 3 Cat 1,1.733,N/A,,Nein, ,COMP-1358
+Beteiligungen,6791.86,USD,,Supplier 2,2024-07-19,,Scope 3 Cat 15,0.305,N/A,,Nein, ,COMP-5634
+Flug,1717.40,night,858.70,Supplier 5,2024-05-22,genau,Scope 3 Cat 6,1.109,N/A,,Nein, ,COMP-3062
+Pendeln,2680.06,km,1340.03,Supplier 5,2024-03-18,geschätzt,Scope 3 Cat 7,1.113,N/A,,Nein, ,COMP-9002
+Homeoffice,9503.48,km,4751.74,Supplier 8,2024-02-10,geschätzt,Scope 3 Cat 7,0.269,N/A,,Nein, ,COMP-2352
+Heizöl,9592.40,L,4796.20,Supplier 20,2024-07-26,Rechnung,Scope 1,1.631,N/A,,Nein, ,COMP-6382
+Benzin,8158.26,kWh,4079.13,Supplier 4,2024-09-25,Rechnung,Scope 1,1.595,N/A,,Nein, ,COMP-2702
+LKW-Transport,3453.13,tkm,1726.57,Supplier 7,2024-06-15,,Scope 3 Cat 4,0.717,N/A,,Nein, ,COMP-9288
+Hotel,7415.47,km,3707.74,Supplier 18,2024-06-20,genau,Scope 3 Cat 6,2.072,N/A,,Nein, ,COMP-9581
+Bahn,"8.794,48",pkm,4397.24,Supplier 15,2024-05-14,Rechnung,Scope 3 Cat 6,0.606,N/A,,Nein, ,COMP-7522
+Seefracht,8805.28,tkm,4402.64,Supplier 5,2024-11-30,,Scope 3 Cat 4,1.852,N/A,,Nein, ,COMP-5806
+Strom,4371.39,kWh,2185.70,Supplier 20,2024-07-25,Rechnung,Scope 2,2.224,N/A,,Ja, ,COMP-8674
+Erdgas,9677.17,kg,4838.59,Supplier 11,2024-12-25,Rechnung,Scope 1,2.407,N/A,,Nein, ,COMP-5295
+Einkauf,5301.59,EUR,,Supplier 9,2024-06-18,genau,Scope 3 Cat 1,2.074,N/A,,Nein, ,COMP-7168
+Kohle,5317.04,kg,2658.52,Supplier 11,2024-12-23,,Scope 1,1.789,N/A,,Nein, ,COMP-1126
+Lieferant B,4291.12,USD,,Supplier 13,2024-10-15,genau,Scope 3 Cat 1,1.063,N/A,,Nein, ,COMP-3598
+Vorgelagerte Energie,4203.93,L,2101.97,Supplier 6,2024-03-29,,Scope 3 Cat 3,2.249,N/A,,Nein, ,COMP-4044
+LKW-Transport,ca. 5199.6,km,2599.79,Supplier 13,2024-02-02,genau,Scope 3 Cat 4,1.496,N/A,,Nein, ,COMP-7490
+Flug,69.27,night,34.64,Supplier 15,2024-03-12,,Scope 3 Cat 6,1.673,N/A,,Nein, ,COMP-7637
+Einkauf,766.38,USD,,Supplier 14,2024-10-28,Rechnung,Scope 3 Cat 1,1.833,N/A,,Nein, ,COMP-3158
+Fernwärme,9639.30,MWh,4819.65,Supplier 3,2024-01-05,geschätzt,Scope 2,2.169,N/A,,Nein, ,COMP-7298
+Vorgelagerte Energie,5544.31,L,2772.15,Supplier 11,2024-12-17,Rechnung,Scope 3 Cat 3,0.220,N/A,,Nein, ,COMP-8216
+Biomasse,7289.32,L,3644.66,Supplier 5,2024-04-08,,Scope 1,1.732,N/A,,Nein, ,COMP-3378
+Benzin,787.95,kg,393.98,Supplier 1,2024-06-17,geschätzt,Scope 1,1.562,N/A,,Nein, ,COMP-7229
+Ökostrom,3654.59,kWh,1827.29,Supplier 2,2024-02-29,genau,Scope 2,2.121,N/A,,Nein, ,COMP-6847
+Hotel,1498.76,km,749.38,Supplier 5,2024-05-16,geschätzt,Scope 3 Cat 6,0.539,N/A,,Nein, ,COMP-6524
+Rohmaterial,6998.24,EUR,,Supplier 18,2024-08-19,,Scope 3 Cat 1,1.803,N/A,,Nein, ,COMP-3158
+Homeoffice,2917.97,hour,1458.98,Supplier 20,2024-08-14,Rechnung,Scope 3 Cat 7,1.897,N/A,,Nein, ,COMP-6717
+Einkauf,127.49,USD,,Supplier 17,2024-04-23,genau,Scope 3 Cat 1,2.388,N/A,,Nein, ,COMP-4126
+Einkauf,9753.71,USD,,Supplier 7,2024-07-14,geschätzt,Scope 3 Cat 1,1.122,N/A,,Nein, ,COMP-5359
+LKW-Transport,762.64,tkm,381.32,Supplier 11,2024-06-17,Rechnung,Scope 3 Cat 4,0.102,N/A,,Nein, ,COMP-3624
+,,,,,,,,,,,,,
+Lieferant B,7172.27,USD,,Supplier 7,2024-01-21,genau,Scope 3 Cat 1,1.818,N/A,,Nein, ,COMP-4303
+Pendeln,1774.56,hour,887.28,Supplier 17,2024-11-18,,Scope 3 Cat 7,1.711,N/A,,Nein, ,COMP-6842
+Homeoffice,8404.97,hour,4202.49,Supplier 3,2024-02-23,geschätzt,Scope 3 Cat 7,0.890,N/A,,Nein, ,COMP-2150
+Heizöl,ca. 4986.5,L,2493.23,Supplier 6,2024-02-12,,Scope 1,1.608,N/A,,Nein, ,COMP-6663
+Unternehmenskredite,7091.05,USD,,Supplier 17,2024-10-14,Rechnung,Scope 3 Cat 15,1.295,N/A,,Nein, ,COMP-2261
+Unternehmenskredite,2181.39,EUR,,Supplier 4,2024-10-21,,Scope 3 Cat 15,2.056,N/A,,Nein, ,COMP-2371
+Lieferant A,7033.94,USD,,Supplier 9,2024-10-22,,Scope 3 Cat 1,0.691,N/A,,Nein, ,COMP-6904
+Diesel,7605.97,kWh,3802.98,Supplier 16,2024-08-16,,Scope 1,0.364,N/A,,Nein, ,COMP-5862
+Seefracht,3797.07,tkm,1898.54,Supplier 13,2024-08-21,genau,Scope 3 Cat 4,1.204,N/A,,Nein, ,COMP-2806
+Lieferant A,4584.60,EUR,,Supplier 4,2024-11-26,,Scope 3 Cat 1,0.184,N/A,,Nein, ,COMP-1587
+Kohle,9260.71,kWh,4630.36,Supplier 10,2024-09-24,geschätzt,Scope 1,1.655,N/A,,Nein, ,COMP-4191
+Einkauf,9205.34,EUR,,Supplier 13,2024-06-12,genau,Scope 3 Cat 1,0.861,N/A,,Nein, ,COMP-5673
+Fernwärme,2071.79,MWh,1035.90,Supplier 20,2024-02-06,geschätzt,Scope 2,2.278,N/A,,Nein, ,COMP-6632
+Heizöl,3518.11,L,1759.05,Supplier 10,2024-06-18,,Scope 1,1.663,N/A,,Nein, ,COMP-5594
+Benzin,4726.23,L,2363.12,Supplier 20,2024-04-30,,Scope 1,1.489,N/A,,Nein, ,COMP-7846
+Strom,7221.95,MWh,3610.97,Supplier 9,2024-06-06,genau,Scope 2,0.895,N/A,,Ja, ,COMP-2412
+Fernwärme,9524.33,MWh,4762.17,Supplier 11,2024-02-08,,Scope 2,0.209,N/A,,Nein, ,COMP-9015
+Heizöl,148.69,m3,74.35,Supplier 9,2024-03-06,geschätzt,Scope 1,1.332,N/A,,Nein, ,COMP-8575
+Beteiligungen,233.97,EUR,,Supplier 3,2024-08-21,Rechnung,Scope 3 Cat 15,1.213,N/A,,Nein, ,COMP-5314
+Unternehmenskredite,2720.62,USD,,Supplier 12,2024-07-09,,Scope 3 Cat 15,0.952,N/A,,Nein, ,COMP-1790
+Vorgelagerte Energie,6423.15,L,3211.58,Supplier 16,2024-12-12,genau,Scope 3 Cat 3,0.240,N/A,,Nein, ,COMP-3484
+Erdgas,9368.32,kWh,4684.16,Supplier 9,2024-02-19,genau,Scope 1,1.926,N/A,,Nein, ,COMP-2553
+Strom,5457.52,MWh,2728.76,Supplier 12,2024-05-21,genau,Scope 2,1.838,N/A,,Ja, ,COMP-7967
+Dienstreise,2673.35,pkm,1336.68,Supplier 12,2024-11-03,geschätzt,Scope 3 Cat 6,0.721,N/A,,Nein, ,COMP-2281
+Heizöl,8501.65,L,4250.83,Supplier 16,2024-01-20,genau,Scope 1,1.994,N/A,,Nein, ,COMP-6853
+Flug,6641.85,pkm,3320.93,Supplier 14,2024-01-13,genau,Scope 3 Cat 6,1.934,N/A,,Nein, ,COMP-3182
+Biomasse,8696.15,L,4348.08,Supplier 8,2024-04-25,genau,Scope 1,2.127,N/A,,Nein, ,COMP-2211
+Eingangsfracht,"8.675,03",tkm,4337.51,Supplier 5,2024-08-20,geschätzt,Scope 3 Cat 4,1.703,N/A,,Nein, ,COMP-4030
+Strom,9677.56,kWh,4838.78,Supplier 17,2024-02-06,genau,Scope 2,1.277,N/A,,Ja, ,COMP-8075
+Heizöl,9621.22,kWh,4810.61,Supplier 10,2024-02-20,geschätzt,Scope 1,1.995,N/A,,Nein, ,COMP-7002
+,,,,,,,,,,,,,
+Fernwärme,3151.12,kWh,1575.56,Supplier 15,2024-01-02,,Scope 2,1.075,N/A,,Nein, ,COMP-4929
+Fernwärme,6139.96,MWh,3069.98,Supplier 6,2024-07-15,,Scope 2,1.494,N/A,,Nein, ,COMP-5949
+Benzin,"717,97",m3,358.98,Supplier 12,2024-03-12,Rechnung,Scope 1,0.314,N/A,,Nein, ,COMP-6200
+Beschaffung,2501.15,USD,,Supplier 18,2024-12-09,Rechnung,Scope 3 Cat 1,1.175,N/A,,Nein, ,COMP-9158
+Kohle,7486.89,m3,3743.44,Supplier 4,2024-08-11,,Scope 1,2.079,N/A,,Nein, ,COMP-7599
+Bahn,8538.40,pkm,4269.20,Supplier 16,2024-09-01,,Scope 3 Cat 6,1.993,N/A,,Nein, ,COMP-6640
+Einkauf,276.04,EUR,,Supplier 11,2024-02-12,,Scope 3 Cat 1,0.388,N/A,,Nein, ,COMP-2833
+Rohmaterial,ca. 6924.0,USD,,Supplier 6,2024-05-07,genau,Scope 3 Cat 1,1.546,N/A,,Nein, ,COMP-7598
+Seefracht,228.46,km,114.23,Supplier 7,2024-02-13,,Scope 3 Cat 4,2.177,N/A,,Nein, ,COMP-5819
+Einkauf,8145.65,USD,,Supplier 13,2024-09-24,Rechnung,Scope 3 Cat 1,1.179,N/A,,Nein, ,COMP-5295
+Hotel,3772.83,pkm,1886.41,Supplier 6,2024-10-26,genau,Scope 3 Cat 6,2.234,N/A,,Nein, ,COMP-9590
+Diesel,1886.07,m3,943.04,Supplier 11,2024-03-29,geschätzt,Scope 1,2.027,N/A,,Nein, ,COMP-3865
+Biomasse,"3.988,46",kWh,1994.23,Supplier 1,2024-08-08,genau,Scope 1,0.282,N/A,,Nein, ,COMP-6924
+Lieferant A,763.80,EUR,,Supplier 18,2024-08-31,,Scope 3 Cat 1,1.691,N/A,,Nein, ,COMP-7007
+Rohmaterial,ca. 3653.4,EUR,,Supplier 14,2024-06-02,,Scope 3 Cat 1,0.392,N/A,,Nein, ,COMP-5358
+Hotel,9321.34,pkm,4660.67,Supplier 13,2024-05-03,geschätzt,Scope 3 Cat 6,1.742,N/A,,Nein, ,COMP-6792
+Eingangsfracht,3309.31,km,1654.66,Supplier 5,2024-04-01,,Scope 3 Cat 4,1.244,N/A,,Nein, ,COMP-4426
+Heizöl,3721.40,L,1860.70,Supplier 4,2024-11-05,Rechnung,Scope 1,1.598,N/A,,Nein, ,COMP-7668
+Kohle,382.08,L,191.04,Supplier 5,2024-02-13,geschätzt,Scope 1,1.483,N/A,,Nein, ,COMP-2647
+Strom,25.12,MWh,12.56,Supplier 12,2024-05-07,genau,Scope 2,2.327,N/A,,Ja, ,COMP-4394
+Rohmaterial,8388.58,USD,,Supplier 19,2024-10-06,,Scope 3 Cat 1,1.433,N/A,,Nein, ,COMP-5268
+Strom,2641.50,MWh,1320.75,Supplier 14,2024-12-01,Rechnung,Scope 2,2.175,N/A,,Ja, ,COMP-5419
+Homeoffice,6381.81,km,3190.90,Supplier 20,2024-04-13,Rechnung,Scope 3 Cat 7,0.623,N/A,,Nein, ,COMP-7204
+Biomasse,1969.85,m3,984.93,Supplier 3,2024-11-29,,Scope 1,2.391,N/A,,Nein, ,COMP-5336
+Flug,4147.05,pkm,2073.53,Supplier 19,2024-01-10,,Scope 3 Cat 6,1.265,N/A,,Nein, ,COMP-7287
+Ökostrom,4314.43,kWh,2157.21,Supplier 18,2024-08-28,geschätzt,Scope 2,0.440,N/A,,Nein, ,COMP-7073
+Supplier C,295.09,USD,,Supplier 14,2024-08-26,,Scope 3 Cat 1,1.872,N/A,,Nein, ,COMP-3178
+Supplier C,820.99,USD,,Supplier 11,2024-05-10,,Scope 3 Cat 1,0.469,N/A,,Nein, ,COMP-3825
+Biomasse,7159.55,kWh,3579.77,Supplier 12,2024-08-11,Rechnung,Scope 1,1.596,N/A,,Nein, ,COMP-3601
+Fernwärme,5362.74,MWh,2681.37,Supplier 11,2024-06-10,Rechnung,Scope 2,2.387,N/A,,Nein, ,COMP-5055
+Unternehmenskredite,5207.49,USD,,Supplier 1,2024-07-05,genau,Scope 3 Cat 15,0.333,N/A,,Nein, ,COMP-7604
+Diesel,1801.80,m3,900.90,Supplier 8,2024-08-30,Rechnung,Scope 1,2.123,N/A,,Nein, ,COMP-8609
+Lieferant B,6814.09,USD,,Supplier 1,2024-03-21,Rechnung,Scope 3 Cat 1,1.650,N/A,,Nein, ,COMP-3933
+Vorgelagerte Energie,8424.11,kWh,4212.05,Supplier 10,2024-09-12,geschätzt,Scope 3 Cat 3,1.397,N/A,,Nein, ,COMP-2503
+Benzin,2891.91,kg,1445.95,Supplier 12,2024-09-07,genau,Scope 1,1.722,N/A,,Nein, ,COMP-5356
+Fernwärme,8466.59,kWh,4233.30,Supplier 2,2024-05-25,genau,Scope 2,1.134,N/A,,Nein, ,COMP-2612
+Einkauf,ca. 4443.0,EUR,,Supplier 13,2024-07-06,,Scope 3 Cat 1,0.322,N/A,,Nein, ,COMP-9209
+Fernwärme,"1.055,72",MWh,527.86,Supplier 14,2024-12-04,,Scope 2,1.060,N/A,,Nein, ,COMP-3170
+Beteiligungen,8878.04,USD,,Supplier 7,2024-07-06,,Scope 3 Cat 15,0.695,N/A,,Nein, ,COMP-7088
+Fernwärme,9386.25,kWh,4693.13,Supplier 6,2024-07-28,Rechnung,Scope 2,1.787,N/A,,Nein, ,COMP-2996
+Heizöl,4123.39,m3,2061.70,Supplier 18,2024-11-19,,Scope 1,1.467,N/A,,Nein, ,COMP-8949
+Strom,8405.72,MWh,4202.86,Supplier 12,2024-03-23,Rechnung,Scope 2,0.336,N/A,,Ja, ,COMP-3780
+Biomasse,9400.02,L,4700.01,Supplier 6,2024-08-29,Rechnung,Scope 1,0.547,N/A,,Nein, ,COMP-9607
+Lieferant B,3945.93,USD,,Supplier 14,2024-04-21,,Scope 3 Cat 1,1.251,N/A,,Nein, ,COMP-4115
+Biomasse,5321.65,L,2660.83,Supplier 11,2024-07-20,Rechnung,Scope 1,2.318,N/A,,Nein, ,COMP-1661
+Ökostrom,759.37,kWh,379.69,Supplier 11,2024-09-18,,Scope 2,1.307,N/A,,Nein, ,COMP-5195
+Hotel,1930.20,night,965.10,Supplier 10,2024-04-13,,Scope 3 Cat 6,1.626,N/A,,Nein, ,COMP-3545
+Dienstreise,3668.49,km,1834.25,Supplier 17,2024-06-16,,Scope 3 Cat 6,1.946,N/A,,Nein, ,COMP-4066
+Lieferant A,2391.93,USD,,Supplier 11,2024-04-10,,Scope 3 Cat 1,1.008,N/A,,Nein, ,COMP-9054
+Well-to-Tank,9944.41,L,4972.21,Supplier 4,2024-05-19,,Scope 3 Cat 3,0.722,N/A,,Nein, ,COMP-5494
+Diesel,1321.18,m3,660.59,Supplier 1,2024-05-13,Rechnung,Scope 1,1.056,N/A,,Nein, ,COMP-2210
+Benzin,5964.33,L,2982.16,Supplier 12,2024-03-07,,Scope 1,1.625,N/A,,Nein, ,COMP-3506
+Benzin,9821.87,L,4910.93,Supplier 5,2024-08-29,,Scope 1,0.946,N/A,,Nein, ,COMP-8376
+Strom,7271.83,kWh,3635.92,Supplier 16,2024-06-18,,Scope 2,0.805,N/A,,Ja, ,COMP-6483
+Bahn,2711.80,pkm,1355.90,Supplier 18,2024-09-09,Rechnung,Scope 3 Cat 6,1.621,N/A,,Nein, ,COMP-2623
+Lieferant B,3554.36,EUR,,Supplier 20,2024-03-20,Rechnung,Scope 3 Cat 1,1.904,N/A,,Nein, ,COMP-7637
+,,,,,,,,,,,,,
+Gewerbeimmobilien,4329.52,USD,,Supplier 11,2024-03-03,,Scope 3 Cat 15,2.429,N/A,,Nein, ,COMP-4780
+Dienstreise,8938.12,night,4469.06,Supplier 14,2024-12-01,,Scope 3 Cat 6,0.874,N/A,,Nein, ,COMP-4819
+Ökostrom,4556.48,MWh,2278.24,Supplier 9,2024-02-11,genau,Scope 2,0.526,N/A,,Nein, ,COMP-2870
+Strom,3504.49,MWh,1752.25,Supplier 3,2024-06-25,Rechnung,Scope 2,0.834,N/A,,Ja, ,COMP-7328
+Ökostrom,ca. 4591.2,MWh,2295.58,Supplier 17,2024-10-15,geschätzt,Scope 2,1.079,N/A,,Nein, ,COMP-5406
+Biomasse,2699.56,L,1349.78,Supplier 11,2024-12-16,genau,Scope 1,2.160,N/A,,Nein, ,COMP-7342
+Diesel,ca. 7017.8,kg,3508.89,Supplier 5,2024-12-26,genau,Scope 1,0.593,N/A,,Nein, ,COMP-9601
+Ökostrom,1439.47,kWh,719.73,Supplier 10,2024-09-23,,Scope 2,1.633,N/A,,Nein, ,COMP-6793
+Lieferant B,7835.62,USD,,Supplier 16,2024-10-04,,Scope 3 Cat 1,0.708,N/A,,Nein, ,COMP-1021
+Supplier C,9159.89,EUR,,Supplier 19,2024-01-25,,Scope 3 Cat 1,2.088,N/A,,Nein, ,COMP-5648
+Kohle,2898.20,kg,1449.10,Supplier 16,2024-10-29,Rechnung,Scope 1,2.292,N/A,,Nein, ,COMP-1363
+Heizöl,175.47,kWh,87.73,Supplier 20,2024-08-22,genau,Scope 1,0.345,N/A,,Nein, ,COMP-1640
+Eingangsfracht,9113.63,km,4556.81,Supplier 1,2024-01-16,Rechnung,Scope 3 Cat 4,2.288,N/A,,Nein, ,COMP-5134
+Supplier C,"5.825,70",EUR,,Supplier 8,2024-01-13,Rechnung,Scope 3 Cat 1,0.529,N/A,,Nein, ,COMP-8976
+Strom,3741.99,kWh,1870.99,Supplier 16,2024-12-18,Rechnung,Scope 2,0.337,N/A,,Ja, ,COMP-9154
+Strom,2690.64,kWh,1345.32,Supplier 2,2024-01-21,,Scope 2,0.710,N/A,,Ja, ,COMP-2550
+Benzin,5765.36,kWh,2882.68,Supplier 12,2024-02-29,,Scope 1,1.128,N/A,,Nein, ,COMP-2658
+Benzin,4575.16,kWh,2287.58,Supplier 7,2024-01-20,genau,Scope 1,1.275,N/A,,Nein, ,COMP-9627
+,,,,,,,,,,,,,
+Bahn,5564.74,pkm,2782.37,Supplier 1,2024-10-14,geschätzt,Scope 3 Cat 6,1.654,N/A,,Nein, ,COMP-3143
+Strom,8996.15,MWh,4498.07,Supplier 5,2024-01-30,Rechnung,Scope 2,1.303,N/A,,Ja, ,COMP-4148
+Vorgelagerte Energie,5840.81,L,2920.41,Supplier 7,2024-12-12,Rechnung,Scope 3 Cat 3,1.148,N/A,,Nein, ,COMP-5633
+Supplier C,7671.77,USD,,Supplier 9,2024-12-18,geschätzt,Scope 3 Cat 1,1.821,N/A,,Nein, ,COMP-5951
+Supplier C,2750.68,USD,,Supplier 5,2024-06-04,genau,Scope 3 Cat 1,0.144,N/A,,Nein, ,COMP-1608
+Pendeln,4305.80,km,2152.90,Supplier 1,2024-08-10,geschätzt,Scope 3 Cat 7,1.316,N/A,,Nein, ,COMP-4284
+Lieferant A,317.87,USD,,Supplier 4,2024-11-02,Rechnung,Scope 3 Cat 1,0.149,N/A,,Nein, ,COMP-8936

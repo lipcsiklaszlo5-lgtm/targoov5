@@ -7,7 +7,9 @@ use crate::models::{
 use crate::physics::{tco2e_calculator, validate_range_guard, UnitConverter};
 use crate::triage::{TriageEngine, TriageResult};
 use anyhow::Result;
+use serde::{Serialize, Deserialize};
 use chrono::Utc;
+use hex;
 use sha2::{Digest, Sha256};
 use std::collections::HashMap;
 use uuid::Uuid;
@@ -482,5 +484,55 @@ impl TryFrom<u8> for Scope3Category {
             15 => Ok(Scope3Category::Cat15Investments),
             _ => Err(()),
         }
+    }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ChainVerificationResult {
+    pub total_rows: usize,
+    pub verified_rows: usize,
+    pub broken_at_index: Option<usize>,
+    pub master_hash: String,
+    pub verification_timestamp: String,
+    pub is_valid: bool,
+}
+
+pub fn verify_chain(ledger: &[LedgerRow], run_id: &str) -> ChainVerificationResult {
+    let mut prev_hash = "GENESIS".to_string();
+    let mut broken_at = None;
+
+    for (idx, row) in ledger.iter().enumerate() {
+        let expected_input = format!(
+            "{}{}{}{}{}{}{}",
+            run_id, row.raw_row_index, row.raw_header,
+            row.raw_value, row.tco2e,
+            row.scope3_extension.as_ref()
+                .map(|s| s.category_id.to_string())
+                .unwrap_or_default(),
+            prev_hash
+        );
+        let expected_hash = hex::encode(
+            Sha256::digest(expected_input.as_bytes())
+        );
+
+        if expected_hash != row.sha256_hash {
+            broken_at = Some(idx);
+            break;
+        }
+        prev_hash = row.sha256_hash.clone();
+    }
+
+    let master_input = format!("{}{}", run_id, prev_hash);
+    let master_hash = hex::encode(
+        Sha256::digest(master_input.as_bytes())
+    );
+
+    ChainVerificationResult {
+        total_rows: ledger.len(),
+        verified_rows: broken_at.unwrap_or(ledger.len()),
+        broken_at_index: broken_at,
+        master_hash,
+        verification_timestamp: chrono::Utc::now().to_rfc3339(),
+        is_valid: broken_at.is_none(),
     }
 }

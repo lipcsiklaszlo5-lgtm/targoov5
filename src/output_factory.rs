@@ -1,13 +1,18 @@
 use crate::aggregation::AggregationResult;
+use crate::benchmark::{run_benchmark, BenchmarkResult};
 use crate::benchmarking::{IndustryBenchmark, PeerComparison};
-use crate::compliance::{ObligationStatus, OmnibusValidator};
+use crate::compliance::OmnibusValidator;
 use crate::eidas::EidasSigner;
 use crate::finance::{
-    self, AttributionMethod, CarbonRiskMetrics, ChangeDriver, FluctuationAnalysis,
-    PhysicalRiskScorer, PortfolioAsset, ScenarioAnalyzer,
+    CarbonRiskMetrics, ChangeDriver, FluctuationAnalysis, PhysicalRiskScorer, PortfolioAsset,
+    ScenarioAnalyzer,
 };
+use crate::gap_analysis::{run_gap_analysis, GapResult};
 use crate::ixbrl::IxbrlGenerator;
+use crate::ixbrl_mapper::map_to_xbrl;
+use crate::ledger::{verify_chain, ChainVerificationResult};
 use crate::models::{GhgScope, LedgerRow, QuarantineRow, Scope3CategorySummary};
+use crate::supply_chain::{run_lksg_analysis, run_supply_chain_stress_test, LksgComplianceRow, SupplierRisk};
 use crate::taxonomy::{AlignmentChecker, EligibilityChecker};
 use anyhow::Result;
 use chrono::Utc;
@@ -49,7 +54,10 @@ impl OutputFactory {
         
         let summary_xlsx = self.generate_summary_xlsx(aggregation, scope3_breakdown, jurisdiction)?;
         let scope_detail_xlsx = self.generate_scope_detail_xlsx(ledger, scope3_breakdown)?;
-        let audit_trail_xlsx = self.generate_audit_trail_xlsx(ledger)?;
+        
+        let verification_result = verify_chain(ledger, run_id);
+        let audit_trail_xlsx = self.generate_audit_trail_xlsx(ledger, &verification_result)?;
+        
         let quarantine_xlsx = self.generate_quarantine_xlsx(quarantine)?;
         let ef_reference_xlsx = self.generate_ef_reference_xlsx(jurisdiction)?;
         let narrative_docx = self.generate_narrative_docx(narrative_text, _language)?;
@@ -60,6 +68,21 @@ impl OutputFactory {
         let compliance_xlsx = self.generate_compliance_xlsx(employee_count, revenue_eur, ledger)?;
         let taxonomy_xlsx = self.generate_taxonomy_xlsx(ledger)?;
         let issa_5000_xlsx = self.generate_issa_5000_report_xlsx(ledger)?;
+
+        let gap_results = run_gap_analysis(ledger);
+        let gap_analysis_xlsx = self.generate_gap_analysis_xlsx(&gap_results)?;
+
+        let industry = "Manufacturing";
+        let benchmark_results = run_benchmark(ledger, industry, Some(1.0));
+        let benchmark_report_xlsx = self.generate_benchmark_report_xlsx(&benchmark_results)?;
+
+        let supply_chain_results = run_supply_chain_stress_test(ledger);
+        let supply_chain_stress_test_xlsx = self.generate_supply_chain_stress_test_xlsx(&supply_chain_results)?;
+
+        let lksg_results = run_lksg_analysis(ledger);
+        let lksg_report_xlsx = self.generate_lksg_report_xlsx(&lksg_results)?;
+
+        let ixbrl_mapping_xlsx = self.generate_ixbrl_mapping_xlsx(ledger)?;
 
         // Create ZIP archive in memory
         let mut zip_buffer = Cursor::new(Vec::new());
@@ -93,19 +116,34 @@ impl OutputFactory {
             zip.start_file("06_Narrative_Bericht.docx", options)?;
             zip.write_all(&narrative_docx)?;
 
+            zip.start_file("07_Supply_Chain_Stress_Test.xlsx", options)?;
+            zip.write_all(&supply_chain_stress_test_xlsx)?;
+
+            zip.start_file("08_Benchmark_Report.xlsx", options)?;
+            zip.write_all(&benchmark_report_xlsx)?;
+
+            zip.start_file("09_Gap_Analysis.xlsx", options)?;
+            zip.write_all(&gap_analysis_xlsx)?;
+
+            zip.start_file("10_iXBRL_Mapping_Table.xlsx", options)?;
+            zip.write_all(&ixbrl_mapping_xlsx)?;
+
+            zip.start_file("11_LkSG_Compliance_Report.xlsx", options)?;
+            zip.write_all(&lksg_report_xlsx)?;
+
             zip.start_file("TargooV2_ESEF_Report.xhtml", options)?;
             zip.write_all(ixbrl_report.as_bytes())?;
 
             zip.start_file("METHODOLOGY.md", options)?;
             zip.write_all(methodology_md.as_bytes())?;
 
-            zip.start_file("07_Climate_Risk_Report.xlsx", options)?;
+            zip.start_file("Climate_Risk_Report.xlsx", options)?;
             zip.write_all(&climate_risk_xlsx)?;
 
-            zip.start_file("08_Compliance_Check.xlsx", options)?;
+            zip.start_file("Compliance_Check.xlsx", options)?;
             zip.write_all(&compliance_xlsx)?;
 
-            zip.start_file("09_EU_Taxonomy_Report.xlsx", options)?;
+            zip.start_file("EU_Taxonomy_Report.xlsx", options)?;
             zip.write_all(&taxonomy_xlsx)?;
 
             zip.start_file("ISSA_5000_Assurance_Readiness_Report.xlsx", options)?;
@@ -173,7 +211,7 @@ impl OutputFactory {
         worksheet.set_name("Zusammenfassung")?;
 
         let bold = Format::new().set_bold();
-        let header = Format::new().set_bold().set_background_color("#00C9B1");
+        let header = Format::new().set_bold().set_background_color("#0A2540").set_font_color("#FFFFFF");
 
         worksheet.write_with_format(0, 0, "Targoo V2 GHG Inventory Summary", &header)?;
         worksheet.write_with_format(2, 0, "Scope", &bold)?;
@@ -212,7 +250,9 @@ impl OutputFactory {
         }
 
         worksheet.write(row + 1, 0, format!("Jurisdiction: {}", jurisdiction))?;
-        worksheet.write(row + 2, 0, "Unterschrift: _________________  Datum: _________________")?;
+        
+        let signature_row = row + 4;
+        worksheet.write(signature_row, 0, "Unterschrift: _________________  Datum: _________________")?;
 
         Ok(workbook.save_to_buffer()?)
     }
@@ -311,7 +351,11 @@ impl OutputFactory {
         Ok(())
     }
 
-    fn generate_audit_trail_xlsx(&self, ledger: &[LedgerRow]) -> Result<Vec<u8>> {
+    fn generate_audit_trail_xlsx(
+        &self,
+        ledger: &[LedgerRow],
+        verification_result: &ChainVerificationResult,
+    ) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         
         // Sheet 1: Verarbeitete Zeilen
@@ -394,6 +438,20 @@ impl OutputFactory {
             ws3.write(idx as u32 + 1, 0, idx as u32)?;
             ws3.write(idx as u32 + 1, 1, &r.sha256_hash)?;
         }
+
+        // Sheet 4: Chain_Verification
+        let ws4 = workbook.add_worksheet();
+        ws4.set_name("Chain_Verification")?;
+        ws4.write(0, 0, "Master Hash")?;
+        ws4.write(0, 1, &verification_result.master_hash)?;
+        ws4.write(1, 0, "Is Valid")?;
+        ws4.write(1, 1, if verification_result.is_valid { "VALID" } else { "INVALID" })?;
+        ws4.write(2, 0, "Verified Rows")?;
+        ws4.write(2, 1, verification_result.verified_rows as f64)?;
+        ws4.write(3, 0, "Total Rows")?;
+        ws4.write(3, 1, verification_result.total_rows as f64)?;
+        ws4.write(4, 0, "Timestamp")?;
+        ws4.write(4, 1, &verification_result.verification_timestamp)?;
 
         Ok(workbook.save_to_buffer()?)
     }
@@ -837,6 +895,148 @@ impl OutputFactory {
 
         let buf = workbook.save_to_buffer()?;
         Ok(buf.to_vec())
+    }
+
+    fn generate_gap_analysis_xlsx(&self, results: &[GapResult]) -> Result<Vec<u8>> {
+        let mut workbook = Workbook::new();
+        let ws = workbook.add_worksheet();
+        ws.set_name("Gap Analysis")?;
+        
+        ws.write(0, 0, "ESRS Code")?;
+        ws.write(0, 1, "Description")?;
+        ws.write(0, 2, "Status")?;
+        ws.write(0, 3, "Found Rows")?;
+        ws.write(0, 4, "Found tCO2e")?;
+        ws.write(0, 5, "Severity")?;
+        ws.write(0, 6, "Suggested Data Source")?;
+        ws.write(0, 7, "Suggested Action")?;
+
+        for (idx, res) in results.iter().enumerate() {
+            let row = (idx + 1) as u32;
+            ws.write(row, 0, &res.esrs_code)?;
+            ws.write(row, 1, &res.description)?;
+            ws.write(row, 2, format!("{:?}", res.status))?;
+            ws.write(row, 3, res.found_rows as f64)?;
+            ws.write(row, 4, res.found_tco2e)?;
+            ws.write(row, 5, &res.severity)?;
+            ws.write(row, 6, &res.suggested_data_source)?;
+            ws.write(row, 7, &res.suggested_action)?;
+        }
+        Ok(workbook.save_to_buffer()?)
+    }
+
+    fn generate_benchmark_report_xlsx(&self, results: &[BenchmarkResult]) -> Result<Vec<u8>> {
+        let mut workbook = Workbook::new();
+        let ws = workbook.add_worksheet();
+        ws.set_name("Benchmark Report")?;
+
+        ws.write(0, 0, "Scope")?;
+        ws.write(0, 1, "Company Value")?;
+        ws.write(0, 2, "P25")?;
+        ws.write(0, 3, "P50")?;
+        ws.write(0, 4, "P75")?;
+        ws.write(0, 5, "Percentile Position")?;
+        ws.write(0, 6, "Materiality Flag")?;
+        ws.write(0, 7, "Source")?;
+
+        for (idx, res) in results.iter().enumerate() {
+            let row = (idx + 1) as u32;
+            ws.write(row, 0, &res.scope)?;
+            ws.write(row, 1, res.company_value)?;
+            ws.write(row, 2, res.p25)?;
+            ws.write(row, 3, res.p50)?;
+            ws.write(row, 4, res.p75)?;
+            ws.write(row, 5, &res.percentile_position)?;
+            ws.write(row, 6, res.materiality_flag)?;
+            ws.write(row, 7, &res.source)?;
+        }
+        Ok(workbook.save_to_buffer()?)
+    }
+
+    fn generate_supply_chain_stress_test_xlsx(&self, results: &[SupplierRisk]) -> Result<Vec<u8>> {
+        let mut workbook = Workbook::new();
+        let ws = workbook.add_worksheet();
+        ws.set_name("Supply Chain Stress Test")?;
+
+        ws.write(0, 0, "Supplier Name")?;
+        ws.write(0, 1, "Total tCO2e")?;
+        ws.write(0, 2, "% of Scope 3 Cat 1")?;
+        ws.write(0, 3, "Spend USD")?;
+        ws.write(0, 4, "Emission Intensity")?;
+        ws.write(0, 5, "Risk Tier")?;
+        ws.write(0, 6, "LkSG Flag")?;
+
+        for (idx, res) in results.iter().enumerate() {
+            let row = (idx + 1) as u32;
+            ws.write(row, 0, &res.supplier_name)?;
+            ws.write(row, 1, res.total_tco2e)?;
+            ws.write(row, 2, res.pct_of_scope3_cat1)?;
+            ws.write(row, 3, res.spend_usd.unwrap_or(0.0))?;
+            ws.write(row, 4, res.emission_intensity.unwrap_or(0.0))?;
+            ws.write(row, 5, format!("{:?}", res.risk_tier))?;
+            ws.write(row, 6, res.lksg_flag)?;
+        }
+        Ok(workbook.save_to_buffer()?)
+    }
+
+    fn generate_ixbrl_mapping_xlsx(&self, ledger: &[LedgerRow]) -> Result<Vec<u8>> {
+        let mut workbook = Workbook::new();
+        let ws = workbook.add_worksheet();
+        ws.set_name("iXBRL Mapping Table")?;
+
+        ws.write(0, 0, "Row ID")?;
+        ws.write(0, 1, "Scope")?;
+        ws.write(0, 2, "tCO2e")?;
+        ws.write(0, 3, "ESRS Code")?;
+        ws.write(0, 4, "Paragraph")?;
+        ws.write(0, 5, "XBRL Concept")?;
+
+        let mut row_idx = 1;
+        for r in ledger {
+            if let Some(tag) = map_to_xbrl(r) {
+                ws.write(row_idx, 0, r.row_id.to_string())?;
+                ws.write(row_idx, 1, format!("{:?}", r.ghg_scope))?;
+                ws.write(row_idx, 2, r.tco2e)?;
+                ws.write(row_idx, 3, tag.esrs_code)?;
+                ws.write(row_idx, 4, tag.paragraph)?;
+                ws.write(row_idx, 5, tag.xbrl_concept)?;
+                row_idx += 1;
+            }
+        }
+        Ok(workbook.save_to_buffer()?)
+    }
+
+    fn generate_lksg_report_xlsx(&self, results: &[LksgComplianceRow]) -> Result<Vec<u8>> {
+        let mut workbook = Workbook::new();
+        let ws = workbook.add_worksheet();
+        ws.set_name("LkSG Kockázati Mátrix")?;
+
+        let header = Format::new().set_bold().set_background_color("#0A2540").set_font_color("#FFFFFF");
+        let red_bg = Format::new().set_background_color("#FFC7CE");
+        let yellow_bg = Format::new().set_background_color("#FFEB9C");
+
+        ws.write_with_format(0, 0, "Supplier Name", &header)?;
+        ws.write_with_format(0, 1, "Risk Category", &header)?;
+        ws.write_with_format(0, 2, "LkSG Relevant", &header)?;
+        ws.write_with_format(0, 3, "Required Action", &header)?;
+
+        let mut row_idx = 1;
+        for res in results {
+            if res.lksg_relevant {
+                let fmt = if res.risk_category == "High Risk" {
+                    &red_bg
+                } else {
+                    &yellow_bg
+                };
+
+                ws.write(row_idx, 0, &res.supplier_name)?;
+                ws.write_with_format(row_idx, 1, &res.risk_category, fmt)?;
+                ws.write(row_idx, 2, res.lksg_relevant)?;
+                ws.write(row_idx, 3, &res.required_action)?;
+                row_idx += 1;
+            }
+        }
+        Ok(workbook.save_to_buffer()?)
     }
 }
 

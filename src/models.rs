@@ -219,6 +219,11 @@ pub struct AppState {
     pub scope3_breakdown: HashMap<u8, Scope3CategorySummary>,
     pub zip_package: Option<Vec<u8>>,
     
+    pub gap_results: Vec<crate::gap_analysis::GapResult>,
+    pub benchmark_results: Vec<crate::benchmark::BenchmarkResult>,
+    pub supplier_risks: Vec<crate::supply_chain::SupplierRisk>,
+    pub chain_verification: Option<crate::ledger::ChainVerificationResult>,
+    
     pub progress_message: Option<String>,
     pub total_tco2e: Option<f64>,
 }
@@ -251,6 +256,10 @@ impl Default for AppState {
             staged_files: Vec::new(),
             scope3_breakdown: HashMap::new(),
             zip_package: None,
+            gap_results: Vec::new(),
+            benchmark_results: Vec::new(),
+            supplier_risks: Vec::new(),
+            chain_verification: None,
             progress_message: None,
             total_tco2e: None,
         }

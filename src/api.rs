@@ -1,15 +1,19 @@
 use crate::aggregation::Aggregator;
+use crate::benchmark::{run_benchmark, BenchmarkResult};
 use crate::benchmarking::{IndustryBenchmark, PeerComparison};
 use crate::compliance::{ObligationStatus, OmnibusValidator};
 use crate::db::{
     bulk_insert_ledger, bulk_insert_quarantine, create_run, update_run_status, DbPool,
 };
 use crate::finance::risk_analytics::{CarbonRiskMetrics, PortfolioAsset};
+use crate::gap_analysis::{run_gap_analysis, GapResult};
 use crate::gemini_client::GeminiClient;
 use crate::ingest::{IngestionEngine, RawRow};
-use crate::ledger::{LedgerProcessor, ProcessResult};
+use crate::ixbrl_mapper::XbrlTag;
+use crate::ledger::{verify_chain, LedgerProcessor, ProcessResult};
 use crate::models::{AppState, Jurisdiction, ResultsResponse, RunRequest, StatusResponse};
 use crate::output_factory::OutputFactory;
+use crate::supply_chain::run_supply_chain_stress_test;
 use crate::triage::TriageEngine;
 use anyhow::Result;
 use axum::{
@@ -279,6 +283,12 @@ async fn process_pipeline(
         )
         .await;
     
+    // Step 7.5: Run extended analysis (Gap, Benchmark, Supply Chain, Verification)
+    let gap_results = run_gap_analysis(&ledger_rows);
+    let benchmark_results = run_benchmark(&ledger_rows, &industry, Some(1.0)); // Placeholder revenue
+    let supply_chain_results = run_supply_chain_stress_test(&ledger_rows);
+    let verification_result = verify_chain(&ledger_rows, &run_id);
+    
     // Step 8: Generate ZIP package
     let output_factory = OutputFactory::new();
     let (emp_count, rev_eur) = {
@@ -311,6 +321,11 @@ async fn process_pipeline(
         state_guard.zip_package = Some(zip_data);
         state_guard.total_tco2e = Some(aggregation.total_tco2e);
         state_guard.progress_message = Some("Processing complete.".to_string());
+        
+        state_guard.gap_results = gap_results;
+        state_guard.benchmark_results = benchmark_results;
+        state_guard.supplier_risks = supply_chain_results;
+        state_guard.chain_verification = Some(verification_result);
     }
     
     Ok(())
