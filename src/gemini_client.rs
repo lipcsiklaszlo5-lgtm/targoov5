@@ -13,17 +13,17 @@ pub struct GeminiClient {
 }
 
 impl GeminiClient {
-    pub fn new(api_key: String) -> Self {
+    pub fn new(api_key: String) -> Result<Self> {
         let client = Client::builder()
             .timeout(Duration::from_secs(30))
             .build()
-            .expect("Failed to build HTTP client");
+            .map_err(|e| anyhow!("Failed to build HTTP client: {}", e))?;
 
-        Self {
+        Ok(Self {
             client,
             api_key,
             model: "gemini-2.5-flash".to_string(),
-        }
+        })
     }
 
     /// Generates the narrative report text with Scope 3 analysis
@@ -109,7 +109,7 @@ impl GeminiClient {
         
         let mut scope3_summary = String::new();
         let mut top_categories: Vec<&Scope3CategorySummary> = scope3_breakdown.values().collect();
-        top_categories.sort_by(|a, b| b.tco2e.partial_cmp(&a.tco2e).unwrap());
+        top_categories.sort_by(|a, b| b.tco2e.partial_cmp(&a.tco2e).unwrap_or(std::cmp::Ordering::Equal));
         
         for (i, cat) in top_categories.iter().take(5).enumerate() {
             scope3_summary.push_str(&format!(
@@ -186,7 +186,7 @@ Do not use markdown formatting. Keep the response under 600 words."#,
         let completeness_pct = (categories_covered as f32 / 15.0) * 100.0;
         
         let mut top_categories: Vec<&Scope3CategorySummary> = scope3_breakdown.values().collect();
-        top_categories.sort_by(|a, b| b.tco2e.partial_cmp(&a.tco2e).unwrap());
+        top_categories.sort_by(|a, b| b.tco2e.partial_cmp(&a.tco2e).unwrap_or(std::cmp::Ordering::Equal));
         
         let top_cat_text = if let Some(cat) = top_categories.first() {
             format!("The largest Scope 3 contributor is Category {} ({}), accounting for {:.2} tCO2e.", 

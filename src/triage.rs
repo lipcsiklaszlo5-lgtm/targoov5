@@ -74,6 +74,7 @@ pub struct TriageEngine {
     scope1_2_entries: Vec<DictionaryEntry>,
     scope3_entries: Vec<DictionaryEntry>,
     ai_client: Arc<AiBridgeClient>,
+    pub allow_ai: bool, // ✅ ÚJ! Control AI fallback
 }
 
 impl TriageEngine {
@@ -84,6 +85,7 @@ impl TriageEngine {
             scope1_2_entries: Vec::new(),
             scope3_entries: Vec::new(),
             ai_client: Arc::new(AiBridgeClient::new()),
+            allow_ai: true,
         }
     }
 
@@ -94,6 +96,7 @@ impl TriageEngine {
             scope1_2_entries: Vec::new(),
             scope3_entries: Vec::new(),
             ai_client,
+            allow_ai: true,
         }
     }
 
@@ -192,61 +195,65 @@ impl TriageEngine {
         }
 
         // 5. AI Bridge Fallback (LIVING DICTIONARY)
-        if let Ok(ai_resp) = self.ai_client.classify(raw_header).await {
-            const AI_CONFIDENCE_HIGH: f32 = 0.75;
-            const AI_CONFIDENCE_MEDIUM: f32 = 0.4;
+        if self.allow_ai {
+            if let Ok(ai_resp) = self.ai_client.classify(raw_header).await {
+                const AI_CONFIDENCE_HIGH: f32 = 0.75;
+                const AI_CONFIDENCE_MEDIUM: f32 = 0.4;
 
-            if ai_resp.matched && ai_resp.confidence >= AI_CONFIDENCE_MEDIUM {
-                let ghg_category = ai_resp.ghg_category.unwrap_or_else(|| "Scope3".to_string());
-                let lang = detect_language(raw_header);
-                
-                // Adjust confidence for Medium tier
-                let final_confidence = if ai_resp.confidence >= AI_CONFIDENCE_HIGH {
-                    ai_resp.confidence
-                } else {
-                    ai_resp.confidence * 0.9 // Slightly penalized for estimated tier
-                };
+                if ai_resp.matched && ai_resp.confidence >= AI_CONFIDENCE_MEDIUM {
+                    let ghg_category = ai_resp.ghg_category.unwrap_or_else(|| "Scope3".to_string());
+                    let lang = detect_language(raw_header);
+                    
+                    // Adjust confidence for Medium tier
+                    let final_confidence = if ai_resp.confidence >= AI_CONFIDENCE_HIGH {
+                        ai_resp.confidence
+                    } else {
+                        ai_resp.confidence * 0.9 // Slightly penalized for estimated tier
+                    };
 
-                let entry = DictionaryEntry {
-                    keyword: raw_header.to_string(),
-                    language: lang.clone(),
-                    ghg_category: ghg_category.clone(),
-                    scope3_id: ai_resp.scope3_id,
-                    scope3_name: ai_resp.scope3_name.clone(),
-                    calc_path: ai_resp.calc_path.clone(),
-                    canonical_unit: ai_resp.canonical_unit.clone().unwrap_or_else(|| "unit".to_string()),
-                    ef_value: ai_resp.ef_value.unwrap_or(0.0),
-                    ef_unit: format!("kgCO2e/{}", ai_resp.canonical_unit.unwrap_or_else(|| "unit".to_string())),
-                    ef_source: "AI-Generated".to_string(),
-                    ef_jurisdiction: Some("GLOBAL".to_string()),
-                    industry: "General".to_string(),
-                    languages: vec![lang],
-                    confidence_default: final_confidence,
-                };
+                    let entry = DictionaryEntry {
+                        keyword: raw_header.to_string(),
+                        language: lang.clone(),
+                        ghg_category: ghg_category.clone(),
+                        scope3_id: ai_resp.scope3_id,
+                        scope3_name: ai_resp.scope3_name.clone(),
+                        calc_path: ai_resp.calc_path.clone(),
+                        canonical_unit: ai_resp.canonical_unit.clone().unwrap_or_else(|| "unit".to_string()),
+                        ef_value: ai_resp.ef_value.unwrap_or(0.0),
+                        ef_unit: format!("kgCO2e/{}", ai_resp.canonical_unit.unwrap_or_else(|| "unit".to_string())),
+                        ef_source: "AI-Generated".to_string(),
+                        ef_jurisdiction: Some("GLOBAL".to_string()),
+                        industry: "General".to_string(),
+                        languages: vec![lang],
+                        confidence_default: final_confidence,
+                    };
 
-                // a) Save to disk (append to dictionary.json) - Only for High confidence
-                if ai_resp.confidence >= AI_CONFIDENCE_HIGH {
-                    let _ = self.save_entry_to_dictionary(&entry);
+                    // a) Save to disk (append to dictionary.json) - Only for High confidence
+                    if ai_resp.confidence >= AI_CONFIDENCE_HIGH {
+                        let _ = self.save_entry_to_dictionary(&entry);
+                    }
+
+                    // b) Update in-memory
+                    self.entries.push(entry.clone());
+                    self.rebuild_indexes();
+
+                    return Some(self.build_result(&entry, raw_header, final_confidence, MatchMethod::Semantic));
                 }
-
-                // b) Update in-memory
-                self.entries.push(entry.clone());
-                self.rebuild_indexes();
-
-                return Some(self.build_result(&entry, raw_header, final_confidence, MatchMethod::Semantic));
             }
         }
 
         // 6. CONTEXT-AWARE FALLBACK (Infer from other columns)
-        if let Some(row) = raw_row {
-            if let Some((activity, confidence)) = crate::triage_context::infer_activity_from_row(row, &self.ai_client).await {
-                // Now that we have a potential activity string, we re-run triage but without the row context
-                // to avoid infinite recursion and use our regular Exact/Fuzzy/AI logic.
-                if let Some(result) = Box::pin(self.triage_header(&activity, None)).await {
-                    let mut final_result = result;
-                    final_result.confidence = confidence * 0.8; // Heavily penalize inference
-                    final_result.match_method = MatchMethod::Inferred;
-                    return Some(final_result);
+        if self.allow_ai {
+            if let Some(row) = raw_row {
+                if let Some((activity, confidence)) = crate::triage_context::infer_activity_from_row(row, &self.ai_client).await {
+                    // Now that we have a potential activity string, we re-run triage but without the row context
+                    // to avoid infinite recursion and use our regular Exact/Fuzzy/AI logic.
+                    if let Some(result) = Box::pin(self.triage_header(&activity, None)).await {
+                        let mut final_result = result;
+                        final_result.confidence = confidence * 0.8; // Heavily penalize inference
+                        final_result.match_method = MatchMethod::Inferred;
+                        return Some(final_result);
+                    }
                 }
             }
         }
@@ -273,17 +280,37 @@ impl TriageEngine {
     }
 
     fn save_entry_to_dictionary(&self, entry: &DictionaryEntry) -> Result<()> {
+        use fs2::FileExt;
+        use std::io::{Read, Seek, SeekFrom};
+
         let path = "data/dictionary.json";
-        let mut all_entries: Vec<DictionaryEntry> = if std::path::Path::new(path).exists() {
-            let content = std::fs::read_to_string(path)?;
-            serde_json::from_str(&content).unwrap_or_default()
-        } else {
+        let mut file = OpenOptions::new()
+            .read(true)
+            .write(true)
+            .create(true)
+            .open(path)?;
+
+        // Exclusive lock (blocks until available)
+        file.lock_exclusive()?;
+
+        let mut content = String::new();
+        file.read_to_string(&mut content)?;
+
+        let mut all_entries: Vec<DictionaryEntry> = if content.is_empty() {
             Vec::new()
+        } else {
+            serde_json::from_str(&content).unwrap_or_default()
         };
 
         all_entries.push(entry.clone());
         let json = serde_json::to_string_pretty(&all_entries)?;
-        std::fs::write(path, json)?;
+
+        // Rewind and overwrite
+        file.set_len(0)?;
+        file.seek(SeekFrom::Start(0))?;
+        file.write_all(json.as_bytes())?;
+
+        file.unlock()?;
         Ok(())
     }
 

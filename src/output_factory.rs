@@ -311,7 +311,7 @@ impl OutputFactory {
         ws4.write(0, 5, "Confidence")?;
 
         let mut sorted_rows: Vec<&LedgerRow> = ledger.iter().collect();
-        sorted_rows.sort_by(|a, b| b.tco2e.partial_cmp(&a.tco2e).unwrap());
+        sorted_rows.sort_by(|a, b| b.tco2e.partial_cmp(&a.tco2e).unwrap_or(std::cmp::Ordering::Equal));
         
         for (idx, r) in sorted_rows.iter().take(10).enumerate() {
             let row_num = (idx + 1) as u32;
@@ -679,13 +679,14 @@ impl OutputFactory {
 
         for (i, r) in cat15_rows.iter().enumerate() {
             let row = (i + 1) as u32;
-            let ext = r.scope3_extension.as_ref().unwrap();
-            ws4.write(row, 0, &r.ghg_subcategory)?;
-            ws4.write(row, 1, ext.pcaf_asset_class.as_deref().unwrap_or("Unknown"))?;
-            ws4.write(row, 2, r.raw_value)?;
-            ws4.write(row, 3, r.raw_value / ext.pcaf_attribution_factor.unwrap_or(1.0))?;
-            ws4.write(row, 4, ext.pcaf_attribution_factor.unwrap_or(0.0))?;
-            ws4.write(row, 5, "PCAF 2025 Standard Attribution")?;
+            if let Some(ext) = &r.scope3_extension {
+                ws4.write(row, 0, &r.ghg_subcategory)?;
+                ws4.write(row, 1, ext.pcaf_asset_class.as_deref().unwrap_or("Unknown"))?;
+                ws4.write(row, 2, r.raw_value)?;
+                ws4.write(row, 3, r.raw_value / ext.pcaf_attribution_factor.unwrap_or(1.0))?;
+                ws4.write(row, 4, ext.pcaf_attribution_factor.unwrap_or(0.0))?;
+                ws4.write(row, 5, "PCAF 2025 Standard Attribution")?;
+            }
         }
 
         // 5. Fluctuation Analysis

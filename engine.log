@@ -1,0 +1,4 @@
+nohup: ignoring input
+[2m2026-04-14T21:25:33.044566Z[0m [32m INFO[0m Starting Targoo V2 ESG Data Refinery...
+[2m2026-04-14T21:25:33.046739Z[0m [32m INFO[0m SQLite database initialized with WORM triggers
+[2m2026-04-14T21:25:33.097650Z[0m [32m INFO[0m Server listening on http://0.0.0.0:8080

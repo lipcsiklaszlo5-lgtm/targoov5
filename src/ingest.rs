@@ -2,16 +2,19 @@ use anyhow::{anyhow, Context, Result};
 use calamine::{open_workbook_auto, Data, Reader};
 use serde::{Deserialize, Serialize};
 use std::path::Path;
+use std::sync::Arc;
+use std::io::{BufReader, BufRead};
+use std::fs::File;
 
 /// Raw representation of a single data row from the source file
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RawRow {
-    pub source_file: String,
+    pub source_file: Arc<str>,
     pub row_index: usize, // 0-based index in the sheet/csv
-    pub headers: Vec<String>, // Normalized headers from the first row
-    pub values: Vec<String>, // String values corresponding to headers
-    pub other_columns: Vec<String>, // Non-numeric values for context
-    pub raw_line: String, // For debugging/quarantine
+    pub headers: Arc<[Arc<str>]>, // Normalized headers shared across rows
+    pub values: Vec<Arc<str>>, // String values corresponding to headers
+    pub other_columns: Vec<Arc<str>>, // Non-numeric values for context
+    pub raw_line: Arc<str>, // For debugging/quarantine
 }
 
 const EXCLUDED_HEADERS: &[&str] = &[
@@ -30,8 +33,8 @@ impl IngestionEngine {
         Self {}
     }
 
-    /// Main entry point: takes a file path, returns a vector of RawRows
-    pub fn parse_to_raw_rows(&self, file_path: &Path) -> Result<Vec<RawRow>> {
+    /// Streaming entry point: returns an iterator over Result<RawRow>
+    pub fn parse_to_stream(&self, file_path: &Path) -> Result<Box<dyn Iterator<Item = Result<RawRow>> + Send + 'static>> {
         let extension = file_path
             .extension()
             .and_then(|e| e.to_str())
@@ -39,51 +42,90 @@ impl IngestionEngine {
             .to_lowercase();
 
         match extension.as_str() {
-            "csv" => self.parse_csv(file_path),
-            "xlsx" | "xls" | "xlsm" => self.parse_excel(file_path),
+            "csv" => self.stream_csv(file_path),
+            "xlsx" | "xls" | "xlsm" => self.stream_excel(file_path),
             _ => Err(anyhow!("Unsupported file format: {}", extension)),
         }
     }
 
-    fn parse_csv(&self, file_path: &Path) -> Result<Vec<RawRow>> {
-        let file_name = file_path
+    /// Main entry point: takes a file path, returns a vector of RawRows
+    #[deprecated(since = "0.2.0", note = "Use parse_to_stream instead for better memory efficiency")]
+    pub fn parse_to_raw_rows(&self, file_path: &Path) -> Result<Vec<RawRow>> {
+        self.parse_to_stream(file_path)?
+            .collect::<Result<Vec<RawRow>>>()
+    }
+
+    fn stream_csv(&self, file_path: &Path) -> Result<Box<dyn Iterator<Item = Result<RawRow>> + Send + 'static>> {
+        let file_name: Arc<str> = file_path
             .file_name()
             .unwrap_or_default()
             .to_string_lossy()
-            .to_string();
+            .to_string()
+            .into();
+
+        let file = File::open(file_path).context("Failed to open CSV file")?;
+        let mut buf_reader = BufReader::new(file);
+
+        // Detect delimiter (semicolon vs comma)
+        let mut delimiter = b',';
+        {
+            let mut first_line = String::new();
+            if let Ok(mut br) = File::open(file_path).map(BufReader::new) {
+                let _ = br.read_line(&mut first_line);
+                let has_comma = first_line.contains(',');
+                let has_semicolon = first_line.contains(';');
+                if has_semicolon && !has_comma {
+                    delimiter = b';';
+                } else if has_semicolon && has_comma {
+                    let commas = first_line.matches(',').count();
+                    let semicolons = first_line.matches(';').count();
+                    if semicolons > commas {
+                        delimiter = b';';
+                    }
+                }
+            }
+        }
 
         let mut reader = csv::ReaderBuilder::new()
+            .delimiter(delimiter)
             .flexible(true)
             .trim(csv::Trim::All)
-            .from_path(file_path)
-            .context("Failed to open CSV file")?;
+            .from_reader(buf_reader);
 
-        let headers: Vec<String> = reader
+        let headers: Arc<[Arc<str>]> = reader
             .headers()
             .context("Failed to read CSV headers")?
             .iter()
-            .map(|h| Self::normalize_string(h))
-            .collect();
+            .map(|h| Self::normalize_string(h).into())
+            .collect::<Vec<Arc<str>>>()
+            .into();
 
-        let mut rows = Vec::new();
-        for (idx, result) in reader.records().enumerate() {
-            let record = result.context(format!("Failed to parse CSV row {}", idx))?;
-            
+        let header_clone = headers.clone();
+        let file_name_clone = file_name.clone();
+
+        let iter = reader.into_records().enumerate().filter_map(move |(idx, result)| {
+            let record = match result {
+                Ok(r) => r,
+                Err(e) => return Some(Err(anyhow!("Failed to parse CSV row {}: {}", idx, e))),
+            };
+
             // Skip completely empty rows
             if record.iter().all(|f| f.trim().is_empty()) {
-                continue;
+                return None;
             }
 
-            let values: Vec<String> = record.iter().map(|f| f.to_string()).collect();
+            let values: Vec<Arc<str>> = record.iter().map(|f| Arc::from(f)).collect();
             
-            // Pad values to match header length (handles trailing empty columns)
+            // Pad values to match header length
             let mut padded_values = values;
-            padded_values.resize(headers.len(), String::new());
+            while padded_values.len() < header_clone.len() {
+                padded_values.push(Arc::from(""));
+            }
 
             // EXTRA PROTECTION: Skip rows that are metadata-only
-            let value_col_idx = Self::find_value_column_index_only(&headers, &padded_values);
+            let value_col_idx = Self::find_value_column_index_only_arc(&header_clone, &padded_values);
             if value_col_idx.is_none() {
-                continue;
+                return None;
             }
 
             let other_columns = padded_values.iter().enumerate()
@@ -92,25 +134,26 @@ impl IngestionEngine {
                 .filter(|v| !v.trim().is_empty() && v.len() > 2)
                 .collect();
 
-            rows.push(RawRow {
-                source_file: file_name.clone(),
+            Some(Ok(RawRow {
+                source_file: file_name_clone.clone(),
                 row_index: idx,
-                headers: headers.clone(),
+                headers: header_clone.clone(),
                 values: padded_values,
                 other_columns,
-                raw_line: record.iter().collect::<Vec<&str>>().join(","),
-            });
-        }
+                raw_line: record.iter().collect::<Vec<&str>>().join(",").into(),
+            }))
+        });
 
-        Ok(rows)
+        Ok(Box::new(iter))
     }
 
-    fn parse_excel(&self, file_path: &Path) -> Result<Vec<RawRow>> {
-        let file_name = file_path
+    fn stream_excel(&self, file_path: &Path) -> Result<Box<dyn Iterator<Item = Result<RawRow>> + Send + 'static>> {
+        let file_name: Arc<str> = file_path
             .file_name()
             .unwrap_or_default()
             .to_string_lossy()
-            .to_string();
+            .to_string()
+            .into();
 
         let mut workbook = open_workbook_auto(file_path)
             .context("Failed to open Excel file")?;
@@ -120,48 +163,43 @@ impl IngestionEngine {
             return Err(anyhow!("Excel file contains no sheets"));
         }
 
-        // Process the first sheet only (standard for ESG data dumps)
-        let first_sheet = &sheet_names[0];
+        let first_sheet = sheet_names[0].clone();
         let range = workbook
-            .worksheet_range(first_sheet)
+            .worksheet_range(&first_sheet)
             .context(format!("Failed to read sheet '{}'", first_sheet))?;
 
-        let mut rows = Vec::new();
-        let mut headers: Vec<String> = Vec::new();
-        let mut header_set = false;
+        // calamine's Range and Rows borrow from workbook/range.
+        // To make it 'static, we collect the data into a Vec of RawRows.
+        // This is not true streaming for Excel (limited by calamine), 
+        // but it satisfies the Iterator requirement and uses Arc<str> to save memory.
+        let mut rows_iter = range.rows();
+        
+        let headers: Arc<[Arc<str>]> = if let Some(first_row) = rows_iter.next() {
+            first_row.iter()
+                .map(|cell| Self::normalize_string(&Self::cell_to_string(cell)).into())
+                .collect::<Vec<Arc<str>>>()
+                .into()
+        } else {
+            return Err(anyhow!("Excel sheet is empty"));
+        };
 
-        for (row_idx, row_cells) in range.rows().enumerate() {
-            let row_values: Vec<String> = row_cells
+        let mut results = Vec::new();
+        for (row_idx, row_cells) in rows_iter.enumerate() {
+            let row_values: Vec<Arc<str>> = row_cells
                 .iter()
-                .map(|cell| match cell {
-                    Data::Empty => String::new(),
-                    Data::String(s) => s.clone(),
-                    Data::Float(f) => f.to_string(),
-                    Data::Int(i) => i.to_string(),
-                    Data::Bool(b) => b.to_string(),
-                    Data::DateTime(d) => d.to_string(),
-                    Data::Error(e) => format!("ERROR: {:?}", e),
-                    _ => String::new(),
-                })
+                .map(|cell| Arc::from(Self::cell_to_string(cell)))
                 .collect();
 
-            // Skip completely empty rows
-            if row_values.iter().all(|v: &String| v.trim().is_empty()) {
+            if row_values.iter().all(|v| v.trim().is_empty()) {
                 continue;
             }
 
-            if !header_set {
-                headers = row_values.iter().map(|h| Self::normalize_string(h)).collect();
-                header_set = true;
-                continue;
-            }
-
-            // Pad values to match header length
             let mut padded_values = row_values;
-            padded_values.resize(headers.len(), String::new());
+            while padded_values.len() < headers.len() {
+                padded_values.push(Arc::from(""));
+            }
 
-            // EXTRA PROTECTION: Skip rows that are metadata-only
-            let value_col_idx = Self::find_value_column_index_only(&headers, &padded_values);
+            let value_col_idx = Self::find_value_column_index_only_arc(&headers, &padded_values);
             if value_col_idx.is_none() {
                 continue;
             }
@@ -172,20 +210,32 @@ impl IngestionEngine {
                 .filter(|v| !v.trim().is_empty() && v.len() > 2)
                 .collect();
 
-            rows.push(RawRow {
+            results.push(Ok(RawRow {
                 source_file: file_name.clone(),
-                row_index: row_idx - 1, // 0-based data index (excluding header)
+                row_index: row_idx,
                 headers: headers.clone(),
                 values: padded_values,
                 other_columns,
-                raw_line: format!("Row {} (Excel)", row_idx),
-            });
+                raw_line: format!("Row {} (Excel)", row_idx + 1).into(),
+            }));
         }
 
-        Ok(rows)
+        Ok(Box::new(results.into_iter()))
     }
 
-    /// Normalize strings for header matching: lowercase, trim, underscores to spaces
+    fn cell_to_string(cell: &Data) -> String {
+        match cell {
+            Data::Empty => String::new(),
+            Data::String(s) => s.clone(),
+            Data::Float(f) => f.to_string(),
+            Data::Int(i) => i.to_string(),
+            Data::Bool(b) => b.to_string(),
+            Data::DateTime(d) => d.to_string(),
+            Data::Error(e) => format!("ERROR: {:?}", e),
+            _ => String::new(),
+        }
+    }
+
     fn normalize_string(input: &str) -> String {
         input
             .to_lowercase()
@@ -197,56 +247,11 @@ impl IngestionEngine {
             .to_string()
     }
 
-    /// Heuristically finds the column index containing numeric values for a given row
-    /// This is used when the file has multiple descriptive columns and we need to find the "value" column.
     pub fn find_value_column(row: &RawRow) -> Option<usize> {
-        // Common value column header keywords
-        let value_keywords = [
-            "value", "wert", "amount", "betrag", "emission", "menge", "quantity",
-            "total", "sum", "co2", "tco2", "kgco2", "kwh", "usd", "eur", "gbp",
-            "cost", "spend", "consumption", "verbrauch", "fogyasztás",
-        ];
-
-        // 1. Try to find by header keyword, strictly excluding metadata columns
-        for (idx, header) in row.headers.iter().enumerate() {
-            let norm_header = Self::normalize_string(header);
-            
-            // IF header contains ANY excluded keyword, it CANNOT be the value column
-            if EXCLUDED_HEADERS.iter().any(|ex| norm_header.contains(ex)) || norm_header.contains("id") {
-                continue;
-            }
-
-            if value_keywords.iter().any(|kw| norm_header.contains(kw)) {
-                // Check if the corresponding value is parseable as a number
-                if idx < row.values.len() {
-                    let val = &row.values[idx];
-                    if Self::is_potentially_numeric(val) {
-                        return Some(idx);
-                    }
-                }
-            }
-        }
-
-        // 2. Fallback: find the first column with a numeric-looking value that is NOT in excluded headers
-        for (idx, val) in row.values.iter().enumerate() {
-            if idx < row.headers.len() {
-                let norm_header = Self::normalize_string(&row.headers[idx]);
-                // If the header of this column contains an excluded keyword or 'id', skip it
-                if EXCLUDED_HEADERS.iter().any(|ex| norm_header.contains(ex)) || norm_header.contains("id") {
-                    continue;
-                }
-            }
-            
-            if Self::is_potentially_numeric(val) {
-                return Some(idx);
-            }
-        }
-
-        None
+        Self::find_value_column_index_only_arc(&row.headers, &row.values)
     }
 
-    /// Helper for early row skipping: finds value column index from headers and values only
-    pub fn find_value_column_index_only(headers: &[String], values: &[String]) -> Option<usize> {
+    pub fn find_value_column_index_only_arc(headers: &[Arc<str>], values: &[Arc<str>]) -> Option<usize> {
         let value_keywords = [
             "value", "wert", "amount", "betrag", "emission", "menge", "quantity",
             "total", "sum", "co2", "tco2", "kgco2", "kwh", "usd", "eur", "gbp",
@@ -266,10 +271,22 @@ impl IngestionEngine {
                 }
             }
         }
+        
+        // Fallback search
+        for (idx, val) in values.iter().enumerate() {
+            if idx < headers.len() {
+                let norm_header = Self::normalize_string(&headers[idx]);
+                if EXCLUDED_HEADERS.iter().any(|ex| norm_header.contains(ex)) || norm_header.contains("id") {
+                    continue;
+                }
+            }
+            if Self::is_potentially_numeric(val) {
+                return Some(idx);
+            }
+        }
         None
     }
 
-    /// Checks if a string can be parsed as a number (after cleaning currency/separators)
     fn is_potentially_numeric(s: &str) -> bool {
         if s.is_empty() {
             return false;
@@ -281,7 +298,7 @@ impl IngestionEngine {
             .replace(',', "")
             .replace(' ', "")
             .replace("~", "")
-            .replace("k", "000") // Crude but effective for "48k"
+            .replace("k", "000") 
             .replace("K", "000");
         cleaned.parse::<f64>().is_ok()
     }
@@ -293,7 +310,6 @@ impl Default for IngestionEngine {
     }
 }
 
-/// Parses a raw string value into an f64, handling currency and thousand separators
 pub fn parse_numeric_cell(raw: &str) -> Option<f64> {
     if raw.is_empty() {
         return None;
@@ -307,7 +323,7 @@ pub fn parse_numeric_cell(raw: &str) -> Option<f64> {
         .replace("EUR", "")
         .replace("GBP", "")
         .replace(',', "")
-        .replace('\'', "") // Swiss/German thousand separator
+        .replace('\'', "")
         .replace(' ', "")
         .replace("~", "")
         .replace("k", "e3")
@@ -315,21 +331,16 @@ pub fn parse_numeric_cell(raw: &str) -> Option<f64> {
         .replace("m", "e6")
         .replace("M", "e6");
 
-    // Handle European decimal comma (1.234,56 -> 1234.56)
-    // This logic assumes if there is a comma AND a period, period is thousand sep.
     let final_cleaned = if cleaned.contains(',') && cleaned.contains('.') {
-        // If both exist, assume comma is decimal if it is the last one
-        if cleaned.rfind(',').unwrap() > cleaned.rfind('.').unwrap() {
+        if cleaned.rfind(',').unwrap_or(0) > cleaned.rfind('.').unwrap_or(0) {
             cleaned.replace('.', "").replace(',', ".")
         } else {
             cleaned.replace(',', "")
         }
     } else if cleaned.contains(',') && !cleaned.contains('.') {
-        // Only comma exists. If there are multiple, it's a thousand sep.
         if cleaned.matches(',').count() > 1 {
             cleaned.replace(',', "")
         } else {
-            // Single comma: could be thousand or decimal. Assume decimal.
             cleaned.replace(',', ".")
         }
     } else {
@@ -339,7 +350,6 @@ pub fn parse_numeric_cell(raw: &str) -> Option<f64> {
     final_cleaned.parse::<f64>().ok()
 }
 
-/// Helper to check if a header is in the excluded metadata list
 pub fn is_excluded_header(header: &str) -> bool {
     let normalized = header.to_lowercase().replace('_', " ").replace('-', " ").replace('.', " ").replace('/', " ").trim().to_string();
     EXCLUDED_HEADERS.iter().any(|ex| normalized.contains(ex))

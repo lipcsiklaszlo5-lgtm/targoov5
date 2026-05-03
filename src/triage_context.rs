@@ -21,7 +21,12 @@ pub async fn infer_activity_from_row(
         if let Ok(resp) = ai_client.classify(trimmed).await {
             // c) If a value strongly correlates with an ESG activity
             if resp.matched && resp.confidence > 0.6 {
-                if best_activity.is_none() || resp.confidence > best_activity.as_ref().unwrap().1 {
+                let should_update = match &best_activity {
+                    None => true,
+                    Some((_, current_conf)) => resp.confidence > *current_conf,
+                };
+
+                if should_update {
                     best_activity = Some((trimmed.to_string(), resp.confidence));
                 }
             }

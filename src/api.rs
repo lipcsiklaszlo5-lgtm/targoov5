@@ -15,7 +15,7 @@ use crate::models::{AppState, Jurisdiction, ResultsResponse, RunRequest, StatusR
 use crate::output_factory::OutputFactory;
 use crate::supply_chain::run_supply_chain_stress_test;
 use crate::triage::TriageEngine;
-use anyhow::Result;
+use anyhow::{anyhow, Result};
 use axum::{
     extract::{Multipart, State},
     http::StatusCode,
@@ -136,7 +136,7 @@ async fn process_pipeline(
 ) -> Result<()> {
     // Step 1: Initialize database run
     {
-        let mut conn = db_pool.lock().unwrap();
+        let mut conn = db_pool.lock().map_err(|e| anyhow!("DB Pool Mutex poisoned: {}", e))?;
         create_run(&mut conn, &run_id, &format!("{:?}", jurisdiction), &language, &industry)?;
     }
     
@@ -155,51 +155,45 @@ async fn process_pipeline(
     let mut ledger_processor = LedgerProcessor::new();
     let aggregator = Aggregator::new();
     
-    // Step 3: Ingest files
+    // Step 3 & 4: Ingest and Process (Streaming)
     let staged_files = {
         let state_guard = state.lock().await;
         state_guard.staged_files.clone()
     };
     
-    let mut all_raw_rows: Vec<RawRow> = Vec::new();
-    for file_name in staged_files {
-        let file_path = std::path::Path::new("/tmp").join(&file_name);
-        let rows = ingestion_engine.parse_to_raw_rows(&file_path)?;
-        all_raw_rows.extend(rows);
-    }
-    
     {
         let mut state_guard = state.lock().await;
         state_guard.current_step = 3;
-        state_guard.progress_message = Some(format!("Processing {} rows...", all_raw_rows.len()));
+        state_guard.progress_message = Some("Starting streaming ingestion and processing...".to_string());
     }
-    
-    // Step 4: Process rows into ledger/quarantine (Parallel)
+
+    let mut row_stream = stream::empty::<Result<RawRow>>().boxed();
+    for file_name in staged_files {
+        let file_path = std::path::Path::new("/tmp").join(&file_name);
+        match ingestion_engine.parse_to_stream(&file_path) {
+            Ok(iter) => {
+                row_stream = row_stream.chain(stream::iter(iter)).boxed();
+            }
+            Err(e) => tracing::error!("Failed to open stream for {}: {}", file_name, e),
+        }
+    }
+
     const CONCURRENT_TASKS: usize = 16;
-    
-    let process_results: Vec<ProcessResult> = stream::iter(all_raw_rows)
-        .map(|raw_row| {
+    let process_results: Vec<ProcessResult> = row_stream
+        .map(|row_res| {
             let mut lp = ledger_processor.clone();
             let mut te = triage_engine.clone();
             let rid = run_id.clone();
             async move {
-                // Wrap in tokio::spawn to offload to the multithreaded runtime
-                tokio::spawn(async move {
-                    lp.process_row(&rid, &raw_row, &mut te, jurisdiction).await
-                })
-                .await
-                .unwrap_or_else(|e| {
-                    Ok(Some(ProcessResult::Quarantine(crate::models::QuarantineRow {
-                        row_id: Uuid::new_v4(),
-                        source_file: "Panic".to_string(),
-                        raw_row_index: 0,
-                        raw_header: "N/A".to_string(),
-                        raw_value: "N/A".to_string(),
-                        error_reason: crate::models::QuarantineReason::ParseError,
-                        suggested_fix: Some(format!("Worker Panic: {:?}", e)),
-                        created_at: chrono::Utc::now(),
-                    })))
-                })
+                if let Ok(raw_row) = row_res {
+                    tokio::spawn(async move {
+                        lp.process_row(&rid, &raw_row, &mut te, jurisdiction).await
+                    })
+                    .await
+                    .unwrap_or(Ok(None))
+                } else {
+                    Ok(None)
+                }
             }
         })
         .buffer_unordered(CONCURRENT_TASKS)
@@ -255,7 +249,7 @@ async fn process_pipeline(
     
     // Step 5: Write to database
     {
-        let mut conn = db_pool.lock().unwrap();
+        let mut conn = db_pool.lock().map_err(|e| anyhow!("DB Pool Mutex poisoned: {}", e))?;
         bulk_insert_ledger(&mut conn, &run_id, &ledger_rows)?;
         bulk_insert_quarantine(&mut conn, &run_id, &quarantine_rows)?;
         update_run_status(&mut conn, &run_id, "completed")?;
@@ -272,7 +266,7 @@ async fn process_pipeline(
     
     // Step 7: Generate narrative (Gemini)
     let gemini_api_key = std::env::var("GEMINI_API_KEY").unwrap_or_default();
-    let gemini_client = GeminiClient::new(gemini_api_key);
+    let gemini_client = GeminiClient::new(gemini_api_key)?;
     let narrative = gemini_client
         .generate_narrative(
             &aggregation,

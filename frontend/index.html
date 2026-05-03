@@ -846,18 +846,19 @@
             const origin = window.location.origin;
             const hostname = window.location.hostname;
             
-            // Ha localhost-on vagyunk
+            // Ha localhost-on vagyunk (vagy 127.0.0.1)
             if (hostname === 'localhost' || hostname === '127.0.0.1') {
                 return 'http://localhost:8080';
             }
             
-            // Ha Codespaces URL-t használunk (pl. github.dev vagy preview.app.github.dev)
-            if (origin.includes('-3000.')) {
-                return origin.replace('-3000.', '-8080.');
+            // Codespaces esetén: a port a subdomain része (pl. -8000 -> -8080)
+            if (hostname.includes('github.dev') || hostname.includes('app.github.dev')) {
+                // Megkeressük a portot az URL-ben és lecseréljük 8080-ra
+                return origin.replace(/-[0-9]+\./, '-8080.');
             }
             
-            // Gitpod vagy egyéb port-alapú URL
-            return origin.replace(':3000', ':8080');
+            // Minden más esetben megpróbáljuk a hostname:8080-at
+            return window.location.protocol + '//' + hostname + ':8080';
         }
         
         const API_BASE = getApiBase();

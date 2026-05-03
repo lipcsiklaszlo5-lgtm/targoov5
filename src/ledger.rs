@@ -51,14 +51,14 @@ impl LedgerProcessor {
             }
         };
 
-        let raw_header = row.headers.get(value_col_idx).cloned().unwrap_or_default();
+        let raw_header = row.headers.get(value_col_idx).map(|h| h.to_string()).unwrap_or_default();
         
         // Final sanity check: if the detected header is EXCLUDED, skip the row
         if crate::ingest::is_excluded_header(&raw_header) {
             return Ok(None);
         }
 
-        let raw_value_str = row.values.get(value_col_idx).cloned().unwrap_or_default();
+        let raw_value_str = row.values.get(value_col_idx).map(|v| v.to_string()).unwrap_or_default();
 
         // 2. Parse numeric value
         let raw_value = match parse_numeric_cell(&raw_value_str) {
@@ -299,7 +299,7 @@ impl LedgerProcessor {
         // 12. Build LedgerRow
         let ledger_row = LedgerRow {
             row_id: Uuid::new_v4(),
-            source_file: row.source_file.clone(),
+            source_file: row.source_file.to_string(),
             raw_row_index: row.row_index,
             raw_header,
             raw_value,
@@ -334,9 +334,9 @@ impl LedgerProcessor {
     ) -> QuarantineRow {
         QuarantineRow {
             row_id: Uuid::new_v4(),
-            source_file: row.source_file.clone(),
+            source_file: row.source_file.to_string(),
             raw_row_index: row.row_index,
-            raw_header: row.headers.get(0).cloned().unwrap_or_default(),
+            raw_header: row.headers.get(0).map(|h| h.to_string()).unwrap_or_default(),
             raw_value,
             error_reason: reason,
             suggested_fix,
