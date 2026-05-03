@@ -272,7 +272,7 @@ impl OutputFactory {
         // Sheet 2: Scope 2 Detail
         let ws2 = workbook.add_worksheet();
         ws2.set_name("Scope 2 Detail")?;
-        self.write_scope_rows(ws2, ledger, GhgScope::SCOPE2_LB)?;
+        self.write_scope_rows(ws2, ledger, GhgScope::Scope2Lb)?;
 
         // Sheet 3: Scope 3 Kategorien
         let ws3 = workbook.add_worksheet();

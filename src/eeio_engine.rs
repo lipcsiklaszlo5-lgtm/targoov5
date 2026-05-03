@@ -1,5 +1,4 @@
-use crate::models::{CalcPath, DataQualityTier, Jurisdiction, Scope3Category};
-use anyhow::Result;
+use crate::models::{Jurisdiction, Scope3Category};
 
 pub struct EEIOEngine;
 

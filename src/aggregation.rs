@@ -46,8 +46,8 @@ impl Aggregator {
             // Scope totals
             match row.ghg_scope {
                 GhgScope::SCOPE1 => result.scope1_tco2e += row.tco2e,
-                GhgScope::SCOPE2_LB => result.scope2_lb_tco2e += row.tco2e,
-                GhgScope::SCOPE2_MB => result.scope2_mb_tco2e += row.tco2e,
+                GhgScope::Scope2Lb => result.scope2_lb_tco2e += row.tco2e,
+                GhgScope::Scope2Mb => result.scope2_mb_tco2e += row.tco2e,
                 GhgScope::SCOPE3 => {
                     result.scope3_tco2e += row.tco2e;
                     

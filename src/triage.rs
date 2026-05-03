@@ -351,7 +351,7 @@ impl TriageEngine {
     ) -> TriageResult {
         let ghg_scope = match entry.ghg_category.as_str() {
             "Scope1" => GhgScope::SCOPE1,
-            "Scope2" => GhgScope::SCOPE2_LB,
+            "Scope2" => GhgScope::Scope2Lb,
             "Scope3" => GhgScope::SCOPE3,
             _ => GhgScope::SCOPE3,
         };

@@ -23,7 +23,7 @@ const ESRS_E1_REQUIRED: &[EsrsDataPoint] = &[
     EsrsDataPoint {
         esrs_code: "ESRS E1-6 §44b",
         description: "Scope 2 location-based GHG emissions",
-        required_scope: GhgScope::SCOPE2_LB,
+        required_scope: GhgScope::Scope2Lb,
         required_scope3_cat: None,
         min_rows_expected: 1,
         severity: "BLOCKER",
@@ -76,7 +76,7 @@ pub struct GapResult {
 fn suggest_data_source(point: &EsrsDataPoint) -> String {
     match point.required_scope {
         GhgScope::SCOPE1 => "ERP energia modul / számlák".to_string(),
-        GhgScope::SCOPE2_LB | GhgScope::SCOPE2_MB => "Áramszolgáltatói számlák".to_string(),
+        GhgScope::Scope2Lb | GhgScope::Scope2Mb => "Áramszolgáltatói számlák".to_string(),
         GhgScope::SCOPE3 => "Beszerzési / logisztikai rendszer".to_string(),
     }
 }

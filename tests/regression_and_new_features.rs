@@ -48,7 +48,7 @@ fn create_mock_ledger() -> Vec<LedgerRow> {
             converted_value: 5000.0,
             converted_unit: "kWh".to_string(),
             assumed_unit: None,
-            ghg_scope: GhgScope::SCOPE2_LB,
+            ghg_scope: GhgScope::Scope2Lb,
             ghg_category: "Electricity".to_string(),
             ghg_subcategory: "".to_string(),
             emission_factor: 0.4,

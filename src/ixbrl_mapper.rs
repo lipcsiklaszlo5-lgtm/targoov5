@@ -17,7 +17,7 @@ const XBRL_MAPPING: &[(GhgScope, Option<u8>, XbrlTag)] = &[
         unit: "tCO2e",
         period_type: "duration",
     }),
-    (GhgScope::SCOPE2_LB, None, XbrlTag {
+    (GhgScope::Scope2Lb, None, XbrlTag {
         esrs_code: "ESRS E1-6",
         paragraph: "§44b",
         xbrl_concept: "esrs:GrossScope2GHGEmissionsLocationBased",

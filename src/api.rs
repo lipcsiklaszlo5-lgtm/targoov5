@@ -1,15 +1,14 @@
 use crate::aggregation::Aggregator;
-use crate::benchmark::{run_benchmark, BenchmarkResult};
+use crate::benchmark::run_benchmark;
 use crate::benchmarking::{IndustryBenchmark, PeerComparison};
 use crate::compliance::{ObligationStatus, OmnibusValidator};
 use crate::db::{
     bulk_insert_ledger, bulk_insert_quarantine, create_run, update_run_status, DbPool,
 };
 use crate::finance::risk_analytics::{CarbonRiskMetrics, PortfolioAsset};
-use crate::gap_analysis::{run_gap_analysis, GapResult};
+use crate::gap_analysis::run_gap_analysis;
 use crate::gemini_client::GeminiClient;
 use crate::ingest::{IngestionEngine, RawRow};
-use crate::ixbrl_mapper::XbrlTag;
 use crate::ledger::{verify_chain, LedgerProcessor, ProcessResult};
 use crate::models::{AppState, Jurisdiction, ResultsResponse, RunRequest, StatusResponse};
 use crate::output_factory::OutputFactory;
@@ -29,9 +28,6 @@ use tokio::sync::Mutex;
 use uuid::Uuid;
 
 pub type SharedState = Arc<Mutex<AppState>>;
-
-// Embedded dictionary JSON
-const EMBEDDED_DICTIONARY: &str = include_str!("../data/dictionary.json");
 
 pub async fn upload_handler(
     State(state): State<SharedState>,
@@ -370,14 +366,14 @@ pub async fn results_handler(
     let scope2_lb_tco2e = state_guard
         .ledger
         .iter()
-        .filter(|r| matches!(r.ghg_scope, crate::models::GhgScope::SCOPE2_LB))
+        .filter(|r| matches!(r.ghg_scope, crate::models::GhgScope::Scope2Lb))
         .map(|r| r.tco2e)
         .sum();
     
     let scope2_mb_tco2e = state_guard
         .ledger
         .iter()
-        .filter(|r| matches!(r.ghg_scope, crate::models::GhgScope::SCOPE2_MB))
+        .filter(|r| matches!(r.ghg_scope, crate::models::GhgScope::Scope2Mb))
         .map(|r| r.tco2e)
         .sum();
     

@@ -217,9 +217,10 @@ impl LedgerProcessor {
             // 8. Calculate tCO2e (Legacy/Standard paths)
             tco2e = tco2e_calculator(
                 converted_value,
-                ef_value,
-                gwp_applied,
-                is_spend_based,
+                &triage_result.matched_keyword,
+                triage_result.ghg_scope,
+                jurisdiction,
+                &triage_result.canonical_unit,
                 spend_usd,
                 eeio_ef,
                 attribution_factor,
@@ -273,7 +274,7 @@ impl LedgerProcessor {
         let scope3_cat = scope3_extension
             .as_ref()
             .and_then(|ext| Scope3Category::try_from(ext.category_id).ok());
-        if let Err(reason) = validate_range_guard(tco2e, triage_result.ghg_scope, scope3_cat) {
+        if let Err(reason) = validate_range_guard(tco2e, triage_result.ghg_scope) {
             return Ok(Some(ProcessResult::Quarantine(self.create_quarantine_row(
                 row,
                 raw_value_str,

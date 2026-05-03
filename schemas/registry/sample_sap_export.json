@@ -1,0 +1,10 @@
+{
+  "schema_id": "sap_export_v1",
+  "schema_version": "1.0.0",
+  "description": "SAP ERP raw export schema",
+  "fields": [
+    { "name": "company_id", "field_type": "string" },
+    { "name": "fiscal_year", "field_type": "number" },
+    { "name": "amount", "field_type": "number" }
+  ]
+}

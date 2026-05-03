@@ -5,37 +5,28 @@ use serde::{Serialize, Deserialize};
 struct BenchmarkEntry {
     industry: &'static str,
     scope: GhgScope,
-    scope3_cat: Option<u8>,
-    metric: &'static str,
     value_p25: f64,
     value_p50: f64,
     value_p75: f64,
     source: &'static str,
-    year: u16,
 }
 
 const BENCHMARKS: &[BenchmarkEntry] = &[
     BenchmarkEntry {
         industry: "Manufacturing",
         scope: GhgScope::SCOPE1,
-        scope3_cat: None,
-        metric: "tCO2e/revenue_meur",
         value_p25: 45.0,
         value_p50: 120.0,
         value_p75: 380.0,
         source: "UBA Industriesektor 2023",
-        year: 2023,
     },
     BenchmarkEntry {
         industry: "Logistics",
         scope: GhgScope::SCOPE1,
-        scope3_cat: None,
-        metric: "tCO2e/revenue_meur",
         value_p25: 89.0,
         value_p50: 210.0,
         value_p75: 520.0,
         source: "EEA Transport Sector 2023",
-        year: 2023,
     },
 ];
 

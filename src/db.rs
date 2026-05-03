@@ -1,9 +1,8 @@
-use crate::models::{GhgScope, LedgerRow, QuarantineRow, Scope3Extension};
-use anyhow::{anyhow, Result};
+use crate::models::{LedgerRow, QuarantineRow};
+use anyhow::Result;
 use chrono::Utc;
-use rusqlite::{params, Connection, Transaction};
+use rusqlite::{params, Connection};
 use std::sync::{Arc, Mutex};
-use uuid::Uuid;
 
 pub type DbPool = Arc<Mutex<Connection>>;
 

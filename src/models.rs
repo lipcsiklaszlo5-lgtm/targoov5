@@ -38,8 +38,10 @@ impl std::fmt::Display for Jurisdiction {
 #[serde(rename_all = "UPPERCASE")]
 pub enum GhgScope {
     SCOPE1,
-    SCOPE2_LB, // Location-Based
-    SCOPE2_MB, // Market-Based
+    #[serde(rename = "SCOPE2_LB")]
+    Scope2Lb, // Location-Based
+    #[serde(rename = "SCOPE2_MB")]
+    Scope2Mb, // Market-Based
     SCOPE3,
 }
 

@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "version": "2024.2.0",
+    "name": "Global Emission Factors Core Dataset",
+    "gwp_standard": "IPCC AR6 GWP100 (AR5 fallback where required)",
+    "last_updated": "2026-05-03",
+    "determinism": true,
+    "description": "Deterministic emission factor dataset for Scope 1, 2, 3 calculations",
+    "datasets": {
+      "defra": "2024 v1.1",
+      "epa": "2024 hub",
+      "egrid": "2023",
+      "useeio": "v2.1"
+    }
+  },
+  "temporal": {
+    "factor_year": 2024,
+    "valid_from": "2024-01-01",
+    "valid_to": "2024-12-31"
+  },
+  "scope_mapping": {
+    "scope1": ["stationary_combustion", "mobile_combustion", "refrigerants"],
+    "scope2": ["electricity"],
+    "scope3": ["wtt", "t_and_d_losses", "business_travel", "waste", "spend_based"]
+  },
+  "gwp": {
+    "co2": 1.0,
+    "ch4_fossil": 29.8,
+    "ch4_biogenic": 27.2,
+    "n2o": 273,
+    "sf6": 24300
+  },
+  "uk_defra_2024": {
+    "electricity": {
+      "location_based_kwh": 0.1837,
+      "t_and_d_losses_kwh": 0.01639,
+      "market_based": {
+        "residual_mix_kwh": null,
+        "supplier_specific_kwh": null
+      }
+    },
+    "natural_gas": {
+      "combustion": {
+        "co2_kg_per_kwh": 0.18316,
+        "ch4_kg_per_kwh": 0.00001,
+        "n2o_kg_per_kwh": 0.000003
+      },
+      "totals": {
+        "kwh_gross": 0.18236,
+        "m3": 2.04542,
+        "tonne": 2568.16441
+      },
+      "wtt": {
+        "kwh": null
+      }
+    },
+    "liquid_fuels": {
+      "diesel": {
+        "combustion_litre": 2.50503,
+        "wtt_litre": null
+      },
+      "petrol": {
+        "combustion_litre": 2.11545,
+        "wtt_litre": null
+      },
+      "lpg": {
+        "combustion_litre": 1.55713,
+        "combustion_tonne": 2939.36095
+      }
+    },
+    "business_travel": {
+      "air": {
+        "domestic_economy_pkm": null,
+        "short_haul_economy_pkm": null,
+        "long_haul_economy_pkm": null,
+        "rf_multiplier": 1.9,
+        "rf_applied_default": false
+      },
+      "ground": {
+        "car_average_km": 0.171,
+        "car_small_petrol_km": 0.143,
+        "car_medium_diesel_km": 0.165
+      }
+    },
+    "vehicles": {
+      "phev": {
+        "utility_factor": null,
+        "electric_share": null,
+        "combustion_share": null
+      },
+      "ev": {
+        "kwh_per_km": null
+      }
+    },
+    "water_waste": {
+      "water_supply_m3": 0.11717,
+      "water_treatment_m3": 0.24584,
+      "waste": {
+        "landfill_mixed_tonne": 467.04715,
+        "recycling_mixed_tonne": 21.29367,
+        "methane_capture_rate": null
+      }
+    }
+  },
+  "us_epa_2024": {
+    "natural_gas": {
+      "combustion_mmbtu": 53.06
+    },
+    "liquid_fuels": {
+      "diesel_gallon": 10.21,
+      "gasoline_gallon": 8.78,
+      "jet_fuel_gallon": 9.75,
+      "lpg_gallon": 5.68
+    },
+    "egrid_2023": {
+      "camx": 0.1950,
+      "nwpp": 0.2881,
+      "rmpa": 0.4729,
+      "aznm": 0.3203,
+      "rfce": 0.2718,
+      "rfcm": 0.4427,
+      "rfcw": 0.4155,
+      "srmw": 0.5663,
+      "srmv": 0.3364,
+      "srso": 0.3837,
+      "srtv": 0.4097,
+      "mroe": 0.6373,
+      "mrow": 0.4203,
+      "newe": 0.2464,
+      "nycw": 0.3927,
+      "nyli": 0.5395,
+      "spno": 0.3936,
+      "spso": 0.3971,
+      "us_average": 0.3497
+    }
+  },
+  "useeio_v2.1": {
+    "currency": "USD_2021",
+    "factors": {
+      "111_crop_farming": 1.326,
+      "326_plastics_rubber": 0.471,
+      "327_nonmetallic_mineral": 0.398
+    }
+  },
+  "refrigerants": {
+    "standard": "AR6 where available, AR5 fallback",
+    "factors": {
+      "r134a": 1530,
+      "r410a": 2256,
+      "r32": 771,
+      "r22": 1960,
+      "hfc125": 3500
+    },
+    "uncertainty_flag": true
+  },
+  "lifecycle": {
+    "wtt": {
+      "diesel_litre": null,
+      "petrol_litre": null,
+      "natural_gas_kwh": null
+    },
+    "electricity_upstream": null
+  },
+  "geospatial": {
+    "mapping_method": "lat_long_to_region",
+    "us": "eGRID",
+    "eu": "ENTSO-E"
+  },
+  "constants": {
+    "energy": {
+      "mwh_to_kwh": 1000,
+      "mmbtu_to_kwh": 293.07,
+      "gj_to_kwh": 277.778
+    },
+    "fuel_energy_content_ncv": {
+      "diesel_kwh_per_litre": 10.0,
+      "petrol_kwh_per_litre": 9.1,
+      "lpg_kwh_per_litre": 6.8
+    },
+    "mass": {
+      "tonne_to_kg": 1000,
+      "short_ton_to_kg": 907.185
+    },
+    "distance": {
+      "mile_to_km": 1.60934
+    }
+  },
+  "data_quality": {
+    "tier": "IPCC Tier 1/2 mix",
+    "uncertainty": "medium",
+    "source_reliability": "high",
+    "audit_ready": true
+  },
+  "additions_needed": {
+    "defra_2024_missing": {
+      "air_travel": {
+        "short_haul_economy_pkm": 0.15353,
+        "short_haul_business_pkm": 0.22827,
+        "long_haul_economy_pkm": 0.19599,
+        "long_haul_business_pkm": 0.42869,
+        "long_haul_first_pkm": 0.59472,
+        "domestic_economy_pkm": 0.24674
+      },
+      "freight": {
+        "hgv_average_tkm": 0.10573,
+        "hgv_rigid_tkm": 0.13408,
+        "hgv_articulated_tkm": 0.08226,
+        "rail_tkm": 0.03565,
+        "sea_average_tkm": 0.01622,
+        "air_average_tkm": 0.60210
+      },
+      "hotel": {
+        "uk_room_night": 8.36
+      },
+      "wtt": {
+        "diesel_litre": 0.60951,
+        "petrol_litre": 0.52922,
+        "natural_gas_kwh": 0.04069
+      }
+    },
+    "uba_uea_missing": {
+      "electricity_germany_2024_kwh": 0.3840,
+      "electricity_germany_2023_kwh": 0.4040,
+      "electricity_austria_kwh": 0.1580,
+      "electricity_netherlands_kwh": 0.2840,
+      "electricity_france_kwh": 0.0560,
+      "electricity_switzerland_kwh": 0.0280,
+      "electricity_eu27_kwh": 0.2280,
+      "district_heating_germany_kwh": 0.1440
+    },
+    "useeio_missing_sectors": {
+      "481_air_transport": 0.4120,
+      "4821_rail_transport": 0.1050,
+      "483_water_transport": 0.1890,
+      "484_truck_transport": 0.2890,
+      "485_transit_ground": 0.3210,
+      "492_couriers": 0.3150,
+      "721_hotels": 0.1560,
+      "722_food_services": 0.3420,
+      "311_food_mfg": 0.5610,
+      "325_chemical_mfg": 0.4180,
+      "331_primary_metal": 1.2340,
+      "332_fab_metal": 0.4560,
+      "333_industrial_machinery": 0.2340,
+      "334_computers_electronics": 0.2100,
+      "335_electrical_equipment": 0.2890,
+      "336_transport_equipment": 0.3210,
+      "522_credit_intermediation": 0.0890,
+      "524_insurance": 0.0760,
+      "531_real_estate": 0.1230,
+      "541_prof_services": 0.1050,
+      "551_management": 0.0980,
+      "561_admin_services": 0.1120,
+      "562_waste_mgmt": 0.2340,
+      "611_education": 0.1450,
+      "811_repair_maintenance": 0.1980
+    }
+  }
+}

@@ -29,14 +29,14 @@ fn main() -> Result<(), XlsxError> {
         ("S1-10", "SF6 leakage", "0.5", "kg", "SCOPE1", "", "ActivityBased", "mass", "EN", "GLOBAL"),
 
         // SCOPE 2
-        ("S2-01", "Electricity usage", "10000", "kWh", "SCOPE2_LB", "", "ActivityBased", "energy", "EN", "US"),
-        ("S2-02", "Purchased Steam", "500", "GJ", "SCOPE2_LB", "", "ActivityBased", "energy", "EN", "US"),
-        ("S2-03", "District Heating", "2000", "kWh", "SCOPE2_LB", "", "ActivityBased", "energy", "EN", "EU"),
-        ("S2-04", "Stromverbrauch", "8000", "kWh", "SCOPE2_LB", "", "ActivityBased", "energy", "DE", "EU"),
-        ("S2-05", "Fernwärme", "1500", "kWh", "SCOPE2_LB", "", "ActivityBased", "energy", "DE", "EU"),
-        ("S2-06", "Áramfogyasztás", "7000", "kWh", "SCOPE2_LB", "", "ActivityBased", "energy", "HU", "EU"),
-        ("S2-07", "Vásárolt gőz", "300", "GJ", "SCOPE2_LB", "", "ActivityBased", "energy", "HU", "EU"),
-        ("S2-08", "Grid electricity", "50", "MWh", "SCOPE2_LB", "", "ActivityBased", "energy", "EN", "UK"),
+        ("S2-01", "Electricity usage", "10000", "kWh", "Scope2Lb", "", "ActivityBased", "energy", "EN", "US"),
+        ("S2-02", "Purchased Steam", "500", "GJ", "Scope2Lb", "", "ActivityBased", "energy", "EN", "US"),
+        ("S2-03", "District Heating", "2000", "kWh", "Scope2Lb", "", "ActivityBased", "energy", "EN", "EU"),
+        ("S2-04", "Stromverbrauch", "8000", "kWh", "Scope2Lb", "", "ActivityBased", "energy", "DE", "EU"),
+        ("S2-05", "Fernwärme", "1500", "kWh", "Scope2Lb", "", "ActivityBased", "energy", "DE", "EU"),
+        ("S2-06", "Áramfogyasztás", "7000", "kWh", "Scope2Lb", "", "ActivityBased", "energy", "HU", "EU"),
+        ("S2-07", "Vásárolt gőz", "300", "GJ", "Scope2Lb", "", "ActivityBased", "energy", "HU", "EU"),
+        ("S2-08", "Grid electricity", "50", "MWh", "Scope2Lb", "", "ActivityBased", "energy", "EN", "UK"),
 
         // SCOPE 3
         // CAT 1
@@ -103,7 +103,7 @@ fn main() -> Result<(), XlsxError> {
         // PROBLEM CASES
         ("P-01", "Natural Gas", "1,234.56", "kWh", "SCOPE1", "", "ActivityBased", "energy", "EN", "US"),
         ("P-02", "Erdgas", "1.234,56", "kWh", "SCOPE1", "", "ActivityBased", "energy", "DE", "EU"),
-        ("P-03", "Electricity", "~50000", "kWh", "SCOPE2_LB", "", "ActivityBased", "energy", "EN", "US"),
+        ("P-03", "Electricity", "~50000", "kWh", "Scope2Lb", "", "ActivityBased", "energy", "EN", "US"),
         ("P-04", "Diesel", "48k", "liters", "SCOPE1", "", "ActivityBased", "volume", "EN", "EU"),
         ("P-05", "Spend", "2.5M", "USD", "SCOPE3", "1", "SpendBased", "currency", "EN", "US"),
         ("P-06", "Fuel", "1 234,56 €", "", "SCOPE1", "", "ActivityBased", "volume", "DE", "EU"),

@@ -10,3 +10,8 @@
 - 2026-05-03: Implementálva a headless mód (--input, --scope3-only, --dictionary-only, --output kapcsolók). A motor most már API nélkül, parancssorból futtatható.
 - 2026-05-03: Streaming ingest implementálva az ingest.rs-ben. A motor most már soronként dolgozza fel a fájlokat, jelentősen csökkentve a memóriahasználatot. A RawRow Arc<str>-t használ a redundáns string allokációk elkerülésére. A régi batch függvény deprecated lett.
 - 2026-05-03: Teljes körű funkcionális tesztelés végrehajtva 5 tesztfájlon. 5/5 sikeres futtatás, a Fritz Package ZIP-ek minden tesztesetben létrejöttek. A motor stabil, de a szótár bővítése szükséges a felismerési arány javításához.
+- 2026-05-03: Szótár lecserélve az új, 10.500 bejegyzéses többnyelvű változatra. A régi szótár biztonsági mentése: data/dictionary_backup_20260503.json
+- 2026-05-03: Nem szabványos elnevezések javítva (SCOPE2_LB→Scope2Lb, SCOPE2_MB→Scope2Mb). Használatlan importok és halott kód eltávolítva. A figyelmeztetések száma 11-re csökkent.
+- 2026-05-03: Új emissziós faktor adatbázis létrehozva (data/efactors/database.json). DEFRA 2024, EPA 2024, eGRID 2023, USEEIO v2.1.
+- 2026-05-03: Új emissziós faktor adatbázis integrálva a motorba (src/ef_database.rs). A motor mostantól a DEFRA 2024, EPA 2024, eGRID 2023 és USEEIO v2.1 hivatalos faktorait használja a hardkódolt értékek helyett.
+- 2026-05-03: Implementálva a Schema Registry (src/schema_registry.rs) és az elsődleges SAP export séma (schemas/registry/sample_sap_export.json) a rugalmas és verziózott adatfeldolgozás támogatására.
