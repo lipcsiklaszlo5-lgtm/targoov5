@@ -12,6 +12,7 @@ pub mod finance;
 pub mod flags;
 pub mod gap_analysis;
 pub mod gemini_client;
+pub mod ingest_v1;
 pub mod ingest;
 pub mod ixbrl;
 pub mod ixbrl_mapper;

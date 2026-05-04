@@ -15,3 +15,13 @@
 - 2026-05-03: Új emissziós faktor adatbázis létrehozva (data/efactors/database.json). DEFRA 2024, EPA 2024, eGRID 2023, USEEIO v2.1.
 - 2026-05-03: Új emissziós faktor adatbázis integrálva a motorba (src/ef_database.rs). A motor mostantól a DEFRA 2024, EPA 2024, eGRID 2023 és USEEIO v2.1 hivatalos faktorait használja a hardkódolt értékek helyett.
 - 2026-05-03: Implementálva a Schema Registry (src/schema_registry.rs) és az elsődleges SAP export séma (schemas/registry/sample_sap_export.json) a rugalmas és verziózott adatfeldolgozás támogatására.
+- 2026-05-04: A Claude-féle ingest specifikáció alapján implementálva a CsvPlugin, FormatDetector, és a core típusok (RawField, RawRow, IngestError).
+- 2026-05-04: XlsxPlugin implementálva az Ingestion Engine-hez (calamine alapú).
+- 2026-05-04: ZipPlugin implementálva az Ingestion Engine-hez (rekurzív kicsomagolás és feldolgozás).
+- 2026-05-04: FixedWidthPlugin implementálva (JSON séma alapú pozicionális mező-kinyerés).
+- 2026-05-04: PdfPlugin implementálva (pdf-extract alapú szövegkinyerés számlákhoz és nyilatkozatokhoz).
+- 2026-05-04: JsonPlugin implementálva (streaming JSON feldolgozás).
+- 2026-05-04: XmlPlugin implementálva (streaming XML feldolgozás, quick-xml alapú).
+- 2026-05-04: QuarantineLog SQLite WORM integráció implementálva (audit-ready hiba naplózás).
+- 2026-05-04: Universal Ingestion Engine teljes körű integrációja. A `main.rs`, `api.rs`, `ledger.rs`, `triage.rs` és a tesztek frissítve az új, plugin-alapú streaming motor használatára. Sikeres integrációs teszt ZIP archívumon (CSV + XLSX).
+

@@ -8,7 +8,7 @@ use crate::db::{
 use crate::finance::risk_analytics::{CarbonRiskMetrics, PortfolioAsset};
 use crate::gap_analysis::run_gap_analysis;
 use crate::gemini_client::GeminiClient;
-use crate::ingest::{IngestionEngine, RawRow};
+use crate::ingest::{IngestEngine, RawRow};
 use crate::ledger::{verify_chain, LedgerProcessor, ProcessResult};
 use crate::models::{AppState, Jurisdiction, ResultsResponse, RunRequest, StatusResponse};
 use crate::output_factory::OutputFactory;
@@ -147,7 +147,7 @@ async fn process_pipeline(
     let dict_content = std::fs::read_to_string("data/dictionary.json")?;
     triage_engine.load_from_json(&dict_content)?;
     
-    let ingestion_engine = IngestionEngine::new();
+    let ingestion_engine = IngestEngine::new();
     let mut ledger_processor = LedgerProcessor::new();
     let aggregator = Aggregator::new();
     
@@ -163,44 +163,47 @@ async fn process_pipeline(
         state_guard.progress_message = Some("Starting streaming ingestion and processing...".to_string());
     }
 
-    let mut row_stream = stream::empty::<Result<RawRow>>().boxed();
+    let mut process_results = Vec::new();
     for file_name in staged_files {
         let file_path = std::path::Path::new("/tmp").join(&file_name);
-        match ingestion_engine.parse_to_stream(&file_path) {
-            Ok(iter) => {
-                row_stream = row_stream.chain(stream::iter(iter)).boxed();
+        let (_, stream) = match ingestion_engine.open(&file_path) {
+            Ok(res) => res,
+            Err(e) => {
+                tracing::error!("Failed to open stream for {}: {}", file_name, e);
+                continue;
             }
-            Err(e) => tracing::error!("Failed to open stream for {}: {}", file_name, e),
-        }
-    }
+        };
 
-    const CONCURRENT_TASKS: usize = 16;
-    let process_results: Vec<ProcessResult> = row_stream
-        .map(|row_res| {
-            let mut lp = ledger_processor.clone();
-            let mut te = triage_engine.clone();
-            let rid = run_id.clone();
-            async move {
-                if let Ok(raw_row) = row_res {
-                    tokio::spawn(async move {
-                        lp.process_row(&rid, &raw_row, &mut te, jurisdiction).await
-                    })
-                    .await
-                    .unwrap_or(Ok(None))
-                } else {
-                    Ok(None)
+        const CONCURRENT_TASKS: usize = 16;
+        let results: Vec<ProcessResult> = stream::iter(stream)
+            .map(|row_res| {
+                let mut lp = ledger_processor.clone();
+                let mut te = triage_engine.clone();
+                let rid = run_id.clone();
+                async move {
+                    if let Ok(raw_row) = row_res {
+                        tokio::spawn(async move {
+                            lp.process_row(&rid, &raw_row, &mut te, jurisdiction).await
+                        })
+                        .await
+                        .unwrap_or(Ok(None))
+                    } else {
+                        Ok(None)
+                    }
                 }
-            }
-        })
-        .buffer_unordered(CONCURRENT_TASKS)
-        .filter_map(|res| async {
-            match res {
-                Ok(Some(pr)) => Some(pr),
-                _ => None,
-            }
-        })
-        .collect()
-        .await;
+            })
+            .buffer_unordered(CONCURRENT_TASKS)
+            .filter_map(|res| async {
+                match res {
+                    Ok(Some(pr)) => Some(pr),
+                    _ => None,
+                }
+            })
+            .collect()
+            .await;
+        
+        process_results.extend(results);
+    }
 
     let mut ledger_rows = Vec::new();
     let mut quarantine_rows = Vec::new();
@@ -215,7 +218,6 @@ async fn process_pipeline(
     }
 
     // Step 4.5: Re-calculate SHA-256 chain (Sequential)
-    // Sort rows by raw_row_index to maintain deterministic chain
     ledger_rows.sort_by_key(|r| r.raw_row_index);
     
     let mut prev_hash = String::new();
@@ -277,7 +279,7 @@ async fn process_pipeline(
     let gap_results = run_gap_analysis(&ledger_rows);
     let benchmark_results = run_benchmark(&ledger_rows, &industry, Some(1.0)); // Placeholder revenue
     let supply_chain_results = run_supply_chain_stress_test(&ledger_rows);
-    let verification_result = verify_chain(&ledger_rows, &run_id);
+    let verification_result = verify_chain(&ledger_rows);
     
     // Step 8: Generate ZIP package
     let output_factory = OutputFactory::new();

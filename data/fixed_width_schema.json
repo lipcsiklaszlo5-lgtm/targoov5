@@ -1,0 +1,10 @@
+{
+  "schema_id": "sap_export_v1",
+  "schema_version": "1.0.0",
+  "description": "SAP ERP raw export schema (fixed-width)",
+  "fields": [
+    { "name": "company_id", "start": 0, "length": 10, "field_type": "string" },
+    { "name": "fiscal_year", "start": 10, "length": 4, "field_type": "number" },
+    { "name": "amount", "start": 14, "length": 12, "field_type": "number" }
+  ]
+}

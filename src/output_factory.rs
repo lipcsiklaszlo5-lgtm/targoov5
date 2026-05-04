@@ -55,7 +55,7 @@ impl OutputFactory {
         let summary_xlsx = self.generate_summary_xlsx(aggregation, scope3_breakdown, jurisdiction)?;
         let scope_detail_xlsx = self.generate_scope_detail_xlsx(ledger, scope3_breakdown)?;
         
-        let verification_result = verify_chain(ledger, run_id);
+        let verification_result = verify_chain(ledger);
         let audit_trail_xlsx = self.generate_audit_trail_xlsx(ledger, &verification_result)?;
         
         let quarantine_xlsx = self.generate_quarantine_xlsx(quarantine)?;

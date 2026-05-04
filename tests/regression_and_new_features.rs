@@ -158,7 +158,7 @@ fn test_regression_and_new_features() {
     
     // 2.5 SHA-256 Chain Verification
     // Mivel a mock adataink hash-je nem valódi, a verifikációnak el kell törnie.
-    let verification_result = verify_chain(&ledger, "test_run_id");
+    let verification_result = verify_chain(&ledger);
     assert!(!verification_result.is_valid, "A lánc verifikációnak hibát kell jeleznie a mock adatok miatt.");
     assert_eq!(verification_result.broken_at_index, Some(0));
 }

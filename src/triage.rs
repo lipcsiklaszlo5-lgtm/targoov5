@@ -1,3 +1,4 @@
+use crate::ingest::RawRow;
 use crate::ai_client::AiBridgeClient;
 use crate::models::{CalcPath, GhgScope, Jurisdiction, MatchMethod, Scope3Category};
 use anyhow::{anyhow, Result};
@@ -100,9 +101,8 @@ impl TriageEngine {
         }
     }
 
-    /// Loads dictionary from JSON string (embedded or read from disk)
-    pub fn load_from_json(&mut self, json_str: &str) -> Result<()> {
-        let entries: Vec<DictionaryEntry> = serde_json::from_str(json_str)?;
+    pub fn load_from_json(&mut self, json: &str) -> Result<()> {
+        let entries: Vec<DictionaryEntry> = serde_json::from_str(json)?;
         self.entries = entries;
         self.rebuild_indexes();
         Ok(())
@@ -114,35 +114,29 @@ impl TriageEngine {
         self.scope3_entries.clear();
 
         for entry in &self.entries {
-            let key = entry.keyword.to_lowercase();
-            self.exact_index.insert(key, entry.clone());
-
-            if entry.ghg_category == "Scope1" || entry.ghg_category == "Scope2" {
-                self.scope1_2_entries.push(entry.clone());
-            } else if entry.ghg_category == "Scope3" {
+            self.exact_index.insert(entry.keyword.to_lowercase(), entry.clone());
+            if entry.ghg_category == "Scope3" {
                 self.scope3_entries.push(entry.clone());
+            } else {
+                self.scope1_2_entries.push(entry.clone());
             }
         }
-
-        self.scope1_2_entries
-            .sort_by(|a, b| b.keyword.len().cmp(&a.keyword.len()));
-        self.scope3_entries
-            .sort_by(|a, b| b.keyword.len().cmp(&a.keyword.len()));
     }
 
-    /// Normalizes a raw header string for matching
-    pub fn normalize_header(input: &str) -> String {
-        input
+    /// Normalizes a header for matching (lowercase, trim, remove special chars)
+    fn normalize_header(header: &str) -> String {
+        header
             .to_lowercase()
             .replace('_', " ")
             .replace('-', " ")
             .replace('.', " ")
+            .replace('/', " ")
             .trim()
             .to_string()
     }
 
     /// Main triage logic for a single header string
-    pub async fn triage_header(&mut self, raw_header: &str, raw_row: Option<&crate::ingest::RawRow>) -> Option<TriageResult> {
+    pub async fn triage_header(&mut self, raw_header: &str, raw_row: Option<&RawRow>) -> Option<TriageResult> {
         let normalized = Self::normalize_header(raw_header);
         if normalized.is_empty() {
             return None;
@@ -248,98 +242,57 @@ impl TriageEngine {
                 if let Some((activity, confidence)) = crate::triage_context::infer_activity_from_row(row, &self.ai_client).await {
                     // Now that we have a potential activity string, we re-run triage but without the row context
                     // to avoid infinite recursion and use our regular Exact/Fuzzy/AI logic.
-                    if let Some(result) = Box::pin(self.triage_header(&activity, None)).await {
-                        let mut final_result = result;
-                        final_result.confidence = confidence * 0.8; // Heavily penalize inference
-                        final_result.match_method = MatchMethod::Inferred;
-                        return Some(final_result);
+                    if let Some(mut result) = Box::pin(self.triage_header(&activity, None)).await {
+                        result.confidence *= confidence; // Penalize by inference confidence
+                        result.match_method = MatchMethod::Inferred;
+                        return Some(result);
                     }
                 }
-            }
-        }
-
-        // 7. Currency Heuristic Fallback
-        if self.is_currency_header(&normalized) {
-            let fallback_entry = self
-                .scope3_entries
-                .iter()
-                .find(|e| e.scope3_id == Some(1) && e.calc_path.as_deref() == Some("SpendBased"))
-                .cloned();
-
-            if let Some(entry) = fallback_entry {
-                return Some(self.build_result(
-                    &entry,
-                    &entry.keyword,
-                    0.5,
-                    MatchMethod::Inferred,
-                ));
             }
         }
 
         None
     }
 
-    fn save_entry_to_dictionary(&self, entry: &DictionaryEntry) -> Result<()> {
-        use fs2::FileExt;
-        use std::io::{Read, Seek, SeekFrom};
-
-        let path = "data/dictionary.json";
-        let mut file = OpenOptions::new()
-            .read(true)
-            .write(true)
-            .create(true)
-            .open(path)?;
-
-        // Exclusive lock (blocks until available)
-        file.lock_exclusive()?;
-
-        let mut content = String::new();
-        file.read_to_string(&mut content)?;
-
-        let mut all_entries: Vec<DictionaryEntry> = if content.is_empty() {
-            Vec::new()
-        } else {
-            serde_json::from_str(&content).unwrap_or_default()
-        };
-
-        all_entries.push(entry.clone());
-        let json = serde_json::to_string_pretty(&all_entries)?;
-
-        // Rewind and overwrite
-        file.set_len(0)?;
-        file.seek(SeekFrom::Start(0))?;
-        file.write_all(json.as_bytes())?;
-
-        file.unlock()?;
-        Ok(())
-    }
-
     fn fuzzy_match<'a>(
         &self,
         entries: &'a [DictionaryEntry],
-        target: &str,
+        header: &str,
     ) -> Option<(&'a DictionaryEntry, f64)> {
-        let mut best_match: Option<(&DictionaryEntry, f64)> = None;
+        let mut best: Option<(&DictionaryEntry, f64)> = None;
 
         for entry in entries {
-            let score = normalized_levenshtein(&entry.keyword.to_lowercase(), target);
-            if score > best_match.map(|(_, s)| s).unwrap_or(0.0) {
-                best_match = Some((entry, score));
+            let score = normalized_levenshtein(&entry.keyword.to_lowercase(), header);
+            if score > best.map(|(_, s)| s).unwrap_or(0.0) {
+                best = Some((entry, score));
             }
         }
 
-        best_match
+        best
     }
 
-    fn is_currency_header(&self, normalized: &str) -> bool {
-        let currency_keywords = [
-            "usd", "eur", "gbp", "$", "€", "£", "cost", "spend", "price", "amount", "betrag",
-            "kosten", "preis", "summe", "összeg", "ár", "költség", "huf", "ft",
-        ];
-        let volume_keywords = ["gallon", "liter", "litre"];
+    fn save_entry_to_dictionary(&self, entry: &DictionaryEntry) -> Result<()> {
+        let mut file = OpenOptions::new()
+            .read(true)
+            .write(true)
+            .open("data/dictionary.json")?;
+
+        let mut entries: Vec<DictionaryEntry> = serde_json::from_reader(&file)?;
         
-        currency_keywords.iter().any(|kw| normalized.contains(kw)) && 
-        !volume_keywords.iter().any(|kw| normalized.contains(kw))
+        // Avoid duplicates
+        if entries.iter().any(|e| e.keyword == entry.keyword) {
+            return Ok(());
+        }
+
+        entries.push(entry.clone());
+        
+        // Rewind and overwrite
+        file.set_len(0)?;
+        use std::io::Seek;
+        file.seek(std::io::SeekFrom::Start(0))?;
+        serde_json::to_writer_pretty(file, &entries)?;
+        
+        Ok(())
     }
 
     fn build_result(
@@ -352,27 +305,21 @@ impl TriageEngine {
         let ghg_scope = match entry.ghg_category.as_str() {
             "Scope1" => GhgScope::SCOPE1,
             "Scope2" => GhgScope::Scope2Lb,
-            "Scope3" => GhgScope::SCOPE3,
             _ => GhgScope::SCOPE3,
         };
 
-        let calc_path = entry.calc_path.as_ref().and_then(|cp| match cp.as_str() {
-            "ActivityBased" => Some(CalcPath::ActivityBased),
-            "SpendBased" => Some(CalcPath::SpendBased),
-            "Pcaf" => Some(CalcPath::Pcaf),
-            _ => None,
-        });
+        let calc_path = match entry.calc_path.as_deref() {
+            Some("SpendBased") => Some(CalcPath::SpendBased),
+            Some("Pcaf") => Some(CalcPath::Pcaf),
+            _ => Some(CalcPath::ActivityBased),
+        };
 
-        let ef_jurisdiction = entry
-            .ef_jurisdiction
-            .as_ref()
-            .map(|j| match j.as_str() {
-                "US" => Jurisdiction::US,
-                "UK" => Jurisdiction::UK,
-                "EU" => Jurisdiction::EU,
-                _ => Jurisdiction::GLOBAL,
-            })
-            .unwrap_or(Jurisdiction::GLOBAL);
+        let ef_jurisdiction = match entry.ef_jurisdiction.as_deref() {
+            Some("UK") => Jurisdiction::UK,
+            Some("EU") => Jurisdiction::EU,
+            Some("GLOBAL") => Jurisdiction::GLOBAL,
+            _ => Jurisdiction::US,
+        };
 
         TriageResult {
             ghg_scope,

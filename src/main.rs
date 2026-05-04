@@ -160,7 +160,7 @@ async fn run_headless(
 ) -> anyhow::Result<()> {
     use targoo_v2::models::{Jurisdiction, GhgScope};
     use targoo_v2::triage::TriageEngine;
-    use targoo_v2::ingest::IngestionEngine;
+    use targoo_v2::ingest::{IngestEngine, RawRow};
     use targoo_v2::ledger::{LedgerProcessor, ProcessResult, verify_chain};
     use targoo_v2::aggregation::Aggregator;
     use targoo_v2::gemini_client::GeminiClient;
@@ -194,31 +194,34 @@ async fn run_headless(
     let dict_content = std::fs::read_to_string("data/dictionary.json")?;
     triage_engine.load_from_json(&dict_content)?;
 
-    let ingestion_engine = IngestionEngine::new();
+    let ingestion_engine = IngestEngine::new();
     let ledger_processor = LedgerProcessor::new();
     let aggregator = Aggregator::new();
 
     // 3. Ingest & Process (Streaming)
-    let rows_iter = ingestion_engine.parse_to_stream(std::path::Path::new(&input_path))?;
+    let (_, stream) = ingestion_engine.open(std::path::Path::new(&input_path))?;
     
     const CONCURRENT_TASKS: usize = 16;
-    let process_results: Vec<ProcessResult> = stream::iter(rows_iter)
+    let process_results: Vec<ProcessResult> = stream::iter(stream)
         .map(|row_res| {
             let mut lp = ledger_processor.clone();
             let mut te = triage_engine.clone();
             let rid = run_id.clone();
+            let jur = jurisdiction;
             async move {
-                if let Ok(raw_row) = row_res {
-                    tokio::spawn(async move {
-                        lp.process_row(&rid, &raw_row, &mut te, jurisdiction).await
-                    }).await.unwrap_or(Ok(None))
-                } else {
-                    Ok(None)
+                match row_res {
+                    Ok(raw_row) => {
+                        let res: anyhow::Result<Option<ProcessResult>> = tokio::spawn(async move {
+                            lp.process_row(&rid, &raw_row, &mut te, jur).await
+                        }).await.unwrap_or_else(|e| Err(anyhow::anyhow!("Spawn error: {}", e)));
+                        res
+                    },
+                    Err(_) => Ok(None)
                 }
             }
         })
         .buffer_unordered(CONCURRENT_TASKS)
-        .filter_map(|res| async { res.ok().flatten() })
+        .filter_map(|res: anyhow::Result<Option<ProcessResult>>| async { res.ok().flatten() })
         .collect()
         .await;
 

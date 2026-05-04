@@ -7,13 +7,19 @@ pub async fn infer_activity_from_row(
     ai_client: &Arc<AiBridgeClient>
 ) -> Option<(String, f32)> {
     // a) Iterate through all non-numeric values in the row
-    // other_columns already contains these filtered values
+    // In the new RawRow, we iterate through all fields and check if they are Text
     
     let mut best_activity: Option<(String, f32)> = None;
 
-    for val in &row.other_columns {
+    for (header, field) in &row.fields {
+        let val = field.to_string_lossy();
         let trimmed = val.trim();
         if trimmed.is_empty() || trimmed.len() < 3 {
+            continue;
+        }
+
+        // Skip fields that look like headers or numbers (redundant but safe)
+        if trimmed.parse::<f64>().is_ok() {
             continue;
         }
 
