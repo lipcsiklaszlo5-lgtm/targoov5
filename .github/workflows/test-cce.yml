@@ -1,15 +1,60 @@
-name: CCE Integration Test
+name: CCE Pipeline
 
 on:
-  workflow_run:
-    workflows: ["Build Targoo V2 Backend"]
-    types: [completed]
+  push:
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
-  test-cce:
+  Quick-Check:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+
+      - name: Run cargo check
+        run: cargo check 2>&1 | tee check-output.txt
+
+      - name: Upload check output
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-output
+          path: check-output.txt
+
+  Build:
+    needs: Quick-Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+          
+      - name: Build Release
+        run: cargo build --release
+        
+      - name: Upload Binary Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: targoo-v2-backend
+          path: target/release/targoo-v2
+
+  test-cce:
+    needs: Build
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,18 +63,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: targoo-v2-backend
-          run-id: ${{ github.event.workflow_run.id || github.run_id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true
-
-      - name: Fallback download (latest run) if manual
-        if: steps.download.outcome == 'failure' && github.event_name == 'workflow_dispatch'
-        uses: dawidd6/action-download-artifact@v3
-        with:
-          workflow: build-linux.yml
-          name: targoo-v2-backend
-          check_artifacts: true
-          search_artifacts: true
 
       - name: Make binary executable
         run: |
