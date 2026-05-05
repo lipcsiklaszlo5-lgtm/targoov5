@@ -1,0 +1,35 @@
+{
+  "config_version": "1.0",
+  "profile_name": "hu_cbam_quick",
+
+  "client": {
+    "name": "Acélgyártó Kft.",
+    "industry": "Steel",
+    "reference_year": 2024,
+    "contact_email": null,
+    "internal_id": "HU-CBAM-2024-001"
+  },
+
+  "jurisdiction": "HU",
+  "modules": ["Cbam"],
+  "language": "HU",
+  "depth": "Deterministic",
+
+  "ef_source_override": null,
+  "gwp_standard": "IpccAr6",
+
+  "fritz_package": {
+    "include_narrative":  false,
+    "include_ef_ref":     true,
+    "include_quarantine": true,
+    "watermark":          true,
+    "output_dir":         "./output/acelgyarto_cbam"
+  },
+
+  "ai": {
+    "embedding_url":        "http://127.0.0.1:9000/classify",
+    "embedding_timeout_ms": 300,
+    "gemini_enabled":       false,
+    "gemini_model":         "gemini-1.5-flash"
+  }
+}
