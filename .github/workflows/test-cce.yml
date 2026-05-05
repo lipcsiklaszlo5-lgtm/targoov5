@@ -44,12 +44,12 @@ jobs:
       - name: Run HU CBAM Test
         run: |
           mkdir -p /tmp/hu_test
-          ./targoo-v2 --input test_100.csv --config config/profiles/hu_cbam_quick.json --output /tmp/hu_test/
+          ./targoo-v2 --input test_100.csv --config config/profiles/hu_cbam_quick.json --output-override /tmp/hu_test/
           
       - name: Run DE Scope3 Test
         run: |
           mkdir -p /tmp/de_test
-          ./targoo-v2 --input test_100.csv --config config/profiles/de_scope3_lksg.json --output /tmp/de_test/
+          ./targoo-v2 --input test_100.csv --config config/profiles/de_scope3_lksg.json --output-override /tmp/de_test/
 
       - name: Verify Results
         run: |
