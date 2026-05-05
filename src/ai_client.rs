@@ -40,6 +40,17 @@ impl AiBridgeClient {
         }
     }
 
+    pub fn new_with_config(base_url: &str, timeout_ms: u64) -> Self {
+        Self {
+            client: Client::builder()
+                .pool_max_idle_per_host(16)
+                .timeout(Duration::from_millis(timeout_ms))
+                .build()
+                .expect("Failed to build AI client"),
+            base_url: base_url.to_string(),
+        }
+    }
+
     pub async fn classify(&self, header: &str) -> Result<ClassifyResponse> {
         let req = ClassifyRequest {
             query: header.to_string(),

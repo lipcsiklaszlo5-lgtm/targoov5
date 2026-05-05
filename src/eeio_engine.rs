@@ -17,7 +17,7 @@ impl EEIOEngine {
         // Base factors per jurisdiction (US EPA USEEIO 2.0 + EXIOBASE 3.8)
         let base_factor = match jurisdiction {
             Jurisdiction::US => 0.370,
-            Jurisdiction::EU => 0.340,
+            Jurisdiction::EU | Jurisdiction::DE | Jurisdiction::AT | Jurisdiction::CH | Jurisdiction::HU => 0.340,
             Jurisdiction::UK => 0.310,
             Jurisdiction::GLOBAL => 0.370,
         };
@@ -144,7 +144,7 @@ impl EEIOEngine {
                 let intensity = match jurisdiction {
                     Jurisdiction::US => 25.0,
                     Jurisdiction::UK => 19.5,
-                    Jurisdiction::EU => 17.8,
+                    Jurisdiction::EU | Jurisdiction::DE | Jurisdiction::AT | Jurisdiction::CH | Jurisdiction::HU => 17.8,
                     Jurisdiction::GLOBAL => 20.0,
                 };
                 
@@ -166,7 +166,7 @@ impl EEIOEngine {
                 let intensity = match jurisdiction {
                     Jurisdiction::US => 15.0,
                     Jurisdiction::UK => 12.0,
-                    Jurisdiction::EU => 10.0,
+                    Jurisdiction::EU | Jurisdiction::DE | Jurisdiction::AT | Jurisdiction::CH | Jurisdiction::HU => 10.0,
                     Jurisdiction::GLOBAL => 12.0,
                 };
                 

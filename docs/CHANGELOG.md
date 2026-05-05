@@ -15,6 +15,7 @@
 - 2026-05-03: Új emissziós faktor adatbázis létrehozva (data/efactors/database.json). DEFRA 2024, EPA 2024, eGRID 2023, USEEIO v2.1.
 - 2026-05-03: Új emissziós faktor adatbázis integrálva a motorba (src/ef_database.rs). A motor mostantól a DEFRA 2024, EPA 2024, eGRID 2023 és USEEIO v2.1 hivatalos faktorait használja a hardkódolt értékek helyett.
 - 2026-05-03: Implementálva a Schema Registry (src/schema_registry.rs) és az elsődleges SAP export séma (schemas/registry/sample_sap_export.json) a rugalmas és verziózott adatfeldolgozás támogatására.
+- 2026-05-04: Implementálva a Compliance Configuration Engine (CCE) modul (src/config/). JSON alapú futtatási profilok, validációs rendszer és WORM perzisztencia. Támogatás hozzáadva a DACH régióhoz (DE, AT, CH) és Magyarországhoz (HU). A motor mostantól konfiguráció-vezérelt.
 - 2026-05-04: A Claude-féle ingest specifikáció alapján implementálva a CsvPlugin, FormatDetector, és a core típusok (RawField, RawRow, IngestError).
 - 2026-05-04: XlsxPlugin implementálva az Ingestion Engine-hez (calamine alapú).
 - 2026-05-04: ZipPlugin implementálva az Ingestion Engine-hez (rekurzív kicsomagolás és feldolgozás).

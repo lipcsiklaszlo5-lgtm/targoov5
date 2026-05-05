@@ -19,6 +19,10 @@ pub enum Jurisdiction {
     US,
     UK,
     EU,
+    DE,
+    AT,
+    CH,
+    HU,
     GLOBAL,
 }
 
@@ -28,6 +32,10 @@ impl std::fmt::Display for Jurisdiction {
             Self::US => write!(f, "US"),
             Self::UK => write!(f, "UK"),
             Self::EU => write!(f, "EU"),
+            Self::DE => write!(f, "DE"),
+            Self::AT => write!(f, "AT"),
+            Self::CH => write!(f, "CH"),
+            Self::HU => write!(f, "HU"),
             Self::GLOBAL => write!(f, "GLOBAL"),
         }
     }

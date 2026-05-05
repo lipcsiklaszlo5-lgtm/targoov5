@@ -1,0 +1,33 @@
+{
+  "config_version": "1.0",
+  "profile_name": "default_global",
+
+  "client": {
+    "name": "Default Client",
+    "industry": "Unknown",
+    "reference_year": 2024
+  },
+
+  "jurisdiction": "GLOBAL",
+  "modules": ["Scope1_2", "Scope3"],
+  "language": "EN",
+  "depth": "Deterministic",
+
+  "ef_source_override": null,
+  "gwp_standard": "IpccAr6",
+
+  "fritz_package": {
+    "include_narrative":  false,
+    "include_ef_ref":     true,
+    "include_quarantine": true,
+    "watermark":          true,
+    "output_dir":         "./output/default"
+  },
+
+  "ai": {
+    "embedding_url":          "http://127.0.0.1:9000/classify",
+    "embedding_timeout_ms":   300,
+    "gemini_enabled":         false,
+    "gemini_model":           "gemini-1.5-flash"
+  }
+}

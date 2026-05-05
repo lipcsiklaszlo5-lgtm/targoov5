@@ -64,6 +64,7 @@ pub struct TriageResult {
     pub matched_keyword: String,
 }
 
+use crate::config::models::ValidatedConfig;
 use std::sync::Arc;
 
 #[derive(Clone)]
@@ -76,18 +77,38 @@ pub struct TriageEngine {
     scope3_entries: Vec<DictionaryEntry>,
     ai_client: Arc<AiBridgeClient>,
     pub allow_ai: bool, // ✅ ÚJ! Control AI fallback
+    pub ef_source: String,
+    pub dictionary_paths: Vec<String>,
 }
 
 impl TriageEngine {
-    pub fn new() -> Self {
-        Self {
+    pub fn new(cfg: &ValidatedConfig) -> Self {
+        let mut engine = Self {
             entries: Vec::new(),
             exact_index: HashMap::new(),
             scope1_2_entries: Vec::new(),
             scope3_entries: Vec::new(),
-            ai_client: Arc::new(AiBridgeClient::new()),
-            allow_ai: true,
+            ai_client: Arc::new(AiBridgeClient::new_with_config(
+                &cfg.config.ai.embedding_url,
+                cfg.config.ai.embedding_timeout_ms
+            )),
+            allow_ai: cfg.config.ai.gemini_enabled,
+            ef_source: cfg.ef_source.clone(),
+            dictionary_paths: cfg.dictionary_paths.clone(),
+        };
+
+        // Automatikus szótár betöltés a konfig alapján
+        for path in &cfg.dictionary_paths {
+            if let Ok(json) = std::fs::read_to_string(path) {
+                if let Err(e) = engine.load_from_json(&json) {
+                    eprintln!("[Triage] Hiba a szótár betöltésekor ({}): {}", path, e);
+                } else {
+                    eprintln!("[Triage] Szótár betöltve: {}", path);
+                }
+            }
         }
+
+        engine
     }
 
     pub fn with_client(ai_client: Arc<AiBridgeClient>) -> Self {
@@ -98,6 +119,8 @@ impl TriageEngine {
             scope3_entries: Vec::new(),
             ai_client,
             allow_ai: true,
+            ef_source: "DEFAULT".to_string(),
+            dictionary_paths: Vec::new(),
         }
     }
 
@@ -317,6 +340,10 @@ impl TriageEngine {
         let ef_jurisdiction = match entry.ef_jurisdiction.as_deref() {
             Some("UK") => Jurisdiction::UK,
             Some("EU") => Jurisdiction::EU,
+            Some("DE") => Jurisdiction::DE,
+            Some("AT") => Jurisdiction::AT,
+            Some("CH") => Jurisdiction::CH,
+            Some("HU") => Jurisdiction::HU,
             Some("GLOBAL") => Jurisdiction::GLOBAL,
             _ => Jurisdiction::US,
         };
@@ -339,6 +366,6 @@ impl TriageEngine {
 
 impl Default for TriageEngine {
     fn default() -> Self {
-        Self::new()
+        Self::with_client(Arc::new(AiBridgeClient::new()))
     }
 }

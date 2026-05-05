@@ -2,3 +2,4 @@ ai/venv/
 target/
 *.db*
 .env
+.aider*

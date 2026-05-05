@@ -27,5 +27,6 @@ pub mod supply_chain;
 pub mod taxonomy;
 pub mod triage;
 pub mod triage_context;
+pub mod config;
 pub mod ef_database;
 pub mod schema_registry;

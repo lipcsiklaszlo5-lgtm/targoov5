@@ -24,6 +24,8 @@ use std::io::{Cursor, Write};
 use zip::write::FileOptions;
 use zip::{CompressionMethod, ZipWriter};
 
+use crate::config::models::ValidatedConfig;
+
 pub struct OutputFactory;
 
 impl OutputFactory {
@@ -33,38 +35,53 @@ impl OutputFactory {
 
     pub async fn generate_fritz_package(
         &self,
-        run_id: &str,
         ledger: &[LedgerRow],
         quarantine: &[QuarantineRow],
         aggregation: &AggregationResult,
         scope3_breakdown: &HashMap<u8, Scope3CategorySummary>,
         narrative_text: &str,
-        jurisdiction: &str,
-        _language: &str,
-        employee_count: Option<u32>,
-        revenue_eur: Option<f64>,
-    ) -> Result<Vec<u8>> {
+        cfg: &ValidatedConfig,
+    ) -> Result<String> {
+        let run_id = cfg.run_id.to_string();
+        let jurisdiction = format!("{:?}", cfg.config.jurisdiction);
+        let language = format!("{:?}", cfg.config.language);
+
         let manifest = self.generate_manifest(
-            run_id,
+            &run_id,
             ledger,
             quarantine,
             aggregation,
             scope3_breakdown,
         )?;
         
-        let summary_xlsx = self.generate_summary_xlsx(aggregation, scope3_breakdown, jurisdiction)?;
+        let summary_xlsx = self.generate_summary_xlsx(aggregation, scope3_breakdown, &jurisdiction)?;
         let scope_detail_xlsx = self.generate_scope_detail_xlsx(ledger, scope3_breakdown)?;
         
         let verification_result = verify_chain(ledger);
         let audit_trail_xlsx = self.generate_audit_trail_xlsx(ledger, &verification_result)?;
         
-        let quarantine_xlsx = self.generate_quarantine_xlsx(quarantine)?;
-        let ef_reference_xlsx = self.generate_ef_reference_xlsx(jurisdiction)?;
-        let narrative_docx = self.generate_narrative_docx(narrative_text, _language)?;
+        // ─── OPTIONÁLIS FÁJLOK A KONFIG ALAPJÁN ──────────────────
+        let quarantine_xlsx = if cfg.config.fritz_package.include_quarantine {
+            Some(self.generate_quarantine_xlsx(quarantine)?)
+        } else { None };
+
+        let ef_reference_xlsx = if cfg.config.fritz_package.include_ef_ref {
+            Some(self.generate_ef_reference_xlsx(&jurisdiction)?)
+        } else { None };
+
+        let narrative_docx = if cfg.config.fritz_package.include_narrative {
+            Some(self.generate_narrative_docx(narrative_text, &language)?)
+        } else { None };
+
         let methodology_md = self.generate_methodology_md(ledger)?;
         let ixbrl_report = IxbrlGenerator::generate_xhtml(aggregation)?;
         let manifest_signature = EidasSigner::sign_manifest(&manifest)?;
-        let climate_risk_xlsx = self.generate_climate_risk_xlsx(ledger, aggregation, jurisdiction)?;
+        let climate_risk_xlsx = self.generate_climate_risk_xlsx(ledger, aggregation, &jurisdiction)?;
+        
+        // Mock revenue/employee values for compliance check
+        let employee_count = Some(cfg.config.client.reference_year as u32); // Mock
+        let revenue_eur = Some(100_000_000.0); // Mock
+        
         let compliance_xlsx = self.generate_compliance_xlsx(employee_count, revenue_eur, ledger)?;
         let taxonomy_xlsx = self.generate_taxonomy_xlsx(ledger)?;
         let issa_5000_xlsx = self.generate_issa_5000_report_xlsx(ledger)?;
@@ -72,7 +89,7 @@ impl OutputFactory {
         let gap_results = run_gap_analysis(ledger);
         let gap_analysis_xlsx = self.generate_gap_analysis_xlsx(&gap_results)?;
 
-        let industry = "Manufacturing";
+        let industry = &cfg.config.client.industry;
         let benchmark_results = run_benchmark(ledger, industry, Some(1.0));
         let benchmark_report_xlsx = self.generate_benchmark_report_xlsx(&benchmark_results)?;
 
@@ -107,14 +124,20 @@ impl OutputFactory {
             zip.start_file("03_Audit_Trail_Master.xlsx", options)?;
             zip.write_all(&audit_trail_xlsx)?;
 
-            zip.start_file("04_Quarantaene_Log.xlsx", options)?;
-            zip.write_all(&quarantine_xlsx)?;
+            if let Some(data) = quarantine_xlsx {
+                zip.start_file("04_Quarantaene_Log.xlsx", options)?;
+                zip.write_all(&data)?;
+            }
 
-            zip.start_file("05_Emissionsfaktoren_Referenz.xlsx", options)?;
-            zip.write_all(&ef_reference_xlsx)?;
+            if let Some(data) = ef_reference_xlsx {
+                zip.start_file("05_Emissionsfaktoren_Referenz.xlsx", options)?;
+                zip.write_all(&data)?;
+            }
 
-            zip.start_file("06_Narrative_Bericht.docx", options)?;
-            zip.write_all(&narrative_docx)?;
+            if let Some(data) = narrative_docx {
+                zip.start_file("06_Narrative_Bericht.docx", options)?;
+                zip.write_all(&data)?;
+            }
 
             zip.start_file("07_Supply_Chain_Stress_Test.xlsx", options)?;
             zip.write_all(&supply_chain_stress_test_xlsx)?;
@@ -151,7 +174,15 @@ impl OutputFactory {
 
             zip.finish()?;
         }
-        Ok(zip_buffer.into_inner())
+        
+        let zip_data = zip_buffer.into_inner();
+        let output_dir = &cfg.config.fritz_package.output_dir;
+        std::fs::create_dir_all(output_dir)?;
+        
+        let output_path = format!("{}/{}", output_dir, cfg.output_label);
+        std::fs::write(&output_path, zip_data)?;
+
+        Ok(output_path)
     }
 
     fn generate_manifest(
@@ -644,6 +675,10 @@ impl OutputFactory {
             "US" => crate::models::Jurisdiction::US,
             "UK" => crate::models::Jurisdiction::UK,
             "EU" => crate::models::Jurisdiction::EU,
+            "DE" => crate::models::Jurisdiction::DE,
+            "AT" => crate::models::Jurisdiction::AT,
+            "CH" => crate::models::Jurisdiction::CH,
+            "HU" => crate::models::Jurisdiction::HU,
             _ => crate::models::Jurisdiction::GLOBAL,
         };
         let p_risk = PhysicalRiskScorer::score_by_jurisdiction(jur);

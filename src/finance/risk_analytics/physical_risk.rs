@@ -16,7 +16,7 @@ impl PhysicalRiskScorer {
         let (water, flood, heat) = match jurisdiction {
             Jurisdiction::US => (3, 4, 4),
             Jurisdiction::UK => (2, 5, 2),
-            Jurisdiction::EU => (3, 3, 3),
+            Jurisdiction::EU | Jurisdiction::DE | Jurisdiction::AT | Jurisdiction::CH | Jurisdiction::HU => (3, 3, 3),
             Jurisdiction::GLOBAL => (4, 4, 5),
         };
 

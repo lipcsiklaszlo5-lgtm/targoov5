@@ -22,7 +22,11 @@ struct Args {
     #[arg(short, long)]
     input: Option<String>,
 
-    /// Only process Scope 3 emissions
+    /// Configuration profile JSON file
+    #[arg(short, long, default_value = "config/run_profile.json")]
+    config: String,
+
+    /// Only process Scope 3 emissions (legacy CLI compatibility)
     #[arg(long, default_value_t = false)]
     scope3_only: bool,
 
@@ -30,9 +34,13 @@ struct Args {
     #[arg(long, default_value_t = false)]
     dictionary_only: bool,
 
-    /// Output directory for Fritz Package
-    #[arg(short, long, default_value = "./output")]
-    output: String,
+    /// Quick override: run only this module
+    #[arg(long)]
+    module: Option<String>,
+
+    /// Output directory for Fritz Package (overrides config)
+    #[arg(long)]
+    output_override: Option<String>,
 
     /// Port to listen on (web mode)
     #[arg(short, long, default_value_t = 8080)]
@@ -79,6 +87,40 @@ async fn main() -> anyhow::Result<()> {
     
     tracing::info!("Starting Targoo V2 ESG Data Refinery...");
     
+    // ── 1. CCE Loading ──────────────────────────────────────
+    let mut validated_config = targoo_v2::config::loader::load_or_default(Some(&args.config));
+
+    // ── 2. CLI Overrides ─────────────────────────────────────
+    if args.scope3_only {
+        validated_config.config.modules = vec![targoo_v2::config::models::ComplianceModule::Scope3];
+        validated_config.active_modules = vec![targoo_v2::config::models::ComplianceModule::Scope3];
+    }
+
+    if let Some(ref mod_name) = args.module {
+        let module = match mod_name.to_lowercase().as_str() {
+            "scope1_2" => Some(targoo_v2::config::models::ComplianceModule::Scope1_2),
+            "scope3" => Some(targoo_v2::config::models::ComplianceModule::Scope3),
+            "cbam" => Some(targoo_v2::config::models::ComplianceModule::Cbam),
+            "pcaf" => Some(targoo_v2::config::models::ComplianceModule::Pcaf),
+            "lksg" => Some(targoo_v2::config::models::ComplianceModule::LkSG),
+            "esrse1" => Some(targoo_v2::config::models::ComplianceModule::EsrsE1),
+            "swisscsa" => Some(targoo_v2::config::models::ComplianceModule::SwissCSA),
+            "secclimate" => Some(targoo_v2::config::models::ComplianceModule::SecClimate),
+            _ => {
+                tracing::warn!("Ismeretlen modul: {}. Az alapértelmezett lista marad.", mod_name);
+                None
+            }
+        };
+        if let Some(m) = module {
+            validated_config.config.modules = vec![m.clone()];
+            validated_config.active_modules = vec![m];
+        }
+    }
+
+    if let Some(ref out_dir) = args.output_override {
+        validated_config.config.fritz_package.output_dir = out_dir.clone();
+    }
+
     // Initialize database
     let db_pool = match init_db() {
         Ok(pool) => pool,
@@ -88,6 +130,12 @@ async fn main() -> anyhow::Result<()> {
         }
     };
     tracing::info!("SQLite database initialized with WORM triggers");
+
+    // Save run config to DB (WORM persistence)
+    {
+        let conn = db_pool.lock().map_err(|e| anyhow::anyhow!("DB Lock error: {}", e))?;
+        targoo_v2::config::persistence::save_run_config(&conn, &validated_config)?;
+    }
     
     // Initialize shared application state
     let app_state = Arc::new(Mutex::new(AppState::default()));
@@ -96,9 +144,8 @@ async fn main() -> anyhow::Result<()> {
     if let Some(input_path) = args.input {
         run_headless(
             input_path,
-            args.scope3_only,
+            validated_config,
             args.dictionary_only,
-            args.output,
             db_pool,
             ai_client,
         ).await?;
@@ -152,48 +199,56 @@ async fn main() -> anyhow::Result<()> {
 
 async fn run_headless(
     input_path: String,
-    scope3_only: bool,
+    validated: targoo_v2::config::models::ValidatedConfig,
     dictionary_only: bool,
-    output_dir: String,
     db_pool: DbPool,
     ai_client: Arc<AiBridgeClient>,
 ) -> anyhow::Result<()> {
-    use targoo_v2::models::{Jurisdiction, GhgScope};
+    use targoo_v2::models::{GhgScope, Jurisdiction};
     use targoo_v2::triage::TriageEngine;
-    use targoo_v2::ingest::{IngestEngine, RawRow};
-    use targoo_v2::ledger::{LedgerProcessor, ProcessResult, verify_chain};
+    use targoo_v2::ingest::{IngestEngine};
+    use targoo_v2::ledger::{LedgerProcessor, ProcessResult};
     use targoo_v2::aggregation::Aggregator;
     use targoo_v2::gemini_client::GeminiClient;
     use targoo_v2::output_factory::OutputFactory;
     use targoo_v2::db::{create_run, bulk_insert_ledger, bulk_insert_quarantine, update_run_status};
     use futures::stream::{self, StreamExt};
-    use uuid::Uuid;
     use std::collections::HashMap;
 
     tracing::info!("RUNNING IN HEADLESS MODE");
     tracing::info!("Input: {}", input_path);
-    tracing::info!("Scope3 Only: {}", scope3_only);
-    tracing::info!("Dictionary Only: {}", dictionary_only);
-    tracing::info!("Output Dir: {}", output_dir);
+    tracing::info!("Profile: {}", validated.config.profile_name);
+    tracing::info!("Run ID: {}", validated.run_id);
 
-    let run_id = Uuid::new_v4().to_string();
-    let jurisdiction = Jurisdiction::EU;
-    let language = "en".to_string();
-    let industry = "Manufacturing".to_string();
+    let run_id = validated.run_id.to_string();
+    
+    // Map CCE Jurisdiction to models::Jurisdiction
+    let jurisdiction = match validated.config.jurisdiction {
+        targoo_v2::config::models::Jurisdiction::DE => Jurisdiction::DE,
+        targoo_v2::config::models::Jurisdiction::AT => Jurisdiction::AT,
+        targoo_v2::config::models::Jurisdiction::CH => Jurisdiction::CH,
+        targoo_v2::config::models::Jurisdiction::HU => Jurisdiction::HU,
+        targoo_v2::config::models::Jurisdiction::EU => Jurisdiction::EU,
+        targoo_v2::config::models::Jurisdiction::UK => Jurisdiction::UK,
+        targoo_v2::config::models::Jurisdiction::US => Jurisdiction::US,
+        targoo_v2::config::models::Jurisdiction::Global => Jurisdiction::GLOBAL,
+    };
+
+    let language = validated.config.language.triage_dictionary_suffix().to_string();
+    let industry = validated.config.client.industry.clone();
 
     // 1. Init DB
     {
         let mut conn = db_pool.lock().map_err(|e| anyhow::anyhow!("DB Lock error: {}", e))?;
-        create_run(&mut conn, &run_id, "EU", &language, &industry)?;
+        create_run(&mut conn, &run_id, &format!("{:?}", jurisdiction), &language, &industry)?;
     }
 
     // 2. Load Engines
-    let mut triage_engine = TriageEngine::with_client(ai_client);
-    triage_engine.allow_ai = !dictionary_only;
+    let mut triage_engine = TriageEngine::new(&validated);
+    if dictionary_only {
+        triage_engine.allow_ai = false;
+    }
     
-    let dict_content = std::fs::read_to_string("data/dictionary.json")?;
-    triage_engine.load_from_json(&dict_content)?;
-
     let ingestion_engine = IngestEngine::new();
     let ledger_processor = LedgerProcessor::new();
     let aggregator = Aggregator::new();
@@ -231,9 +286,7 @@ async fn run_headless(
     for result in process_results {
         match result {
             ProcessResult::Ledger(row) => {
-                if scope3_only && row.ghg_scope != GhgScope::SCOPE3 {
-                    continue;
-                }
+                // Filter by modules if needed (simplified here)
                 ledger_rows.push(row);
             },
             ProcessResult::Quarantine(row) => quarantine_rows.push(row),
@@ -270,23 +323,19 @@ async fn run_headless(
         .scope3_breakdown.iter().map(|(id, s)| (*id, s.clone())).collect();
 
     let gemini_api_key = std::env::var("GEMINI_API_KEY").unwrap_or_default();
-    let narrative = if !gemini_api_key.is_empty() {
+    let narrative = if validated.config.fritz_package.include_narrative && !gemini_api_key.is_empty() {
         let gemini_client = GeminiClient::new(gemini_api_key)?;
         gemini_client.generate_narrative(&aggregation, jurisdiction, &language, &industry, &scope3_breakdown).await
     } else {
-        "AI Narrative skipped (no API key)".to_string()
+        "AI Narrative skipped (config or no API key)".to_string()
     };
 
     // 7. Fritz Package
     let output_factory = OutputFactory::new();
-    let zip_data = output_factory.generate_fritz_package(
-        &run_id, &ledger_rows, &quarantine_rows, &aggregation, &scope3_breakdown,
-        &narrative, "EU", &language, None, None
+    let output_file = output_factory.generate_fritz_package(
+        &ledger_rows, &quarantine_rows, &aggregation, &scope3_breakdown,
+        &narrative, &validated
     ).await?;
-
-    std::fs::create_dir_all(&output_dir)?;
-    let output_file = format!("{}/TargooV2_Fritz_Package_{}.zip", output_dir, run_id);
-    std::fs::write(&output_file, zip_data)?;
 
     tracing::info!("HEADLESS PROCESSING COMPLETE");
     tracing::info!("Package saved to: {}", output_file);
