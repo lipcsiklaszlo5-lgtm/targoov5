@@ -22,6 +22,13 @@ pub enum CalculationError {
     JurisdictionMismatch(String),
 }
 
+/// A számítás végeredménye a bizalmi indexszel együtt
+#[derive(Debug, Clone)]
+pub struct CalculationResult {
+    pub tco2e: f64,
+    pub confidence: f32,
+}
+
 impl CalculationError {
     /// Átfordítás a globális QuarantineReason típusra a naplózáshoz
     pub fn to_quarantine_reason(&self) -> QuarantineReason {

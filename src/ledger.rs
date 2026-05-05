@@ -1,11 +1,13 @@
-use crate::finance;
+use crate::finance::ai_resolver::AiAssetResolver;
 use crate::ingest::RawRow;
 use crate::models::{
     CalcPath, DataQualityTier, GhgScope, Jurisdiction, LedgerRow, MatchMethod, QuarantineReason,
     QuarantineRow, Scope3Category, Scope3Extension,
 };
 use crate::physics::{validate_range_guard, UnitConverter};
-use crate::triage::{TriageEngine, TriageResult};
+use crate::calculation::CalculationEngine;
+use crate::calculation::models::CalculationError;
+use crate::config::models::ValidatedConfig;
 use anyhow::Result;
 use serde::{Serialize, Deserialize};
 use chrono::Utc;
@@ -20,7 +22,7 @@ pub struct LedgerProcessor {
     ef_cache: HashMap<String, f64>,
     // Previous hash for SHA-256 chain
     prev_hash: String,
-    ai_resolver: finance::ai_resolver::AiAssetResolver,
+    ai_resolver: AiAssetResolver,
 }
 
 impl LedgerProcessor {
@@ -29,7 +31,7 @@ impl LedgerProcessor {
             unit_converter: UnitConverter::new(),
             ef_cache: HashMap::new(),
             prev_hash: String::new(),
-            ai_resolver: finance::ai_resolver::AiAssetResolver::new(),
+            ai_resolver: AiAssetResolver::new(),
         }
     }
 
@@ -90,8 +92,9 @@ impl LedgerProcessor {
         &mut self,
         _run_id: &str,
         row: &RawRow,
-        triage_engine: &mut TriageEngine,
+        triage_engine: &mut crate::triage::TriageEngine,
         jurisdiction: Jurisdiction,
+        config: &ValidatedConfig,
     ) -> Result<Option<ProcessResult>> {
         // 1. Find the numeric value field
         let (raw_header, field) = match self.find_value_field(row) {
@@ -158,34 +161,37 @@ impl LedgerProcessor {
             }
         };
 
-        // 4. Unit Normalization
+        // 4. Unit Normalization (and selection for engine)
         let raw_unit = self.extract_unit_from_header(&raw_header);
-        let (converted_value, assumed_unit) = match self.unit_converter.convert(
-            raw_value,
-            &raw_unit,
-            &triage_result.canonical_unit,
-        ) {
-            Ok(val) => (val, None),
-            Err(_) => {
-                // If direct conversion fails, we assume the canonical unit but flag it
-                (raw_value, Some(triage_result.canonical_unit.clone()))
+
+        // 5. Calculation via CalculationEngine
+        let engine = CalculationEngine::new(config);
+        let calc_result = engine.calculate(
+            row, 
+            triage_result.ghg_scope, 
+            &triage_result.ghg_category.clone(), 
+            triage_result.scope3_id.unwrap_or(0), 
+            raw_value, 
+            &raw_unit
+        ).await;
+
+        let (tco2e, calc_confidence) = match calc_result {
+            Ok(val) => (val.tco2e, val.confidence),
+            Err(e) => {
+                return Ok(Some(ProcessResult::Quarantine(self.create_quarantine_row(
+                    row,
+                    &raw_header,
+                    raw_value_str,
+                    e.to_quarantine_reason(),
+                    Some(e.to_string()),
+                ))));
             }
         };
 
-        // 5. EF Selection & Calculation
-        let ef_value = triage_result.ef_value;
-        let gwp_applied = self.get_gwp_for_category(&triage_result.ghg_category);
-        
-        let mut tco2e = (converted_value * ef_value * gwp_applied) / 1000.0;
+        // Kombináljuk a Triage és a Calculation bizalmi indexét
+        let final_confidence = (triage_result.confidence + calc_confidence) / 2.0;
 
-        // 6. PCAF Specific Attribution (if applicable)
-        if let Some(CalcPath::Pcaf) = triage_result.calc_path {
-            if let Some(asset_class) = triage_result.scope3_name.as_ref() {
-                 // Placeholder for actual PCAF attribution resolving logic
-                 // if asset_class.contains("Equity") { ... }
-                 let _ = asset_class;
-            }
-        }
+        let converted_value = raw_value; // Placeholder if engine handled normalization
 
         // 7. Scope 3 Extension
         let mut scope3_extension = None;
@@ -193,9 +199,9 @@ impl LedgerProcessor {
             let cat_id = triage_result.scope3_id.unwrap_or(1);
             let calc_path = triage_result.calc_path.unwrap_or(CalcPath::ActivityBased);
             
-            let dq_tier = if triage_result.match_method == MatchMethod::Exact && assumed_unit.is_none() {
+            let dq_tier = if triage_result.match_method == MatchMethod::Exact {
                 DataQualityTier::Primary
-            } else if triage_result.confidence > 0.8 {
+            } else if final_confidence > 0.8 {
                 DataQualityTier::Secondary
             } else {
                 DataQualityTier::Estimated
@@ -205,7 +211,7 @@ impl LedgerProcessor {
                 category_id: cat_id,
                 category_name: triage_result.scope3_name.clone().unwrap_or_else(|| "Unknown".to_string()),
                 category_match_method: triage_result.match_method,
-                category_confidence: triage_result.confidence,
+                category_confidence: final_confidence,
                 calc_path,
                 spend_usd_normalized: if calc_path == CalcPath::SpendBased { Some(converted_value) } else { None },
                 eeio_sector_code: None,
@@ -244,7 +250,7 @@ impl LedgerProcessor {
             raw_value,
             tco2e,
             scope3_extension.as_ref().map(|e| e.category_id).unwrap_or(0),
-            triage_result.confidence
+            final_confidence
         );
         let sha256_hash = self.generate_hash(&hash_input);
         self.prev_hash = sha256_hash.clone();
@@ -259,19 +265,19 @@ impl LedgerProcessor {
             raw_unit,
             converted_value,
             converted_unit: triage_result.canonical_unit.clone(),
-            assumed_unit,
+            assumed_unit: None,
             ghg_scope: triage_result.ghg_scope,
-            ghg_category: triage_result.ghg_category,
+            ghg_category: triage_result.ghg_category.clone(),
             ghg_subcategory: triage_result.matched_keyword,
-            emission_factor: ef_value,
+            emission_factor: if raw_value != 0.0 { tco2e / raw_value * 1000.0 } else { 0.0 },
             ef_source: "Targoo Built-in Dictionary".to_string(),
             ef_jurisdiction: jurisdiction,
-            gwp_applied,
+            gwp_applied: engine.get_gwp_value(&triage_result.ghg_category.clone()),
             tco2e,
-            confidence: triage_result.confidence,
+            confidence: final_confidence,
             scope3_extension,
             sha256_hash,
-            issa_5000: Some(crate::audit::issa_5000::Issa5000Metadata::new_automated(triage_result.confidence >= 0.9)),
+            issa_5000: Some(crate::audit::issa_5000::Issa5000Metadata::new_automated(final_confidence >= 0.9)),
             created_at: Utc::now(),
         };
 

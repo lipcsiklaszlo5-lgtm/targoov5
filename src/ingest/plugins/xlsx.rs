@@ -16,32 +16,24 @@ impl IngestPlugin for XlsxPlugin {
     fn stream(
         &self,
         path: &Path,
-        meta: &IngestMeta,
+        _meta: &IngestMeta,
     ) -> IngestResult<Box<dyn Iterator<Item = IngestResult<RawRow>> + Send + 'static>> {
 
         let source_file = path.to_string_lossy().to_string();
 
-        let mut workbook: Sheets<_> = open_workbook_auto(path)
+        let workbook: Sheets<std::io::BufReader<std::fs::File>> = open_workbook_auto(path)
             .map_err(|e| IngestError::CorruptFile(e.to_string()))?;
 
         let sheet_names = workbook.sheet_names().to_vec();
-        let first_sheet = sheet_names.first()
-            .ok_or(IngestError::EmptyInput)?
-            .clone();
-
-        let range = workbook.worksheet_range(&first_sheet)
-            .map_err(|e| IngestError::CorruptFile(e.to_string()))?;
-
-        let rows: Vec<Vec<Data>> = range.rows()
-            .map(|r| r.to_vec())
-            .collect();
 
         let iter = XlsxIter {
-            rows,
+            workbook,
+            sheet_names,
+            current_sheet_idx: 0,
+            rows: Vec::new(),
+            current_row_idx: 0,
             headers: vec![],
-            current: 0,
             source_file,
-            sheet_name: first_sheet,
         };
 
         Ok(Box::new(iter))
@@ -49,50 +41,82 @@ impl IngestPlugin for XlsxPlugin {
 }
 
 struct XlsxIter {
+    workbook: Sheets<std::io::BufReader<std::fs::File>>,
+    sheet_names: Vec<String>,
+    current_sheet_idx: usize,
     rows: Vec<Vec<Data>>,
+    current_row_idx: usize,
     headers: Vec<String>,
-    current: usize,
     source_file: String,
-    sheet_name: String,
 }
 
 impl Iterator for XlsxIter {
     type Item = IngestResult<RawRow>;
 
     fn next(&mut self) -> Option<Self::Item> {
-        // Fejléc inicializálás
-        if self.headers.is_empty() {
-            if let Some(header_row) = self.rows.get(0) {
-                self.headers = header_row.iter()
-                    .enumerate()
-                    .map(|(i, cell)| {
-                        let s = cell.to_string().trim().to_string();
-                        if s.is_empty() { format!("col_{}", i) } else { s }
-                    })
-                    .collect();
-                self.current = 1;
-            } else {
-                return None;
+        loop {
+            // Ha nincsenek betöltött sorok (vagy a végére értünk), töltsük be a következő lapot
+            if self.current_row_idx >= self.rows.len() {
+                if self.current_sheet_idx >= self.sheet_names.len() {
+                    return None; // Nincs több lap
+                }
+                
+                let sheet_name = &self.sheet_names[self.current_sheet_idx];
+                
+                match self.workbook.worksheet_range(sheet_name) {
+                    Ok(range) => {
+                        self.rows = range.rows().map(|r| r.to_vec()).collect();
+                    },
+                    Err(_) => {
+                        self.rows = Vec::new();
+                    }
+                }
+                
+                self.current_row_idx = 0;
+                self.headers.clear();
+                self.current_sheet_idx += 1;
+                continue; // Kezdjük el feldolgozni a most betöltött lapot
             }
+
+            // Fejléc inicializálás az új lapon
+            if self.headers.is_empty() && !self.rows.is_empty() {
+                if let Some(header_row) = self.rows.get(self.current_row_idx) {
+                    self.headers = header_row.iter()
+                        .enumerate()
+                        .map(|(i, cell)| {
+                            let s = cell.to_string().trim().to_string();
+                            if s.is_empty() { format!("col_{}", i) } else { s }
+                        })
+                        .collect();
+                    self.current_row_idx += 1; // Átlépjük a fejlécet
+                    continue;
+                }
+            }
+
+            let row = &self.rows[self.current_row_idx];
+            let row_line_num = self.current_row_idx + 1; // 1-alapú indexelés a hibakereséshez
+            self.current_row_idx += 1;
+
+            // Üres sorok átugrása
+            if row.iter().all(|c| c == &Data::Empty || c.to_string().trim().is_empty()) {
+                continue;
+            }
+
+            let sheet_name = self.sheet_names[self.current_sheet_idx - 1].clone();
+
+            let fields = self.headers.iter()
+                .zip(row.iter().chain(std::iter::repeat(&Data::Empty)))
+                .map(|(h, cell)| (h.clone(), data_to_raw_field(cell)))
+                .collect();
+
+            return Some(Ok(RawRow {
+                source_line: row_line_num as u64,
+                source_file: self.source_file.clone(),
+                sheet_name: Some(sheet_name),
+                fields,
+                raw_bytes: None,
+            }));
         }
-
-        if self.current >= self.rows.len() { return None; }
-
-        let row = &self.rows[self.current];
-        self.current += 1;
-
-        let fields = self.headers.iter()
-            .zip(row.iter().chain(std::iter::repeat(&Data::Empty)))
-            .map(|(h, cell)| (h.clone(), data_to_raw_field(cell)))
-            .collect();
-
-        Some(Ok(RawRow {
-            source_line: self.current as u64,
-            source_file: self.source_file.clone(),
-            sheet_name: Some(self.sheet_name.clone()),
-            fields,
-            raw_bytes: None,
-        }))
     }
 }
 
