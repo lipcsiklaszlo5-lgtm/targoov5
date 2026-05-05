@@ -12,6 +12,9 @@ pub enum CalculationError {
     #[error("Range-Guard hiba: {0} meghaladja a biztonsági korlátot")]
     RangeGuardViolation(String),
 
+    #[error("Érvénytelen mértékegység a kategóriához: {0}")]
+    InvalidUnit(String),
+
     #[error("Belső számítási hiba: {0}")]
     InternalError(String),
 
