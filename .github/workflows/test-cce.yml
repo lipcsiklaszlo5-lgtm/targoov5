@@ -1,0 +1,72 @@
+name: CCE Integration Test
+
+on:
+  workflow_run:
+    workflows: ["Build Targoo V2 Backend"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  test-cce:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: targoo-v2-backend
+          run-id: ${{ github.event.workflow_run.id || github.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Fallback download (latest run) if manual
+        if: steps.download.outcome == 'failure' && github.event_name == 'workflow_dispatch'
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: build-linux.yml
+          name: targoo-v2-backend
+          check_artifacts: true
+          search_artifacts: true
+
+      - name: Make binary executable
+        run: |
+          if [ -f "targoo-v2" ]; then
+            chmod +x targoo-v2
+          else
+            echo "Binary not found in root, searching..."
+            find . -name "targoo-v2" -exec chmod +x {} \;
+            find . -name "targoo-v2" -exec cp {} . \;
+          fi
+
+      - name: Run HU CBAM Test
+        run: |
+          mkdir -p /tmp/hu_test
+          ./targoo-v2 --input test_100.csv --config config/profiles/hu_cbam_quick.json --output /tmp/hu_test/
+          
+      - name: Run DE Scope3 Test
+        run: |
+          mkdir -p /tmp/de_test
+          ./targoo-v2 --input test_100.csv --config config/profiles/de_scope3_lksg.json --output /tmp/de_test/
+
+      - name: Verify Results
+        run: |
+          echo "Checking output directories..."
+          ls -R /tmp/hu_test/
+          ls -R /tmp/de_test/
+          
+          HU_ZIP=$(find /tmp/hu_test -name "*.zip")
+          DE_ZIP=$(find /tmp/de_test -name "*.zip")
+          
+          if [ -n "$HU_ZIP" ] && [ -n "$DE_ZIP" ]; then
+            echo "✅ CCE TESZT SIKERES"
+            echo "HU Output: $HU_ZIP"
+            echo "DE Output: $DE_ZIP"
+          else
+            echo "❌ CCE TESZT SIKERTELEN"
+            if [ -z "$HU_ZIP" ]; then echo "Hiányzó HU kimenet!"; fi
+            if [ -z "$DE_ZIP" ]; then echo "Hiányzó DE kimenet!"; fi
+            exit 1
+          fi
