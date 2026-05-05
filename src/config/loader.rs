@@ -27,16 +27,3 @@ pub fn load_config(path: Option<&str>) -> Result<ValidatedConfig, String> {
     validate(config)
 }
 
-pub fn load_or_default(path: Option<&str>) -> ValidatedConfig {
-    match load_config(path) {
-        Ok(cfg) => {
-            eprintln!("[CCE] ✓ Konfig betöltve: {}", cfg.config.profile_name);
-            cfg
-        }
-        Err(e) => {
-            eprintln!("[CCE] ⚠ {} — Alapértelmezett indítás.", e);
-            load_config(Some(DEFAULT_CONFIG_PATH))
-                .expect("[CCE] FATAL: defaults.json sem olvasható")
-        }
-    }
-}

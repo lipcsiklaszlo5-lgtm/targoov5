@@ -88,7 +88,8 @@ async fn main() -> anyhow::Result<()> {
     tracing::info!("Starting Targoo V2 ESG Data Refinery...");
     
     // ── 1. CCE Loading ──────────────────────────────────────
-    let mut validated_config = targoo_v2::config::loader::load_or_default(Some(&args.config));
+    let mut validated_config = targoo_v2::config::loader::load_config(Some(&args.config))
+        .map_err(|e| anyhow::anyhow!("Konfiguráció betöltése sikertelen: {}", e))?;
 
     // ── 2. CLI Overrides ─────────────────────────────────────
     if args.scope3_only {
