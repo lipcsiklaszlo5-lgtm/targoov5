@@ -1,8 +1,10 @@
 pub mod models;
-pub mod utils;
 pub mod scope1;
 pub mod scope2;
 pub mod scope3;
+pub mod utils;
+pub mod unit_converter;
+
 
 use crate::config::models::{ValidatedConfig};
 use crate::ef_database;
@@ -10,16 +12,16 @@ use crate::models::{Jurisdiction as ModelJurisdiction, GhgScope};
 use crate::ingest::RawRow;
 use crate::calculation::models::CalculationError;
 
-pub struct CalculationEngine<'a> {
-    pub config: &'a ValidatedConfig,
-    pub unit_converter: crate::physics::UnitConverter,
+pub struct CalculationEngine {
+    pub config: ValidatedConfig,
+    pub unit_converter: crate::calculation::unit_converter::UnitConverter,
 }
 
-impl<'a> CalculationEngine<'a> {
-    pub fn new(config: &'a ValidatedConfig) -> Self {
+impl CalculationEngine {
+    pub fn new(config: &ValidatedConfig) -> Self {
         Self { 
-            config,
-            unit_converter: crate::physics::UnitConverter::new(),
+            config: config.clone(),
+            unit_converter: crate::calculation::unit_converter::UnitConverter::new(),
         }
     }
 
@@ -83,7 +85,7 @@ impl<'a> CalculationEngine<'a> {
 pub(crate) mod tests {
     use super::*;
     use crate::config::models::{RunConfig, GwpStandard, ClientMeta, ReportLanguage, CalculationDepth, FritzPackageConfig, AiConfig};
-    use crate::models::Jurisdiction;
+    use crate::config::models::Jurisdiction;
     use uuid::Uuid;
 
     pub(crate) fn create_mock_config() -> ValidatedConfig {

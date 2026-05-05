@@ -201,7 +201,9 @@ mod tests {
         RawRow {
             source_file: "test.csv".to_string(),
             source_line: 1,
+            sheet_name: None,
             fields,
+            raw_bytes: None,
         }
     }
 
