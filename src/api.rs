@@ -303,7 +303,7 @@ async fn process_pipeline(
             crate::models::Jurisdiction::EU => crate::config::models::Jurisdiction::EU,
             crate::models::Jurisdiction::UK => crate::config::models::Jurisdiction::UK,
             crate::models::Jurisdiction::US => crate::config::models::Jurisdiction::US,
-            crate::models::Jurisdiction::GLOBAL => crate::config::models::Jurisdiction::Global,
+            crate::models::Jurisdiction::GLOBAL => crate::config::models::Jurisdiction::GLOBAL,
         },
         modules: vec![crate::config::models::ComplianceModule::Scope1_2, crate::config::models::ComplianceModule::Scope3],
         language: if language == "hu" { crate::config::models::ReportLanguage::HU } else if language == "de" { crate::config::models::ReportLanguage::DE } else { crate::config::models::ReportLanguage::EN },

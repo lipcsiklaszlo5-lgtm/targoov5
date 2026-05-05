@@ -232,7 +232,7 @@ async fn run_headless(
         targoo_v2::config::models::Jurisdiction::EU => Jurisdiction::EU,
         targoo_v2::config::models::Jurisdiction::UK => Jurisdiction::UK,
         targoo_v2::config::models::Jurisdiction::US => Jurisdiction::US,
-        targoo_v2::config::models::Jurisdiction::Global => Jurisdiction::GLOBAL,
+        targoo_v2::config::models::Jurisdiction::GLOBAL => Jurisdiction::GLOBAL,
     };
 
     let language = validated.config.language.triage_dictionary_suffix().to_string();
