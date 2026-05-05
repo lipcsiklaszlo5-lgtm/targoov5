@@ -11,7 +11,6 @@ pub enum Jurisdiction {
     CH,      // Svájc — CSA, svájci EF
     HU,      // Magyarország — CBAM fókusz
     EU,      // EU átlag — ESRS E1, CBAM
-    UK,      // UK — DEFRA
     US,      // USA — EPA eGRID, SEC
     Global,  // GHG Protocol alap
 }
@@ -23,7 +22,6 @@ impl Jurisdiction {
             Jurisdiction::DE | Jurisdiction::AT => "UBA_2024",
             Jurisdiction::CH                    => "BAFU_2024",
             Jurisdiction::HU | Jurisdiction::EU => "EEA_2024",
-            Jurisdiction::UK                    => "DEFRA_2024",
             Jurisdiction::US                    => "EPA_2024",
             Jurisdiction::Global                => "IPCC_AR6",
         }
