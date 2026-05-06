@@ -33,6 +33,21 @@ impl OutputFactory {
         Self
     }
 
+    fn get_legal_disclaimer(language: &str) -> &'static str {
+        match language.to_lowercase().as_str() {
+            "hu" => "Ez a dokumentum kizárólag a megrendelő által szolgáltatott nyers adatok feldolgozásával készült. A DataDynamic Kft. nem vállal felelősséget az adatok pontosságáért, teljességéért vagy helytállóságáért. Jelen dokumentum nem minősül hitelesített könyvvizsgálói jelentésnek.",
+            "de_at" | "de_ch" | "de" => "Dieses Dokument wurde ausschließlich auf Basis der vom Auftraggeber bereitgestellten Rohdaten erstellt. Die DataDynamic Kft. übernimmt keine Haftung für die Richtigkeit, Vollständigkeit oder Angemessenheit der Daten. Dieses Dokument stellt keinen geprüften Wirtschaftsprüferbericht dar.",
+            _ => "This document has been produced exclusively based on raw data provided by the client. DataDynamic Kft. assumes no responsibility for the accuracy, completeness or adequacy of the data. This document does not constitute a certified auditor's report.",
+        }
+    }
+
+    fn apply_legal_footer(worksheet: &mut Worksheet, language: &str) {
+        let text = Self::get_legal_disclaimer(language);
+        let footer_string = format!("&C&8&K808080{}", text);
+        worksheet.set_footer(&footer_string);
+    }
+
+
     pub async fn generate_fritz_package(
         &self,
         ledger: &[LedgerRow],
@@ -54,19 +69,19 @@ impl OutputFactory {
             scope3_breakdown,
         )?;
         
-        let summary_xlsx = self.generate_summary_xlsx(aggregation, scope3_breakdown, &jurisdiction)?;
-        let scope_detail_xlsx = self.generate_scope_detail_xlsx(ledger, scope3_breakdown)?;
+        let summary_xlsx = self.generate_summary_xlsx(aggregation, scope3_breakdown, &jurisdiction, &language)?;
+        let scope_detail_xlsx = self.generate_scope_detail_xlsx(ledger, scope3_breakdown, &language)?;
         
         let verification_result = verify_chain(ledger);
-        let audit_trail_xlsx = self.generate_audit_trail_xlsx(ledger, &verification_result)?;
+        let audit_trail_xlsx = self.generate_audit_trail_xlsx(ledger, &verification_result, &language)?;
         
         // ─── OPTIONÁLIS FÁJLOK A KONFIG ALAPJÁN ──────────────────
         let quarantine_xlsx = if cfg.config.fritz_package.include_quarantine {
-            Some(self.generate_quarantine_xlsx(quarantine)?)
+            Some(self.generate_quarantine_xlsx(quarantine, &language)?)
         } else { None };
 
         let ef_reference_xlsx = if cfg.config.fritz_package.include_ef_ref {
-            Some(self.generate_ef_reference_xlsx(&jurisdiction)?)
+            Some(self.generate_ef_reference_xlsx(&jurisdiction, &language)?)
         } else { None };
 
         let narrative_docx = if cfg.config.fritz_package.include_narrative {
@@ -76,30 +91,30 @@ impl OutputFactory {
         let methodology_md = self.generate_methodology_md(ledger)?;
         let ixbrl_report = IxbrlGenerator::generate_xhtml(aggregation)?;
         let manifest_signature = EidasSigner::sign_manifest(&manifest)?;
-        let climate_risk_xlsx = self.generate_climate_risk_xlsx(ledger, aggregation, &jurisdiction)?;
+        let climate_risk_xlsx = self.generate_climate_risk_xlsx(ledger, aggregation, &jurisdiction, &language)?;
         
         // Mock revenue/employee values for compliance check
         let employee_count = Some(cfg.config.client.reference_year as u32); // Mock
         let revenue_eur = Some(100_000_000.0); // Mock
         
-        let compliance_xlsx = self.generate_compliance_xlsx(employee_count, revenue_eur, ledger)?;
-        let taxonomy_xlsx = self.generate_taxonomy_xlsx(ledger)?;
-        let issa_5000_xlsx = self.generate_issa_5000_report_xlsx(ledger)?;
+        let compliance_xlsx = self.generate_compliance_xlsx(employee_count, revenue_eur, ledger, &language)?;
+        let taxonomy_xlsx = self.generate_taxonomy_xlsx(ledger, &language)?;
+        let issa_5000_xlsx = self.generate_issa_5000_report_xlsx(ledger, &language)?;
 
         let gap_results = run_gap_analysis(ledger);
-        let gap_analysis_xlsx = self.generate_gap_analysis_xlsx(&gap_results)?;
+        let gap_analysis_xlsx = self.generate_gap_analysis_xlsx(&gap_results, &language)?;
 
         let industry = &cfg.config.client.industry;
         let benchmark_results = run_benchmark(ledger, industry, Some(1.0));
-        let benchmark_report_xlsx = self.generate_benchmark_report_xlsx(&benchmark_results)?;
+        let benchmark_report_xlsx = self.generate_benchmark_report_xlsx(&benchmark_results, &language)?;
 
         let supply_chain_results = run_supply_chain_stress_test(ledger);
-        let supply_chain_stress_test_xlsx = self.generate_supply_chain_stress_test_xlsx(&supply_chain_results)?;
+        let supply_chain_stress_test_xlsx = self.generate_supply_chain_stress_test_xlsx(&supply_chain_results, &language)?;
 
         let lksg_results = run_lksg_analysis(ledger);
-        let lksg_report_xlsx = self.generate_lksg_report_xlsx(&lksg_results)?;
+        let lksg_report_xlsx = self.generate_lksg_report_xlsx(&lksg_results, &language)?;
 
-        let ixbrl_mapping_xlsx = self.generate_ixbrl_mapping_xlsx(ledger)?;
+        let ixbrl_mapping_xlsx = self.generate_ixbrl_mapping_xlsx(ledger, &language)?;
 
         // Create ZIP archive in memory
         let mut zip_buffer = Cursor::new(Vec::new());
@@ -236,10 +251,12 @@ impl OutputFactory {
         aggregation: &AggregationResult,
         scope3_breakdown: &HashMap<u8, Scope3CategorySummary>,
         jurisdiction: &str,
+        language: &str,
     ) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let worksheet = workbook.add_worksheet();
         worksheet.set_name("Zusammenfassung")?;
+        Self::apply_legal_footer(worksheet, language);
 
         let bold = Format::new().set_bold();
         let header = Format::new().set_bold().set_background_color("#0A2540").set_font_color("#FFFFFF");
@@ -292,22 +309,26 @@ impl OutputFactory {
         &self,
         ledger: &[LedgerRow],
         scope3_breakdown: &HashMap<u8, Scope3CategorySummary>,
+        language: &str,
     ) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         
         // Sheet 1: Scope 1 Detail
         let ws1 = workbook.add_worksheet();
         ws1.set_name("Scope 1 Detail")?;
+        Self::apply_legal_footer(ws1, language);
         self.write_scope_rows(ws1, ledger, GhgScope::SCOPE1)?;
 
         // Sheet 2: Scope 2 Detail
         let ws2 = workbook.add_worksheet();
         ws2.set_name("Scope 2 Detail")?;
+        Self::apply_legal_footer(ws2, language);
         self.write_scope_rows(ws2, ledger, GhgScope::Scope2Lb)?;
 
         // Sheet 3: Scope 3 Kategorien
         let ws3 = workbook.add_worksheet();
         ws3.set_name("Scope 3 Kategorien")?;
+        Self::apply_legal_footer(ws3, language);
         ws3.write(0, 0, "Category ID")?;
         ws3.write(0, 1, "Category Name")?;
         ws3.write(0, 2, "Total Rows")?;
@@ -334,6 +355,7 @@ impl OutputFactory {
         // Sheet 4: Top 10 Hotspots
         let ws4 = workbook.add_worksheet();
         ws4.set_name("Top 10 Hotspots")?;
+        Self::apply_legal_footer(ws4, language);
         ws4.write(0, 0, "Rank")?;
         ws4.write(0, 1, "Source File")?;
         ws4.write(0, 2, "Raw Header")?;
@@ -386,12 +408,14 @@ impl OutputFactory {
         &self,
         ledger: &[LedgerRow],
         verification_result: &ChainVerificationResult,
+        language: &str,
     ) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         
         // Sheet 1: Verarbeitete Zeilen
         let ws1 = workbook.add_worksheet();
         ws1.set_name("Verarbeitete Zeilen")?;
+        Self::apply_legal_footer(ws1, language);
         let green_bg = Format::new().set_background_color("#C6EFCE");
         let yellow_bg = Format::new().set_background_color("#FFEB9C");
         
@@ -445,6 +469,7 @@ impl OutputFactory {
         // Sheet 2: Angenommene Einheiten (Yellow rows only)
         let ws2 = workbook.add_worksheet();
         ws2.set_name("Angenommene Einheiten")?;
+        Self::apply_legal_footer(ws2, language);
         ws2.write(0, 0, "Row ID")?;
         ws2.write(0, 1, "Header")?;
         ws2.write(0, 2, "Assumed Unit")?;
@@ -463,6 +488,7 @@ impl OutputFactory {
         // Sheet 3: Prüfsummen-Kette
         let ws3 = workbook.add_worksheet();
         ws3.set_name("Prüfsummen-Kette")?;
+        Self::apply_legal_footer(ws3, language);
         ws3.write(0, 0, "Row Index")?;
         ws3.write(0, 1, "SHA-256 Hash")?;
         for (idx, r) in ledger.iter().enumerate() {
@@ -473,6 +499,7 @@ impl OutputFactory {
         // Sheet 4: Chain_Verification
         let ws4 = workbook.add_worksheet();
         ws4.set_name("Chain_Verification")?;
+        Self::apply_legal_footer(ws4, language);
         ws4.write(0, 0, "Master Hash")?;
         ws4.write(0, 1, &verification_result.master_hash)?;
         ws4.write(1, 0, "Is Valid")?;
@@ -487,10 +514,11 @@ impl OutputFactory {
         Ok(workbook.save_to_buffer()?)
     }
 
-    fn generate_quarantine_xlsx(&self, quarantine: &[QuarantineRow]) -> Result<Vec<u8>> {
+    fn generate_quarantine_xlsx(&self, quarantine: &[QuarantineRow], language: &str) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let ws = workbook.add_worksheet();
         ws.set_name("Quarantäne-Übersicht")?;
+        Self::apply_legal_footer(ws, language);
         
         let red_header = Format::new().set_bold().set_background_color("#C00000").set_font_color("#FFFFFF");
         let yellow_bg = Format::new().set_background_color("#FFEB9C");
@@ -519,10 +547,11 @@ impl OutputFactory {
         Ok(workbook.save_to_buffer()?)
     }
 
-    fn generate_ef_reference_xlsx(&self, _jurisdiction: &str) -> Result<Vec<u8>> {
+    fn generate_ef_reference_xlsx(&self, _jurisdiction: &str, language: &str) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let ws = workbook.add_worksheet();
         ws.set_name("Verwendete Faktoren")?;
+        Self::apply_legal_footer(ws, language);
 
         ws.write(0, 0, "Scope")?;
         ws.write(0, 1, "Category")?;
@@ -564,12 +593,11 @@ impl OutputFactory {
         Ok(workbook.save_to_buffer()?)
     }
 
-    fn generate_narrative_docx(&self, text: &str, _language: &str) -> Result<Vec<u8>> {
-        // Simplified DOCX: Plain text with basic RTF-like wrapper or just plain text for demo
-        // In production, use a proper docx library. For Targoo V2 spec, plain text is acceptable.
+    fn generate_narrative_docx(&self, text: &str, language: &str) -> Result<Vec<u8>> {
+        let disclaimer = Self::get_legal_disclaimer(language);
         let wrapped = format!(
-            "TARGOO V2 NARRATIVE REPORT\n==========================\n\n{}\n\n---\nGenerated by Targoo V2 ESG Data Refinery\nCSRD/ESRS E1 Compliant Report",
-            text
+            "TARGOO V2 NARRATIVE REPORT\n==========================\n\n{}\n\n---\nGenerated by Targoo V2 ESG Data Refinery\nCSRD/ESRS E1 Compliant Report\n\nLEGAL DISCLAIMER:\n{}",
+            text, disclaimer
         );
         Ok(wrapped.into_bytes())
     }
@@ -616,6 +644,7 @@ impl OutputFactory {
         ledger: &[LedgerRow],
         aggregation: &AggregationResult,
         jurisdiction: &str,
+        language: &str,
     ) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let bold = Format::new().set_bold();
@@ -623,6 +652,7 @@ impl OutputFactory {
         // 1. Carbon Risk Metrics
         let ws1 = workbook.add_worksheet();
         ws1.set_name("Carbon Risk Metrics")?;
+        Self::apply_legal_footer(ws1, language);
         
         let assets: Vec<PortfolioAsset> = ledger.iter()
             .filter(|r| r.ghg_scope == GhgScope::SCOPE3 && r.scope3_extension.as_ref().map(|e| e.category_id) == Some(15))
@@ -651,6 +681,7 @@ impl OutputFactory {
         // 2. Scenario Analysis
         let ws2 = workbook.add_worksheet();
         ws2.set_name("Scenario Analysis")?;
+        Self::apply_legal_footer(ws2, language);
         
         let scenarios = ScenarioAnalyzer::analyze(aggregation.scope3_tco2e, total_value);
         
@@ -670,6 +701,7 @@ impl OutputFactory {
         // 3. Physical Risk
         let ws3 = workbook.add_worksheet();
         ws3.set_name("Physical Risk Scores")?;
+        Self::apply_legal_footer(ws3, language);
         
         let jur = match jurisdiction {
             "US" => crate::models::Jurisdiction::US,
@@ -701,6 +733,7 @@ impl OutputFactory {
         // 4. Attribution Justification (Follow the Money)
         let ws4 = workbook.add_worksheet();
         ws4.set_name("Attribution Justification")?;
+        Self::apply_legal_footer(ws4, language);
         ws4.write_with_format(0, 0, "Asset", &bold)?;
         ws4.write_with_format(0, 1, "Asset Class", &bold)?;
         ws4.write_with_format(0, 2, "Outstanding (€)", &bold)?;
@@ -727,6 +760,7 @@ impl OutputFactory {
         // 5. Fluctuation Analysis
         let ws5 = workbook.add_worksheet();
         ws5.set_name("Fluctuation Analysis")?;
+        Self::apply_legal_footer(ws5, language);
         
         // Mock previous emissions for demonstration (current * 0.9)
         let current_s3 = aggregation.scope3_tco2e;
@@ -752,6 +786,7 @@ impl OutputFactory {
         // 6. Peer Benchmarking
         let ws6 = workbook.add_worksheet();
         ws6.set_name("Peer Benchmarking")?;
+        Self::apply_legal_footer(ws6, language);
         
         let benchmark = IndustryBenchmark::get_for_sector(jurisdiction); // Heuristic
         let client_revenue = 10_000_000.0; // Placeholder or passed revenue
@@ -782,6 +817,7 @@ impl OutputFactory {
         employee_count: Option<u32>,
         revenue_eur: Option<f64>,
         ledger: &[LedgerRow],
+        language: &str,
     ) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let bold = Format::new().set_bold();
@@ -791,6 +827,7 @@ impl OutputFactory {
         // 1. Omnibus Validation
         let ws1 = workbook.add_worksheet();
         ws1.set_name("Omnibus-Validierung")?;
+        Self::apply_legal_footer(ws1, language);
 
         let validator = OmnibusValidator::new(employee_count, revenue_eur, None);
         let obligation = validator.is_csrd_obligated();
@@ -826,6 +863,7 @@ impl OutputFactory {
         // 2. Regulatory References
         let ws2 = workbook.add_worksheet();
         ws2.set_name("Rechtliche-Hinweise")?;
+        Self::apply_legal_footer(ws2, language);
         ws2.write_with_format(0, 0, "Regulierung", &bold)?;
         ws2.write_with_format(0, 1, "Beschreibung", &bold)?;
 
@@ -840,13 +878,14 @@ impl OutputFactory {
         Ok(buf.to_vec())
     }
 
-    fn generate_taxonomy_xlsx(&self, _ledger: &[LedgerRow]) -> Result<Vec<u8>> {
+    fn generate_taxonomy_xlsx(&self, _ledger: &[LedgerRow], language: &str) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let bold = Format::new().set_bold();
         let green_bg = Format::new().set_background_color("#C6EFCE");
 
         let ws = workbook.add_worksheet();
         ws.set_name("EU-Taxonomie")?;
+        Self::apply_legal_footer(ws, language);
 
         ws.write_with_format(0, 0, "Activity", &bold)?;
         ws.write_with_format(0, 1, "NACE Code", &bold)?;
@@ -886,13 +925,14 @@ impl OutputFactory {
         Ok(buf.to_vec())
     }
 
-    fn generate_issa_5000_report_xlsx(&self, ledger: &[LedgerRow]) -> Result<Vec<u8>> {
+    fn generate_issa_5000_report_xlsx(&self, ledger: &[LedgerRow], language: &str) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let bold = Format::new().set_bold();
         let green_bg = Format::new().set_background_color("#C6EFCE");
 
         let ws = workbook.add_worksheet();
         ws.set_name("ISSA-5000-Readiness")?;
+        Self::apply_legal_footer(ws, language);
 
         ws.write_with_format(0, 0, "ISSA 5000 Assurance Readiness Assessment", &bold)?;
         
@@ -933,10 +973,11 @@ impl OutputFactory {
         Ok(buf.to_vec())
     }
 
-    fn generate_gap_analysis_xlsx(&self, results: &[GapResult]) -> Result<Vec<u8>> {
+    fn generate_gap_analysis_xlsx(&self, results: &[GapResult], language: &str) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let ws = workbook.add_worksheet();
         ws.set_name("Gap Analysis")?;
+        Self::apply_legal_footer(ws, language);
         
         ws.write(0, 0, "ESRS Code")?;
         ws.write(0, 1, "Description")?;
@@ -961,10 +1002,11 @@ impl OutputFactory {
         Ok(workbook.save_to_buffer()?)
     }
 
-    fn generate_benchmark_report_xlsx(&self, results: &[BenchmarkResult]) -> Result<Vec<u8>> {
+    fn generate_benchmark_report_xlsx(&self, results: &[BenchmarkResult], language: &str) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let ws = workbook.add_worksheet();
         ws.set_name("Benchmark Report")?;
+        Self::apply_legal_footer(ws, language);
 
         ws.write(0, 0, "Scope")?;
         ws.write(0, 1, "Company Value")?;
@@ -989,10 +1031,11 @@ impl OutputFactory {
         Ok(workbook.save_to_buffer()?)
     }
 
-    fn generate_supply_chain_stress_test_xlsx(&self, results: &[SupplierRisk]) -> Result<Vec<u8>> {
+    fn generate_supply_chain_stress_test_xlsx(&self, results: &[SupplierRisk], language: &str) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let ws = workbook.add_worksheet();
         ws.set_name("Supply Chain Stress Test")?;
+        Self::apply_legal_footer(ws, language);
 
         ws.write(0, 0, "Supplier Name")?;
         ws.write(0, 1, "Total tCO2e")?;
@@ -1015,10 +1058,11 @@ impl OutputFactory {
         Ok(workbook.save_to_buffer()?)
     }
 
-    fn generate_ixbrl_mapping_xlsx(&self, ledger: &[LedgerRow]) -> Result<Vec<u8>> {
+    fn generate_ixbrl_mapping_xlsx(&self, ledger: &[LedgerRow], language: &str) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let ws = workbook.add_worksheet();
         ws.set_name("iXBRL Mapping Table")?;
+        Self::apply_legal_footer(ws, language);
 
         ws.write(0, 0, "Row ID")?;
         ws.write(0, 1, "Scope")?;
@@ -1042,10 +1086,11 @@ impl OutputFactory {
         Ok(workbook.save_to_buffer()?)
     }
 
-    fn generate_lksg_report_xlsx(&self, results: &[LksgComplianceRow]) -> Result<Vec<u8>> {
+    fn generate_lksg_report_xlsx(&self, results: &[LksgComplianceRow], language: &str) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         let ws = workbook.add_worksheet();
         ws.set_name("LkSG Kockázati Mátrix")?;
+        Self::apply_legal_footer(ws, language);
 
         let header = Format::new().set_bold().set_background_color("#0A2540").set_font_color("#FFFFFF");
         let red_bg = Format::new().set_background_color("#FFC7CE");
