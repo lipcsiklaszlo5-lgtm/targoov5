@@ -1,0 +1,10 @@
+Activity_Type,Description,Value,Unit,Country
+road freight,Inbound logistics Q1 2024,12500,tonne-km,DE
+Lieferantenkosten,Raw materials BASF,125000,EUR,
+business flight,Sales team Berlin-London,8500,km,
+waste landfill,Office waste Q1,2.3,metric tonne,DE
+hotel accommodation,Sales conf nights,45,nights,
+employee commuting,Remote survey 500 FTE,180,km/week,
+~48.2k tonne-km,Bad format test,,DE,
+investment portfolio,Green bonds EUR,5000000,EUR,
+Unbekannte Spalte,Unknown header test,100,,
