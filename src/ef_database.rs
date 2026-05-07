@@ -7,6 +7,7 @@ pub struct EmissionFactorDatabase {
     pub gwp: HashMap<String, f64>,
     pub uk_defra_2024: serde_json::Value,
     pub us_epa_2024: serde_json::Value,
+    #[serde(rename = "useeio_v2.1")]
     pub useeio_v2_1: serde_json::Value,
     pub refrigerants: serde_json::Value,
     pub constants: serde_json::Value,
