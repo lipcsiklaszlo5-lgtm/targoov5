@@ -8,7 +8,7 @@ use tempfile::TempDir;
 use uuid::Uuid;
 
 use targoo_v2::aggregation::Aggregator;
-use targoo_v2::config::loader::load_or_default;
+use targoo_v2::config::loader::load_config;
 use targoo_v2::config::models::CalculationDepth;
 use targoo_v2::db::{
     bulk_insert_ledger, bulk_insert_quarantine, create_run, init_db, update_run_status,
@@ -67,7 +67,7 @@ async fn e2e_ingest_triage_calculation_scope12_3_and_quarantine_log() {
     write_scope_csv_exact_headers(&input_csv);
 
     // Load config and force deterministic/offline behavior.
-    let mut validated = load_or_default(None);
+    let mut validated = load_config(None).expect("config load");
 
     validated.config.jurisdiction = targoo_v2::config::models::Jurisdiction::EU;
 
@@ -90,7 +90,7 @@ async fn e2e_ingest_triage_calculation_scope12_3_and_quarantine_log() {
         targoo_v2::config::models::Jurisdiction::EU => Jurisdiction::EU,
         targoo_v2::config::models::Jurisdiction::UK => Jurisdiction::UK,
         targoo_v2::config::models::Jurisdiction::US => Jurisdiction::US,
-        targoo_v2::config::models::Jurisdiction::Global => Jurisdiction::GLOBAL,
+        targoo_v2::config::models::Jurisdiction::GLOBAL => Jurisdiction::GLOBAL,
     };
     let language = validated.config.language.triage_dictionary_suffix().to_string();
     let industry = validated.config.client.industry.clone();

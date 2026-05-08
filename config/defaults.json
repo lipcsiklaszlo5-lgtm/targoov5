@@ -10,7 +10,7 @@
     "internal_id": null
   },
 
-  "jurisdiction": "Global",
+  "jurisdiction": "GLOBAL",
   "modules": ["Scope1_2"],
   "language": "EN",
   "depth": "Quick",
