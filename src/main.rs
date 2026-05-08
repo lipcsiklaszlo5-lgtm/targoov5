@@ -269,7 +269,7 @@ async fn run_headless(
                 match row_res {
                     Ok(raw_row) => {
                         let res: anyhow::Result<Option<ProcessResult>> = tokio::spawn(async move {
-                            lp.process_row(&rid, &raw_row, &mut te, jur, &config).await
+                            lp.process_row(&rid, &raw_row, &mut te, jur).await
                         }).await.unwrap_or_else(|e| Err(anyhow::anyhow!("Spawn error: {}", e)));
                         res
                     },

@@ -233,7 +233,7 @@ async fn process_pipeline(
                 async move {
                     if let Ok(raw_row) = row_res {
                         tokio::spawn(async move {
-                            lp.process_row(&rid, &raw_row, &mut te, jurisdiction, &config).await
+                            lp.process_row(&rid, &raw_row, &mut te, jurisdiction).await
                         })
                         .await
                         .unwrap_or(Ok(None))
