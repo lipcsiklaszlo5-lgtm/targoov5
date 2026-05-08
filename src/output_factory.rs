@@ -164,7 +164,7 @@ impl OutputFactory {
             zip.write_all(&gap_analysis_xlsx)?;
 
             zip.start_file("10_iXBRL_Mapping_Table.xlsx", options)?;
-            zip.write_all(&ixbrl_mapping_xlsx)?;
+            zip.write_all(&ixbrbl_mapping_xlsx)?;
 
             zip.start_file("11_LkSG_Compliance_Report.xlsx", options)?;
             zip.write_all(&lksg_report_xlsx)?;
@@ -208,10 +208,11 @@ impl OutputFactory {
         aggregation: &AggregationResult,
         scope3_breakdown: &HashMap<u8, Scope3CategorySummary>,
     ) -> Result<String> {
-        let mut hasher = Sha256::new();
-        let chain_input = format!("{}{}", run_id, ledger.len());
-        hasher.update(chain_input.as_bytes());
-        let master_hash = format!("{:x}", hasher.finalize());
+        let master_hash = if let Some(last_row) = ledger.last() {
+            last_row.sha256_hash.clone()
+        } else {
+            String::from("no-data")
+        };
 
         let scope3_coverage_map: HashMap<u8, usize> = scope3_breakdown
             .iter()
