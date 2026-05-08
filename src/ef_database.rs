@@ -14,9 +14,17 @@ pub struct EmissionFactorDatabase {
 }
 
 static DB: Lazy<EmissionFactorDatabase> = Lazy::new(|| {
-    let path = "/workspaces/targoov5/data/efactors/database.json";
-    let content = std::fs::read_to_string(path).expect("Failed to read EF database");
-    serde_json::from_str(&content).expect("Failed to parse EF database")
+    let path = std::env::var("EF_DATABASE_PATH")
+        .unwrap_or_else(|_| "data/efactors/database.json".to_string());
+    let content = std::fs::read_to_string(path).unwrap_or_else(|_| "".to_string());
+    serde_json::from_str(&content).unwrap_or_else(|_| EmissionFactorDatabase {
+        gwp: HashMap::new(),
+        uk_defra_2024: serde_json::json!({}),
+        us_epa_2024: serde_json::json!({}),
+        useeio_v2_1: serde_json::json!({}),
+        refrigerants: serde_json::json!({}),
+        constants: serde_json::json!({}),
+    })
 });
 
 pub fn get_gwp(gas: &str) -> Option<f64> {
