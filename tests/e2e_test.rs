@@ -160,7 +160,7 @@ async fn e2e_ingest_triage_calculation_scope12_3_and_quarantine_log() {
         }
 
         let res = ledger_processor
-            .process_row(&run_id, &raw_row, &mut triage_engine, jurisdiction, &validated)
+            .process_row(&run_id, &raw_row, &mut triage_engine, jurisdiction)
             .await
             .expect("process row");
 
