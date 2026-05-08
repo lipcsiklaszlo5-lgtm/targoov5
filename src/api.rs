@@ -47,10 +47,10 @@ pub async fn upload_handler(
         let safe_name = std::path::Path::new(&file_name)
             .file_name()
             .and_then(|n| n.to_str())
-            .ok_or_else(|| AppError::bad_request("Invalid filename"))?;
+            .ok_or_else(|| AppError::BadRequest)?;
         let ext = safe_name.rsplit('.').next().unwrap_or("").to_lowercase();
         if !["csv","xlsx","xls","xlsm"].contains(&ext.as_str()) {
-            return Err(AppError::bad_request("Unsupported file type"));
+            return Err(AppError::BadRequest);
         }
         let temp_path = format!("/tmp/{}.{}", uuid::Uuid::new_v4(), ext);
         tokio::fs::write(&temp_path, data)
