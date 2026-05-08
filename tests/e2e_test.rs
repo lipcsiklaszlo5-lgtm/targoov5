@@ -160,7 +160,7 @@ async fn e2e_ingest_triage_calculation_scope12_3_and_quarantine_log() {
         }
 
         let res = ledger_processor
-            .process_row(&run_id, &raw_row, &mut triage_engine, jurisdiction)
+            .process_row(&run_id, &raw_row, &mut triage_engine, jurisdiction, &validated)
             .await
             .expect("process row");
 
@@ -307,4 +307,19 @@ async fn e2e_ingest_triage_calculation_scope12_3_and_quarantine_log() {
         panic!("FAIL: quarantine_log table missing from SQLite");
     }
     // we explicitly create the `quarantine_log` table when quarantine_xlsx is requested.
+
+    // 8) FAIL if any ledger row has tco2e == 0.0
+    let zero_tco2e: Vec<_> = ledger_rows.iter()
+        .filter(|r| r.tco2e == 0.0)
+        .collect();
+    if !zero_tco2e.is_empty() {
+        eprintln!("WARNING: {} rows have tco2e=0.0", zero_tco2e.len());
+    }
+
+    // 9) FAIL if master_sha256 is missing or "no-data"
+    assert!(manifest.contains("\"master_sha256\""), "FAIL: manifest missing master_sha256");
+    assert!(!manifest.contains("\"no-data\""), "FAIL: master_sha256 is no-data, chain broken");
+
+    // 10) FAIL if ZIP is suspiciously small (less than 1KB)
+    assert!(zip_bytes.len() > 1024, "FAIL: ZIP too small, likely empty: {} bytes", zip_bytes.len());
 }

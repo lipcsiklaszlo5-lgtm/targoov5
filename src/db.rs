@@ -280,7 +280,6 @@ pub fn insert_quarantine_row(conn: &mut Connection, run_id: &str, row: &Quaranti
 
 /// Clears all data from a previous run (used for testing or restart)
 #[cfg(test)]
-#[cfg(test)]
 pub fn clear_previous_run(conn: &mut Connection) -> Result<()> {
     let tx = conn.transaction()?;
     tx.execute("DELETE FROM ledger", [])?;
