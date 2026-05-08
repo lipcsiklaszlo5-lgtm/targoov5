@@ -1,3 +1,4 @@
+
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -40,6 +41,22 @@ impl std::fmt::Display for Jurisdiction {
         }
     }
 }
+
+impl From<crate::config::models::Jurisdiction> for Jurisdiction {
+    fn from(config_jurisdiction: crate::config::models::Jurisdiction) -> Self {
+        match config_jurisdiction {
+            crate::config::models::Jurisdiction::US => Self::US,
+            crate::config::models::Jurisdiction::UK => Self::UK,
+            crate::config::models::Jurisdiction::EU => Self::EU,
+            crate::config::models::Jurisdiction::DE => Self::DE,
+            crate::config::models::Jurisdiction::AT => Self::AT,
+            crate::config::models::Jurisdiction::CH => Self::CH,
+            crate::config::models::Jurisdiction::HU => Self::HU,
+            crate::config::models::Jurisdiction::GLOBAL => Self::GLOBAL,
+        }
+    }
+}
+
 
 /// GHG Protocol Scope Classification
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]

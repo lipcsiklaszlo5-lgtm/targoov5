@@ -1,0 +1,1 @@
+pub struct UnitConverter; impl UnitConverter { pub fn new() -> Self { Self } pub fn detect_category(&self, unit: &str) -> &str { "mass" } pub fn convert(&self, amount: f64, from: &str, to: &str) -> Result<f64, &str> { Ok(amount) }}

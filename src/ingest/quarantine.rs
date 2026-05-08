@@ -1,4 +1,4 @@
-use crate::ingest::types::{QuarantineEntry, QuarantineLog};
+use crate::ingest::types::QuarantineLog;
 use rusqlite::{params, Connection};
 
 /// Karantén log mentése az `esg_state` SQLite adatbázisba.

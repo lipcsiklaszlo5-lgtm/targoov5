@@ -44,6 +44,30 @@ pub struct RawRow {
     pub raw_bytes: Option<Vec<u8>>,
 }
 
+impl RawRow {
+    pub fn get_value_as_f64(&self, field_name: &str) -> Option<f64> {
+        self.fields.iter()
+            .find(|(k, _)| k.eq_ignore_ascii_case(field_name))
+            .and_then(|(_, v)| match v {
+                RawField::Number(n) => Some(*n),
+                RawField::Integer(i) => Some(*i as f64),
+                RawField::Text(s) => s.parse::<f64>().ok(),
+                _ => None,
+            })
+    }
+
+    pub fn get_spend_amount_and_unit(&self) -> (f64, String) {
+        let amount = self.get_value_as_f64("Value")
+            .or_else(|| self.get_value_as_f64("Amount"))
+            .unwrap_or(0.0);
+        let unit = self.fields.iter()
+            .find(|(k, _)| k.eq_ignore_ascii_case("Unit"))
+            .and_then(|(_, v)| if let RawField::Text(s) = v { Some(s.clone()) } else { None })
+            .unwrap_or_else(|| "EUR".to_string());
+        (amount, unit)
+    }
+}
+
 /// Fájl-szintű metaadat, a stream elején egyszer keletkezik.
 #[derive(Debug, Clone)]
 pub struct IngestMeta {

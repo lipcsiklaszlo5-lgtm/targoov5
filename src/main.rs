@@ -264,11 +264,12 @@ async fn run_headless(
             let mut te = triage_engine.clone();
             let rid = run_id.clone();
             let jur = jurisdiction;
+            let config = validated.clone();
             async move {
                 match row_res {
                     Ok(raw_row) => {
                         let res: anyhow::Result<Option<ProcessResult>> = tokio::spawn(async move {
-                            lp.process_row(&rid, &raw_row, &mut te, jur).await
+                            lp.process_row(&rid, &raw_row, &mut te, jur, &config).await
                         }).await.unwrap_or_else(|e| Err(anyhow::anyhow!("Spawn error: {}", e)));
                         res
                     },

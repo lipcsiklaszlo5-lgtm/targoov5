@@ -1,7 +1,7 @@
 use crate::ingest::RawRow;
 use crate::ai_client::AiBridgeClient;
-use crate::models::{CalcPath, GhgScope, Jurisdiction, MatchMethod, Scope3Category};
-use anyhow::{anyhow, Result};
+use crate::models::{CalcPath, GhgScope, Jurisdiction, MatchMethod};
+use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs::OpenOptions;

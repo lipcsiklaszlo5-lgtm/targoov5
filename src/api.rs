@@ -8,7 +8,7 @@ use crate::db::{
 use crate::finance::risk_analytics::{CarbonRiskMetrics, PortfolioAsset};
 use crate::gap_analysis::run_gap_analysis;
 use crate::gemini_client::GeminiClient;
-use crate::ingest::{IngestEngine, RawRow};
+use crate::ingest::IngestEngine;
 use crate::ledger::{verify_chain, LedgerProcessor, ProcessResult};
 use crate::models::{AppState, Jurisdiction, ResultsResponse, RunRequest, StatusResponse};
 use crate::output_factory::OutputFactory;
@@ -148,9 +148,58 @@ async fn process_pipeline(
     triage_engine.load_from_json(&dict_content)?;
     
     let ingestion_engine = IngestEngine::new();
-    let mut ledger_processor = LedgerProcessor::new();
+    let ledger_processor = LedgerProcessor::new();
     let aggregator = Aggregator::new();
     
+    // Moved up from Step 7
+    let gemini_api_key = std::env::var("GEMINI_API_KEY").unwrap_or_default();
+
+    // ─── CCE SZINTETIKUS KONFIG WEB MÓDHOZ ────────────────── (Moved up)
+    let synthetic_config = crate::config::models::RunConfig {
+        config_version: "1.0".to_string(),
+        profile_name: "web_api_run".to_string(),
+        client: crate::config::models::ClientMeta {
+            name: "Web Client".to_string(),
+            industry: industry.clone(),
+            reference_year: 2024,
+            contact_email: None,
+            internal_id: Some(run_id.clone()),
+        },
+        jurisdiction: match jurisdiction {
+            crate::models::Jurisdiction::DE => crate::config::models::Jurisdiction::DE,
+            crate::models::Jurisdiction::AT => crate::config::models::Jurisdiction::AT,
+            crate::models::Jurisdiction::CH => crate::config::models::Jurisdiction::CH,
+            crate::models::Jurisdiction::HU => crate::config::models::Jurisdiction::HU,
+            crate::models::Jurisdiction::EU => crate::config::models::Jurisdiction::EU,
+            crate::models::Jurisdiction::UK => crate::config::models::Jurisdiction::UK,
+            crate::models::Jurisdiction::US => crate::config::models::Jurisdiction::US,
+            crate::models::Jurisdiction::GLOBAL => crate::config::models::Jurisdiction::GLOBAL,
+        },
+        modules: vec![crate::config::models::ComplianceModule::Scope1_2, crate::config::models::ComplianceModule::Scope3],
+        language: if language == "hu" { crate::config::models::ReportLanguage::HU } else if language == "de" { crate::config::models::ReportLanguage::DE } else { crate::config::models::ReportLanguage::EN },
+        depth: crate::config::models::CalculationDepth::Deterministic,
+        ef_source_override: None,
+        gwp_standard: crate::config::models::GwpStandard::IpccAr6,
+        fritz_package: crate::config::models::FritzPackageConfig {
+            include_narrative: true,
+            include_ef_ref: true,
+            include_quarantine: true,
+            watermark: false,
+            output_dir: "./output/web_api".to_string(),
+        },
+        ai: crate::config::models::AiConfig {
+            embedding_url: "http://localhost:9000/classify".to_string(),
+            embedding_timeout_ms: 300,
+            gemini_enabled: !gemini_api_key.is_empty(),
+            gemini_model: "gemini-1.5-flash".to_string(),
+        },
+        run_id: Some(Uuid::parse_str(&run_id).unwrap_or_else(|_| Uuid::new_v4())),
+        loaded_at: Some(chrono::Utc::now()),
+    };
+
+    let validated_config = crate::config::validator::validate(synthetic_config)
+        .map_err(|e| anyhow!("Config validation failed: {}", e))?;
+
     // Step 3 & 4: Ingest and Process (Streaming)
     let staged_files = {
         let state_guard = state.lock().await;
@@ -180,10 +229,11 @@ async fn process_pipeline(
                 let mut lp = ledger_processor.clone();
                 let mut te = triage_engine.clone();
                 let rid = run_id.clone();
+                let config = validated_config.clone();
                 async move {
                     if let Ok(raw_row) = row_res {
                         tokio::spawn(async move {
-                            lp.process_row(&rid, &raw_row, &mut te, jurisdiction).await
+                            lp.process_row(&rid, &raw_row, &mut te, jurisdiction, &config).await
                         })
                         .await
                         .unwrap_or(Ok(None))
@@ -263,7 +313,6 @@ async fn process_pipeline(
         .collect();
     
     // Step 7: Generate narrative (Gemini)
-    let gemini_api_key = std::env::var("GEMINI_API_KEY").unwrap_or_default();
     let gemini_client = GeminiClient::new(gemini_api_key.clone())?;
     let narrative = gemini_client
         .generate_narrative(
@@ -284,52 +333,6 @@ async fn process_pipeline(
     // Step 8: Generate ZIP package
     let output_factory = OutputFactory::new();
     
-    // ─── CCE SZINTETIKUS KONFIG WEB MÓDHOZ ──────────────────
-    let synthetic_config = crate::config::models::RunConfig {
-        config_version: "1.0".to_string(),
-        profile_name: "web_api_run".to_string(),
-        client: crate::config::models::ClientMeta {
-            name: "Web Client".to_string(),
-            industry: industry.clone(),
-            reference_year: 2024,
-            contact_email: None,
-            internal_id: Some(run_id.clone()),
-        },
-        jurisdiction: match jurisdiction {
-            crate::models::Jurisdiction::DE => crate::config::models::Jurisdiction::DE,
-            crate::models::Jurisdiction::AT => crate::config::models::Jurisdiction::AT,
-            crate::models::Jurisdiction::CH => crate::config::models::Jurisdiction::CH,
-            crate::models::Jurisdiction::HU => crate::config::models::Jurisdiction::HU,
-            crate::models::Jurisdiction::EU => crate::config::models::Jurisdiction::EU,
-            crate::models::Jurisdiction::UK => crate::config::models::Jurisdiction::UK,
-            crate::models::Jurisdiction::US => crate::config::models::Jurisdiction::US,
-            crate::models::Jurisdiction::GLOBAL => crate::config::models::Jurisdiction::GLOBAL,
-        },
-        modules: vec![crate::config::models::ComplianceModule::Scope1_2, crate::config::models::ComplianceModule::Scope3],
-        language: if language == "hu" { crate::config::models::ReportLanguage::HU } else if language == "de" { crate::config::models::ReportLanguage::DE } else { crate::config::models::ReportLanguage::EN },
-        depth: crate::config::models::CalculationDepth::Deterministic,
-        ef_source_override: None,
-        gwp_standard: crate::config::models::GwpStandard::IpccAr6,
-        fritz_package: crate::config::models::FritzPackageConfig {
-            include_narrative: true,
-            include_ef_ref: true,
-            include_quarantine: true,
-            watermark: false,
-            output_dir: "./output/web_api".to_string(),
-        },
-        ai: crate::config::models::AiConfig {
-            embedding_url: "http://localhost:9000/classify".to_string(),
-            embedding_timeout_ms: 300,
-            gemini_enabled: !gemini_api_key.is_empty(),
-            gemini_model: "gemini-1.5-flash".to_string(),
-        },
-        run_id: Some(Uuid::parse_str(&run_id).unwrap_or_else(|_| Uuid::new_v4())),
-        loaded_at: Some(chrono::Utc::now()),
-    };
-
-    let validated_config = crate::config::validator::validate(synthetic_config)
-        .map_err(|e| anyhow!("Config validation failed: {}", e))?;
-
     let output_path = output_factory
         .generate_fritz_package(
             &ledger_rows,

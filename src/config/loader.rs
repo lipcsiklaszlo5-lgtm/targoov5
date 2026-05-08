@@ -1,4 +1,4 @@
-use std::{fs, path::Path};
+use std::fs;
 use crate::config::models::{RunConfig, ValidatedConfig};
 use crate::config::validator::validate;
 

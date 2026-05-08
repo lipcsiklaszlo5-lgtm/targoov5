@@ -6,7 +6,6 @@ use crate::models::{
 };
 use crate::physics::{validate_range_guard, UnitConverter};
 use crate::calculation::CalculationEngine;
-use crate::calculation::models::CalculationError;
 use crate::config::models::ValidatedConfig;
 use anyhow::Result;
 use serde::{Serialize, Deserialize};

@@ -11,8 +11,7 @@ pub fn calculate_scope3(
     row: &RawRow,
 ) -> Result<CalculationResult, CalculationError> {
     // Kinyerjük az alap összeget és mértékegységet (vagy spend, vagy activity)
-    let (amount, unit) = row.get_spend_amount_and_unit()
-        .map_err(|e| CalculationError::InternalError(e.to_string()))?;
+    let (amount, unit) = row.get_spend_amount_and_unit();
 
     match category_id {
         // Spend-Based kategóriák (Költségalapú számítás)

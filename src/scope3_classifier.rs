@@ -1,4 +1,4 @@
-use crate::models::{CalcPath, MatchMethod, Scope3Category};
+use crate::models::{CalcPath, MatchMethod};
 use strsim::normalized_levenshtein;
 
 pub struct Scope3Classifier {
