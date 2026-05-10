@@ -3,6 +3,7 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use uuid::Uuid;
+use sha2::{Digest, Sha256};
 
 /// GWP100 factors per IPCC AR6
 pub const GWP_CO2: f64 = 1.0;
@@ -196,6 +197,25 @@ pub struct LedgerRow {
     pub sha256_hash: String,
     pub issa_5000: Option<crate::audit::issa_5000::Issa5000Metadata>,
     pub created_at: DateTime<Utc>,
+}
+
+impl LedgerRow {
+    pub fn compute_hash(&self, prev_hash: &str) -> String {
+        let mut hasher = Sha256::new();
+        // DETERMINISZTIKUS SZÁMÍTÁS: Fix mezősorrend és precízió az auditálhatóságért
+        let input = format!(
+            "{}{}{}{}{:.8}{:?}{:.4}",
+            prev_hash,
+            self.raw_row_index,
+            self.raw_header,
+            self.raw_value,
+            self.tco2e,
+            self.scope3_extension.as_ref().map(|e| e.category_id).unwrap_or(0),
+            self.confidence
+        );
+        hasher.update(input.as_bytes());
+        format!("{:x}", hasher.finalize())
+    }
 }
 
 /// Quarantine Row (Errors, Ambiguities, Missing Data)

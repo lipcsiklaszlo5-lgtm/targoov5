@@ -198,6 +198,10 @@ async fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
+async fn health_handler() -> &'static str {
+    "OK"
+}
+
 async fn run_headless(
     input_path: String,
     validated: targoo_v2::config::models::ValidatedConfig,
@@ -251,47 +255,27 @@ async fn run_headless(
     }
     
     let ingestion_engine = IngestEngine::new();
-    let ledger_processor = LedgerProcessor::new();
+    let mut ledger_processor = LedgerProcessor::new(); // Changed to mutable
     let aggregator = Aggregator::new();
 
-    // 3. Ingest & Process (Streaming)
+    // 3. Ingest & Process (Streaming) - SYNCHRONOUS
     let (_, stream) = ingestion_engine.open(std::path::Path::new(&input_path))?;
     
-    const CONCURRENT_TASKS: usize = 16;
-    let process_results: Vec<ProcessResult> = stream::iter(stream)
-        .map(|row_res| {
-            let mut lp = ledger_processor.clone();
-            let mut te = triage_engine.clone();
-            let rid = run_id.clone();
-            let jur = jurisdiction;
-            let config = validated.clone();
-            async move {
-                match row_res {
-                    Ok(raw_row) => {
-                        let res: anyhow::Result<Option<ProcessResult>> = tokio::spawn(async move {
-                            lp.process_row(&rid, &raw_row, &mut te, jur).await
-                        }).await.unwrap_or_else(|e| Err(anyhow::anyhow!("Spawn error: {}", e)));
-                        res
-                    },
-                    Err(_) => Ok(None)
-                }
-            }
-        })
-        .buffer_unordered(CONCURRENT_TASKS)
-        .filter_map(|res: anyhow::Result<Option<ProcessResult>>| async { res.ok().flatten() })
-        .collect()
-        .await;
-
     let mut ledger_rows = Vec::new();
     let mut quarantine_rows = Vec::new();
 
-    for result in process_results {
-        match result {
-            ProcessResult::Ledger(row) => {
-                // Filter by modules if needed (simplified here)
-                ledger_rows.push(row);
-            },
-            ProcessResult::Quarantine(row) => quarantine_rows.push(row),
+    for row_res in stream {
+        let raw_row = row_res?;
+        let res = ledger_processor.process_row(
+            &run_id,
+            &raw_row,
+            &mut triage_engine,
+            jurisdiction,
+        ).await?;
+        match res {
+            Some(ProcessResult::Ledger(r)) => ledger_rows.push(r),
+            Some(ProcessResult::Quarantine(q)) => quarantine_rows.push(q),
+            None => {}
         }
     }
 
@@ -344,8 +328,4 @@ async fn run_headless(
     tracing::info!("Total tCO2e: {:.2}", aggregation.total_tco2e);
 
     Ok(())
-}
-
-async fn health_handler() -> &'static str {
-    "OK"
 }
