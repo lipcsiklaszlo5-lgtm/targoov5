@@ -379,44 +379,77 @@ impl OutputFactory {
     ) -> Result<Vec<u8>> {
         let mut workbook = Workbook::new();
         
+        // NOTE: rust_xlsxwriter's Worksheet borrows Workbook mutably.
+        // We must not keep multiple worksheets alive at the same time.
+        // Therefore, we create each sheet in its own scope and drop the Worksheet
+        // before creating the next one.
+
         // Sheet 1: Scope 1 Detail
-        let ws1 = workbook.add_worksheet();
-        ws1.set_name("Scope 1 Detail")?;
-        Self::apply_legal_footer(ws1, language);
-        self.write_scope_rows(ws1, ledger, GhgScope::SCOPE1)?;
+        {
+            let ws1 = workbook.add_worksheet();
+            ws1.set_name("Scope 1 Detail")?;
+            Self::apply_legal_footer(ws1, language);
+            self.write_scope_rows(ws1, ledger, GhgScope::SCOPE1)?;
+        }
 
         // Sheet 2: Scope 2 Detail
-        let ws2 = workbook.add_worksheet();
-        ws2.set_name("Scope 2 Detail")?;
-        Self::apply_legal_footer(ws2, language);
-        self.write_scope_rows(ws2, ledger, GhgScope::Scope2Lb)?;
+        {
+            let ws2 = workbook.add_worksheet();
+            ws2.set_name("Scope 2 Detail")?;
+            Self::apply_legal_footer(ws2, language);
+            self.write_scope_rows(ws2, ledger, GhgScope::Scope2Lb)?;
+        }
 
         // Sheet 3: Scope 3 Kategorien
-        let ws3 = workbook.add_worksheet();
-        ws3.set_name("Scope 3 Kategorien")?;
-        Self::apply_legal_footer(ws3, language);
-        ws3.write(0, 0, "Category ID")?;
-        ws3.write(0, 1, "Category Name")?;
-        ws3.write(0, 2, "Total Rows")?;
-        ws3.write(0, 3, "Total tCO2e")?;
-        ws3.write(0, 4, "Avg Confidence")?;
-        ws3.write(0, 5, "Dominant Calc Path")?;
-        ws3.write(0, 6, "Data Quality Tier")?;
+        {
+            let ws3 = workbook.add_worksheet();
+            ws3.set_name("Scope 3 Kategorien")?;
+            Self::apply_legal_footer(ws3, language);
+            ws3.write(0, 0, "Category ID")?;
+            ws3.write(0, 1, "Category Name")?;
+            ws3.write(0, 2, "Total Rows")?;
+            ws3.write(0, 3, "Total tCO2e")?;
+            ws3.write(0, 4, "Avg Confidence")?;
+            ws3.write(0, 5, "Dominant Calc Path")?;
+            ws3.write(0, 6, "Data Quality Tier")?;
 
-        let mut row = 1;
-        for cat_id in 1..=15 {
-            if let Some(summary) = scope3_breakdown.get(&cat_id) {
-                ws3.write(row, 0, cat_id as f64)?;
-                ws3.write(row, 1, &summary.cat_name)?;
-                ws3.write(row, 2, summary.rows as u32)?;
-                ws3.write(row, 3, summary.tco2e)?;
-                ws3.write(row, 4, summary.avg_confidence)?;
-                ws3.write(row, 5, format!("{:?}", summary.dominant_calc_path))?;
-                ws3.write(row, 6, if summary.avg_confidence >= 0.9 { "Primary" } else if summary.avg_confidence >= 0.7 { "Secondary" } else { "Estimated" })?;
-                row += 1;
+            let mut row = 1;
+            for cat_id in 1..=15 {
+                if let Some(summary) = scope3_breakdown.get(&cat_id) {
+                    ws3.write(row, 0, cat_id as f64)?;
+                    ws3.write(row, 1, &summary.cat_name)?;
+                    ws3.write(row, 2, summary.rows as u32)?;
+                    ws3.write(row, 3, summary.tco2e)?;
+                    ws3.write(row, 4, summary.avg_confidence)?;
+                    ws3.write(row, 5, format!("{:?}", summary.dominant_calc_path))?;
+                    ws3.write(
+                        row,
+                        6,
+                        if summary.avg_confidence >= 0.9 {
+                            "Primary"
+                        } else if summary.avg_confidence >= 0.7 {
+                            "Secondary"
+                        } else {
+                            "Estimated"
+                        },
+                    )?;
+                    row += 1;
+                }
             }
+            ws3.write(
+                row + 1,
+                0,
+                format!(
+                    "Scope 3 completeness: {}/15 categories identified",
+                    scope3_breakdown.len()
+                ),
+            )?;
+
+            Self::apply_big4_worksheet_format(ws3, true);
         }
-        ws3.write(row + 1, 0, format!("Scope 3 completeness: {}/15 categories identified", scope3_breakdown.len()))?;
+
+
+
 
         // Sheet 4: Top 10 Hotspots
         let ws4 = workbook.add_worksheet();
@@ -442,6 +475,8 @@ impl OutputFactory {
             ws4.write(row_num, 5, r.confidence)?;
         }
 
+        // Sheet 4: Top 10 Hotspots
+        Self::apply_big4_worksheet_format(ws4, true);
         Ok(workbook.save_to_buffer()?)
     }
 
