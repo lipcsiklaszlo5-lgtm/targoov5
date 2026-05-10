@@ -16,7 +16,7 @@ use crate::supply_chain::{run_lksg_analysis, run_supply_chain_stress_test, LksgC
 use crate::taxonomy::{AlignmentChecker, EligibilityChecker};
 use anyhow::Result;
 use chrono::Utc;
-use rust_xlsxwriter::{Format, Workbook, Worksheet};
+use rust_xlsxwriter::{Format, FormatBorder, Workbook, Worksheet};
 use serde_json::json;
 use sha2::{Digest, Sha256};
 use std::collections::HashMap;
@@ -45,6 +45,45 @@ impl OutputFactory {
         let text = Self::get_legal_disclaimer(language);
         let footer_string = format!("&C&8&K808080{}", text);
         worksheet.set_footer(&footer_string);
+    }
+
+    fn get_big4_formats() -> (Format, Format, Format, Format, Format) {
+        let header = Format::new()
+            .set_bold()
+            .set_font_color("#FFFFFF")
+            .set_background_color("#003366")
+            .set_border(FormatBorder::Thin);
+
+        // thin border only
+        let data = Format::new().set_border(FormatBorder::Thin);
+
+        let tco2e = Format::new()
+            .set_border(FormatBorder::Thin)
+            .set_num_format("#,##0");
+
+        let quarantine = Format::new()
+            .set_border(FormatBorder::Thin)
+            .set_background_color("#FFC7CE");
+
+        let warning = Format::new()
+            .set_border(FormatBorder::Thin)
+            .set_background_color("#FFEB9C");
+
+        (header, data, tco2e, quarantine, warning)
+    }
+
+    fn apply_big4_worksheet_format(worksheet: &mut Worksheet, _has_data: bool) {
+        worksheet.set_freeze_panes(1, 0);
+        // Excel paper size codes: 9 = A4
+        worksheet.set_paper_size(9);
+        worksheet.set_landscape();
+        worksheet.set_repeat_rows(0, 0);
+        worksheet.autofit();
+
+        // minimum column width 12 for columns 0..20
+        for col in 0..=20 {
+            let _ = worksheet.set_column_width(col, 12);
+        }
     }
 
 
@@ -259,49 +298,75 @@ impl OutputFactory {
         worksheet.set_name("Zusammenfassung")?;
         Self::apply_legal_footer(worksheet, language);
 
-        let bold = Format::new().set_bold();
-        let header = Format::new().set_bold().set_background_color("#0A2540").set_font_color("#FFFFFF");
+        let (header, data, tco2e, _, _) = Self::get_big4_formats();
 
+        // Title + section headers (header format)
         worksheet.write_with_format(0, 0, "Targoo V2 GHG Inventory Summary", &header)?;
-        worksheet.write_with_format(2, 0, "Scope", &bold)?;
-        worksheet.write_with_format(2, 1, "tCO2e", &bold)?;
-        
-        worksheet.write(3, 0, "Scope 1")?;
-        worksheet.write(3, 1, aggregation.scope1_tco2e)?;
-        worksheet.write(4, 0, "Scope 2 (Location-Based)")?;
-        worksheet.write(4, 1, aggregation.scope2_lb_tco2e)?;
-        worksheet.write(5, 0, "Scope 2 (Market-Based)")?;
-        worksheet.write(5, 1, aggregation.scope2_mb_tco2e)?;
-        worksheet.write(6, 0, "Scope 3")?;
-        worksheet.write(6, 1, aggregation.scope3_tco2e)?;
-        worksheet.write_with_format(7, 0, "TOTAL", &bold)?;
-        worksheet.write_with_format(7, 1, aggregation.total_tco2e, &bold)?;
+
+        worksheet.write_with_format(2, 0, "Scope", &header)?;
+        worksheet.write_with_format(2, 1, "tCO2e", &header)?;
+
+        // Scope rows (label: header, tCO2e value: tco2e)
+        worksheet.write_with_format(3, 0, "Scope 1", &header)?;
+        worksheet.write_with_format(3, 1, aggregation.scope1_tco2e, &tco2e)?;
+
+        worksheet.write_with_format(4, 0, "Scope 2 (Location-Based)", &header)?;
+        worksheet.write_with_format(4, 1, aggregation.scope2_lb_tco2e, &tco2e)?;
+
+        worksheet.write_with_format(5, 0, "Scope 2 (Market-Based)", &header)?;
+        worksheet.write_with_format(5, 1, aggregation.scope2_mb_tco2e, &tco2e)?;
+
+        worksheet.write_with_format(6, 0, "Scope 3", &header)?;
+        worksheet.write_with_format(6, 1, aggregation.scope3_tco2e, &tco2e)?;
+
+        worksheet.write_with_format(7, 0, "TOTAL", &header)?;
+        worksheet.write_with_format(7, 1, aggregation.total_tco2e, &tco2e)?;
 
         worksheet.write_with_format(9, 0, "Scope 3 Category Breakdown", &header)?;
-        worksheet.write(10, 0, "Cat ID")?;
-        worksheet.write(10, 1, "Category Name")?;
-        worksheet.write(10, 2, "Rows")?;
-        worksheet.write(10, 3, "tCO2e")?;
-        worksheet.write(10, 4, "Avg Confidence")?;
-        worksheet.write(10, 5, "Calc Path")?;
 
+        // Column headers (header format)
+        worksheet.write_with_format(10, 0, "Cat ID", &header)?;
+        worksheet.write_with_format(10, 1, "Category Name", &header)?;
+        worksheet.write_with_format(10, 2, "Rows", &header)?;
+        worksheet.write_with_format(10, 3, "tCO2e", &header)?;
+        worksheet.write_with_format(10, 4, "Avg Confidence", &header)?;
+        worksheet.write_with_format(10, 5, "Calc Path", &header)?;
+
+        // Data rows (data format; tCO2e column uses tco2e format)
         let mut row = 11;
         for cat_id in 1..=15 {
             if let Some(summary) = scope3_breakdown.get(&cat_id) {
-                worksheet.write(row, 0, cat_id as f64)?;
-                worksheet.write(row, 1, &summary.cat_name)?;
-                worksheet.write(row, 2, summary.rows as u32)?;
-                worksheet.write(row, 3, summary.tco2e)?;
-                worksheet.write(row, 4, summary.avg_confidence)?;
-                worksheet.write(row, 5, format!("{:?}", summary.dominant_calc_path))?;
+                worksheet.write_with_format(row, 0, cat_id as f64, &data)?;
+                worksheet.write_with_format(row, 1, &summary.cat_name, &data)?;
+                worksheet.write_with_format(row, 2, summary.rows as u32, &data)?;
+                worksheet.write_with_format(row, 3, summary.tco2e, &tco2e)?;
+                worksheet.write_with_format(row, 4, summary.avg_confidence, &data)?;
+                worksheet.write_with_format(
+                    row,
+                    5,
+                    format!("{:?}", summary.dominant_calc_path),
+                    &data,
+                )?;
                 row += 1;
             }
         }
 
-        worksheet.write(row + 1, 0, format!("Jurisdiction: {}", jurisdiction))?;
-        
+        worksheet.write_with_format(
+            row + 1,
+            0,
+            format!("Jurisdiction: {}", jurisdiction),
+            &data,
+        )?;
+
         let signature_row = row + 4;
-        worksheet.write(signature_row, 0, "Unterschrift: _________________  Datum: _________________")?;
+        worksheet.write_with_format(
+            signature_row,
+            0,
+            "Unterschrift: _________________  Datum: _________________",
+            &data,
+        )?;
+
+        Self::apply_big4_worksheet_format(worksheet, true);
 
         Ok(workbook.save_to_buffer()?)
     }
