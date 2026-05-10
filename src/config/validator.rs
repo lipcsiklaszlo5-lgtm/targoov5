@@ -27,8 +27,8 @@ pub fn validate(config: RunConfig) -> Result<ValidatedConfig, String> {
     // ── 4. Szótár útvonalak összerakása ──────────────────────
     let lang_suffix = config.language.triage_dictionary_suffix();
     let dictionary_paths = vec![
-        format!("data/dictionary_{}.json", lang_suffix),
-        format!("data/dictionary_en.json"), // fallback mindig
+        "data/dictionary.json".to_string(),
+        "data/dictionary_expanded.json".to_string(),
     ];
 
     // ── 5. Output ZIP neve ───────────────────────────────────

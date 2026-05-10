@@ -50,16 +50,13 @@ pub fn get_emission_factor(
     jurisdiction: crate::models::Jurisdiction,
     unit: &str,
 ) -> Option<f64> {
-    let cat_lower = category.to_lowercase();
     match scope {
         crate::models::GhgScope::SCOPE1 => {
             if jurisdiction == crate::models::Jurisdiction::EU || jurisdiction == crate::models::Jurisdiction::UK {
-                if cat_lower.contains("natural_gas") || cat_lower.contains("gas") || cat_lower.contains("gaz") {
-                    DB.uk_defra_2024["natural_gas"]["totals"][unit].as_f64()
-                } else if cat_lower.contains("diesel") || cat_lower.contains("gázolaj") {
-                    DB.uk_defra_2024["liquid_fuels"]["diesel"]["combustion_litre"].as_f64()
-                } else {
-                    None
+                match category {
+                    "natural_gas" => DB.uk_defra_2024["natural_gas"]["totals"][unit].as_f64(),
+                    "diesel" => DB.uk_defra_2024["liquid_fuels"]["diesel"]["combustion_litre"].as_f64(),
+                    _ => None,
                 }
             } else {
                 None
@@ -75,10 +72,9 @@ pub fn get_emission_factor(
             }
         }
         crate::models::GhgScope::SCOPE3 => {
-            if cat_lower.contains("waste") {
-                DB.uk_defra_2024["water_waste"]["waste"]["landfill_mixed_tonne"].as_f64()
-            } else {
-                None
+            match category {
+                "waste" => DB.uk_defra_2024["water_waste"]["waste"]["landfill_mixed_tonne"].as_f64(),
+                _ => None,
             }
         }
         _ => None,

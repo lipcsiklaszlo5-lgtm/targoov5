@@ -1,7 +1,6 @@
 {
   "config_version": "1.0",
   "profile_name": "de_scope3_lksg",
-
   "client": {
     "name": "Mustermann GmbH",
     "industry": "Manufacturing",
@@ -9,27 +8,29 @@
     "contact_email": "esg@mustermann.de",
     "internal_id": "MUSTER-2024-003"
   },
-
-  "jurisdiction": "DE",
-  "modules": ["Scope3", "LkSG"],
+  "jurisdiction": "EU",
+  "modules": [
+    "Scope3",
+    "LkSG"
+  ],
   "language": "DE",
   "depth": "Full",
-
   "ef_source_override": null,
   "gwp_standard": "IpccAr6",
-
   "fritz_package": {
-    "include_narrative":  true,
-    "include_ef_ref":     true,
+    "include_narrative": true,
+    "include_ef_ref": true,
     "include_quarantine": true,
-    "watermark":          false,
-    "output_dir":         "./output/mustermann_2024"
+    "watermark": false,
+    "output_dir": "./output/mustermann_2024"
   },
-
   "ai": {
-    "embedding_url":          "http://127.0.0.1:9000/classify",
-    "embedding_timeout_ms":   300,
-    "gemini_enabled":         true,
-    "gemini_model":           "gemini-1.5-flash"
-  }
+    "embedding_url": "http://127.0.0.1:9000/classify",
+    "embedding_timeout_ms": 300,
+    "gemini_enabled": true,
+    "gemini_model": "gemini-1.5-flash"
+  },
+  "dictionary_paths": [
+    "data/dictionary.json"
+  ]
 }

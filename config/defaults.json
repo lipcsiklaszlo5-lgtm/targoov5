@@ -1,7 +1,6 @@
 {
   "config_version": "1.0",
   "profile_name": "global_quick",
-
   "client": {
     "name": "Default Client",
     "industry": "Unknown",
@@ -9,27 +8,28 @@
     "contact_email": null,
     "internal_id": null
   },
-
   "jurisdiction": "GLOBAL",
-  "modules": ["Scope1_2"],
+  "modules": [
+    "Scope1_2"
+  ],
   "language": "EN",
   "depth": "Quick",
-
   "ef_source_override": null,
   "gwp_standard": "IpccAr6",
-
   "fritz_package": {
-    "include_narrative":  false,
-    "include_ef_ref":     true,
+    "include_narrative": false,
+    "include_ef_ref": true,
     "include_quarantine": true,
-    "watermark":          true,
-    "output_dir":         "./output/default"
+    "watermark": true,
+    "output_dir": "./output/default"
   },
-
   "ai": {
-    "embedding_url":          "http://127.0.0.1:9000/classify",
-    "embedding_timeout_ms":   300,
-    "gemini_enabled":         false,
-    "gemini_model":           "gemini-1.5-flash"
-  }
+    "embedding_url": "http://127.0.0.1:9000/classify",
+    "embedding_timeout_ms": 300,
+    "gemini_enabled": false,
+    "gemini_model": "gemini-1.5-flash"
+  },
+  "dictionary_paths": [
+    "data/dictionary.json"
+  ]
 }

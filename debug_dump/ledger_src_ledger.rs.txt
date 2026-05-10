@@ -93,22 +93,10 @@ impl LedgerProcessor {
         triage_engine: &mut TriageEngine,
         jurisdiction: Jurisdiction,
     ) -> Result<Option<ProcessResult>> {
-        // Long-format CSV: if row has "Header" column, use its value as raw_header
-        let long_format_header: Option<String> = row.fields.iter()
-            .find(|(k, _)| k.to_lowercase() == "header")
-            .and_then(|(_, v)| if let crate::ingest::RawField::Text(s) = v { Some(s.clone()) } else { None });
-
         // 1. Find the numeric value field
-        let (raw_header, field) = if let Some(ref lf_header) = long_format_header {
-            match row.fields.iter().find(|(k, _)| k.to_lowercase() == "value") {
-                Some((_, f)) => (lf_header.clone(), f),
-                None => return Ok(None),
-            }
-        } else {
-            match self.find_value_field(row) {
-                Some(res) => (res.0.clone(), res.1),
-                None => return Ok(None),
-            }
+        let (raw_header, field) = match self.find_value_field(row) {
+            Some(res) => (res.0.clone(), res.1),
+            None => return Ok(None),
         };
 
         let raw_value_str = field.to_string_lossy();

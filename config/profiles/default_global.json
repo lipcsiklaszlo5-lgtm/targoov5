@@ -1,0 +1,30 @@
+{
+  "config_version": "1.0",
+  "profile_name": "test_full_pipeline",
+  "client": {
+    "name": "Test Company",
+    "industry": "Manufacturing",
+    "reference_year": 2024,
+    "contact_email": "test@test.com",
+    "internal_id": "TEST-2024-001"
+  },
+  "jurisdiction": "EU",
+  "modules": ["Scope1_2", "Scope3"],
+  "language": "EN",
+  "depth": "Deterministic",
+  "ef_source_override": null,
+  "gwp_standard": "IpccAr6",
+  "fritz_package": {
+    "include_narrative": false,
+    "include_ef_ref": false,
+    "include_quarantine": false,
+    "watermark": false,
+    "output_dir": "./test_output"
+  },
+  "ai": {
+    "embedding_url": "http://127.0.0.1:9000/classify",
+    "embedding_timeout_ms": 300,
+    "gemini_enabled": false,
+    "gemini_model": "gemini-1.5-flash"
+  }
+}
