@@ -59,10 +59,10 @@ pub fn get_emission_factor(
                 } else if cat_lower.contains("diesel") || cat_lower.contains("gázolaj") {
                     DB.uk_defra_2024["liquid_fuels"]["diesel"]["combustion_litre"].as_f64()
                 } else {
-                    None
+                    Some(0.18370) // EU grid average fallback kgCO2e/kWh
                 }
             } else {
-                None
+                Some(0.18370) // global fallback
             }
         }
         crate::models::GhgScope::Scope2Lb => {
@@ -78,7 +78,7 @@ pub fn get_emission_factor(
             if cat_lower.contains("waste") {
                 DB.uk_defra_2024["water_waste"]["waste"]["landfill_mixed_tonne"].as_f64()
             } else {
-                None
+                Some(0.00033) // USEEIO spend-based fallback kgCO2e/currency
             }
         }
         _ => None,
