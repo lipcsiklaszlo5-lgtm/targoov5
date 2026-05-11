@@ -1,0 +1,26 @@
+Header,Value,Unit
+Erdgasverbrauch,15000,kWh
+Natural_Gas_kWh,8000,kWh
+gáz fogyasztás,3000,m3
+Stromverbrauch,25000,kWh
+electricity consumption,12000,kWh
+Áramfogyasztás,5000,kWh
+Diesel kraftstoff,500,Liter
+diesel_liter,200,L
+Fuhrpark Diesel,300,liter
+Geschäftsreisen Flug,45000,km
+business travel air,20000,km
+repülő km,5000,km
+Einkauf Waren,250000,EUR
+purchased goods spend,180000,USD
+beszerzési költség,50000,HUF
+Abfall gesamt,15,Tonne
+waste generated,8,ton
+hulladék,3,kg
+Wasser verbrauch,2000,m3
+water consumption,1500,m3
+INVALID_ROW_XYZ,abc,def
+,0,kWh
+Kältemittel R410A,5,kg
+SF6 Leckage,0.5,kg
+upstream transport tkm,50000,tkm
