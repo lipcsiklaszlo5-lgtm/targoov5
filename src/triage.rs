@@ -259,7 +259,33 @@ impl TriageEngine {
             }
         }
 
-        // 5. AI Bridge Fallback (LIVING DICTIONARY)
+        // 5. Rule-Based Inference (unit + keyword decomposition)
+        let unit_hint = raw_row
+            .and_then(|r| r.fields.get("Unit"))
+            .and_then(|f| if let crate::ingest::RawField::Text(s) = f { Some(s.as_str()) } else { None })
+            .unwrap_or("");
+
+        if let Some(inferred) = crate::triage_rules::infer_category(raw_header, unit_hint) {
+            let entry = DictionaryEntry {
+                keyword: raw_header.to_string(),
+                language: "EN".to_string(),
+                ghg_category: inferred.ghg_category,
+                scope3_id: inferred.scope3_id,
+                scope3_name: None,
+                calc_path: Some(format!("{:?}", inferred.calc_path)),
+                canonical_unit: inferred.canonical_unit,
+                ef_value: 0.0,
+                ef_unit: "kgCO2e/unit".to_string(),
+                ef_source: format!("RuleBased: {}", inferred.reason),
+                ef_jurisdiction: None,
+                industry: "General".to_string(),
+                languages: vec!["en".to_string()],
+                confidence_default: inferred.confidence,
+            };
+            return Some(self.build_result(&entry, raw_header, inferred.confidence, MatchMethod::Fuzzy));
+        }
+
+        // 6. AI Bridge Fallback (LIVING DICTIONARY)
         if self.allow_ai {
             if let Ok(ai_resp) = self.ai_client.classify(raw_header).await {
                 const AI_CONFIDENCE_HIGH: f32 = 0.75;

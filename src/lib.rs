@@ -1,4 +1,5 @@
 pub mod aggregation;
+pub mod triage_rules;
 pub mod ai_client;
 pub mod api;
 pub mod audit;
