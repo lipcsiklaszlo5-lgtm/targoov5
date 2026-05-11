@@ -207,8 +207,9 @@ async fn run_headless(
 ) -> anyhow::Result<()> {
     use targoo_v2::models::{GhgScope, Jurisdiction};
     use targoo_v2::triage::TriageEngine;
-    use targoo_v2::ingest::{IngestEngine};
+    use targoo_v2::ingest::{IngestEngine, RawRow};
     use targoo_v2::ledger::{LedgerProcessor, ProcessResult};
+    use targoo_v2::models::{LedgerRow, QuarantineRow};
     use targoo_v2::aggregation::Aggregator;
     use targoo_v2::gemini_client::GeminiClient;
     use targoo_v2::output_factory::OutputFactory;
@@ -254,33 +255,33 @@ async fn run_headless(
     let mut ledger_processor = LedgerProcessor::new();
     let aggregator = Aggregator::new();
 
-    // 3. Ingest & Process (Streaming) - SYNCHRONOUS, FULL ROW
+    // 3. Ingest & Process (Streaming) - PER-FIELD SYNCHRONOUS
     let (_, stream) = ingestion_engine.open(std::path::Path::new(&input_path))?;
     
-    let mut ledger_rows = Vec::new();
-    let mut quarantine_rows = Vec::new();
+    let mut ledger_rows: Vec<LedgerRow> = Vec::new();
+    let mut quarantine_rows: Vec<QuarantineRow> = Vec::new();
 
     for row_res in stream {
         let raw_row = row_res?;
         
-        let res = ledger_processor.process_row(
-            &run_id,
-            &raw_row,
-            &mut triage_engine,
-            jurisdiction,
-        ).await?;
-
-        match res {
-            Some(ProcessResult::Ledger(r)) => {
-                eprintln!("DEBUG LEDGER: header={} scope={:?} tco2e={:.6}", r.raw_header, r.ghg_scope, r.tco2e);
-                ledger_rows.push(r);
+            let res = ledger_processor.process_row(
+                &run_id,
+                &raw_row,
+                &mut triage_engine,
+                jurisdiction,
+            ).await?;
+            
+            match res {
+                Some(ProcessResult::Ledger(r)) => {
+                    eprintln!("DEBUG LEDGER: header={} scope={:?} tco2e={:.6}", r.raw_header, r.ghg_scope, r.tco2e);
+                    ledger_rows.push(r);
+                }
+                Some(ProcessResult::Quarantine(q)) => {
+                    eprintln!("DEBUG QUARANTINE: header={} reason={:?}", q.raw_header, q.error_reason);
+                    quarantine_rows.push(q);
+                }
+                None => {}
             }
-            Some(ProcessResult::Quarantine(q)) => {
-                eprintln!("DEBUG QUARANTINE: header={} reason={:?}", q.raw_header, q.error_reason);
-                quarantine_rows.push(q);
-            }
-            None => {}
-        }
     }
 
     ledger_rows.sort_by_key(|r| r.raw_row_index);
