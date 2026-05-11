@@ -125,8 +125,56 @@ impl TriageEngine {
     }
 
     pub fn load_from_json(&mut self, json: &str) -> Result<()> {
-        let entries: Vec<DictionaryEntry> = serde_json::from_str(json)?;
-        self.entries = entries;
+        // Try standard format first
+        if let Ok(entries) = serde_json::from_str::<Vec<DictionaryEntry>>(json) {
+            self.entries.extend(entries);
+            self.rebuild_indexes();
+            return Ok(());
+        }
+        // Try expanded format: {header, scope, category, calc_path, canonical_unit, confidence}
+        #[derive(serde::Deserialize)]
+        struct ExpandedEntry {
+            header: Option<String>,
+            keyword: Option<String>,
+            scope: Option<String>,
+            ghg_category: Option<String>,
+            category: Option<String>,
+            calc_path: Option<String>,
+            canonical_unit: Option<String>,
+            confidence: Option<f32>,
+            #[serde(default)]
+            scope3_id: Option<u8>,
+        }
+        let expanded: Vec<ExpandedEntry> = serde_json::from_str(json)?;
+        for e in expanded {
+            let keyword = e.header.or(e.keyword).unwrap_or_default();
+            if keyword.is_empty() { continue; }
+            let ghg_category = e.ghg_category
+                .or(e.category)
+                .unwrap_or_else(|| "Scope3".to_string());
+            // Normalize scope name: SCOPE1->Scope1, Scope2Lb->Scope2 etc.
+            let ghg_category = match ghg_category.to_uppercase().as_str() {
+                "SCOPE1" => "Scope1".to_string(),
+                "SCOPE2" | "SCOPE2LB" | "SCOPE2MB" => "Scope2".to_string(),
+                _ => ghg_category,
+            };
+            self.entries.push(DictionaryEntry {
+                keyword,
+                language: "EN".to_string(),
+                ghg_category,
+                scope3_id: e.scope3_id,
+                scope3_name: None,
+                calc_path: e.calc_path,
+                canonical_unit: e.canonical_unit.unwrap_or_else(|| "kWh".to_string()),
+                ef_value: 0.0,
+                ef_unit: "kgCO2e/kWh".to_string(),
+                ef_source: "Expanded".to_string(),
+                ef_jurisdiction: None,
+                industry: "General".to_string(),
+                languages: vec!["en".to_string()],
+                confidence_default: e.confidence.unwrap_or(0.85),
+            });
+        }
         self.rebuild_indexes();
         Ok(())
     }
