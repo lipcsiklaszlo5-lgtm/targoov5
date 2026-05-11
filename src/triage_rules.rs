@@ -20,8 +20,16 @@ pub fn infer_category(header: &str, unit: &str) -> Option<InferredCategory> {
     let header_lower = header.to_lowercase();
     let unit_lower = unit.to_lowercase();
 
+    // Egység kinyerése a fejléc végéből is (pl. "Road_Freight_tkm" -> "tkm")
+    let unit_from_header = header_lower
+        .split('_')
+        .last()
+        .unwrap_or("")
+        .to_string();
+    let effective_unit = if unit_lower.is_empty() { &unit_from_header } else { &unit_lower };
+
     // Stratégia 1: Unit-based inference
-    if let Some(result) = infer_from_unit(&header_lower, &unit_lower) {
+    if let Some(result) = infer_from_unit(&header_lower, effective_unit) {
         return Some(result);
     }
 
@@ -77,9 +85,112 @@ fn infer_from_unit(header: &str, unit: &str) -> Option<InferredCategory> {
 
 /// Stratégia 2: Fejléc kulcsszó darabolás
 fn infer_from_keywords(header: &str) -> Option<InferredCategory> {
+    // Refrigerant / Kältemittel / Hűtőközeg
+    if header.contains("refrigerant") || header.contains("kältemittel") || header.contains("coolant")
+        || header.contains("r410") || header.contains("r134") || header.contains("r22")
+        || header.contains("hűtő") || header.contains("kälte") {
+        return Some(InferredCategory {
+            ghg_scope: GhgScope::SCOPE1,
+            ghg_category: "Scope1".to_string(),
+            scope3_id: None,
+            calc_path: CalcPath::ActivityBased,
+            canonical_unit: "kg".to_string(),
+            confidence: 0.88,
+            reason: "keyword: refrigerant/kältemittel → Scope1 fugitive".to_string(),
+        });
+    }
+
+    // District Heat / Fernwärme / Távfűtés
+    if header.contains("district") || header.contains("fernwärme") || header.contains("távfűtés")
+        || header.contains("heat") || header.contains("steam") || header.contains("wärme")
+        || header.contains("dampf") || header.contains("gőz") {
+        return Some(InferredCategory {
+            ghg_scope: GhgScope::SCOPE1,
+            ghg_category: "Scope1".to_string(),
+            scope3_id: None,
+            calc_path: CalcPath::ActivityBased,
+            canonical_unit: "kWh".to_string(),
+            confidence: 0.82,
+            reason: "keyword: district_heat/fernwärme → Scope1".to_string(),
+        });
+    }
+
+    // Gasoline / Petrol / Benzin
+    if header.contains("gasoline") || header.contains("petrol") || header.contains("benzin")
+        || header.contains("benzol") || header.contains("benzinkut") {
+        return Some(InferredCategory {
+            ghg_scope: GhgScope::SCOPE1,
+            ghg_category: "Scope1".to_string(),
+            scope3_id: None,
+            calc_path: CalcPath::ActivityBased,
+            canonical_unit: "liter".to_string(),
+            confidence: 0.85,
+            reason: "keyword: gasoline/petrol/benzin".to_string(),
+        });
+    }
+
+    // Steel / Plastic / Electronics purchase
+    if header.contains("steel") || header.contains("stahl") || header.contains("acél")
+        || header.contains("plastic") || header.contains("resin") || header.contains("electronics")
+        || header.contains("purchase") || header.contains("einkauf") || header.contains("procurement") {
+        return Some(InferredCategory {
+            ghg_scope: GhgScope::SCOPE3,
+            ghg_category: "Scope3".to_string(),
+            scope3_id: Some(1),
+            calc_path: CalcPath::SpendBased,
+            canonical_unit: "EUR".to_string(),
+            confidence: 0.80,
+            reason: "keyword: steel/plastic/electronics → Cat1".to_string(),
+        });
+    }
+
+    // Flight / Air travel
+    if header.contains("flight") || header.contains("flug") || header.contains("repülő")
+        || header.contains("air_travel") || header.contains("aviation") {
+        return Some(InferredCategory {
+            ghg_scope: GhgScope::SCOPE3,
+            ghg_category: "Scope3".to_string(),
+            scope3_id: Some(6),
+            calc_path: CalcPath::ActivityBased,
+            canonical_unit: "km".to_string(),
+            confidence: 0.85,
+            reason: "keyword: flight/flug → Cat6".to_string(),
+        });
+    }
+
+    // Train / Rail travel
+    if header.contains("train") || header.contains("bahn") || header.contains("rail")
+        || header.contains("vonat") || header.contains("zug") {
+        return Some(InferredCategory {
+            ghg_scope: GhgScope::SCOPE3,
+            ghg_category: "Scope3".to_string(),
+            scope3_id: Some(6),
+            calc_path: CalcPath::ActivityBased,
+            canonical_unit: "km".to_string(),
+            confidence: 0.82,
+            reason: "keyword: train/bahn → Cat6".to_string(),
+        });
+    }
+
+    // Taxi / Car travel
+    if header.contains("taxi") || header.contains("car_travel") || header.contains("pkw")
+        || header.contains("auto") {
+        return Some(InferredCategory {
+            ghg_scope: GhgScope::SCOPE3,
+            ghg_category: "Scope3".to_string(),
+            scope3_id: Some(6),
+            calc_path: CalcPath::ActivityBased,
+            canonical_unit: "km".to_string(),
+            confidence: 0.80,
+            reason: "keyword: taxi/car → Cat6".to_string(),
+        });
+    }
+
     // Transport
     if header.contains("transport") || header.contains("logistik") || header.contains("spedition")
-        || header.contains("fuvar") || header.contains("szállít") {
+        || header.contains("fuvar") || header.contains("szállít") || header.contains("freight")
+        || header.contains("cargo") || header.contains("road") || header.contains("sea")
+        || header.contains("air_cargo") {
         return Some(InferredCategory {
             ghg_scope: GhgScope::SCOPE3,
             ghg_category: "Scope3".to_string(),
