@@ -125,8 +125,56 @@ impl TriageEngine {
     }
 
     pub fn load_from_json(&mut self, json: &str) -> Result<()> {
-        let entries: Vec<DictionaryEntry> = serde_json::from_str(json)?;
-        self.entries = entries;
+        // Try standard format first
+        if let Ok(entries) = serde_json::from_str::<Vec<DictionaryEntry>>(json) {
+            self.entries.extend(entries);
+            self.rebuild_indexes();
+            return Ok(());
+        }
+        // Try expanded format: {header, scope, category, calc_path, canonical_unit, confidence}
+        #[derive(serde::Deserialize)]
+        struct ExpandedEntry {
+            header: Option<String>,
+            keyword: Option<String>,
+            scope: Option<String>,
+            ghg_category: Option<String>,
+            category: Option<String>,
+            calc_path: Option<String>,
+            canonical_unit: Option<String>,
+            confidence: Option<f32>,
+            #[serde(default)]
+            scope3_id: Option<u8>,
+        }
+        let expanded: Vec<ExpandedEntry> = serde_json::from_str(json)?;
+        for e in expanded {
+            let keyword = e.header.or(e.keyword).unwrap_or_default();
+            if keyword.is_empty() { continue; }
+            let ghg_category = e.ghg_category
+                .or(e.category)
+                .unwrap_or_else(|| "Scope3".to_string());
+            // Normalize scope name: SCOPE1->Scope1, Scope2Lb->Scope2 etc.
+            let ghg_category = match ghg_category.to_uppercase().as_str() {
+                "SCOPE1" => "Scope1".to_string(),
+                "SCOPE2" | "SCOPE2LB" | "SCOPE2MB" => "Scope2".to_string(),
+                _ => ghg_category,
+            };
+            self.entries.push(DictionaryEntry {
+                keyword,
+                language: "EN".to_string(),
+                ghg_category,
+                scope3_id: e.scope3_id,
+                scope3_name: None,
+                calc_path: e.calc_path,
+                canonical_unit: e.canonical_unit.unwrap_or_else(|| "kWh".to_string()),
+                ef_value: 0.0,
+                ef_unit: "kgCO2e/kWh".to_string(),
+                ef_source: "Expanded".to_string(),
+                ef_jurisdiction: None,
+                industry: "General".to_string(),
+                languages: vec!["en".to_string()],
+                confidence_default: e.confidence.unwrap_or(0.85),
+            });
+        }
         self.rebuild_indexes();
         Ok(())
     }
@@ -211,7 +259,33 @@ impl TriageEngine {
             }
         }
 
-        // 5. AI Bridge Fallback (LIVING DICTIONARY)
+        // 5. Rule-Based Inference (unit + keyword decomposition)
+        let unit_hint = raw_row
+            .and_then(|r| r.fields.get("Unit"))
+            .and_then(|f| if let crate::ingest::RawField::Text(s) = f { Some(s.as_str()) } else { None })
+            .unwrap_or("");
+
+        if let Some(inferred) = crate::triage_rules::infer_category(raw_header, unit_hint) {
+            let entry = DictionaryEntry {
+                keyword: raw_header.to_string(),
+                language: "EN".to_string(),
+                ghg_category: inferred.ghg_category,
+                scope3_id: inferred.scope3_id,
+                scope3_name: None,
+                calc_path: Some(format!("{:?}", inferred.calc_path)),
+                canonical_unit: inferred.canonical_unit,
+                ef_value: 0.0,
+                ef_unit: "kgCO2e/unit".to_string(),
+                ef_source: format!("RuleBased: {}", inferred.reason),
+                ef_jurisdiction: None,
+                industry: "General".to_string(),
+                languages: vec!["en".to_string()],
+                confidence_default: inferred.confidence,
+            };
+            return Some(self.build_result(&entry, raw_header, inferred.confidence, MatchMethod::Fuzzy));
+        }
+
+        // 6. AI Bridge Fallback (LIVING DICTIONARY)
         if self.allow_ai {
             if let Ok(ai_resp) = self.ai_client.classify(raw_header).await {
                 const AI_CONFIDENCE_HIGH: f32 = 0.75;

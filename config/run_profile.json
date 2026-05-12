@@ -31,6 +31,7 @@
     "gemini_model": "gemini-1.5-flash"
   },
   "dictionary_paths": [
-    "data/dictionary.json"
+    "data/dictionary.json",
+    "data/dictionary_expanded.json"
   ]
 }

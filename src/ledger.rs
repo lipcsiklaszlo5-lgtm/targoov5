@@ -44,7 +44,8 @@ impl LedgerProcessor {
             "id", "company id", "company_id", "companyid", "company", "name", "year", "date", "period",
             "description", "notes", "comment", "source", "row", "index", "id_number",
             "unternehmen", "jahr", "datum", "beschreibung",
-            "azonosito", "ceg", "nev", "ev", "leiras"
+            "azonosito", "ceg", "nev", "ev", "leiras",
+            "value", "unit", "header", "wert", "einheit"
         ];
 
         // 1. Try to find by header keyword
@@ -83,6 +84,32 @@ impl LedgerProcessor {
         }
 
         None
+    }
+
+    /// Returns ALL numeric fields from a row (for wide-format ERP CSVs)
+    pub fn find_all_value_fields<'a>(&self, row: &'a RawRow) -> Vec<(&'a String, &'a crate::ingest::RawField)> {
+        let excluded_headers = [
+            "id", "company id", "company_id", "companyid", "company", "name", "year", "date", "period",
+            "description", "notes", "comment", "source", "row", "index", "id_number",
+            "unternehmen", "jahr", "datum", "beschreibung",
+            "azonosito", "ceg", "nev", "ev", "leiras",
+            "value", "unit", "header", "wert", "einheit"
+        ];
+        let mut results = Vec::new();
+        for (header, field) in &row.fields {
+            let norm_header = header.to_lowercase();
+            if excluded_headers.iter().any(|ex| norm_header.contains(ex)) {
+                continue;
+            }
+            if matches!(field, crate::ingest::RawField::Number(_) | crate::ingest::RawField::Integer(_)) {
+                results.push((header, field));
+            } else if let crate::ingest::RawField::Text(s) = field {
+                if crate::ingest_v1::parse_numeric_cell(s).is_some() {
+                    results.push((header, field));
+                }
+            }
+        }
+        results
     }
 
     /// Processes a single raw row into either a LedgerRow, a QuarantineRow, or skips it
@@ -202,7 +229,15 @@ impl LedgerProcessor {
         } else {
             triage_result.ef_value
         };
-        let gwp_applied = self.get_gwp_for_category(&triage_result.ghg_category);
+        // Check GWP from both category AND raw header (for refrigerants like SF6, R410A)
+        let gwp_applied = {
+            let from_category = self.get_gwp_for_category(&triage_result.ghg_category);
+            if from_category != crate::models::GWP_CO2 {
+                from_category
+            } else {
+                self.get_gwp_for_category(&raw_header)
+            }
+        };
 
         let mut tco2e = (converted_value * ef_value * gwp_applied) / 1000.0;
 

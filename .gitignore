@@ -3,3 +3,4 @@ target/
 *.db*
 .env
 .aider*
+test_output/
