@@ -13,7 +13,7 @@ pub struct EmissionFactorDatabase {
     pub constants: serde_json::Value,
 }
 
-static DB: Lazy<EmissionFactorDatabase> = Lazy::new(|| {
+pub static DB: Lazy<EmissionFactorDatabase> = Lazy::new(|| {
     let path = std::env::var("EF_DATABASE_PATH")
         .unwrap_or_else(|_| "data/efactors/database.json".to_string());
     let content = match std::fs::read_to_string(path) {

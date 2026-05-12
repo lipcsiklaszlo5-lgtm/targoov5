@@ -1,4 +1,5 @@
 pub mod canonicalizer;
+pub mod ef_intelligent;
 pub mod validation_policy;
 pub mod aggregation;
 pub mod triage_rules;

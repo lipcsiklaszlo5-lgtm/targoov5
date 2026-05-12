@@ -231,7 +231,7 @@ impl LedgerProcessor {
         };
         // Check GWP from both category AND raw header (for refrigerants like SF6, R410A)
         let gwp_applied = {
-            let from_category = self.get_gwp_for_category(&triage_result.ghg_category);
+            let from_category = self.get_gwp_for_category(&triage_result.matched_keyword);
             if from_category != crate::models::GWP_CO2 {
                 from_category
             } else {
